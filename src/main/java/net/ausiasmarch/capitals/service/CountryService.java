@@ -10,11 +10,11 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import net.ausiasmarch.capitals.model.Country;
+import net.ausiasmarch.capitals.model.CountryBean;
 
 public class CountryService {
     private static CountryService instance;
-    private static List<Country> cachedCountries = null;
+    private static List<CountryBean> cachedCountries = null;
     private static final String API_URL = "https://restcountries.com/v3.1/all?fields=name&fields=capital";
 
     private CountryService() {
@@ -27,11 +27,11 @@ public class CountryService {
         return instance;
     }
 
-    public List<Country> fetchAllCountries() {
+    public List<CountryBean> fetchAllCountries() {
         if (cachedCountries != null) {
             return cachedCountries;
         }
-        List<Country> countries = new ArrayList<>();
+        List<CountryBean> countries = new ArrayList<>();
         try {
             URL url = new URL(API_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -56,7 +56,7 @@ public class CountryService {
                         borders.add(bordersArr.getString(j));
                     }
                 }
-                countries.add(new Country(name, capital));
+                countries.add(new CountryBean(name, capital));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,8 +65,8 @@ public class CountryService {
         return cachedCountries;
     }
 
-    public Country getCountryByName(String name) {
-        for (Country country : fetchAllCountries()) {
+    public CountryBean getCountryByName(String name) {
+        for (CountryBean country : fetchAllCountries()) {
             if (country.getName().equalsIgnoreCase(name)) {
                 return country;
             }
@@ -75,12 +75,12 @@ public class CountryService {
     }
 
     public String getCapitalByCountryName(String name) {
-        Country country = getCountryByName(name);
+        CountryBean country = getCountryByName(name);
         return (country != null) ? country.getCapital() : null;
     }
 
     public String getCountryByCapitalName(String name) {
-        for (Country country : fetchAllCountries()) {
+        for (CountryBean country : fetchAllCountries()) {
             if (country.getCapital().equalsIgnoreCase(name)) {
                 return country.getName();
             }

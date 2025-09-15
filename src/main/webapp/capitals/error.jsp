@@ -9,10 +9,13 @@
 
     <body>
         <jsp:include page="menu.jsp" />
-        <h2>Error</h2>
+        <h2>Error in the application</h2>
         <div style="color:red;">${errorMessage}</div>
         <form method="get" action="login.jsp">
             <input type="submit" value="Back to Login">
+        </form>
+        <form method="get" action="landing.jsp">
+            <input type="submit" value="Home">
         </form>
         <jsp:include page="footer.jsp" />
     </body>

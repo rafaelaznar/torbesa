@@ -1,11 +1,11 @@
 package net.ausiasmarch.capitals.model;
 
-public class User {
+public class UserBean {
     private int id;
     private String username;
     private String password;
 
-    public User(int id, String username, String password) {
+    public UserBean(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;

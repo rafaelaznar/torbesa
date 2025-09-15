@@ -3,14 +3,14 @@ package net.ausiasmarch.capitals.servlet;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-
-import net.ausiasmarch.capitals.model.Country;
-import net.ausiasmarch.capitals.model.Score;
-import net.ausiasmarch.capitals.model.User;
+import net.ausiasmarch.capitals.dao.ScoreDao;
+import net.ausiasmarch.capitals.model.CountryBean;
+import net.ausiasmarch.capitals.model.ScoreDto;
+import net.ausiasmarch.capitals.model.UserBean;
 import net.ausiasmarch.capitals.service.CountryService;
 import net.ausiasmarch.capitals.service.ScoreService;
-
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +23,7 @@ public class GameServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");
+        UserBean user = (UserBean) session.getAttribute("sessionUser");
         if (user == null) {
             response.sendRedirect("login.jsp");
             return;
@@ -31,13 +31,13 @@ public class GameServlet extends HttpServlet {
             request.setAttribute("sessionUser", user);
         }
 
-        List<Country> countries = CountryService.getInstance().fetchAllCountries();
+        List<CountryBean> countries = CountryService.getInstance().fetchAllCountries();
 
         ArrayList<String> options = new ArrayList<>();
 
         // fist select one country from the list of all countries
         int randomIndex0 = (int) (Math.random() * countries.size());
-        Country selectedCountry = countries.get(randomIndex0);
+        CountryBean selectedCountry = countries.get(randomIndex0);
         // while selectedCountry has no capital select another
         while (selectedCountry.getCapital().trim().isEmpty()) {
             randomIndex0 = (int) (Math.random() * countries.size());
@@ -70,47 +70,55 @@ public class GameServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
 
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");
-        if (user == null) {
-            response.sendRedirect("login.jsp");
-            return;
-        } else {
-            request.setAttribute("username", user.getUsername());
+            HttpSession session = request.getSession();
+            UserBean user = (UserBean) session.getAttribute("sessionUser");
+            if (user == null) {
+                response.sendRedirect("login.jsp");
+                return;
+            } else {
+                request.setAttribute("username", user.getUsername());
+            }
+
+            ScoreService scoreService = new ScoreService();
+            String country = request.getParameter("country");
+            String capitalGuess = request.getParameter("capitalGuess");
+
+            String correctCapital = CountryService.getInstance().fetchAllCountries().stream()
+                    .filter(c -> c.getName().equals(country))
+                    .map(CountryBean::getCapital)
+                    .findFirst()
+                    .orElse("");
+            request.setAttribute("country", country);
+            request.setAttribute("correctCapital", correctCapital);
+            request.setAttribute("capitalGuess", capitalGuess);
+            if (capitalGuess.equals(correctCapital)) {
+
+                scoreService.set(user.getId(), true);
+
+                request.setAttribute("message", "Correct! Well done.");
+            } else {
+                request.setAttribute("message", "Incorrect. Try again!");
+                scoreService.set(user.getId(), false);
+            }
+
+            ScoreDao oScoreDao = new ScoreDao();
+            ScoreDto userScore = oScoreDao.get(user.getId());
+            request.setAttribute("userScore", userScore);
+
+            List<ScoreDto> highScores = oScoreDao.getTop10();
+            request.setAttribute("highScores", highScores);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
+            dispatcher.forward(request, response);
+
+        } catch (SQLException e) {
+            System.err.println("Database error: " + e.getMessage());
+            request.setAttribute("errorMessage", "Database error");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+            dispatcher.forward(request, response);
         }
 
-        ScoreService scoreService = new ScoreService();
-        String country = request.getParameter("country");
-        String capitalGuess = request.getParameter("capitalGuess");
-
-        // get all countries from CountryService
-        String correctCapital = CountryService.getInstance().fetchAllCountries().stream()
-                .filter(c -> c.getName().equals(country))
-                .map(Country::getCapital)
-                .findFirst()
-                .orElse("");
-        request.setAttribute("country", country);
-        request.setAttribute("correctCapital", correctCapital);
-        request.setAttribute("capitalGuess", capitalGuess);
-        if (capitalGuess.equals(correctCapital)) {
-            scoreService.updateScore(user.getId(), true);
-            request.setAttribute("message", "Correct! Well done.");
-        } else {
-            request.setAttribute("message", "Incorrect. Try again!");
-            scoreService.updateScore(user.getId(), false);
-        }
-
-        // get user scores from ScoreService
-
-        Score userScore = scoreService.getScoreByUser(user.getId());
-        request.setAttribute("userScore", userScore);
-
-        // get high scores from ScoreService
-        List<Score> highScores = scoreService.getHighScores();
-        request.setAttribute("highScores", highScores);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
-        dispatcher.forward(request, response);
     }
 }

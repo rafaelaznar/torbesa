@@ -9,16 +9,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ausiasmarch.capitals.model.Score;
+import net.ausiasmarch.capitals.model.ScoreDto;
 import net.ausiasmarch.capitals.service.DatabaseService;
 
 public class ScoreDao {
 
-    public Score get(int userId) {
+    public ScoreDto get(int userId) {
         if (count(userId) > 1) {
             sanitize();
         }
-        Score oScore = new Score(0, userId, 0, 0, LocalDateTime.now());
+        ScoreDto oScore = null;
         try (Connection conn = DatabaseService.getConnection()) {
             String sql = "SELECT * FROM capitals_score, users WHERE capitals_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -26,7 +26,7 @@ public class ScoreDao {
             stmt.setInt(2, userId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                oScore = new Score(
+                oScore = new ScoreDto(
                         rs.getInt("id"),
                         rs.getInt("user_id"),
                         rs.getInt("score"),
@@ -58,14 +58,19 @@ public class ScoreDao {
 
     public int count() throws SQLException {
         try (Connection conn = DatabaseService.getConnection()) {
-
-
-
+            String countSql = "SELECT COUNT(*) AS total FROM capitals_score";
+            PreparedStatement countStmt = conn.prepareStatement(countSql);
+            ResultSet rs = countStmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("total");
+            } else {
+                return 0;
+            }
 
         } catch (SQLException e) {
             throw e;
         }
-        return 0;
+
     }
 
     public void sanitize() {
@@ -85,8 +90,8 @@ public class ScoreDao {
         }
     }
 
-    public List<Score> getTop10() {
-        List<Score> scores = new ArrayList<>();
+    public List<ScoreDto> getTop10() {
+        List<ScoreDto> scores = new ArrayList<>();
         try (Connection conn = DatabaseService.getConnection()) {
             String sql = "SELECT * FROM capitals_score, users ";
             sql += "WHERE capitals_score.user_id = users.id ";
@@ -94,7 +99,7 @@ public class ScoreDao {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                scores.add(new Score(
+                scores.add(new ScoreDto(
                         rs.getInt("id"),
                         rs.getInt("user_id"),
                         rs.getInt("score"),
@@ -108,14 +113,14 @@ public class ScoreDao {
         return scores;
     }
 
-    public List<Score> getAll() throws SQLException {
+    public List<ScoreDto> getAll() throws SQLException {
         try (Connection conn = DatabaseService.getConnection()) {
             String getAllString = "SELECT * FROM capitals_score ORDER BY user_id ASC";
             PreparedStatement getAllStmt = conn.prepareStatement(getAllString);
             ResultSet rs = getAllStmt.executeQuery();
-            List<Score> scores = new ArrayList<>();
+            List<ScoreDto> scores = new ArrayList<>();
             while (rs.next()) {
-                scores.add(new Score(
+                scores.add(new ScoreDto(
                         rs.getInt("id"),
                         rs.getInt("user_id"),
                         rs.getInt("score"),
@@ -129,7 +134,7 @@ public class ScoreDao {
 
     }
 
-    public int create(Score oScore) throws SQLException {
+    public int insert(ScoreDto oScore) throws SQLException {
         try (Connection conn = DatabaseService.getConnection()) {
             String insertSql = "INSERT INTO capitals_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
             PreparedStatement insertStmt = conn.prepareStatement(insertSql);
@@ -142,7 +147,7 @@ public class ScoreDao {
         }
     }
 
-    public int update(Score oScore) throws SQLException {
+    public int update(ScoreDto oScore) throws SQLException {
         try (Connection conn = DatabaseService.getConnection()) {
             String updateSql = "UPDATE capitals_score SET score = ?, tries = ?, timestamp = NOW() WHERE user_id = ?";
             PreparedStatement updateStmt = conn.prepareStatement(updateSql);

@@ -2,20 +2,20 @@ package net.ausiasmarch.capitals.dao;
 
 import java.sql.*;
 
-import net.ausiasmarch.capitals.model.User;
+import net.ausiasmarch.capitals.model.UserBean;
 import net.ausiasmarch.capitals.service.DatabaseService;
 
 public class UserDao {
 
     // get one user by id
-    public User getUserById(int id) {
+    public UserBean getUserById(int id) {
         try (Connection conn = DatabaseService.getConnection()) {
             String sql = "SELECT * FROM users WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return new User(
+                return new UserBean(
                         rs.getInt("id"),
                         rs.getString("username"),
                         rs.getString("password"));
@@ -42,14 +42,14 @@ public class UserDao {
         }
     }
 
-    public User getUserByUsername(String username) {
+    public UserBean getUserByUsername(String username) {
         try (Connection conn = DatabaseService.getConnection()) {
             String sql = "SELECT * FROM users WHERE username = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return new User(
+                return new UserBean(
                         rs.getInt("id"),
                         rs.getString("username"),
                         rs.getString("password"));

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class AppContextListener implements ServletContextListener {
+    
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
@@ -14,4 +15,5 @@ public class AppContextListener implements ServletContextListener {
             throw new RuntimeException("Cant load MySQL driver", e);
         }
     }
+    
 }

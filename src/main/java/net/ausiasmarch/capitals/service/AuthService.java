@@ -2,7 +2,7 @@ package net.ausiasmarch.capitals.service;
 
 import java.sql.*;
 
-import net.ausiasmarch.capitals.model.User;
+import net.ausiasmarch.capitals.model.UserBean;
 
 public class AuthService {
     public boolean authenticate(String username, String password) {
@@ -21,7 +21,7 @@ public class AuthService {
 
     }
 
-    public User getUserByUsername(String username) {
+    public UserBean getUserByUsername(String username) {
  
             try (Connection conn = DatabaseService.getConnection()) {
                 String sql = "SELECT * FROM users WHERE username = ?";
@@ -29,7 +29,7 @@ public class AuthService {
                 stmt.setString(1, username);
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
-                    return new User(
+                    return new UserBean(
                             rs.getInt("id"),
                             rs.getString("username"),
                             rs.getString("password"));

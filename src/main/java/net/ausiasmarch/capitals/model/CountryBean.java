@@ -1,10 +1,10 @@
 package net.ausiasmarch.capitals.model;
 
-public class Country {
+public class CountryBean {
     private String name;
     private String capital;
 
-    public Country(String name, String capital) {
+    public CountryBean(String name, String capital) {
         this.name = name;
         this.capital = capital;
     }

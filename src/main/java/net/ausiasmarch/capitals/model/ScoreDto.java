@@ -5,7 +5,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 
-public class Score {
+public class ScoreDto {
     private int id;
     private int userId;
     private String username;
@@ -13,7 +13,15 @@ public class Score {
     private int tries;
     private LocalDateTime timestamp;
 
-    public Score(int id, int userId, int score, int tries, LocalDateTime timestamp) {
+    public ScoreDto() {
+        this.id = 0;
+        this.userId = 0;
+        this.score = 0;
+        this.tries = 0;
+        this.timestamp = null;
+    }
+
+    public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp) {
         this.id = id;
         this.userId = userId;
         this.score = score;
@@ -21,7 +29,7 @@ public class Score {
         this.timestamp = timestamp;
     }
 
-    public Score(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
+    public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
         this.id = id;
         this.userId = userId;
         this.score = score;
