@@ -5,7 +5,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dobralio - Gaming Platform</title>
+        <title>torbesa - Gaming Platform</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
         <style>
@@ -36,7 +36,7 @@
         <section class="hero-section text-center">
             <div class="container">
                 <h1 class="display-1 fw-bold mb-4">
-                    <i class="bi bi-joystick"></i> Dobralio
+                    <i class="bi bi-joystick"></i> torbesa
                 </h1>
                 <p class="lead fs-3">Your Gateway to Educational Gaming</p>
                 <p class="fs-5">Challenge yourself with fun and educational games</p>
@@ -177,7 +177,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <p class="mb-0">
-                            <i class="bi bi-c-circle"></i> 2024 Dobralio. All rights reserved.
+                            <i class="bi bi-c-circle"></i> 2024 torbesa. All rights reserved.
                         </p>
                     </div>
                     <div class="col-md-4 text-md-end">

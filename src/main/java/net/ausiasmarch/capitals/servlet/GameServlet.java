@@ -3,6 +3,8 @@ package net.ausiasmarch.capitals.servlet;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+
+import net.ausiasmarch.capitals.connection.HikariConnection;
 import net.ausiasmarch.capitals.dao.ScoreDao;
 import net.ausiasmarch.capitals.model.CountryBean;
 import net.ausiasmarch.capitals.model.ScoreDto;
@@ -10,6 +12,7 @@ import net.ausiasmarch.capitals.model.UserBean;
 import net.ausiasmarch.capitals.service.CountryService;
 import net.ausiasmarch.capitals.service.ScoreService;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -103,7 +106,10 @@ public class GameServlet extends HttpServlet {
                 scoreService.set(user.getId(), false);
             }
 
-            ScoreDao oScoreDao = new ScoreDao();
+            HikariConnection oHikariConnection = new HikariConnection();
+            Connection oConnection = oHikariConnection.getConnection();
+
+            ScoreDao oScoreDao = new ScoreDao(oConnection);
             ScoreDto userScore = oScoreDao.get(user.getId());
             request.setAttribute("userScore", userScore);
 
