@@ -15,7 +15,8 @@ public class CountryService {
     private static List<Country> cachedCountries = null;
     private static final String API_URL = "https://restcountries.com/v3.1/all?fields=name&fields=capital";
 
-    private CountryService() {}
+    private CountryService() {
+    }
 
     public static CountryService getInstance() {
         if (instance == null) {
@@ -44,7 +45,7 @@ public class CountryService {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
                 String name = obj.getJSONObject("name").getString("common");
-                String cioc = obj.has("cioc") ? obj.getString("cioc") : "";
+
                 String capital = obj.has("capital") ? obj.getJSONArray("capital").optString(0, "") : "";
                 List<String> borders = new ArrayList<>();
                 if (obj.has("borders")) {
@@ -53,7 +54,7 @@ public class CountryService {
                         borders.add(bordersArr.getString(j));
                     }
                 }
-                countries.add(new Country(name, borders, cioc, capital));
+                countries.add(new Country(name, capital));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,11 +77,6 @@ public class CountryService {
         return (country != null) ? country.getCapital() : null;
     }
 
-    public String getBordersByCountryName(String name) {
-        Country country = getCountryByName(name);
-        return (country != null) ? String.join(", ", country.getBorders()) : null;
-    }
-
     public String getCountryByCapitalName(String name) {
         for (Country country : fetchAllCountries()) {
             if (country.getCapital().equalsIgnoreCase(name)) {
@@ -89,9 +85,5 @@ public class CountryService {
         }
         return null;
     }
-
-    
-
-
 
 }

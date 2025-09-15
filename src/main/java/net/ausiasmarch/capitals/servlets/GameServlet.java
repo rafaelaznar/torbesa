@@ -21,7 +21,7 @@ public class GameServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");            
+        User user = (User) session.getAttribute("sessionUser");
         if (user == null) {
             response.sendRedirect("login.jsp");
             return;
@@ -29,18 +29,15 @@ public class GameServlet extends HttpServlet {
             request.setAttribute("sessionUser", user);
         }
 
-        // Use cached countries
         List<Country> countries = CountryService.getInstance().fetchAllCountries();
 
-        // create a new array of options
         ArrayList<String> options = new ArrayList<>();
-        // shuffle options array
 
         // fist select one country from the list of all countries
         int randomIndex0 = (int) (Math.random() * countries.size());
         Country selectedCountry = countries.get(randomIndex0);
         // while selectedCountry has no capital select another
-        while (selectedCountry.getCapital().isEmpty()) {
+        while (selectedCountry.getCapital().trim().isEmpty()) {
             randomIndex0 = (int) (Math.random() * countries.size());
             selectedCountry = countries.get(randomIndex0);
         }
@@ -51,7 +48,9 @@ public class GameServlet extends HttpServlet {
             int randomIndex = 0;
             while (randomIndex == 0) {
                 randomIndex = (int) (Math.random() * countries.size());
-                if (countries.get(randomIndex).getName().isEmpty()) {
+                if (countries.get(randomIndex).getCapital().trim().isEmpty()) {
+                    randomIndex = 0;
+                } else {
                     if (options.contains(countries.get(randomIndex).getCapital())) {
                         randomIndex = 0;
                     }
@@ -71,14 +70,14 @@ public class GameServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sessionUser");        
+        User user = (User) session.getAttribute("sessionUser");
         if (user == null) {
             response.sendRedirect("login.jsp");
             return;
         } else {
             request.setAttribute("username", user.getUsername());
         }
-        
+
         ScoreService scoreService = new ScoreService();
         String country = request.getParameter("country");
         String capitalGuess = request.getParameter("capitalGuess");
