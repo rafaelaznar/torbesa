@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.models;
+package net.ausiasmarch.capitals.model;
 
 public class Country {
     private String name;

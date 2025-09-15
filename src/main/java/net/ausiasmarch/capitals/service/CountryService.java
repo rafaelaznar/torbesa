@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.services;
+package net.ausiasmarch.capitals.service;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -6,9 +6,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import net.ausiasmarch.capitals.models.Country;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import net.ausiasmarch.capitals.model.Country;
 
 public class CountryService {
     private static CountryService instance;

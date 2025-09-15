@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.models;
+package net.ausiasmarch.capitals.model;
 
 public class User {
     private int id;

@@ -1,12 +1,12 @@
-package net.ausiasmarch.capitals.servlets;
+package net.ausiasmarch.capitals.servlet;
 
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import net.ausiasmarch.capitals.models.User;
-import net.ausiasmarch.capitals.services.AuthService;
+import net.ausiasmarch.capitals.model.User;
+import net.ausiasmarch.capitals.service.AuthService;
 
 import java.io.IOException;
 

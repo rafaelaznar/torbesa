@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.models;
+package net.ausiasmarch.capitals.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

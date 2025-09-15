@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.servlets;
+package net.ausiasmarch.capitals.servlet;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

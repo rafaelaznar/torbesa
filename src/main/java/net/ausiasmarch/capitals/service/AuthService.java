@@ -1,7 +1,8 @@
-package net.ausiasmarch.capitals.services;
+package net.ausiasmarch.capitals.service;
 
-import net.ausiasmarch.capitals.models.User;
 import java.sql.*;
+
+import net.ausiasmarch.capitals.model.User;
 
 public class AuthService {
     public boolean authenticate(String username, String password) {

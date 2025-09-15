@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.services;
+package net.ausiasmarch.capitals.service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

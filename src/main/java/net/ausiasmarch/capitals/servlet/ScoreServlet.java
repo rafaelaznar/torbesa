@@ -1,12 +1,12 @@
-package net.ausiasmarch.capitals.servlets;
+package net.ausiasmarch.capitals.servlet;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import net.ausiasmarch.capitals.models.Score;
-import net.ausiasmarch.capitals.models.User;
-import net.ausiasmarch.capitals.services.ScoreService;
+import net.ausiasmarch.capitals.model.Score;
+import net.ausiasmarch.capitals.model.User;
+import net.ausiasmarch.capitals.service.ScoreService;
 
 import java.io.IOException;
 import java.util.List;
