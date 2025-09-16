@@ -35,7 +35,8 @@ public class CountryService {
                 return countries;
             }
         }
-        // obtener countries y guardarlo en el contexto
+        // obtener countries y guardarlo en el contexto        
+        System.out.println("Downloading countries....");
         List<CountryBean> countries = new ArrayList<>();
         try {
             URL url = new URL(API_URL);
