@@ -35,7 +35,8 @@ public class GameServlet extends HttpServlet {
             request.setAttribute("sessionUser", user);
         }
 
-        List<CountryBean> countries = CountryService.getInstance().fetchAllCountries();
+        CountryService oCountryService = new CountryService(request.getServletContext());
+        List<CountryBean> countries = oCountryService.fetchAllCountries();
 
         ArrayList<String> options = new ArrayList<>();
 
@@ -88,8 +89,8 @@ public class GameServlet extends HttpServlet {
             ScoreService scoreService = new ScoreService();
             String country = request.getParameter("country");
             String capitalGuess = request.getParameter("capitalGuess");
-
-            String correctCapital = CountryService.getInstance().fetchAllCountries().stream()
+            CountryService oCountryService = new CountryService(request.getServletContext());
+            String correctCapital = oCountryService.fetchAllCountries().stream()
                     .filter(c -> c.getName().equals(country))
                     .map(CountryBean::getCapital)
                     .findFirst()

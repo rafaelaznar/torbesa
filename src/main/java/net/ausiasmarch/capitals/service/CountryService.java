@@ -1,6 +1,9 @@
 package net.ausiasmarch.capitals.service;
 
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,24 +16,26 @@ import org.json.JSONObject;
 import net.ausiasmarch.capitals.model.CountryBean;
 
 public class CountryService {
-    private static CountryService instance;
-    private static List<CountryBean> cachedCountries = null;
+
     private static final String API_URL = "https://restcountries.com/v3.1/all?fields=name&fields=capital";
+    private ServletContext oContext = null;
 
-    private CountryService() {
-    }
-
-    public static CountryService getInstance() {
-        if (instance == null) {
-            instance = new CountryService();
-        }
-        return instance;
+    public CountryService(ServletContext oContext) {
+        this.oContext = oContext;
     }
 
     public List<CountryBean> fetchAllCountries() {
-        if (cachedCountries != null) {
-            return cachedCountries;
+
+        if (this.oContext != null) {
+            // obtener el atributo "countries" del contexto
+            @SuppressWarnings("unchecked")
+            List<CountryBean> countries = (List<CountryBean>) this.oContext.getAttribute("countries");
+            // si oContext.getAttribute("countries") es distinto de null
+            if (countries != null) {
+                return countries;
+            }
         }
+        // obtener countries y guardarlo en el contexto
         List<CountryBean> countries = new ArrayList<>();
         try {
             URL url = new URL(API_URL);
@@ -61,8 +66,9 @@ public class CountryService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        cachedCountries = countries;
-        return cachedCountries;
+        this.oContext.setAttribute("countries", countries);
+        return countries;
+
     }
 
     public CountryBean getCountryByName(String name) {
