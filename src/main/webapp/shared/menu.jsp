@@ -3,7 +3,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <!-- Izquierda: Nombre de la aplicación -->
-        <a class="navbar-brand" href="landing.jsp">Country Capital's Game</a>
+        <!-- si hay sesion entonces enviar a welcome, si no hay sesión enviar a landing -->
+        <a class="navbar-brand" href="${not empty sessionScope.sessionUser ? '/torbesa/shared/welcome.jsp' : '/torbesa/index.jsp'}">torbesa</a>
         <!-- Esto empuja el siguiente bloque a la derecha -->
         <c:if test="${not empty sessionScope.sessionUser}">
             <ul class="navbar-nav ms-auto flex-row">
