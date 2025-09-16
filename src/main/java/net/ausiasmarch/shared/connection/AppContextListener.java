@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.servlet;
+package net.ausiasmarch.shared.connection;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

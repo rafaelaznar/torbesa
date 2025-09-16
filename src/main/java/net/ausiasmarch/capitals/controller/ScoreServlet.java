@@ -1,12 +1,14 @@
-package net.ausiasmarch.capitals.servlet;
+package net.ausiasmarch.capitals.controller;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import net.ausiasmarch.capitals.connection.HikariConnection;
+
 import net.ausiasmarch.capitals.dao.ScoreDao;
 import net.ausiasmarch.capitals.model.ScoreDto;
-import net.ausiasmarch.capitals.model.UserBean;
+import net.ausiasmarch.shared.connection.HikariPool;
+import net.ausiasmarch.shared.model.UserBean;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,9 +21,8 @@ public class ScoreServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-            HikariConnection oHikariConnection = new HikariConnection();
-            Connection oConnection = oHikariConnection.getConnection();
+        HikariPool oPool = new HikariPool();
+        try (Connection oConnection = oPool.getConnection()) {
 
             ScoreDao oScoreDao = new ScoreDao(oConnection);
 
@@ -40,8 +41,17 @@ public class ScoreServlet extends HttpServlet {
         } catch (SQLException e) {
             System.err.println("Database error: " + e.getMessage());
             request.setAttribute("errorMessage", "Database error");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
+        } finally {
+            try {
+                oPool.disposeConnection();
+            } catch (SQLException e) {
+                System.err.println("Database error: " + e.getMessage());
+                request.setAttribute("errorMessage", "Database error");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
+                dispatcher.forward(request, response);
+            }
         }
     }
 }

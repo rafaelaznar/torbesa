@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.model;
+package net.ausiasmarch.shared.model;
 
 public class UserBean {
     private int id;

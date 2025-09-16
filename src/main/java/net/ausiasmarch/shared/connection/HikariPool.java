@@ -1,12 +1,13 @@
-package net.ausiasmarch.capitals.connection;
+package net.ausiasmarch.shared.connection;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import net.ausiasmarch.capitals.service.DatabaseService;
 
-public class HikariConnection {
+import net.ausiasmarch.shared.service.DatabaseService;
+
+public class HikariPool {
 
     private Connection oConnection;
     private HikariDataSource oConnectionPool;

@@ -13,7 +13,7 @@
 
         <body class="bg-light">
 
-            <jsp:include page="menu.jsp" />
+            <jsp:include page="../shared/menu.jsp" />
 
             <div class="container mt-5">
                 <div class="row justify-content-center">
@@ -47,7 +47,7 @@
                                 <form method="get" action="ScoreServlet" class="mt-3">
                                     <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
                                 </form>
-                                <form method="get" action="LogoutServlet" class="mt-2">
+                                <form method="get" action="../shared/LogoutServlet" class="mt-2">
                                     <button type="submit" class="btn btn-outline-danger w-100">Logout</button>
                                 </form>
                             </div>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <jsp:include page="footer.jsp" />
+            <jsp:include page="../shared/footer.jsp" />
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         </body>
 

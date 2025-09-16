@@ -1,7 +1,8 @@
 package net.ausiasmarch.capitals.dao;
 
 import java.sql.*;
-import net.ausiasmarch.capitals.model.UserBean;
+
+import net.ausiasmarch.shared.model.UserBean;
 
 public class UserDao {
 
@@ -35,7 +36,7 @@ public class UserDao {
         return rs.next();
     }
 
-    public UserBean getUserByUsername(String username) throws SQLException {
+    public UserBean getByUsername(String username) throws SQLException {
         String sql = "SELECT * FROM users WHERE username = ?";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setString(1, username);

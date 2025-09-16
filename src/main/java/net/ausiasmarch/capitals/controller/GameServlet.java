@@ -1,16 +1,17 @@
-package net.ausiasmarch.capitals.servlet;
+package net.ausiasmarch.capitals.controller;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import net.ausiasmarch.capitals.connection.HikariConnection;
 import net.ausiasmarch.capitals.dao.ScoreDao;
 import net.ausiasmarch.capitals.model.CountryBean;
 import net.ausiasmarch.capitals.model.ScoreDto;
-import net.ausiasmarch.capitals.model.UserBean;
 import net.ausiasmarch.capitals.service.CountryService;
 import net.ausiasmarch.capitals.service.ScoreService;
+import net.ausiasmarch.shared.connection.HikariPool;
+import net.ausiasmarch.shared.model.UserBean;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class GameServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("sessionUser");
         if (user == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("../shared/login.jsp");
             return;
         } else {
             request.setAttribute("sessionUser", user);
@@ -78,7 +79,7 @@ public class GameServlet extends HttpServlet {
             HttpSession session = request.getSession();
             UserBean user = (UserBean) session.getAttribute("sessionUser");
             if (user == null) {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("../shared/login.jsp");
                 return;
             } else {
                 request.setAttribute("username", user.getUsername());
@@ -106,23 +107,27 @@ public class GameServlet extends HttpServlet {
                 scoreService.set(user.getId(), false);
             }
 
-            HikariConnection oHikariConnection = new HikariConnection();
-            Connection oConnection = oHikariConnection.getConnection();
+            HikariPool oPool = new HikariPool();
+            try (Connection oConnection = oPool.getConnection()) {
 
-            ScoreDao oScoreDao = new ScoreDao(oConnection);
-            ScoreDto userScore = oScoreDao.get(user.getId());
-            request.setAttribute("userScore", userScore);
+                ScoreDao oScoreDao = new ScoreDao(oConnection);
+                ScoreDto userScore = oScoreDao.get(user.getId());
+                request.setAttribute("userScore", userScore);
 
-            List<ScoreDto> highScores = oScoreDao.getTop10();
-            request.setAttribute("highScores", highScores);
+                List<ScoreDto> highScores = oScoreDao.getTop10();
+                request.setAttribute("highScores", highScores);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
-            dispatcher.forward(request, response);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
+                dispatcher.forward(request, response);
+
+            } finally {
+                oPool.disposeConnection();
+            }
 
         } catch (SQLException e) {
             System.err.println("Database error: " + e.getMessage());
             request.setAttribute("errorMessage", "Database error");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
         }
 

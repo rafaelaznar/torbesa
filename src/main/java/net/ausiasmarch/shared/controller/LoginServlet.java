@@ -1,16 +1,18 @@
-package net.ausiasmarch.capitals.servlet;
+package net.ausiasmarch.shared.controller;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import net.ausiasmarch.capitals.model.UserBean;
-import net.ausiasmarch.capitals.service.AuthService;
+
+import net.ausiasmarch.shared.dao.UserDao;
+import net.ausiasmarch.shared.model.UserBean;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/capitals/LoginServlet")
+@WebServlet("/shared/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    private AuthService authService = new AuthService();
+    private UserDao authService = new UserDao();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -20,9 +22,9 @@ public class LoginServlet extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             if (authService.authenticate(username, password)) {
-                UserBean user = authService.getUserByUsername(username);
+                UserBean user = authService.getByUsername(username);
                 request.getSession().setAttribute("sessionUser", user);
-                response.sendRedirect("GameServlet");
+                response.sendRedirect("welcome.jsp");
             } else {
                 request.setAttribute("error", "Invalid username or password");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");

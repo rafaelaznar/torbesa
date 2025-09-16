@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <a href="landing.jsp" class="text-secondary">Back to Home</a>
+                        <a href="../index.jsp" class="text-secondary">Back to Home</a>
                     </div>
                 </div>
             </div>

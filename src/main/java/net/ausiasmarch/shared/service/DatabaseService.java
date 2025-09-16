@@ -1,4 +1,4 @@
-package net.ausiasmarch.capitals.service;
+package net.ausiasmarch.shared.service;
 
 
 public class DatabaseService {

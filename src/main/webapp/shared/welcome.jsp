@@ -1,11 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    if (session.getAttribute("sessionUser") == null) {
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        return;
+    }
+%>
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>torbesa - Gaming Platform</title>
+        <title>Torbesa - Gaming Platform</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
         <style>
@@ -32,25 +38,19 @@
     </head>
 
     <body>
+        <jsp:include page="menu.jsp" />
         <!-- Hero Section -->
         <section class="hero-section text-center">
             <div class="container">
                 <h1 class="display-1 fw-bold mb-4">
-                    <i class="bi bi-joystick"></i> torbesa
+                    <i class="bi bi-joystick"></i> Welcome to Torbesa
                 </h1>
                 <p class="lead fs-3">Your Gateway to Educational Gaming</p>
                 <p class="lead fs-4">Learn to code & play our games</p>                
                 <p class="fs-5">Challenge yourself with fun and educational games</p>
                 <p class="fs-6">Develop new games to learn web development</p>
-
             </div>
         </section>
-
-        <!-- Login/Signup Buttons -->
-        <div class="container my-4 d-flex justify-content-center">
-            <a href="shared/login.jsp" class="btn btn-primary btn-lg me-3" style="min-width: 180px; font-size: 1.3rem;">Login to play</a>
-            <a href="shared/signup.jsp" class="btn btn-warning btn-lg" style="min-width: 180px; font-size: 1.3rem; color: #212529;">Sign up</a>
-        </div>
 
         <!-- Games Section -->
         <section class="py-5">
@@ -77,7 +77,7 @@
                                         <p class="card-text text-muted mb-4">
                                             By Rafael Aznar
                                         </p>
-                                        <a href="capitals/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                        <a href="../capitals/landing.jsp" class="btn btn-primary btn-lg w-100">
                                             <i class="bi bi-play-fill"></i> Play Now
                                         </a>
                                     </div>
