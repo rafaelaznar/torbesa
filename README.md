@@ -3,7 +3,7 @@
 
 # Your Gateway to Educational Gaming
 
-## Challenge yourself with fun and educational games
+## Challenge yourself to develop fun and educational games
 
 This code is MIT licensed.
 
