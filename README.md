@@ -1,3 +1,6 @@
+
+![CI](https://github.com/rafaelaznar/torbesa/actions/workflows/ci.yml/badge.svg)
+
 # Your Gateway to Educational Gaming
 
 ## Challenge yourself with fun and educational games
