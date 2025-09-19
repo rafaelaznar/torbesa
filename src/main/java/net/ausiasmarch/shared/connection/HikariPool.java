@@ -42,7 +42,4 @@ public class HikariPool {
         return globalPool.getConnection();
     }
 
-    public static disposeConnection(){
-        
-    }
 }
