@@ -107,9 +107,8 @@ public class GameServlet extends HttpServlet {
                 request.setAttribute("message", "Incorrect. Try again!");
                 scoreService.set(user.getId(), false);
             }
-
-            HikariPool oPool = new HikariPool();
-            try (Connection oConnection = oPool.getConnection()) {
+            
+            try (Connection oConnection = HikariPool.getConnection()) {
 
                 ScoreDao oScoreDao = new ScoreDao(oConnection);
                 ScoreDto userScore = oScoreDao.get(user.getId());
@@ -121,9 +120,7 @@ public class GameServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
                 dispatcher.forward(request, response);
 
-            } finally {
-                oPool.disposeConnection();
-            }
+            } 
 
         } catch (SQLException e) {
             System.err.println("Database error: " + e.getMessage());

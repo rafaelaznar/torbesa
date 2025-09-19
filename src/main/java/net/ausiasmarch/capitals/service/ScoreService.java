@@ -14,7 +14,7 @@ public class ScoreService {
     public boolean set(int userId, boolean correct) throws SQLException {
 
         HikariPool oPool = new HikariPool();
-        try (Connection oConnection = oPool.getConnection()) {
+        try (Connection oConnection = HikariPool.getConnection()) {
 
             ScoreDao oScoreDao = new ScoreDao(oConnection);
             if (oScoreDao.count(userId) > 1) {
@@ -39,8 +39,6 @@ public class ScoreService {
                 oUserScore.setTimestamp(LocalDateTime.now());
                 return oScoreDao.insert(oUserScore) > 0;
             }
-        } finally {
-            oPool.disposeConnection();
         }
 
     }

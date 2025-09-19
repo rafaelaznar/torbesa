@@ -4,29 +4,44 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import net.ausiasmarch.shared.dao.UserDao;
+import net.ausiasmarch.shared.exception.ResourceNotModifiedException;
 import net.ausiasmarch.shared.model.UserBean;
-
+import net.ausiasmarch.shared.service.UserService;
 import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/shared/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    private UserDao authService = new UserDao();
+
+    // private UserDao authService = new UserDao();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String errorMsg = null;
+        if (username == null || username.length() < 5) {
+            errorMsg = "Username must be at least 5 characters.";
+        } else if (password == null || password.length() != 64) {
+            errorMsg = "Password must be a valid SHA256 hash.";
+        }
+        if (errorMsg != null) {
+            request.setAttribute("error", errorMsg);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
         try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            if (authService.authenticate(username, password)) {
-                UserBean user = authService.getByUsername(username);
+            UserService oAuthService = new UserService();
+            if (oAuthService.authenticate(username, password)) {
+                UserBean user = oAuthService.getByUsername(username);
                 request.getSession().setAttribute("sessionUser", user);
                 response.sendRedirect("welcome.jsp");
             } else {
-                request.setAttribute("error", "Invalid username or password");
+                request.setAttribute("error", "Invalid username or password. Username must have 5 chars at least.");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
                 dispatcher.forward(request, response);
             }
@@ -35,7 +50,11 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Database error");
             RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
             dispatcher.forward(request, response);
+        } catch (ResourceNotModifiedException e){
+            System.err.println("Resource not modified: " + e.getMessage());
+            request.setAttribute("errorMessage", e.getMessage());
+            RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+            dispatcher.forward(request, response);
         }
-
     }
 }

@@ -21,7 +21,7 @@
                     <div class="card shadow-lg">
                         <div class="card-body">
                             <h2 class="card-title text-center mb-4">Login</h2>
-                            <form method="post" action="LoginServlet">
+                            <form method="post" action="LoginServlet" id="loginForm">
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Username</label>
                                     <input type="text" class="form-control" id="username" name="username" required>
@@ -47,6 +47,23 @@
         </div>
         <jsp:include page="footer.jsp" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+        async function sha256(str) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(str);
+            const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            const pwdInput = document.getElementById('password');
+            if (pwdInput.value.length > 0) {
+                e.preventDefault();
+                const hash = await sha256(pwdInput.value);
+                pwdInput.value = hash;
+                this.submit();
+            }
+        });
+        </script>
     </body>
 
     </html>

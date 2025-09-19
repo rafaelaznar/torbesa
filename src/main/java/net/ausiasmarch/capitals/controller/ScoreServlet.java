@@ -21,9 +21,8 @@ public class ScoreServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HikariPool oPool = new HikariPool();
-        try (Connection oConnection = oPool.getConnection()) {
-
+        try (Connection oConnection = HikariPool.getConnection()) {
+            
             ScoreDao oScoreDao = new ScoreDao(oConnection);
 
             HttpSession session = request.getSession();
@@ -43,15 +42,6 @@ public class ScoreServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Database error");
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
-        } finally {
-            try {
-                oPool.disposeConnection();
-            } catch (SQLException e) {
-                System.err.println("Database error: " + e.getMessage());
-                request.setAttribute("errorMessage", "Database error");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
-                dispatcher.forward(request, response);
-            }
         }
     }
 }

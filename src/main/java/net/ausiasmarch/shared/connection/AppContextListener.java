@@ -14,6 +14,14 @@ public class AppContextListener implements ServletContextListener {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Cant load MySQL driver", e);
         }
+        // Inicializar pool global
+        HikariPool.initGlobalPool();
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        // Cerrar pool global
+        HikariPool.closeGlobalPool();
     }
     
 }

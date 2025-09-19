@@ -51,7 +51,9 @@
                 <p class="fs-6">Develop new games to learn web development</p>
             </div>
         </section>
-
+        <div class="container my-4 d-flex justify-content-center">
+            <a href="LogoutServlet" class="btn btn-danger">Logout</a>
+        </div>
         <!-- Games Section -->
         <section class="py-5">
             <div class="container">
