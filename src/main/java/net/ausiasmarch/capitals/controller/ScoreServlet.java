@@ -11,21 +11,21 @@ import java.util.List;
 
 @WebServlet("/capitals/ScoreServlet")
 public class ScoreServlet extends HttpServlet {
-    private ScoreService scoreService;
+    private ScoreService oScoreService;
 
     public ScoreServlet() {
-        this.scoreService = new ScoreService();
+        this.oScoreService = new ScoreService();
     }
 
     // Constructor para inyección en tests
     public ScoreServlet(ScoreService scoreService) {
-        this.scoreService = scoreService;
+        this.oScoreService = scoreService;
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response)  {
         try {
-            List<ScoreDto> highScoresList = scoreService.getHighScores();
+            List<ScoreDto> highScoresList = oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("highscores.jsp");
             dispatcher.forward(request, response);
@@ -33,17 +33,29 @@ public class ScoreServlet extends HttpServlet {
             System.err.println("Error al ejecutar la operación en la base de datos: " + e.getMessage());
             request.setAttribute("errorMessage", "Database error");
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
-            dispatcher.forward(request, response);
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException | IOException e1) {
+                System.err.println("Error al redirigir a la página de error: " + e1.getMessage());
+            }
         } catch (ServletException | IOException e) {
             System.err.println("Error al ejecutar la operación en la base de datos: " + e.getMessage());
             request.setAttribute("errorMessage", "Internal error");
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
-            dispatcher.forward(request, response);
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException | IOException e1) {
+                System.err.println("Error al redirigir a la página de error: " + e1.getMessage());
+            }
         } catch (Exception e) {
             System.err.println("Error inesperado: " + e.getMessage());
             request.setAttribute("errorMessage", e.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
-            dispatcher.forward(request, response);
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException | IOException e1) {
+                System.err.println("Error al redirigir a la página de error: " + e1.getMessage());
+            }
         }
     }
 }

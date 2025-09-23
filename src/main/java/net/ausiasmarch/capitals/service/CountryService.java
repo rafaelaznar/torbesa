@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -35,7 +36,7 @@ public class CountryService {
                 return countries;
             }
         }
-        // obtener countries y guardarlo en el contexto        
+        // obtener countries y guardarlo en el contexto
         System.out.println("Downloading countries....");
         List<CountryBean> countries = new ArrayList<>();
         try {
@@ -53,15 +54,7 @@ public class CountryService {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
                 String name = obj.getJSONObject("name").getString("common");
-
                 String capital = obj.has("capital") ? obj.getJSONArray("capital").optString(0, "") : "";
-                List<String> borders = new ArrayList<>();
-                if (obj.has("borders")) {
-                    JSONArray bordersArr = obj.getJSONArray("borders");
-                    for (int j = 0; j < bordersArr.length(); j++) {
-                        borders.add(bordersArr.getString(j));
-                    }
-                }
                 countries.add(new CountryBean(name, capital));
             }
         } catch (Exception e) {
@@ -93,6 +86,46 @@ public class CountryService {
             }
         }
         return null;
+    }
+
+    public CountryBean getOneRandomCountry() {
+        List<CountryBean> oCountries = fetchAllCountries();
+        int randomIndex0 = (int) (Math.random() * oCountries.size());
+        CountryBean selectedCountry = oCountries.get(randomIndex0);
+        while (selectedCountry.getCapital().trim().isEmpty()) {
+            randomIndex0 = (int) (Math.random() * oCountries.size());
+            selectedCountry = oCountries.get(randomIndex0);
+        }
+        return selectedCountry;
+    }
+
+    public ArrayList<String> getRandomCapitalsForTest(CountryBean oSelectedCountryBean, int numCapitals) {
+        if (numCapitals < 1) {
+            numCapitals = 4;
+        }
+        List<CountryBean> oCountries = fetchAllCountries();
+
+        ArrayList<String> selectedCapitalsList = new ArrayList<>();
+
+        selectedCapitalsList.add(oSelectedCountryBean.getCapital());
+        for (int i = 0; i < numCapitals - 1; i++) {
+            int randomIndex = 0;
+            while (randomIndex == 0) {
+                randomIndex = (int) (Math.random() * oCountries.size());
+                if (oCountries.get(randomIndex).getCapital().trim().isEmpty()) {
+                    randomIndex = 0;
+                } else {
+                    if (selectedCapitalsList.contains(oCountries.get(randomIndex).getCapital())) {
+                        randomIndex = 0;
+                    }
+                }
+            }
+            selectedCapitalsList.add(oCountries.get(randomIndex).getCapital());
+        }
+
+        Collections.shuffle(selectedCapitalsList);
+        return selectedCapitalsList;
+
     }
 
 }

@@ -23,53 +23,32 @@ import java.util.List;
 public class GameServlet extends HttpServlet {
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("sessionUser");
         if (user == null) {
-            response.sendRedirect("../shared/login.jsp");
+            try {
+                response.sendRedirect("../shared/login.jsp");
+            } catch (IOException e) {
+                System.err.println("Error al redirigir a la página de inicio de sesión: " + e.getMessage());
+            }
             return;
         } else {
             request.setAttribute("sessionUser", user);
         }
 
         CountryService oCountryService = new CountryService(request.getServletContext());
-        List<CountryBean> countries = oCountryService.fetchAllCountries();
-
-        ArrayList<String> options = new ArrayList<>();
-
-        // fist select one country from the list of all countries
-        int randomIndex0 = (int) (Math.random() * countries.size());
-        CountryBean selectedCountry = countries.get(randomIndex0);
-        // while selectedCountry has no capital select another
-        while (selectedCountry.getCapital().trim().isEmpty()) {
-            randomIndex0 = (int) (Math.random() * countries.size());
-            selectedCountry = countries.get(randomIndex0);
-        }
-        options.add(selectedCountry.getCapital());
-        // Choose three random countries from the list to be the options
-        // ensure the country is not the right country
-        for (int i = 0; i < 3; i++) {
-            int randomIndex = 0;
-            while (randomIndex == 0) {
-                randomIndex = (int) (Math.random() * countries.size());
-                if (countries.get(randomIndex).getCapital().trim().isEmpty()) {
-                    randomIndex = 0;
-                } else {
-                    if (options.contains(countries.get(randomIndex).getCapital())) {
-                        randomIndex = 0;
-                    }
-                }
-            }
-            options.add(countries.get(randomIndex).getCapital());
-        }
-        request.setAttribute("country", selectedCountry.getName());
-        Collections.shuffle(options);
-        request.setAttribute("options", options);
+        CountryBean selectedCountry = oCountryService.getOneRandomCountry();
+        ArrayList<String> optionsListForCapitalTest = oCountryService.getRandomCapitalsForTest(selectedCountry, 3);        
+        request.setAttribute("country", selectedCountry.getName());        
+        request.setAttribute("options", optionsListForCapitalTest);
         RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
-        dispatcher.forward(request, response);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            System.err.println("Error al redirigir a la página del juego: " + e.getMessage());
+        }
     }
 
     @Override
@@ -107,7 +86,7 @@ public class GameServlet extends HttpServlet {
                 request.setAttribute("message", "Incorrect. Try again!");
                 scoreService.set(user.getId(), false);
             }
-            
+
             try (Connection oConnection = HikariPool.getConnection()) {
 
                 ScoreDao oScoreDao = new ScoreDao(oConnection);
@@ -120,7 +99,7 @@ public class GameServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
                 dispatcher.forward(request, response);
 
-            } 
+            }
 
         } catch (SQLException e) {
             System.err.println("Database error: " + e.getMessage());
