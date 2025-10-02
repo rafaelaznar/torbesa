@@ -60,6 +60,7 @@
     </dependencies>
 
     <build>
+        <!-- final name -->
         <finalName>torbesa</finalName>
         <plugins>
             <plugin>
