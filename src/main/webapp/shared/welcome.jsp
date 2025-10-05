@@ -93,13 +93,16 @@
                                         <div class="mb-3">
                                             <i class="bi bi-calculator text-warning" style="font-size: 3rem;"></i>
                                         </div>
-                                        <h5 class="card-title text-warning mb-3">Math Challenge</h5>
+                                        <h5 class="card-title text-warning mb-3">Trivial</h5>
                                         <p class="card-text text-muted mb-4">
-                                            Sharpen your math skills with fun arithmetic challenges and number puzzles.
+                                            Sharpen your brain skills with this questions about all.
                                         </p>
-                                        <button class="btn btn-outline-warning btn-lg w-100" disabled>
-                                            <i class="bi bi-hourglass-split"></i> Coming Soon
-                                        </button>
+                                        <p class="card-text text-muted mb-4">
+                                            By Marcos Pallás
+                                        </p>
+                                        <a href="../trivial/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
                                     </div>
                                 </div>
                             </div>
