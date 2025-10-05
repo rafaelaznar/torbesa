@@ -2,28 +2,29 @@ package net.ausiasmarch.whosthatpokemon.model;
 
 import java.time.LocalDateTime;
 
+//dao para mostrar el score del usuario
 public class ScoreDao {
 
 	private int id;
 	private int userId;
 	private int score;
 	private int tries;
-	private LocalDateTime timestamp;
 	private String username;
 
+	//costructor vacio
 	public ScoreDao() {
-
 	}
 
+	//constructor con parámetros
 	public ScoreDao(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
 		this.id = id;
 		this.userId = userId;
 		this.score = score;
 		this.tries = tries;
-		this.timestamp = timestamp;
 		this.username = username;
 	}
 
+	//getters y setters
 	public int getId() {
 		return id;
 	}
@@ -54,14 +55,6 @@ public class ScoreDao {
 
 	public void setTries(int tries) {
 		this.tries = tries;
-	}
-
-	public LocalDateTime getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(LocalDateTime timestamp) {
-		this.timestamp = timestamp;
 	}
 
 	public String getUsername() {

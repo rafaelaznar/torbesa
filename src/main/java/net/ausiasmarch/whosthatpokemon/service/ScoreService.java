@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Objects;
 
 import net.ausiasmarch.whosthatpokemon.dao.ScoreDao;
-import net.ausiasmarch.whosthatpokemon.model.ScoreDao;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 import java.sql.*;

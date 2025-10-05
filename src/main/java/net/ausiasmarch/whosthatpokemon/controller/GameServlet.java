@@ -57,16 +57,19 @@ public class GameServlet extends HttpServlet {
         rd.forward(request, response);
     }
 
+    //
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //recupera la sesión del usuario
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("sessionUser");
+        //si no hay usuario en la sesión nos redirige al login
         if (user == null) {
             response.sendRedirect("../shared/login.jsp");
             return;
         }
-
+        
         PokemonBean current = (PokemonBean) session.getAttribute("whosthatpokemon_current");
         if (current == null) {
             // no hay pokemon en sesión -> redirigir a GET para crear uno

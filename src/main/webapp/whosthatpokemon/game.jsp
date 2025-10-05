@@ -21,13 +21,13 @@
     <div class="container">
         <!-- titulo -->
         <h1 style="text-align:center">Who's That Pokémon?</h1>
-        <!--  -->
+        <!-- si hay algún error aparecerá en pantalla -->
         <c:choose>
             <c:when test="${not empty error}">
                 <p style="color:red">${error}</p>
             </c:when>
         </c:choose>
-
+        <!-- coge el pokemon actual de la sesión -->
         <c:set var="p" value="${sessionScope.whosthatpokemon_current}" />
 
         <c:if test="${empty p}">
