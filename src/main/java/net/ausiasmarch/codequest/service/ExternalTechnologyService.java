@@ -140,20 +140,19 @@ public class ExternalTechnologyService {
         options.add(correctDescription);
         
         // Añadir descripciones falsas pero creíbles
-        List<String> fakeDescriptions = List.of(
-            "Herramienta de diseño gráfico para crear interfaces visuales",
-            "Base de datos relacional de alto rendimiento y escalabilidad",
-            "Sistema operativo especializado en servidores de red",
-            "Protocolo de comunicación para sistemas distribuidos",
-            "Algoritmo de machine learning para clasificación automática",
-            "Arquitectura de microservicios en la nube pública",
-            "Metodología ágil para gestión eficiente de proyectos",
-            "Compilador optimizado para código de bajo nivel y rendimiento",
-            "Librería de criptografía para seguridad avanzada",
-            "Framework de testing para pruebas automatizadas",
-            "Motor de renderizado para aplicaciones 3D",
-            "Sistema de gestión de dependencias multiplataforma"
-        );
+        List<String> fakeDescriptions = new ArrayList<>();
+        fakeDescriptions.add("Herramienta de diseño gráfico para crear interfaces visuales");
+        fakeDescriptions.add("Base de datos relacional de alto rendimiento y escalabilidad");
+        fakeDescriptions.add("Sistema operativo especializado en servidores de red");
+        fakeDescriptions.add("Protocolo de comunicación para sistemas distribuidos");
+        fakeDescriptions.add("Algoritmo de machine learning para clasificación automática");
+        fakeDescriptions.add("Arquitectura de microservicios en la nube pública");
+        fakeDescriptions.add("Metodología ágil para gestión eficiente de proyectos");
+        fakeDescriptions.add("Compilador optimizado para código de bajo nivel y rendimiento");
+        fakeDescriptions.add("Librería de criptografía para seguridad avanzada");
+        fakeDescriptions.add("Framework de testing para pruebas automatizadas");
+        fakeDescriptions.add("Motor de renderizado para aplicaciones 3D");
+        fakeDescriptions.add("Sistema de gestión de dependencias multiplataforma");
         
         Collections.shuffle(fakeDescriptions);
         for (int i = 0; i < 3 && i < fakeDescriptions.size(); i++) {
