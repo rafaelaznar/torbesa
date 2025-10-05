@@ -17,8 +17,8 @@ import javax.servlet.http.HttpSession;
 import net.ausiasmarch.codequest.dao.ScoreDao;
 import net.ausiasmarch.codequest.model.ScoreDto;
 import net.ausiasmarch.codequest.model.TechnologyBean;
+import net.ausiasmarch.codequest.service.ExternalTechnologyService;
 import net.ausiasmarch.codequest.service.ScoreService;
-import net.ausiasmarch.codequest.service.TechnologyService;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 
@@ -65,12 +65,16 @@ public class GameServlet extends HttpServlet {
             return;
         }
 
-        TechnologyService oTechnologyService = new TechnologyService(request.getServletContext());
-        TechnologyBean selectedTechnology = oTechnologyService.getOneRandomTechnology();
+        ExternalTechnologyService oTechnologyService = new ExternalTechnologyService(request.getServletContext());
+        System.out.println("=== DEBUG: Creando servicio de tecnologías externas ===");
+        
+        TechnologyBean selectedTechnology = oTechnologyService.getRandomTechnology();
+        System.out.println("=== DEBUG: Tecnología seleccionada: " + (selectedTechnology != null ? selectedTechnology.getName() : "NULL") + " ===");
         
         if (selectedTechnology == null) {
+            System.err.println("=== ERROR: No se pudo obtener tecnología del servicio externo ===");
             try {
-                request.setAttribute("errorMessage", "No hay tecnologías disponibles en la base de datos");
+                request.setAttribute("errorMessage", "No hay tecnologías disponibles en el servicio externo");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
                 dispatcher.forward(request, response);
             } catch (ServletException | IOException e) {
@@ -79,7 +83,9 @@ public class GameServlet extends HttpServlet {
             return;
         }
         
-        ArrayList<String> optionsListForDescriptionTest = oTechnologyService.getRandomDescriptionsForTest(selectedTechnology, 4);        
+        ArrayList<String> optionsListForDescriptionTest = (ArrayList<String>) oTechnologyService.generateDescriptionOptions(selectedTechnology.getDescription());        
+        System.out.println("=== DEBUG: Opciones generadas: " + optionsListForDescriptionTest.size() + " ===");
+        
         request.setAttribute("technology", selectedTechnology.getName());
         request.setAttribute("technologyType", selectedTechnology.getType());
         request.setAttribute("technologyCategory", selectedTechnology.getCategory());
@@ -87,6 +93,8 @@ public class GameServlet extends HttpServlet {
         request.setAttribute("options", optionsListForDescriptionTest);
         request.setAttribute("gameErrors", gameErrors);
         request.setAttribute("remainingChances", 2 - gameErrors);
+        
+        System.out.println("=== DEBUG: Redirigiendo a game.jsp ===");
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
         try {
@@ -120,7 +128,7 @@ public class GameServlet extends HttpServlet {
             String technology = request.getParameter("technology");
             String descriptionGuess = request.getParameter("descriptionGuess");
             
-            TechnologyService oTechnologyService = new TechnologyService(request.getServletContext());
+            ExternalTechnologyService oTechnologyService = new ExternalTechnologyService(request.getServletContext());
             String correctDescription = oTechnologyService.fetchAllTechnologies().stream()
                     .filter(t -> t.getName().equals(technology))
                     .map(TechnologyBean::getDescription)
