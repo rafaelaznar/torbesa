@@ -28,7 +28,7 @@
                             rel="stylesheet">
                         <style>
                             body {
-                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                background: #f8f9fa;
                                 min-height: 100vh;
                                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                             }
@@ -41,18 +41,18 @@
 
                             .game-card {
                                 background: white;
-                                border-radius: 20px;
-                                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-                                padding: 3rem;
+                                border-radius: 10px;
+                                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                padding: 2rem;
                                 text-align: center;
+                                border: 1px solid #dee2e6;
                             }
 
                             .technology-name {
-                                font-size: 3rem;
+                                font-size: 2.5rem;
                                 font-weight: bold;
                                 color: #2c3e50;
                                 margin-bottom: 1rem;
-                                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
                             }
 
                             .technology-info {
@@ -159,28 +159,20 @@
 
                             .option-btn {
                                 width: 100%;
-                                padding: 1.5rem;
+                                padding: 1rem;
                                 margin-bottom: 1rem;
-                                border: 2px solid #e9ecef;
-                                border-radius: 15px;
+                                border: 1px solid #dee2e6;
+                                border-radius: 5px;
                                 background: #f8f9fa;
                                 color: #2c3e50;
-                                font-size: 1.1rem;
-                                transition: all 0.3s ease;
+                                font-size: 1rem;
                                 cursor: pointer;
                                 text-align: left;
                             }
 
                             .option-btn:hover {
-                                border-color: #667eea;
-                                background: #667eea;
-                                color: white;
-                                transform: translateY(-2px);
-                                box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-                            }
-
-                            .option-btn:active {
-                                transform: translateY(0);
+                                border-color: #007bff;
+                                background: #e7f1ff;
                             }
 
                             .progress-container {
@@ -188,12 +180,11 @@
                             }
 
                             .user-info {
-                                background: rgba(255, 255, 255, 0.1);
+                                background: #343a40;
                                 color: white;
                                 padding: 1rem;
-                                border-radius: 10px;
+                                border-radius: 5px;
                                 margin-bottom: 2rem;
-                                backdrop-filter: blur(10px);
                             }
 
                             .nav-buttons {
@@ -201,18 +192,18 @@
                             }
 
                             .btn-nav {
-                                padding: 0.75rem 2rem;
-                                border-radius: 25px;
-                                font-weight: bold;
-                                margin: 0.5rem;
+                                padding: 0.5rem 1.5rem;
+                                border-radius: 5px;
+                                font-weight: normal;
+                                margin: 0.25rem;
                             }
 
                             .chances-indicator {
-                                background: rgba(255, 255, 255, 0.9);
-                                border-radius: 15px;
+                                background: #f8f9fa;
+                                border-radius: 5px;
                                 padding: 1rem;
                                 margin-bottom: 1.5rem;
-                                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                                border: 1px solid #dee2e6;
                             }
 
                             .heart-icon {
@@ -330,39 +321,6 @@
 
                         <script
                             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-                        <script>
-                            // Añadir efectos de sonido y animaciones
-                            document.querySelectorAll('.option-btn').forEach(btn => {
-                                btn.addEventListener('click', function () {
-                                    // Añadir efecto de clic
-                                    this.style.transform = 'scale(0.98)';
-                                    setTimeout(() => {
-                                        this.style.transform = '';
-                                    }, 100);
-                                });
-                            });
-
-                            // Añadir atajos de teclado
-                            document.addEventListener('keydown', function (e) {
-                                const options = document.querySelectorAll('.option-btn');
-                                if (e.key >= '1' && e.key <= '4') {
-                                    const index = parseInt(e.key) - 1;
-                                    if (options[index]) {
-                                        options[index].click();
-                                    }
-                                } else if (e.key.toLowerCase() >= 'a' && e.key.toLowerCase() <= 'd') {
-                                    const index = e.key.toLowerCase().charCodeAt(0) - 'a'.charCodeAt(0);
-                                    if (options[index]) {
-                                        options[index].click();
-                                    }
-                                }
-                            });
-
-                            // Mostrar ayuda de atajos de teclado
-                            console.log('💡 Atajos de teclado disponibles:');
-                            console.log('   A, B, C, D - Seleccionar opción');
-                            console.log('   1, 2, 3, 4 - Seleccionar opción');
-                        </script>
                     </body>
 
                     </html>
