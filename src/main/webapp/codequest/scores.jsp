@@ -239,10 +239,8 @@
                                                 <i class="fas fa-code"></i>
                                                 <%= technology %>
                                             </div>
-                                            <h2 class="<%= isCorrect != null && isCorrect ? " result-correct"
-                                                : "result-incorrect" %>">
-                                                <i class="fas fa-<%= isCorrect != null && isCorrect ? " check-circle"
-                                                    : "times-circle" %>"></i>
+                                            <h2 class="<%= isCorrect != null && isCorrect ? "result-correct" : "result-incorrect" %>">
+                                                <i class="fas fa-<%= isCorrect != null && isCorrect ? "check-circle" : "times-circle" %>"></i>
                                                 <%= message %>
                                             </h2>
                                         </div>
@@ -258,8 +256,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <h5><i class="fas fa-user-edit"></i> Tu Respuesta:</h5>
-                                                <div class="description-box <%= isCorrect != null && isCorrect ? "
-                                                    description-correct" : "description-incorrect" %>">
+                                                <div class="description-box <%= isCorrect != null && isCorrect ? "description-correct" : "description-incorrect" %>">
                                                     <%= descriptionGuess %>
                                                 </div>
                                             </div>
@@ -334,16 +331,14 @@
                                                         ? "rank-2" : i==2 ? "rank-3" : "rank-other" ; boolean
                                                         isCurrentUser=score.getUsername().equals(sessionUser.getUsername());
                                                         %>
-                                                        <div class="leaderboard-item <%= isCurrentUser ? " bg-light"
-                                                            : "" %>">
+                                                        <div class="leaderboard-item <%= isCurrentUser ? "bg-light" : "" %>">
                                                             <div class="rank-badge <%= rankClass %>">
                                                                 <%= i + 1 %>
                                                             </div>
                                                             <div class="flex-grow-1">
                                                                 <div
                                                                     class="d-flex justify-content-between align-items-center">
-                                                                    <span class="fw-bold <%= isCurrentUser ? "
-                                                                        text-primary" : "" %>">
+                                                                    <span class="fw-bold <%= isCurrentUser ? "text-primary" : "" %>">
                                                                         <%= isCurrentUser ? "🎯 " : "" %>
                                                                             <%= score.getUsername() %>
                                                                     </span>
