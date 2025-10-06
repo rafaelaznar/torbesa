@@ -20,13 +20,13 @@
                     <div class="col-md-8">
                         <div class="card shadow-lg">
                             <div class="card-body">
-                                <h2 class="card-title text-center mb-4">Guess the Capital!</h2>
+                                <h2 class="card-title text-center mb-4">Choose the correct Word !</h2>
                                 <form method="post" action="languageGameServlet">
                                     <div class="mb-4 text-center">
                                         <h4>What is its translation <span class="text-primary">${word}</span>?</h4>
                                     </div>
                                     <!-- send the word name as a hidden field -->
-                                    <input type="hidden" name="word" value="${word}">
+                                    <!--<input type="hidden" name="word" value="${word}"> -->
                                     <div class="mb-3 d-flex justify-content-center">
                                         <div class="w-50 text-start">
                                             <c:forEach var="option" items="${options}">

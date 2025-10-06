@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.ausiasmarch.languages.dao.LanguageScoreDao;
+import net.ausiasmarch.languages.model.LanguageBean;
 import net.ausiasmarch.languages.model.LanguageScoreDto;
 import net.ausiasmarch.languages.service.LanguageScoreService;
 import net.ausiasmarch.languages.service.LanguageService;
@@ -41,11 +42,11 @@ public class LanguageGameServlet extends HttpServlet {
         }
 
         LanguageService languageService = new LanguageService();
-        String selectedWord = languageService.getOneRandomWord();
-        String translatedSelectedWord = LanguageService.translateWord(selectedWord);
-        List<String> randomWordsOptionsList = languageService.getRandomWordsOptionsList(selectedWord, 3);    
+        LanguageBean.setWord(languageService.getOneRandomWord());
+        String translatedWord = LanguageService.translateWord(LanguageBean.getWord());
+        List<String> randomWordsOptionsList = languageService.getRandomWordsOptionsList(LanguageBean.getWord(), 3);    
 
-        request.setAttribute("word", translatedSelectedWord);        
+        request.setAttribute("word", translatedWord);        
         request.setAttribute("options", randomWordsOptionsList);
         request.getRequestDispatcher("languageGame.jsp").forward(request, response);
 
@@ -65,16 +66,10 @@ public class LanguageGameServlet extends HttpServlet {
             }
 
             LanguageScoreService scoreService = new LanguageScoreService();
-            String word = request.getParameter("word");
+          //  String word = request.getParameter("word");
             String wordGuess = request.getParameter("wordGuess");
-            String correctWord = LanguageService.englishDictionary.stream()
-                    .filter(w -> w.equalsIgnoreCase(word))
-                    .findFirst()
-                    .orElse("");
-            request.setAttribute("word", word);
-            request.setAttribute("correctWord", correctWord);
-            request.setAttribute("wordGuess", wordGuess);
-            if (wordGuess.equalsIgnoreCase(correctWord)) {
+
+            if (wordGuess.equalsIgnoreCase(LanguageBean.getWord())) {
 
                 scoreService.set(user.getId(), true);
 

@@ -16,16 +16,11 @@ public class LanguageService {
     public static List<String> spanishDictionary = Arrays.asList("Rojo", "Amarillo", "Morado", "Marron", "Blanco",
                                                            "Muebles", "Mesa", "Sillon", "Armario", "Cajon",
                                                            "Toalla", "Salon", "Tenedores", "Ascensor", "Automovil",
-                                                           "Casa", "Agua", "Arbol", "Sol", "Biblioteca");
+                                                           "Casa", "Agua", "Arbol", "Sol", "Biblioteca",
+                                                           "Almohada","Barranco","Cocina","Palo","Salchicha");
 
-    public static List<String> englishDictionary = Arrays.asList("red", "yellow", "purple", "brown", "white",
-                                                           "furniture", "table", "armchair", "drawer",
-                                                           "towel", "lounge", "forks", "elevator", "car",
-                                                           "Casa", "Agua", "tree", "Sun", "library");
     public LanguageService() {
     }
-
-
     /*private ServletContext oContext = null;
 
     public LanguageService(ServletContext oContext) {

@@ -23,7 +23,7 @@ public class LanguageScoreDao {
             sanitize();
         }
         LanguageScoreDto oScore = null;
-        String sql = "SELECT * FROM capitals_score, users WHERE capitals_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
+        String sql = "SELECT * FROM languages_score, users WHERE languages_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         stmt.setInt(2, userId);
@@ -42,7 +42,7 @@ public class LanguageScoreDao {
 
     public int count(int userId) throws SQLException {
         int count = 0;
-        String sql = "SELECT COUNT(*) AS score_count FROM capitals_score WHERE user_id = ?";
+        String sql = "SELECT COUNT(*) AS score_count FROM languages_score WHERE user_id = ?";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
@@ -53,7 +53,7 @@ public class LanguageScoreDao {
     }
 
     public int count() throws SQLException {
-        String countSql = "SELECT COUNT(*) AS total FROM capitals_score";
+        String countSql = "SELECT COUNT(*) AS total FROM languages_score";
         PreparedStatement countStmt = oConnection.prepareStatement(countSql);
         ResultSet rs = countStmt.executeQuery();
         if (rs.next()) {
@@ -68,8 +68,8 @@ public class LanguageScoreDao {
         // then remove all scores in database
         // except the last one
         // Delete all scores except the most recent one for each user
-        String sql = "DELETE s1 FROM capitals_score s1 " +
-                "INNER JOIN capitals_score s2 ON s1.user_id = s2.user_id " +
+        String sql = "DELETE s1 FROM languages_score s1 " +
+                "INNER JOIN languages_score s2 ON s1.user_id = s2.user_id " +
                 "WHERE s1.timestamp < s2.timestamp";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         int deletedRows = stmt.executeUpdate();
@@ -78,9 +78,9 @@ public class LanguageScoreDao {
 
     public List<LanguageScoreDto> getTop10() throws SQLException {
         List<LanguageScoreDto> scores = new ArrayList<>();
-        String sql = "SELECT * FROM capitals_score, users ";
-        sql += "WHERE capitals_score.user_id = users.id ";
-        sql += "ORDER BY capitals_score.score DESC, capitals_score.timestamp DESC LIMIT 10";
+        String sql = "SELECT * FROM languages_score, users ";
+        sql += "WHERE languages_score.user_id = users.id ";
+        sql += "ORDER BY languages_score.score DESC, languages_score.timestamp DESC LIMIT 10";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()) {
@@ -96,8 +96,8 @@ public class LanguageScoreDao {
     }
 
     public List<LanguageScoreDto> getAll() throws SQLException {
-        String sql = "SELECT * FROM capitals_score, users ";
-        sql += "WHERE capitals_score.user_id = users.id";        
+        String sql = "SELECT * FROM languages_score, users ";
+        sql += "WHERE languages_score.user_id = users.id";        
         PreparedStatement getAllStmt = oConnection.prepareStatement(sql);
         ResultSet rs = getAllStmt.executeQuery();
         List<LanguageScoreDto> scores = new ArrayList<>();
@@ -114,7 +114,7 @@ public class LanguageScoreDao {
     }
 
     public int insert(LanguageScoreDto oScore) throws SQLException {
-        String insertSql = "INSERT INTO capitals_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
+        String insertSql = "INSERT INTO languages_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
         PreparedStatement insertStmt = oConnection.prepareStatement(insertSql);
         insertStmt.setInt(1, oScore.getUserId());
         insertStmt.setInt(2, oScore.getScore());
@@ -123,7 +123,7 @@ public class LanguageScoreDao {
     }
 
     public int update(LanguageScoreDto oScore) throws SQLException {
-        String updateSql = "UPDATE capitals_score SET score = ?, tries = ?, timestamp = NOW() WHERE user_id = ?";
+        String updateSql = "UPDATE languages_score SET score = ?, tries = ?, timestamp = NOW() WHERE user_id = ?";
         PreparedStatement updateStmt = oConnection.prepareStatement(updateSql);
         updateStmt.setInt(1, oScore.getScore());
         updateStmt.setInt(2, oScore.getTries());
@@ -132,7 +132,7 @@ public class LanguageScoreDao {
     }
 
     public int delete(int id) throws SQLException {
-        String deleteSql = "DELETE FROM capitals_score WHERE id = ?";
+        String deleteSql = "DELETE FROM languages_score WHERE id = ?";
         PreparedStatement deleteStmt = oConnection.prepareStatement(deleteSql);
         deleteStmt.setInt(1, id);
         return deleteStmt.executeUpdate();
