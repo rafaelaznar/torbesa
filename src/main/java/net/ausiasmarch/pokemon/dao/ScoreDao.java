@@ -23,7 +23,7 @@ public class ScoreDao {
             sanitize();
         }
         ScoreDto oScore = null;
-        String sql = "SELECT * FROM pikachu_score, users WHERE pikachu_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
+        String sql = "SELECT * FROM pokemon_score, users WHERE pokemon_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         stmt.setInt(2, userId);
@@ -42,7 +42,7 @@ public class ScoreDao {
 
     public int count(int userId) throws SQLException {
         int count = 0;
-        String sql = "SELECT COUNT(*) AS score_count FROM pikachu_score WHERE user_id = ?";
+        String sql = "SELECT COUNT(*) AS score_count FROM pokemon_score WHERE user_id = ?";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
@@ -53,7 +53,7 @@ public class ScoreDao {
     }
 
     public int count() throws SQLException {
-        String countSql = "SELECT COUNT(*) AS total FROM pikachu_score";
+        String countSql = "SELECT COUNT(*) AS total FROM pokemon_score";
         PreparedStatement countStmt = oConnection.prepareStatement(countSql);
         ResultSet rs = countStmt.executeQuery();
         if (rs.next()) {
@@ -68,8 +68,8 @@ public class ScoreDao {
         // then remove all scores in database
         // except the last one
         // Delete all scores except the most recent one for each user
-        String sql = "DELETE s1 FROM pikachu_score s1 " +
-                "INNER JOIN pikachu_score s2 ON s1.user_id = s2.user_id " +
+        String sql = "DELETE s1 FROM pokemon_score s1 " +
+                "INNER JOIN pokemon_score s2 ON s1.user_id = s2.user_id " +
                 "WHERE s1.timestamp < s2.timestamp";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         int deletedRows = stmt.executeUpdate();
@@ -78,9 +78,9 @@ public class ScoreDao {
 
     public List<ScoreDto> getTop10() throws SQLException {
         List<ScoreDto> scores = new ArrayList<>();
-        String sql = "SELECT * FROM pikachu_score, users ";
-        sql += "WHERE pikachu_score.user_id = users.id ";
-        sql += "ORDER BY pikachu_score.score DESC, pikachu_score.timestamp DESC LIMIT 10";
+        String sql = "SELECT * FROM pokemon_score, users ";
+        sql += "WHERE pokemon_score.user_id = users.id ";
+        sql += "ORDER BY pokemon_score.score DESC, pokemon_score.timestamp DESC LIMIT 10";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()) {
@@ -96,8 +96,8 @@ public class ScoreDao {
     }
 
     public List<ScoreDto> getAll() throws SQLException {
-        String sql = "SELECT * FROM pikachu_score, users ";
-        sql += "WHERE pikachu_score.user_id = users.id";        
+        String sql = "SELECT * FROM pokemon_score, users ";
+        sql += "WHERE pokemon_score.user_id = users.id";        
         PreparedStatement getAllStmt = oConnection.prepareStatement(sql);
         ResultSet rs = getAllStmt.executeQuery();
         List<ScoreDto> scores = new ArrayList<>();
@@ -114,7 +114,7 @@ public class ScoreDao {
     }
 
     public int insert(ScoreDto oScore) throws SQLException {
-        String insertSql = "INSERT INTO pikachu_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
+        String insertSql = "INSERT INTO pokemon_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
         PreparedStatement insertStmt = oConnection.prepareStatement(insertSql);
         insertStmt.setInt(1, oScore.getUserId());
         insertStmt.setInt(2, oScore.getScore());
@@ -123,7 +123,7 @@ public class ScoreDao {
     }
 
     public int update(ScoreDto oScore) throws SQLException {
-        String updateSql = "UPDATE pikachu_score SET score = ?, tries = ?, timestamp = NOW() WHERE user_id = ?";
+        String updateSql = "UPDATE pokemon_score SET score = ?, tries = ?, timestamp = NOW() WHERE user_id = ?";
         PreparedStatement updateStmt = oConnection.prepareStatement(updateSql);
         updateStmt.setInt(1, oScore.getScore());
         updateStmt.setInt(2, oScore.getTries());
