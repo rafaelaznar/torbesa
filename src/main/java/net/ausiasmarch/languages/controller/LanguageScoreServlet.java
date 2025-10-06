@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.ausiasmarch.languages.model.ScoreDTO;
-import net.ausiasmarch.languages.service.ScoreService;
+import net.ausiasmarch.languages.model.LanguageScoreDto;
+import net.ausiasmarch.languages.service.LanguageScoreService;
 
-@WebServlet("/language/ScoreServlet")
-public class ScoreServlet extends HttpServlet {
+@WebServlet("/languages/languageScoreServlet")
+public class LanguageScoreServlet extends HttpServlet {
 
-    private ScoreService oScoreService;
+    private LanguageScoreService oScoreService;
 
-    public ScoreServlet() {
-        this.oScoreService = new ScoreService();
+    public LanguageScoreServlet() {
+        this.oScoreService = new LanguageScoreService();
     }
 
     // Constructor para inyección en tests
-    public ScoreServlet(ScoreService scoreService) {
+    public LanguageScoreServlet(LanguageScoreService scoreService) {
         this.oScoreService = scoreService;
     }
 
@@ -32,9 +32,9 @@ public class ScoreServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)  {
         
         try {
-            List<ScoreDTO> highScoresList = oScoreService.getHighScores();
+            List<LanguageScoreDto> highScoresList = oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("highscores.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("languageHighscores.jsp");
             dispatcher.forward(request, response);
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la operación en la base de datos: " + e.getMessage());

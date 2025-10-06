@@ -119,7 +119,17 @@ CREATE TABLE `languages_score` (
   `timestamp` datetime NOT NULL,
   PRIMARY KEY(`id`),
   KEY `user_id`(`user_id`),
-  CONSTRAINT `languages_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  CONSTRAINT `languages_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+INSERT INTO `languages_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(5, 1, 8, 19, '2025-09-14 12:03:52'),
+(6, 2, 6, 8, '2025-09-14 14:24:57'),
+(7, 3, 19, 32, '2025-09-14 12:12:38'),
+(8, 4, 31, 69, '2025-09-14 22:46:18'),
+(9, 5, 22, 30, '2025-09-14 22:36:23');
+
+ALTER TABLE `languages_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 COMMIT;

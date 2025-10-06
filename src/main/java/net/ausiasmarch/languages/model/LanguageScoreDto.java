@@ -5,8 +5,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 
-public class ScoreDTO {
-    
+public class LanguageScoreDto {
     private int id;
     private int userId;
     private String username;
@@ -14,7 +13,7 @@ public class ScoreDTO {
     private int tries;
     private LocalDateTime timestamp;
 
-    public ScoreDTO() {
+    public LanguageScoreDto() {
         this.id = 0;
         this.userId = 0;
         this.score = 0;
@@ -22,7 +21,7 @@ public class ScoreDTO {
         this.timestamp = null;
     }
 
-    public ScoreDTO(int id, int userId, int score, int tries, LocalDateTime timestamp) {
+    public LanguageScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp) {
         this.id = id;
         this.userId = userId;
         this.score = score;
@@ -30,7 +29,7 @@ public class ScoreDTO {
         this.timestamp = timestamp;
     }
 
-    public ScoreDTO(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
+    public LanguageScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
         this.id = id;
         this.userId = userId;
         this.score = score;

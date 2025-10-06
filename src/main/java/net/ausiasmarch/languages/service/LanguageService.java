@@ -13,11 +13,15 @@ public class LanguageService {
 
     private static Random random = new Random();
     private static final String API_URL = "https://api.mymemory.translated.net/get?q=%s&langpair=es|en";
-    public static List<String> dictionary = Arrays.asList("Rojo", "Amarillo", "Morado", "Marrón", "Blanco",
-                                                           "Muebles", "Mesa", "Sillón", "Armario", "Cajón",
-                                                           "Baño", "Salón", "Tenedores", "Tazón", "Automovil",
-                                                           "Casa", "Agua", "Árbol", "Sol", "Biblioteca");
+    public static List<String> spanishDictionary = Arrays.asList("Rojo", "Amarillo", "Morado", "Marron", "Blanco",
+                                                           "Muebles", "Mesa", "Sillon", "Armario", "Cajon",
+                                                           "Toalla", "Salon", "Tenedores", "Ascensor", "Automovil",
+                                                           "Casa", "Agua", "Arbol", "Sol", "Biblioteca");
 
+    public static List<String> englishDictionary = Arrays.asList("red", "yellow", "purple", "brown", "white",
+                                                           "furniture", "table", "armchair", "drawer",
+                                                           "towel", "lounge", "forks", "elevator", "car",
+                                                           "Casa", "Agua", "tree", "Sun", "library");
     public LanguageService() {
     }
 
@@ -47,10 +51,10 @@ public class LanguageService {
 
     public String getOneRandomWord() {
 
-        return dictionary.get(random.nextInt(dictionary.size()));
+        return spanishDictionary.get(random.nextInt(spanishDictionary.size()));
     }
 
-    public List<String> getRandomWordsOptionsList(String selectedWordTranslated, int numWords) {
+    public List<String> getRandomWordsOptionsList(String selectedWord, int numWords) {
 
         if (numWords < 1) {
             numWords = 4;
@@ -58,21 +62,21 @@ public class LanguageService {
 
         List<String> randomWordsOptionsList = new ArrayList<>();
 
-        randomWordsOptionsList.add(selectedWordTranslated);
+        randomWordsOptionsList.add(selectedWord);
 
         for (int i = 0; i < numWords - 1; i++) {
             int randomIndex = 0;
             while (randomIndex == 0) {
-                randomIndex = (int) (Math.random() * dictionary.size());
-                if (dictionary.get(randomIndex).trim().isEmpty()) {
+                randomIndex = (int) (Math.random() * spanishDictionary.size());
+                if (spanishDictionary.get(randomIndex).trim().isEmpty()) {
                     randomIndex = 0;
                 } else {
-                    if (randomWordsOptionsList.contains(dictionary.get(randomIndex))) {
+                    if (randomWordsOptionsList.contains(spanishDictionary.get(randomIndex))) {
                         randomIndex = 0;
                     }
                 }
             }
-            randomWordsOptionsList.add(dictionary.get(randomIndex));
+            randomWordsOptionsList.add(spanishDictionary.get(randomIndex));
         }
 
         Collections.shuffle(randomWordsOptionsList);

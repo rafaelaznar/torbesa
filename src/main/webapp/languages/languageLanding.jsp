@@ -24,8 +24,8 @@
                 <div class="col-md-8 text-center">
                     <h1 class="display-4">Welcome to the Fun Spanish Game!</h1>
                     <p class="lead">Test your language skills by practising with spanish Tradulo !</p>
-                    <a href="../languages/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
-                    <a href="../languages/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
+                    <a href="../languages/languageGameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
+                    <a href="../languages/languageScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
                 </div>
             </div>
             <div class="row mt-5">

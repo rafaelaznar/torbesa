@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <!DOCTYPE html>
         <html lang="en">
 
@@ -21,7 +21,7 @@
                         <div class="card shadow-lg">
                             <div class="card-body">
                                 <h2 class="card-title text-center mb-4">Guess the Capital!</h2>
-                                <form method="post" action="GameServlet">
+                                <form method="post" action="languageGameServlet">
                                     <div class="mb-4 text-center">
                                         <h4>What is its translation <span class="text-primary">${word}</span>?</h4>
                                     </div>
@@ -42,7 +42,7 @@
                                 <div class="mt-4 text-center">
                                     <span class="fw-bold">Score:</span> <span class="badge bg-primary">${score}</span>
                                 </div>
-                                <form method="get" action="ScoreServlet" class="mt-3">
+                                <form method="get" action="languageScoreServlet" class="mt-3">
                                     <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
                                 </form>
                                 <form method="get" action="../shared/LogoutServlet" class="mt-2">

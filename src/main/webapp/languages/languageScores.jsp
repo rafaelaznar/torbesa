@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
     if (session.getAttribute("sessionUser") == null) {
         response.sendRedirect(request.getContextPath() + "/index.jsp");
@@ -121,7 +121,7 @@
 
                             <!-- Action Buttons -->
                             <div class="text-center mt-4">
-                                <form method="get" action="GameServlet" class="d-inline me-3">
+                                <form method="get" action="languageGameServlet" class="d-inline me-3">
                                     <button type="submit" class="btn btn-primary btn-lg">
                                         <i class="bi bi-play-fill"></i> Play Again
                                     </button>
@@ -135,7 +135,7 @@
                             </div>
 
                             <!-- High Scores Table -->
-                            <jsp:include page="leaderboard.jsp" />
+                            <jsp:include page="languageLeaderboard.jsp" />
 
 
                         </div>

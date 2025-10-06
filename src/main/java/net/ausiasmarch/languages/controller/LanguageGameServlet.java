@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.ausiasmarch.languages.dao.ScoreDAO;
-import net.ausiasmarch.languages.model.ScoreDTO;
+import net.ausiasmarch.languages.dao.LanguageScoreDao;
+import net.ausiasmarch.languages.model.LanguageScoreDto;
+import net.ausiasmarch.languages.service.LanguageScoreService;
 import net.ausiasmarch.languages.service.LanguageService;
-import net.ausiasmarch.languages.service.ScoreService;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 
-@WebServlet("/language/GameServlet")
+@WebServlet("/languages/languageGameServlet")
 public class LanguageGameServlet extends HttpServlet {
 
     @Override
@@ -43,8 +43,7 @@ public class LanguageGameServlet extends HttpServlet {
         LanguageService languageService = new LanguageService();
         String selectedWord = languageService.getOneRandomWord();
         String translatedSelectedWord = LanguageService.translateWord(selectedWord);
-        List<String> randomWordsOptionsList = languageService.getRandomWordsOptionsList(translatedSelectedWord, 3);    
-
+        List<String> randomWordsOptionsList = languageService.getRandomWordsOptionsList(selectedWord, 3);    
 
         request.setAttribute("word", translatedSelectedWord);        
         request.setAttribute("options", randomWordsOptionsList);
@@ -65,17 +64,17 @@ public class LanguageGameServlet extends HttpServlet {
                 request.setAttribute("username", user.getUsername());
             }
 
-            ScoreService scoreService = new ScoreService();
+            LanguageScoreService scoreService = new LanguageScoreService();
             String word = request.getParameter("word");
             String wordGuess = request.getParameter("wordGuess");
-            String correctWord = LanguageService.dictionary.stream()
-                    .filter(w -> w.equals(word))
+            String correctWord = LanguageService.englishDictionary.stream()
+                    .filter(w -> w.equalsIgnoreCase(word))
                     .findFirst()
                     .orElse("");
             request.setAttribute("word", word);
             request.setAttribute("correctWord", correctWord);
             request.setAttribute("wordGuess", wordGuess);
-            if (wordGuess.equals(correctWord)) {
+            if (wordGuess.equalsIgnoreCase(correctWord)) {
 
                 scoreService.set(user.getId(), true);
 
@@ -87,15 +86,14 @@ public class LanguageGameServlet extends HttpServlet {
 
             try (Connection oConnection = HikariPool.getConnection()) {
 
-                ScoreDAO oScoreDao = new ScoreDAO(oConnection);
-                ScoreDTO userScore = oScoreDao.get(user.getId());
+                LanguageScoreDao oScoreDao = new LanguageScoreDao(oConnection);
+                LanguageScoreDto userScore = oScoreDao.get(user.getId());
                 request.setAttribute("userScore", userScore);
 
-                List<ScoreDTO> highScores = oScoreDao.getTop10();
+                List<LanguageScoreDto> highScores = oScoreDao.getTop10();
                 request.setAttribute("highScores", highScores);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
-                dispatcher.forward(request, response);
+                request.getRequestDispatcher("languageScores.jsp").forward(request, response);
 
             }
 
