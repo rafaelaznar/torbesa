@@ -20,6 +20,13 @@ public class EmojiQuizService {
         }
     }
 
+    public EmojiQuizBean getQuestionById(long id) throws SQLException {
+        try (Connection conn = HikariPool.getConnection()) {
+            EmojiQuizDao questionList = new EmojiQuizDao(conn);
+            return questionList.getQuestionById(id);
+        }
+    }
+
     // obtener una pregunta aleatoria
     public EmojiQuizBean getRandomQuestion() throws SQLException {
         List<EmojiQuizBean> questionList = fetchAllQuestions();
@@ -36,5 +43,9 @@ public class EmojiQuizService {
 
         Collections.shuffle(options);
         return options;
+    }
+
+    public String getCorrectAnswer(EmojiQuizBean question) {
+        return question.getCorrectAnswer();
     }
 }

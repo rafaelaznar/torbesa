@@ -1,13 +1,13 @@
 package net.ausiasmarch.emojiQuiz.model;
 
 public class EmojiQuizBean {
-    private int id;
+    private long id;
     private String question;
     private String correctAnswer;
     private String option1;
     private String option2;
 
-    public EmojiQuizBean(int id, String question, String correctAnswer, String option1, String option2) {
+    public EmojiQuizBean(long id, String question, String correctAnswer, String option1, String option2) {
         this.id = id;
         this.question = question;
         this.correctAnswer = correctAnswer;
@@ -18,11 +18,11 @@ public class EmojiQuizBean {
     public EmojiQuizBean() {
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

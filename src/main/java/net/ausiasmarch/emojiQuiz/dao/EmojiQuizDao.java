@@ -38,4 +38,22 @@ public class EmojiQuizDao {
         return questionList;
     }
 
+    public EmojiQuizBean getQuestionById(long id) throws SQLException {
+        String query = "SELECT * FROM emoji_quiz WHERE id = " + id;
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) {
+                EmojiQuizBean question = new EmojiQuizBean();
+                question.setId(rs.getInt("id"));
+                question.setQuestion(rs.getString("question"));
+                question.setCorrectAnswer(rs.getString("correct_answer"));
+                question.setOption1(rs.getString("option1"));
+                question.setOption2(rs.getString("option2"));
+                return question;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return null;
+    }
 }

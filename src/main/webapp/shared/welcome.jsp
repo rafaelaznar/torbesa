@@ -191,7 +191,7 @@
                                         <p class="card-text text-muted mb-4">
                                             By Vladislav Uski
                                         </p>
-                                        <a href="../emojiQuiz/play" class="btn btn-primary btn-lg w-100">
+                                        <a href="../emojiQuiz/landing.jsp" class="btn btn-primary btn-lg w-100">
                                             <i class="bi bi-play-fill"></i> Play Now
                                         </a>
                                     </div>
