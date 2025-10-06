@@ -176,6 +176,24 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-clock-history text-info" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-info mb-3">Genshin Element Guesser</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Guess the element type of the characters from the game Genshin Impact.
+                                        </p>
+                                        <p>By Alejandro Pavón Martínez</p>
+                                        <a href="../genshin/landing.jsp" class="btn btn-outline-info btn-lg w-100">
+                                            <i class="bi bi-hourglass-split"></i> Play Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
