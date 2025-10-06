@@ -43,11 +43,16 @@ public class TrivialServlet extends HttpServlet {
         TrivialService trivialService = new TrivialService();
         TrivialBean jsonResponse = trivialService.fetchTriviaQuestions();
 
+        session.setAttribute("triviaQuestions", jsonResponse.getCorrectAnswer());
+        request.setAttribute("question", jsonResponse);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("game_t.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
             System.err.println("Error al redirigir a la página del juego: " + e.getMessage());
         }
+       
     }
 
     @Override
@@ -64,27 +69,7 @@ public class TrivialServlet extends HttpServlet {
                 request.setAttribute("username", user.getUsername());
             }
 
-            ScoreService scoreService = new ScoreService();
-            String country = request.getParameter("country");
-            String capitalGuess = request.getParameter("capitalGuess");
-            CountryService oCountryService = new CountryService(request.getServletContext());
-            String correctCapital = oCountryService.fetchAllCountries().stream()
-                    .filter(c -> c.getName().equals(country))
-                    .map(CountryBean::getCapital)
-                    .findFirst()
-                    .orElse("");
-            request.setAttribute("country", country);
-            request.setAttribute("correctCapital", correctCapital);
-            request.setAttribute("capitalGuess", capitalGuess);
-            if (capitalGuess.equals(correctCapital)) {
-
-                scoreService.set(user.getId(), true);
-
-                request.setAttribute("message", "Correct! Well done.");
-            } else {
-                request.setAttribute("message", "Incorrect. Try again!");
-                scoreService.set(user.getId(), false);
-            }
+            
 
             try (Connection oConnection = HikariPool.getConnection()) {
 
@@ -95,7 +80,7 @@ public class TrivialServlet extends HttpServlet {
                 List<ScoreDto> highScores = oScoreDao.getTop10();
                 request.setAttribute("highScores", highScores);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("scores_j.jsp");
                 dispatcher.forward(request, response);
 
             }

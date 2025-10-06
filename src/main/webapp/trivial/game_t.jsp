@@ -20,25 +20,24 @@
                     <div class="col-md-8">
                         <div class="card shadow-lg">
                             <div class="card-body">
-                                <h2 class="card-title text-center mb-4">Guess the answer!</h2>
-                                <form method="post" action="GameServlet">
+                                <h2 class="card-title text-center mb-4">Trivial Game 🧠</h2>
+                                <form method="post" action="TrivialServlet">
                                     <div class="mb-4 text-center">
-                                        <h4>What is the answer of <span class="text-primary">${country}</span>?</h4>
+                                        <h4><span class="text-primary">${question.question}</span>?</h4>
                                     </div>
-                                    <!-- send the country name as a hidden field -->
-                                    <input type="hidden" name="country" value="${country}">
+
+                                    <!-- Opciones -->
                                     <div class="mb-3 d-flex justify-content-center">
-                                        <div class="w-50 text-start">
-                                            <c:forEach var="option" items="${options}">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="capitalGuess"
-                                                        id="option${option}" value="${option}" required>
-                                                    <label class="form-check-label"
-                                                        for="option${option}">${option}</label>
-                                                </div>
-                                            </c:forEach>
+                                <div class="w-75 text-start">
+                                    <c:forEach var="option" items="${question.answers}">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="selectedAnswer"
+                                                id="option${option}" value="${option}" required>
+                                            <label class="form-check-label" for="option${option}">${option}</label>
                                         </div>
-                                    </div>
+                                    </c:forEach>
+                                </div>
+                                    
                                     <button type="submit" class="btn btn-success w-100">Submit Answer</button>
                                 </form>
                                 <div class="mt-4 text-center">
