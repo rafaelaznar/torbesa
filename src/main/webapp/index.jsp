@@ -180,22 +180,23 @@
                                 <div class="card game-card shadow-sm border-0 h-100">
                                     <div class="card-body text-center p-4">
                                         <div class="mb-3">
-                                            <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
+                                            <i class="bi bi-arrow-through-heart text-dark" style="font-size: 3rem;"></i>
                                         </div>
-                                        <h5 class="card-title text-primary mb-3">Country Capitals Game</h5>
+                                        <h5 class="card-title text-dark mb-3">Taylor Swift Test</h5>
                                         <p class="card-text text-muted mb-4">
-                                            Test your geography knowledge! Guess the capital cities of countries from
-                                            around the world.
+                                            Guess to which album the song belongs to!
                                         </p>
                                         <p class="card-text text-muted mb-4">
                                             By Rafael Aznar
                                         </p>
-                                        <a href="capitals/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                        <a href="swift/landing.jsp" class="btn btn-dark btn-lg w-100">
                                             <i class="bi bi-play-fill"></i> Play Now
                                         </a>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
