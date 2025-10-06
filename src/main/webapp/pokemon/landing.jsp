@@ -24,7 +24,7 @@
                 <div class="col-md-8 text-center">
                     <h1 class="display-4">Welcome to the Pokemon Type Guessing Game!</h1>
                     <p class="lead">Test your knowledge by guessing the type of various Pokemon!</p>
-                    <a href="../pokemon/JuegoServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
+                    <a href="../pokemon/ServletJuego" class="btn btn-success btn-lg m-4">Start Playing</a>
                     <a href="../pokemon/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
                 </div>
             </div>
