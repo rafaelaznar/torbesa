@@ -114,9 +114,12 @@
                                             Expand your vocabulary and test your language skills across multiple
                                             languages.
                                         </p>
-                                        <button class="btn btn-outline-success btn-lg w-100" disabled>
-                                            <i class="bi bi-hourglass-split"></i> Coming Soon
-                                        </button>
+                                        <p class="card-text text-muted mb-4">
+                                            By Ariel 
+                                        </p>
+                                        <a href="languages/languageLanding.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
                                     </div>
                                 </div>
                             </div>
