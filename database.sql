@@ -148,7 +148,6 @@ ALTER TABLE `harrypotter_score`
 --
 ALTER TABLE `harrypotter_score`
   ADD CONSTRAINT `harrypotter_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-COMMIT;
 
 --
 -- AUTO_INCREMENT for table `harrypotter_score`
