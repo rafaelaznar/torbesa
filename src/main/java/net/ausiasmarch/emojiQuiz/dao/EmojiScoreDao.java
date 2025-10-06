@@ -23,8 +23,12 @@ public class EmojiScoreDao {
     private EmojiScoreBean mapRow(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         int userId = rs.getInt("user_id");
-        String username = rs.getString("username");
-        int score = rs.getInt("score");
+        String username;
+        try {
+            username = rs.getString("username");
+        } catch (SQLException ex) {
+            username = null;
+        }        int score = rs.getInt("score");
         int tries = rs.getInt("tries");
         Timestamp ts = rs.getTimestamp("timestamp");
         LocalDateTime ldt = ts != null ? ts.toLocalDateTime() : null;
@@ -68,10 +72,11 @@ public class EmojiScoreDao {
         }
 
         String sql =
-            "SELECT id, user_id, score, tries, `timestamp` " +
-            "FROM emoji_quiz_score " +
-            "WHERE user_id = ? " +
-            "ORDER BY `timestamp` DESC " +
+            "SELECT e.id, e.user_id, u.username, e.score, e.tries, e.`timestamp` " +
+            "FROM emoji_quiz_score e " +
+            "JOIN users u ON e.user_id = u.id " +
+            "WHERE e.user_id = ? " +
+            "ORDER BY e.`timestamp` DESC " +
             "LIMIT 1";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -87,9 +92,10 @@ public class EmojiScoreDao {
 
     public List<EmojiScoreBean> getTop10() throws SQLException {
         String sql =
-            "SELECT id, user_id, score, tries, `timestamp` " +
-            "FROM emoji_quiz_score " +
-            "ORDER BY score DESC, tries ASC, `timestamp` DESC " +
+            "SELECT e.id, e.user_id, u.username, e.score, e.tries, e.`timestamp` " +
+            "FROM emoji_quiz_score e " +
+            "JOIN users u ON e.user_id = u.id " +
+            "ORDER BY e.score DESC, e.tries ASC, e.`timestamp` DESC " +
             "LIMIT 10";
 
         try (PreparedStatement ps = conn.prepareStatement(sql);

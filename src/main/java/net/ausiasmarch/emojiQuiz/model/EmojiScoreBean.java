@@ -1,6 +1,9 @@
 package net.ausiasmarch.emojiQuiz.model;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class EmojiScoreBean {
     private int id;
@@ -35,6 +38,12 @@ public class EmojiScoreBean {
     public int getScore() { return score; }
     public int getTries() { return tries; }
     public LocalDateTime getTimestamp() { return timestamp; }
+    public Date getTimestampAsDate() {
+        if (timestamp == null) {
+            return null;
+        }
+            return Date.from(timestamp.atZone(ZoneId.systemDefault()).toInstant());
+    }
 
     public void setId(int id) { this.id = id; }
     public void setUserId(int userId) { this.userId = userId; }
