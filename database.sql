@@ -63,6 +63,20 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (4, 'ralph', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
 (5, 'rafa', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `starwars_score`
+--
+
+CREATE TABLE starwars_score (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  score INT DEFAULT 0,
+  tries INT DEFAULT 0,
+  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 --
 -- Indexes for dumped tables
 --
