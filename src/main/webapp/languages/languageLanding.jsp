@@ -22,10 +22,10 @@
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
-                    <h1 class="display-4">Welcome to the Country Capital's Game!</h1>
-                    <p class="lead">Test your geography skills by guessing country capitals!</p>
-                    <a href="../capitals/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
-                    <a href="../capitals/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
+                    <h1 class="display-4">Welcome to the Fun Spanish Game!</h1>
+                    <p class="lead">Test your language skills by practising with spanish Tradulo !</p>
+                    <a href="../languages/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
+                    <a href="../languages/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
                 </div>
             </div>
             <div class="row mt-5">
