@@ -107,3 +107,40 @@ ALTER TABLE `users`
 ALTER TABLE `capitals_score`
   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
+
+
+---------------------------------------------------------
+---------------------------------------------------------
+-- LUCIA CASTAÑERA - JUEGO TAYLOR SWIFT
+
+--
+-- Estructura de tabla para la tabla `song_score`
+--
+
+CREATE TABLE `song_score` (
+  `id` bigint NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Indices de la tabla `song_score`
+--
+ALTER TABLE `song_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `indice` (`user_id`),
+  ADD KEY `user_id` (`user_id`);
+
+
+--
+-- AUTO_INCREMENT de la tabla `song_score`
+--
+ALTER TABLE `song_score`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+
+
