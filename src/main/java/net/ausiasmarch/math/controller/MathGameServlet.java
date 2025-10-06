@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import net.ausiasmarch.math.service.MathGameService;
 
-@WebServlet("/mathgame/GameServlet")
+@WebServlet("/math/GameServlet")
 public class MathGameServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private MathGameService service = new MathGameService();
@@ -20,7 +20,7 @@ public class MathGameServlet extends HttpServlet {
         HttpSession session = request.getSession();
         request.setAttribute("question", service.generateQuestion(session).getExpression());
         request.setAttribute("score", session.getAttribute("mathScore"));
-        request.getRequestDispatcher("/mathgame/game.jsp").forward(request, response);
+        request.getRequestDispatcher("/math/game.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

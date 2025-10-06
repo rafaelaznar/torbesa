@@ -97,7 +97,7 @@
             <p class="card-text text-muted mb-4">
                 Sharpen your math skills with fun arithmetic challenges and number puzzles.
             </p>
-            <a href="mathgame/GameServlet" class="btn btn-warning btn-lg w-100">
+            <a href="../math/GameServlet" class="btn btn-warning btn-lg w-100">
                 <i class="bi bi-play-fill"></i> Play Now
             </a>
         </div>
