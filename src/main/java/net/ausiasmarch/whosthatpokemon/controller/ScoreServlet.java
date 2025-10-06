@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.ausiasmarch.whosthatpokemon.model.ScoreDao;
+import net.ausiasmarch.whosthatpokemon.model.ScoreBean;
 import net.ausiasmarch.whosthatpokemon.service.ScoreService;
 
 
@@ -25,7 +25,7 @@ public class ScoreServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             ScoreService scoreService = new ScoreService();
-            List<ScoreDao> highScores = scoreService.getHighScores();
+            List<ScoreBean> highScores = scoreService.getHighScores();
             request.setAttribute("highScores", highScores);
         } catch (SQLException e) {
             e.printStackTrace();

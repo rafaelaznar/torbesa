@@ -1,3 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    if (session.getAttribute("sessionUser") == null) {
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        return;
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,10 +94,11 @@
         <div class="card">
             <h1>Who's That Pokemon?</h1>
             <p class="lead">Aparecerá la silueta de un Pokémon de cualquier generación. ¡Adivínalo antes de que se acabe el tiempo!</p>
-
+            <!-- los tres botones para acceder a el juego, al ranking y a el index -->
             <div class="controls">
                 <a href="../whosthatpokemon/GameServlet"><button class="btn">Start</button></a>
                 <a href="../whosthatpokemon/ScoreServlet"><button class="btn secondary">Top Scores</button></a>
+                <a href="../shared/welcome.jsp"><button class="btn">Volver al index</button></a>
             </div>
 
             <div class="info">

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 
 import net.ausiasmarch.whosthatpokemon.dao.ScoreDao;
+
+import net.ausiasmarch.whosthatpokemon.model.ScoreBean;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 import java.sql.*;
@@ -19,7 +21,7 @@ public class ScoreService {
             if (oScoreDao.count(userId) > 1) {
                 oScoreDao.sanitize();
             }
-            ScoreDao oUserScore = oScoreDao.get(userId);
+            ScoreBean oUserScore = oScoreDao.get(userId);
             if (!Objects.isNull(oUserScore)) {
                 oUserScore.setTries(oUserScore.getTries() + 1);
                 if (correct) {
@@ -27,7 +29,7 @@ public class ScoreService {
                 }
                 return oScoreDao.update(oUserScore) > 0;
             } else {
-                oUserScore = new ScoreDao();
+                oUserScore = new ScoreBean();
                 oUserScore.setUserId(userId);
                 oUserScore.setTries(1);
                 if (correct) {
@@ -35,19 +37,17 @@ public class ScoreService {
                 } else {
                     oUserScore.setScore(0);
                 }
-                oUserScore.setTimestamp(LocalDateTime.now());
                 return oScoreDao.insert(oUserScore) > 0;
             }
         }
 
     }
 
-    public List<ScoreDao> getHighScores() throws SQLException {
+    public List<ScoreBean> getHighScores() throws SQLException {
         try (Connection oConnection = HikariPool.getConnection()) {
             ScoreDao oScoreDao = new ScoreDao(oConnection);
             return oScoreDao.getTop10();
         }
     }
-
 }
 

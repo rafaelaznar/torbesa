@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ausiasmarch.whosthatpokemon.model.ScoreDao;
+import net.ausiasmarch.whosthatpokemon.model.ScoreBean;
 
 public class ScoreDao {
 
@@ -18,23 +18,22 @@ public class ScoreDao {
         this.oConnection = oConnection;
     }
 
-    public ScoreDao get(int userId) throws SQLException {
+    public ScoreBean get(int userId) throws SQLException {
         if (count(userId) > 1) {
             sanitize();
         }
-        ScoreDao oScore = null;
+        ScoreBean oScore = null;
         String sql = "SELECT * FROM whosthatpokemon_score, users WHERE whosthatpokemon_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         stmt.setInt(2, userId);
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) {
-            oScore = new ScoreDao(
+            oScore = new ScoreBean(
                     rs.getInt("id"),
                     rs.getInt("user_id"),
                     rs.getInt("score"),
                     rs.getInt("tries"),
-                    rs.getTimestamp("timestamp").toLocalDateTime(),
                     rs.getString("username"));
         }
         return oScore;
@@ -72,44 +71,42 @@ public class ScoreDao {
         System.out.println("Sanitized " + deletedRows + " duplicate scores");
     }
 
-    public List<ScoreDao> getTop10() throws SQLException {
-        List<ScoreDao> scores = new ArrayList<>();
+    public List<ScoreBean> getTop10() throws SQLException {
+        List<ScoreBean> scores = new ArrayList<>();
         String sql = "SELECT * FROM whosthatpokemon_score, users ";
         sql += "WHERE whosthatpokemon_score.user_id = users.id ";
         sql += "ORDER BY whosthatpokemon_score.score DESC, whosthatpokemon_score.timestamp DESC LIMIT 10";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()) {
-            scores.add(new ScoreDao(
+            scores.add(new ScoreBean(
                     rs.getInt("id"),
                     rs.getInt("user_id"),
                     rs.getInt("score"),
                     rs.getInt("tries"),
-                    rs.getTimestamp("timestamp").toLocalDateTime(),
                     rs.getString("username")));
         }
         return scores;
     }
 
-    public List<ScoreDao> getAll() throws SQLException {
+    public List<ScoreBean> getAll() throws SQLException {
         String sql = "SELECT * FROM whosthatpokemon_score, users ";
         sql += "WHERE whosthatpokemon_score.user_id = users.id";
         PreparedStatement getAllStmt = oConnection.prepareStatement(sql);
         ResultSet rs = getAllStmt.executeQuery();
-        List<ScoreDao> scores = new ArrayList<>();
+        List<ScoreBean> scores = new ArrayList<>();
         while (rs.next()) {
-            scores.add(new ScoreDao(
+            scores.add(new ScoreBean(
                     rs.getInt("id"),
                     rs.getInt("user_id"),
                     rs.getInt("score"),
                     rs.getInt("tries"),
-                    rs.getTimestamp("timestamp").toLocalDateTime(),
                     rs.getString("username")));
         }
         return scores;
     }
 
-    public int insert(ScoreDao oScore) throws SQLException {
+    public int insert(ScoreBean oScore) throws SQLException {
         String insertSql = "INSERT INTO whosthatpokemon_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
         PreparedStatement insertStmt = oConnection.prepareStatement(insertSql);
         insertStmt.setInt(1, oScore.getUserId());
@@ -118,7 +115,7 @@ public class ScoreDao {
         return insertStmt.executeUpdate();
     }
 
-    public int update(ScoreDao oScore) throws SQLException {
+    public int update(ScoreBean oScore) throws SQLException {
         String updateSql = "UPDATE whosthatpokemon_score SET score = ?, tries = ?, timestamp = NOW() WHERE user_id = ?";
         PreparedStatement updateStmt = oConnection.prepareStatement(updateSql);
         updateStmt.setInt(1, oScore.getScore());
