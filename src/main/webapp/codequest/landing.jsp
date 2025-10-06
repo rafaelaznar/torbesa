@@ -191,8 +191,9 @@
                                     Pon a prueba tus conocimientos de programación.<br>
                                     Identifica lenguajes, frameworks y librerías populares.
                                 </p>
-                                <a href="RestartGameServlet" class="btn btn-game me-3">
-                                    <i class="bi bi-play-fill"></i> ¡Comenzar Desafío!
+                                                            <div class="col text-center">
+                                <a href="GameServlet" class="btn btn-game me-3">
+                                    <i class="fas fa-play-circle me-2"></i>Empezar Juego
                                 </a>
                                 <a href="ScoreServlet" class="btn btn-outline-light btn-lg me-2">
                                     <i class="bi bi-trophy"></i> Ver Ranking
@@ -328,11 +329,11 @@
                                     <i class="bi bi-code-slash"></i> CodeQuest
                                 </p>
                                 <p class="mb-2 opacity-75">
-                                    El juego definitivo para desarrolladores apasionados
+                                    El juego definitivo para repasar lenguajes y tecnologías de programación.
                                 </p>
                                 <p class="mb-0 small opacity-50">
-                                    © 2024 Torbesa - Hecho con <i class="bi bi-heart-fill text-danger"></i> para
-                                    aprender programación
+                                    © 2025 Torbesa -  <i class="bi bi-heart-fill text-danger"></i> 
+                                    Pollyanna.
                                 </p>
                             </div>
                         </div>

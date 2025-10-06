@@ -3,7 +3,6 @@ package net.ausiasmarch.codequest.controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,177 +16,170 @@ import javax.servlet.http.HttpSession;
 import net.ausiasmarch.codequest.dao.ScoreDao;
 import net.ausiasmarch.codequest.model.ScoreDto;
 import net.ausiasmarch.codequest.model.TechnologyBean;
-import net.ausiasmarch.codequest.service.ExternalTechnologyService;
+import net.ausiasmarch.codequest.service.DuckDuckGoTechnologyService;
 import net.ausiasmarch.codequest.service.ScoreService;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 
+/**
+ * 
+ * AHORA FUNCIONA ASÍ:
+ * - GET: Muestra una pregunta nueva
+ * - POST: Procesa la respuesta y muestra el resultado
+ * - Simple, directo, como Capitals
+ */
 @WebServlet("/codequest/GameServlet")
 public class GameServlet extends HttpServlet {
 
+    /**
+     * MÉTODO GET: Muestra una nueva pregunta del juego
+     * Es igual de simple que el de Capitals, pero con tecnologías
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-
+        // 1. Verificar que el usuario esté logueado (igual que Capitals)
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("sessionUser");
+        
         if (user == null) {
             try {
                 response.sendRedirect("../shared/login.jsp");
             } catch (IOException e) {
-                System.err.println("Error al redirigir a la página de inicio de sesión: " + e.getMessage());
-            }
-            return;
-        } else {
-            request.setAttribute("sessionUser", user);
-        }
-
-        // Inicializar o obtener el estado del juego de la sesión
-        Integer gameErrors = (Integer) session.getAttribute("gameErrors");
-        Boolean gameOver = (Boolean) session.getAttribute("gameOver");
-        
-        if (gameErrors == null) {
-            gameErrors = 0;
-            session.setAttribute("gameErrors", gameErrors);
-        }
-        
-        if (gameOver == null) {
-            gameOver = false;
-            session.setAttribute("gameOver", gameOver);
-        }
-        
-        // Si el juego ha terminado (2 errores), redirigir a puntuaciones
-        if (gameOver || gameErrors >= 2) {
-            try {
-                response.sendRedirect("ScoreServlet");
-            } catch (IOException e) {
-                System.err.println("Error al redirigir a puntuaciones: " + e.getMessage());
+                System.err.println("Error al redirigir a login: " + e.getMessage());
             }
             return;
         }
+        
+        // Pasamos el usuario a la vista
+        request.setAttribute("sessionUser", user);
 
-        ExternalTechnologyService oTechnologyService = new ExternalTechnologyService(request.getServletContext());
-        System.out.println("=== DEBUG: Creando servicio de tecnologías externas ===");
+        System.out.println("=== DEBUG GameServlet GET ===");
+        System.out.println("Usuario: " + user.getUsername());
+
+        // 2. Obtener una tecnología aleatoria usando nuestro nuevo servicio
+        DuckDuckGoTechnologyService technologyService = new DuckDuckGoTechnologyService(request.getServletContext());
+        TechnologyBean selectedTechnology = technologyService.getRandomTechnology();
         
-        TechnologyBean selectedTechnology = oTechnologyService.getRandomTechnology();
-        System.out.println("=== DEBUG: Tecnología seleccionada: " + (selectedTechnology != null ? selectedTechnology.getName() : "NULL") + " ===");
+        System.out.println("Tecnología obtenida: " + (selectedTechnology != null ? selectedTechnology.getName() : "NULL"));
         
+        // 3. Verificar que obtuvimos una tecnología válida
         if (selectedTechnology == null) {
-            System.err.println("=== ERROR: No se pudo obtener tecnología del servicio externo ===");
+            // Si no hay tecnologías, mostrar error de forma elegante
+            request.setAttribute("errorMessage", "No hay tecnologías disponibles en este momento");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             try {
-                request.setAttribute("errorMessage", "No hay tecnologías disponibles en el servicio externo");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
                 dispatcher.forward(request, response);
             } catch (ServletException | IOException e) {
-                System.err.println("Error al redirigir a la página de error: " + e.getMessage());
+                System.err.println("Error al mostrar página de error: " + e.getMessage());
             }
             return;
         }
         
-        ArrayList<String> optionsListForDescriptionTest = (ArrayList<String>) oTechnologyService.generateDescriptionOptions(selectedTechnology.getDescription());        
-        System.out.println("=== DEBUG: Opciones generadas: " + optionsListForDescriptionTest.size() + " ===");
+        // 4. Generar opciones de respuesta (3 incorrectas + 1 correcta)
+        List<String> options = technologyService.generateDescriptionOptions(selectedTechnology.getDescription());
         
+        System.out.println("Opciones generadas: " + options.size());
+        System.out.println("Realizando forward a game.jsp...");
+        
+        // 5. Pasar datos a la vista JSP (igual que Capitals hace con países)
         request.setAttribute("technology", selectedTechnology.getName());
         request.setAttribute("technologyType", selectedTechnology.getType());
         request.setAttribute("technologyCategory", selectedTechnology.getCategory());
         request.setAttribute("technologyDifficulty", selectedTechnology.getDifficulty());
-        request.setAttribute("options", optionsListForDescriptionTest);
-        request.setAttribute("gameErrors", gameErrors);
-        request.setAttribute("remainingChances", 2 - gameErrors);
+        request.setAttribute("options", options);
         
-        System.out.println("=== DEBUG: Redirigiendo a game.jsp ===");
-        
+        // 6. Mostrar la página del juego
         RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
         try {
             dispatcher.forward(request, response);
+            System.out.println("Forward completado exitosamente");
         } catch (ServletException | IOException e) {
-            System.err.println("Error al redirigir a la página del juego: " + e.getMessage());
+            System.err.println("Error al mostrar página del juego: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
+    /**
+     * MÉTODO POST: Procesa la respuesta del usuario
+     * Mucho más simple que antes, sigue el patrón de Capitals
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-
+            // 1. Verificar usuario logueado (seguridad)
             HttpSession session = request.getSession();
             UserBean user = (UserBean) session.getAttribute("sessionUser");
+            
             if (user == null) {
                 response.sendRedirect("../shared/login.jsp");
                 return;
-            } else {
-                request.setAttribute("username", user.getUsername());
             }
+            
+            request.setAttribute("username", user.getUsername());
 
-            // Obtener estado del juego
-            Integer gameErrors = (Integer) session.getAttribute("gameErrors");
-            if (gameErrors == null) {
-                gameErrors = 0;
-            }
-
-            ScoreService scoreService = new ScoreService();
+            // 2. Obtener los datos del formulario
             String technology = request.getParameter("technology");
             String descriptionGuess = request.getParameter("descriptionGuess");
-            
-            ExternalTechnologyService oTechnologyService = new ExternalTechnologyService(request.getServletContext());
-            String correctDescription = oTechnologyService.fetchAllTechnologies().stream()
+            // 3. Buscar la descripción correcta de la tecnología
+            DuckDuckGoTechnologyService technologyService = new DuckDuckGoTechnologyService(request.getServletContext());
+            String correctDescription = technologyService.fetchAllTechnologies().stream()
                     .filter(t -> t.getName().equals(technology))
                     .map(TechnologyBean::getDescription)
                     .findFirst()
                     .orElse("");
-                    
+            
+            // 4. Pasar información a la vista para mostrar resultado
             request.setAttribute("technology", technology);
             request.setAttribute("correctDescription", correctDescription);
             request.setAttribute("descriptionGuess", descriptionGuess);
             
+            // 5. Verificar si la respuesta es correcta y guardar puntuación
+            ScoreService scoreService = new ScoreService();
             boolean isCorrect = descriptionGuess.equals(correctDescription);
             
             if (isCorrect) {
+                // Respuesta correcta: sumar punto
                 scoreService.set(user.getId(), true);
-                request.setAttribute("message", "¡Correcto! Excelente conocimiento.");
+                request.setAttribute("message", "¡Correcto! Excelente conocimiento de tecnología.");
                 request.setAttribute("isCorrect", true);
-                // Continuar jugando - no cambiar gameErrors
             } else {
-                gameErrors++;
-                session.setAttribute("gameErrors", gameErrors);
+                // Respuesta incorrecta: restar punto
                 scoreService.set(user.getId(), false);
-                
-                if (gameErrors >= 2) {
-                    // Juego terminado
-                    session.setAttribute("gameOver", true);
-                    request.setAttribute("message", "¡Juego terminado! Has alcanzado el máximo de errores permitidos.");
-                } else {
-                    // Aún puede continuar
-                    int remainingChances = 2 - gameErrors;
-                    request.setAttribute("message", String.format("Incorrecto. Te quedan %d oportunidad%s.", 
-                        remainingChances, remainingChances == 1 ? "" : "es"));
-                }
+                request.setAttribute("message", "Incorrecto. La próxima vez será mejor.");
                 request.setAttribute("isCorrect", false);
             }
-            
-            request.setAttribute("gameErrors", gameErrors);
-            request.setAttribute("remainingChances", Math.max(0, 2 - gameErrors));
 
-            try (Connection oConnection = HikariPool.getConnection()) {
-
-                ScoreDao oScoreDao = new ScoreDao(oConnection);
-                ScoreDto userScore = oScoreDao.get(user.getId());
+            // 6. Obtener puntuaciones para mostrar en la página de resultados
+            try (Connection connection = HikariPool.getConnection()) {
+                ScoreDao scoreDao = new ScoreDao(connection);
+                
+                // Puntuación del usuario actual
+                ScoreDto userScore = scoreDao.get(user.getId());
                 request.setAttribute("userScore", userScore);
 
-                List<ScoreDto> highScores = oScoreDao.getTop10();
+                // Top 10 mejores puntuaciones
+                List<ScoreDto> highScores = scoreDao.getTop10();
                 request.setAttribute("highScores", highScores);
 
+                // 7. Mostrar página de resultados
                 RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
                 dispatcher.forward(request, response);
-
             }
 
         } catch (SQLException e) {
-            System.err.println("Database error: " + e.getMessage());
-            request.setAttribute("errorMessage", "Error de base de datos");
+            // Manejo elegante de errores de base de datos
+            System.err.println("Error de base de datos: " + e.getMessage());
+            request.setAttribute("errorMessage", "Error de base de datos. Inténtalo de nuevo.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            // Manejo de errores de servlet
+            System.err.println("Error de servlet: " + e.getMessage());
+            request.setAttribute("errorMessage", "Error interno del servidor");
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 }
 

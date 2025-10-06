@@ -266,8 +266,9 @@
                                         <div class="text-center mt-4">
                                             <% if (gameOver) { %>
                                                 <!-- Juego terminado - ofrecer reiniciar -->
-                                                <a href="RestartGameServlet" class="btn btn-warning btn-action">
-                                                    <i class="fas fa-redo"></i> Nuevo Juego
+                                                                                            <div class="d-flex gap-2 justify-content-center">
+                                                <a href="GameServlet" class="btn btn-warning btn-action">
+                                                    <i class="fas fa-redo me-1"></i>Jugar de Nuevo
                                                 </a>
                                                 <a href="landing.jsp" class="btn btn-outline-secondary btn-action">
                                                     <i class="fas fa-home"></i> Inicio
@@ -280,7 +281,7 @@
                                                     <a href="GameServlet" class="btn btn-success btn-action">
                                                         <i class="fas fa-forward"></i> Continuar Jugando
                                                     </a>
-                                                    <a href="RestartGameServlet"
+                                                    <a href="GameServlet"
                                                         class="btn btn-outline-warning btn-action">
                                                         <i class="fas fa-redo"></i> Reiniciar Juego
                                                     </a>

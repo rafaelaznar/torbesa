@@ -13,6 +13,11 @@
 
                     if (gameErrors == null) gameErrors = 0;
                     if (remainingChances == null) remainingChances = 2;
+                    
+                    // Debug: verificar que los atributos no sean null
+                    System.out.println("=== DEBUG game.jsp ===");
+                    System.out.println("technology: " + technology);
+                    System.out.println("options: " + (options != null ? options.size() : "NULL"));
                     %>
                     <!DOCTYPE html>
                     <html lang="es">
@@ -20,7 +25,7 @@
                     <head>
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>CodeQuest - <%= technology %>
+                        <title>CodeQuest - <%= technology != null ? technology : "Cargando..." %>
                         </title>
                         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
                             rel="stylesheet">
@@ -239,8 +244,7 @@
                                         <h6 class="mb-2 text-muted">Oportunidades restantes</h6>
                                         <div>
                                             <% for (int i=0; i < 2; i++) { %>
-                                                <i class="fas fa-heart heart-icon <%= (i < remainingChances) ? "" : "
-                                                    heart-lost" %>"></i>
+                                                <i class="fas fa-heart heart-icon <%= (i < remainingChances) ? "" : "heart-lost" %>"></i>
                                                 <% } %>
                                         </div>
                                         <small class="text-muted">Puedes equivocarte máximo 2 veces</small>
