@@ -175,6 +175,28 @@
                                 </div>
                             </div>
                         </div>
+
+       <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-primary mb-3">Dog Game</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Test your geography knowledge! Guess the capital cities of countries from
+                                            around the world.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Ian Palomares
+                                        </p>
+                                        <a href="perro/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                     </div>
                 </div>
             </div>
