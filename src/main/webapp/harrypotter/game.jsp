@@ -14,6 +14,28 @@
     <title>Quiz de Harry Potter</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .house-option {
+            transition: all 0.3s ease;
+            border: 2px solid transparent !important;
+        }
+        
+        .house-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 2px solid #fff !important;
+        }
+        
+        .house-option input[type="radio"]:checked + label {
+            font-weight: bold;
+        }
+        
+        .house-option:has(input[type="radio"]:checked) {
+            border: 3px solid #fff !important;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body class="bg-light">
 
@@ -45,11 +67,33 @@
                                 <%
                                     java.util.List<String> options = (java.util.List<String>) request.getAttribute("options");
                                     for (String house : options) {
+                                        String houseColor = "";
+                                        String houseTextColor = "text-white";
+                                        
+                                        // Asignar colores según la casa
+                                        switch(house.toLowerCase()) {
+                                            case "gryffindor":
+                                                houseColor = "bg-danger"; // Rojo
+                                                break;
+                                            case "ravenclaw":
+                                                houseColor = "bg-primary"; // Azul
+                                                break;
+                                            case "slytherin":
+                                                houseColor = "bg-success"; // Verde
+                                                break;
+                                            case "hufflepuff":
+                                                houseColor = "bg-warning"; // Amarillo
+                                                houseTextColor = "text-dark";
+                                                break;
+                                            default:
+                                                houseColor = "bg-secondary";
+                                                break;
+                                        }
                                 %>
                                     <div class="col">
-                                        <div class="form-check d-flex align-items-center border rounded p-3 h-100">
-                                            <input class="form-check-input me-3" type="radio" name="houseGuess" value="<%= house %>" required>
-                                            <label class="form-check-label h5 mb-0"><%= house %></label>
+                                        <div class="form-check d-flex align-items-center border rounded p-3 h-100 <%= houseColor %> <%= houseTextColor %> house-option" style="cursor: pointer;">
+                                            <input class="form-check-input me-3" type="radio" name="houseGuess" value="<%= house %>" required id="house_<%= house %>">
+                                            <label class="form-check-label h5 mb-0 <%= houseTextColor %>" for="house_<%= house %>" style="cursor: pointer; width: 100%;"><%= house %></label>
                                         </div>
                                     </div>
                                 <%
