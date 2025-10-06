@@ -188,7 +188,7 @@
                                             Testea tu sabiduria con este juego de preguntas y respuestas sobre la serie
                                             Demon Slayer.
                                         </p>
-                                        <a href="kimetsu/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                        <a href="../kimetsu/landing.jsp" class="btn btn-primary btn-lg w-100">
                                             <i class="bi bi-play-fill"></i> Juega Ahora
                                         </a>
                                     </div>
