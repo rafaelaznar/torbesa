@@ -100,7 +100,7 @@
                                         <p class="card-text text-muted mb-4">
                                             By Marcos Pallás
                                         </p>
-                                        <a href="../trivial/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                        <a href="../trivial/landing_j.jsp" class="btn btn-primary btn-lg w-100">
                                             <i class="bi bi-play-fill"></i> Play Now
                                         </a>
                                     </div>

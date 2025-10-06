@@ -121,7 +121,7 @@
 
                             <!-- Action Buttons -->
                             <div class="text-center mt-4">
-                                <form method="get" action="GameServlet" class="d-inline me-3">
+                                <form method="get" action="TrivialServlet" class="d-inline me-3">
                                     <button type="submit" class="btn btn-primary btn-lg">
                                         <i class="bi bi-play-fill"></i> Play Again
                                     </button>
@@ -135,7 +135,7 @@
                             </div>
 
                             <!-- High Scores Table -->
-                            <jsp:include page="leaderboard.jsp" />
+                            <jsp:include page="leaderboard_j.jsp" />
 
 
                         </div>

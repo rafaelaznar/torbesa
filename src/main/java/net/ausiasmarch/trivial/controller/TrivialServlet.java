@@ -46,7 +46,7 @@ public class TrivialServlet extends HttpServlet {
         session.setAttribute("triviaQuestions", jsonResponse.getCorrectAnswer());
         request.setAttribute("question", jsonResponse);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("game_t.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/trivial/game_t.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

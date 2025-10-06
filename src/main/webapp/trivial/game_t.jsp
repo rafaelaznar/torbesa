@@ -28,8 +28,8 @@
 
                                     <!-- Opciones -->
                                     <div class="mb-3 d-flex justify-content-center">
-                                <div class="w-75 text-start">
-                                    <c:forEach var="option" items="${question.answers}">
+                                    <div class="w-75 text-start">
+                                    <c:forEach var="option" items="${question.options}">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="selectedAnswer"
                                                 id="option${option}" value="${option}" required>
