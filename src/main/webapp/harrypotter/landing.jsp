@@ -26,10 +26,10 @@
                     <i class="bi bi-magic text-primary"></i> Welcome to the Harry Potter Quiz!
                 </h1>
                 <p class="lead mb-4">Discover your magical knowledge by guessing the Hogwarts House of each character 🏰✨</p>
-                <a href="../harrypotter/GameServlet" class="btn btn-success btn-lg m-3">
+                <a href="GameServlet" class="btn btn-success btn-lg m-3">
                     <i class="bi bi-play-fill"></i> Start Quiz
                 </a>
-                <a href="../harrypotter/ScoreServlet" class="btn btn-warning btn-lg m-3">
+                <a href="ScoreServlet" class="btn btn-warning btn-lg m-3">
                     <i class="bi bi-trophy"></i> Top Scores
                 </a>
             </div>

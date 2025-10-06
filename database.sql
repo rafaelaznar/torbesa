@@ -107,3 +107,51 @@ ALTER TABLE `users`
 ALTER TABLE `capitals_score`
   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `harrypotter_score`
+--
+
+CREATE TABLE `harrypotter_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Dumping data for table `harrypotter_score`
+--
+
+INSERT INTO `harrypotter_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 1, 5, 7, '2025-10-06 10:30:00'),
+(2, 2, 8, 10, '2025-10-06 11:15:00'),
+(3, 3, 12, 15, '2025-10-06 12:00:00'),
+(4, 4, 6, 9, '2025-10-06 13:45:00'),
+(5, 5, 10, 12, '2025-10-06 14:30:00');
+
+--
+-- Indexes for table `harrypotter_score`
+--
+ALTER TABLE `harrypotter_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+
+--
+-- Constraints for table `harrypotter_score`
+--
+ALTER TABLE `harrypotter_score`
+  ADD CONSTRAINT `harrypotter_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+COMMIT;
+
+--
+-- AUTO_INCREMENT for table `harrypotter_score`
+--
+ALTER TABLE `harrypotter_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;

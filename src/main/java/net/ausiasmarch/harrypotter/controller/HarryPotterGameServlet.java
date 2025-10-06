@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.ausiasmarch.harrypotter.model.HarryPotterCharacterBean;
+import net.ausiasmarch.harrypotter.model.HarryPotterScoreBean;
 import net.ausiasmarch.harrypotter.service.HarryPotterCharacterService;
+import net.ausiasmarch.harrypotter.service.ScoreService;
 import net.ausiasmarch.shared.model.UserBean;
 
 @WebServlet("/harrypotter/GameServlet")
@@ -71,12 +73,44 @@ public class HarryPotterGameServlet extends HttpServlet {
         HarryPotterCharacterBean selectedCharacter = characterService.getCharacterByName(characterName);
 
         String correctHouse = selectedCharacter != null ? selectedCharacter.getHouse() : "";
+        boolean isCorrect = houseGuess.equals(correctHouse);
+
+        // 🎯 Guardar la puntuación en la base de datos
+        try {
+            ScoreService scoreService = new ScoreService();
+            
+            // Obtener puntuación actual del usuario (si existe)
+            HarryPotterScoreBean currentScore = scoreService.getUserScore(user.getId());
+            
+            if (currentScore != null) {
+                // Actualizar puntuación existente
+                currentScore.setTries(currentScore.getTries() + 1);
+                if (isCorrect) {
+                    currentScore.setScore(currentScore.getScore() + 1);
+                }
+                scoreService.saveScore(currentScore);
+            } else {
+                // Crear nueva puntuación
+                HarryPotterScoreBean newScore = new HarryPotterScoreBean();
+                newScore.setUserId(user.getId());
+                newScore.setTries(1);
+                newScore.setScore(isCorrect ? 1 : 0);
+                scoreService.saveScore(newScore);
+            }
+            
+            System.out.println("Score saved for user " + user.getUsername() + 
+                             " - Correct: " + isCorrect);
+                             
+        } catch (Exception e) {
+            System.err.println("Error saving Harry Potter score: " + e.getMessage());
+            e.printStackTrace();
+        }
 
         request.setAttribute("characterName", characterName);
         request.setAttribute("correctHouse", correctHouse);
         request.setAttribute("houseGuess", houseGuess);
 
-        if (houseGuess.equals(correctHouse)) {
+        if (isCorrect) {
             request.setAttribute("message", "¡Correcto! " + characterName + " pertenece a " + correctHouse + ".");
         } else {
             request.setAttribute("message", "¡Incorrecto! " + characterName + " pertenece a " + correctHouse + ".");
