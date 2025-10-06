@@ -86,6 +86,27 @@
                                 </div>
                             </div>
 
+                            <!-- Star Wars's Game -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-primary mb-3">Star Wars Game</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Test your knowledge of Star Wars! Guess the characters of all Star Wars.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Daniel Zanón Rodas
+                                        </p>
+                                        <a href="../starwars/landingSW.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i>Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Coming Soon Game 1 -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
