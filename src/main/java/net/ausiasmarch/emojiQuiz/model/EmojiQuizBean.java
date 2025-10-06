@@ -15,6 +15,9 @@ public class EmojiQuizBean {
         this.option2 = option2;
     }
 
+    public EmojiQuizBean() {
+    }
+
     public int getId() {
         return id;
     }
