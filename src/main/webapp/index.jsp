@@ -174,6 +174,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- TEST DEMON SLAYER - OLGA GARCIA -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-fire text-success" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-success mb-3">Demon Slayer</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Testea tu sabiduria con este juego de preguntas y respuestas sobre la serie
+                                            Demon Slayer.
+                                        </p>
+                                        <a href="kimetsu/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Juega Ahora
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
