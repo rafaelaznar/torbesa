@@ -49,14 +49,14 @@ public class GameServlet extends HttpServlet {
         }
 
         SongService oSongService = new SongService(request.getServletContext());
-        SongBean selectedSong = oSongService.getOneRandomSong();
+        SongBean selectedSong = oSongService.getOneRandomSong(); 
         ArrayList<String> optionsListForAlbumTest = oSongService.getRandomAlbumsForTest(selectedSong, 3);        
         
         //se pide la canción y los albumes
         request.setAttribute("title", selectedSong.getCancion());        
         request.setAttribute("options", optionsListForAlbumTest);
         //esto hay que actualizarlo una vez se cree el game.jsp de swift
-        RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/torbesa/src/main/webapp/swift/game.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

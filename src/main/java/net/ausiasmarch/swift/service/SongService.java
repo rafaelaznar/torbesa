@@ -88,7 +88,7 @@ public class SongService {
     public SongBean getOneRandomSong() {
         List<SongBean> oSongs = fetchAllSongs();
         int randomIndex0 = (int) (Math.random() * oSongs.size());
-        SongBean selectedSong = oSongs.get(randomIndex0);
+        SongBean selectedSong = oSongs.get(randomIndex0); 
         while (selectedSong.getAlbum().trim().isEmpty()) {
             randomIndex0 = (int) (Math.random() * oSongs.size());
             selectedSong = oSongs.get(randomIndex0);
