@@ -189,7 +189,7 @@
                                         </p>
                                         <p>By Alejandro Pavón Martínez</p>
                                         <a href="../genshin/landing.jsp" class="btn btn-outline-info btn-lg w-100">
-                                            <i class="bi bi-hourglass-split"></i> Play Now
+                                            <i class="bi bi-play-fill"></i> Play Now
                                         </button>
                                     </div>
                                 </div>
