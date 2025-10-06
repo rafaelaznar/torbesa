@@ -13,11 +13,6 @@
 
                     if (gameErrors == null) gameErrors = 0;
                     if (remainingChances == null) remainingChances = 2;
-                    
-                    // Debug: verificar que los atributos no sean null
-                    System.out.println("=== DEBUG game.jsp ===");
-                    System.out.println("technology: " + technology);
-                    System.out.println("options: " + (options != null ? options.size() : "NULL"));
                     %>
                     <!DOCTYPE html>
                     <html lang="es">

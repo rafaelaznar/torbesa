@@ -53,14 +53,9 @@ public class GameServlet extends HttpServlet {
         // Pasamos el usuario a la vista
         request.setAttribute("sessionUser", user);
 
-        System.out.println("=== DEBUG GameServlet GET ===");
-        System.out.println("Usuario: " + user.getUsername());
-
         // 2. Obtener una tecnología aleatoria usando nuestro nuevo servicio
         DuckDuckGoTechnologyService technologyService = new DuckDuckGoTechnologyService(request.getServletContext());
         TechnologyBean selectedTechnology = technologyService.getRandomTechnology();
-        
-        System.out.println("Tecnología obtenida: " + (selectedTechnology != null ? selectedTechnology.getName() : "NULL"));
         
         // 3. Verificar que obtuvimos una tecnología válida
         if (selectedTechnology == null) {
@@ -78,9 +73,6 @@ public class GameServlet extends HttpServlet {
         // 4. Generar opciones de respuesta (3 incorrectas + 1 correcta)
         List<String> options = technologyService.generateDescriptionOptions(selectedTechnology.getDescription());
         
-        System.out.println("Opciones generadas: " + options.size());
-        System.out.println("Realizando forward a game.jsp...");
-        
         // 5. Pasar datos a la vista JSP (igual que Capitals hace con países)
         request.setAttribute("technology", selectedTechnology.getName());
         request.setAttribute("technologyType", selectedTechnology.getType());
@@ -92,10 +84,8 @@ public class GameServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
         try {
             dispatcher.forward(request, response);
-            System.out.println("Forward completado exitosamente");
         } catch (ServletException | IOException e) {
             System.err.println("Error al mostrar página del juego: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
