@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.ausiasmarch.capitals.model.ScoreDto;
 
 public class ScoreDao {
@@ -96,8 +96,9 @@ public class ScoreDao {
     }
 
     public List<ScoreDto> getAll() throws SQLException {
-        String getAllString = "SELECT * FROM capitals_score ORDER BY user_id ASC";
-        PreparedStatement getAllStmt = oConnection.prepareStatement(getAllString);
+        String sql = "SELECT * FROM capitals_score, users ";
+        sql += "WHERE capitals_score.user_id = users.id";        
+        PreparedStatement getAllStmt = oConnection.prepareStatement(sql);
         ResultSet rs = getAllStmt.executeQuery();
         List<ScoreDto> scores = new ArrayList<>();
         while (rs.next()) {
@@ -106,7 +107,8 @@ public class ScoreDao {
                     rs.getInt("user_id"),
                     rs.getInt("score"),
                     rs.getInt("tries"),
-                    rs.getTimestamp("timestamp").toLocalDateTime()));
+                    rs.getTimestamp("timestamp").toLocalDateTime(),
+                    rs.getString("username")));
         }
         return scores;
     }

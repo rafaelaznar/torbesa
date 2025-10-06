@@ -13,9 +13,10 @@ import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.sql.Connection;
+import java.util.Collections;
 import java.util.List;
 
 @WebServlet("/capitals/GameServlet")
