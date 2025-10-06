@@ -13,13 +13,68 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>High Scores - Pokemon Quiz Game</title>
+                <title>Game Results - Pokémon Quiz</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
                     rel="stylesheet">
+                <style>
+                    body {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        min-height: 100vh;
+                    }
+                    .results-title {
+                        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        font-weight: bold;
+                    }
+                    .pokemon-card {
+                        background: rgba(255, 255, 255, 0.95);
+                        border-radius: 20px;
+                        border: 3px solid #ffcc02;
+                        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                    }
+                    .answer-header {
+                        background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+                        color: white;
+                        border-radius: 15px 15px 0 0;
+                    }
+                    .score-header {
+                        background: linear-gradient(45deg, #ff6b6b, #ffcc02);
+                        color: white;
+                        border-radius: 15px 15px 0 0;
+                    }
+                    .btn-play-again {
+                        background: linear-gradient(45deg, #ff6b6b, #ffcc02);
+                        border: none;
+                        color: white;
+                        font-weight: bold;
+                        border-radius: 25px;
+                        transition: all 0.3s ease;
+                    }
+                    .btn-play-again:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+                        color: white;
+                    }
+                    .pokemon-name {
+                        background: linear-gradient(45deg, #2c5aa0, #4ecdc4);
+                        color: white;
+                        text-transform: capitalize;
+                    }
+                    .ability-correct {
+                        background: linear-gradient(45deg, #28a745, #20c997);
+                        color: white;
+                    }
+                    .ability-guess {
+                        background: linear-gradient(45deg, #ffc107, #fd7e14);
+                        color: white;
+                    }
+                </style>
             </head>
 
-            <body class="bg-light">
+            <body>
 
                 <jsp:include page="../shared/menu.jsp" />
 
@@ -29,14 +84,14 @@
 
                             <!-- Header -->
                             <div class="text-center mb-4">
-                                <h1 class="display-4 text-primary">
-                                    <i class="bi bi-trophy-fill"></i> Game Results
+                                <h1 class="display-4 results-title">
+                                    🎯 Game Results ⚡
                                 </h1>
                             </div>
 
                             <!-- Message Alert -->
                             <c:if test="${not empty message}">
-                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <div class="alert alert-info alert-dismissible fade show pokemon-card" role="alert">
                                     <i class="bi bi-info-circle-fill"></i> ${message}
                                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                 </div>
@@ -45,29 +100,29 @@
                             <div class="row g-4">
                                 <!-- Your Answer Card -->
                                 <div class="col-md-6">
-                                    <div class="card shadow-sm border-0 h-100">
-                                        <div class="card-header bg-info text-white">
+                                    <div class="card pokemon-card shadow-sm border-0 h-100">
+                                        <div class="card-header answer-header">
                                             <h5 class="card-title mb-0">
-                                                <i class="bi bi-question-circle-fill"></i> Your Answer
+                                                <i class="bi bi-question-circle-fill"></i> 🎯 Your Answer
                                             </h5>
                                         </div>
                                         <div class="card-body">
                                             <div class="mb-3">
                                                 <h5>
-                                                    <strong class="text-muted">Pokemon:</strong>
-                                                    <span class="badge bg-primary ms-2">${pokemonName}</span>
+                                                    <strong class="text-muted">🎮 Pokémon:</strong>
+                                                    <span class="badge pokemon-name ms-2">${pokemonName}</span>
                                                 </h5>
                                             </div>
                                             <div class="mb-3">
                                                 <h5>
-                                                    <strong class="text-muted">Your Guess:</strong>
-                                                    <span class="badge bg-warning text-dark ms-2">${abilityGuess}</span>
+                                                    <strong class="text-muted">💭 Your Guess:</strong>
+                                                    <span class="badge ability-guess ms-2">${abilityGuess}</span>
                                                 </h5>
                                             </div>
                                             <div class="mb-0">
                                                 <h5>
-                                                    <strong class="text-muted">Correct Ability:</strong>
-                                                    <span class="badge bg-success ms-2">${correctAbility}</span>
+                                                    <strong class="text-muted">✅ Correct Ability:</strong>
+                                                    <span class="badge ability-correct ms-2">${correctAbility}</span>
                                                 </h5>
                                             </div>
                                         </div>
@@ -76,10 +131,10 @@
 
                                 <!-- Your Score Card -->
                                 <div class="col-md-6">
-                                    <div class="card shadow-sm border-0 h-100">
-                                        <div class="card-header bg-success text-white">
+                                    <div class="card pokemon-card shadow-sm border-0 h-100">
+                                        <div class="card-header score-header">
                                             <h5 class="card-title mb-0">
-                                                <i class="bi bi-star-fill"></i> Your Performance
+                                                <i class="bi bi-star-fill"></i> ⭐ Your Performance
                                             </h5>
                                         </div>
                                         <div class="card-body">
@@ -122,14 +177,14 @@
                             <!-- Action Buttons -->
                             <div class="text-center mt-4">
                                 <form method="get" action="ServletJuego" class="d-inline me-3">
-                                    <button type="submit" class="btn btn-primary btn-lg">
-                                        <i class="bi bi-play-fill"></i> Play Again
+                                    <button type="submit" class="btn btn-play-again btn-lg">
+                                        <i class="bi bi-play-fill"></i> 🎮 Play Again
                                     </button>
                                 </form>
 
                                 <form method="get" action="../shared/LogoutServlet" class="d-inline">
-                                    <button type="submit" class="btn btn-outline-danger btn-lg">
-                                        <i class="bi bi-box-arrow-right"></i> Logout
+                                    <button type="submit" class="btn btn-outline-danger btn-lg" style="border-radius: 25px; border-width: 2px;">
+                                        <i class="bi bi-box-arrow-right"></i> 🔒 Logout
                                     </button>
                                 </form>
                             </div>
