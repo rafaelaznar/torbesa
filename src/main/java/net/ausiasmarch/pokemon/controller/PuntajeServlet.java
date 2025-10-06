@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.ausiasmarch.capitals.model.ScoreDto;
-import net.ausiasmarch.capitals.service.ScoreService;
+import net.ausiasmarch.pokemon.model.ScoreDto;
+import net.ausiasmarch.pokemon.service.ScoreService;
 
-@WebServlet("/pokemon/ScoreServlet")
-public class ScoreServlet extends HttpServlet {
+@WebServlet("/pokemon/PuntajeServlet")
+public class PuntajeServlet extends HttpServlet {
     private ScoreService oScoreService;
 
-    public ScoreServlet() {
+    public PuntajeServlet() {
         this.oScoreService = new ScoreService();
     }
 
     // Constructor para inyección en tests
-    public ScoreServlet(ScoreService scoreService) {
+    public PuntajeServlet(ScoreService scoreService) {
         this.oScoreService = scoreService;
     }
 
@@ -32,7 +32,7 @@ public class ScoreServlet extends HttpServlet {
         try {
             List<ScoreDto> highScoresList = oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("highscores.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("records.jsp");
             dispatcher.forward(request, response);
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la operación en la base de datos: " + e.getMessage());

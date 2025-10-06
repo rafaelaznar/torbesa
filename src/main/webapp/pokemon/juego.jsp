@@ -44,7 +44,7 @@
                                 <div class="mt-4 text-center">
                                     <span class="fw-bold">Score:</span> <span class="badge bg-primary">${score}</span>
                                 </div>
-                                <form method="get" action="../../java/net/ausiasmarch/pokemon/controller/ScoreServlet" class="mt-3">
+                                <form method="get" action="PuntajeServlet" class="mt-3">
                                     <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
                                 </form>
                                 <form method="get" action="../shared/LogoutServlet" class="mt-2">
