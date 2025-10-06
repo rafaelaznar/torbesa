@@ -1,8 +1,19 @@
 package net.ausiasmarch.pokemon.controller;
 
-import javax.servlet.*;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.ausiasmarch.pokemon.dao.ScoreDao;
 import net.ausiasmarch.pokemon.model.Pokemon;
@@ -11,14 +22,6 @@ import net.ausiasmarch.pokemon.service.PokemonService;
 import net.ausiasmarch.pokemon.service.ScoreService;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.List;
 
 @WebServlet("/pokemon/ServletJuego")
 public class ServletJuego extends HttpServlet {
@@ -41,13 +44,39 @@ public class ServletJuego extends HttpServlet {
 
         PokemonService oPokemonService = new PokemonService(request.getServletContext());
         Pokemon selectedPokemon = oPokemonService.getOneRandomPokemonByName();
-        ArrayList<String> optionsListForTypeTest = oPokemonService.getRandomNamesForTest(selectedPokemon, 3);
+        
         if (selectedPokemon != null) {
-            request.setAttribute("pokemon", selectedPokemon.getName());
+            // Fetch detailed Pokemon info including abilities
+            Pokemon detailedPokemon = oPokemonService.fetchPokemonDetails(selectedPokemon.getId());
+            if (detailedPokemon != null && detailedPokemon.getAbilities() != null && !detailedPokemon.getAbilities().isEmpty()) {
+                request.setAttribute("pokemonName", detailedPokemon.getName());
+                request.setAttribute("pokemonId", detailedPokemon.getId());
+                
+                // Generate options with one correct ability and random incorrect ones
+                ArrayList<String> optionsListForAbilityTest = getRandomAbilitiesForTest(oPokemonService, detailedPokemon, 4);
+                request.setAttribute("options", optionsListForAbilityTest);
+                
+                // Store correct ability for verification
+                session.setAttribute("correctAbility", detailedPokemon.getAbilities().get(0));
+            } else {
+                request.setAttribute("pokemonName", "");
+                request.setAttribute("options", new ArrayList<String>());
+            }
         } else {
-            request.setAttribute("pokemon", "");
+            request.setAttribute("pokemonName", "");
+            request.setAttribute("options", new ArrayList<String>());
         }
-        request.setAttribute("options", optionsListForTypeTest);
+
+        // Get current user score
+        try (Connection oConnection = HikariPool.getConnection()) {
+            ScoreDao oScoreDao = new ScoreDao(oConnection);
+            ScoreDto userScore = oScoreDao.get(user.getId());
+            request.setAttribute("score", userScore != null ? userScore.getScore() : 0);
+        } catch (SQLException e) {
+            System.err.println("Database error getting score: " + e.getMessage());
+            request.setAttribute("score", 0);
+        }
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("juego.jsp");
         try {
             dispatcher.forward(request, response);
@@ -71,22 +100,21 @@ public class ServletJuego extends HttpServlet {
             }
 
             ScoreService scoreService = new ScoreService();
-            String pokemon = request.getParameter("pokemon");
-            String nameGuess = request.getParameter("typeGuess");
-            PokemonService oPokemonService = new PokemonService(request.getServletContext());
-            String correctName = oPokemonService.fetchAllPokemonList().stream()
-                    .filter(c -> c.getName().equalsIgnoreCase(pokemon))
-                    .map(Pokemon::getName)
-                    .findFirst()
-                    .orElse("");
-            request.setAttribute("pokemon", pokemon);
-            request.setAttribute("correctType", correctName);
-            request.setAttribute("typeGuess", nameGuess);
-            if (Objects.equals(nameGuess, correctName)) {
+            String pokemonName = request.getParameter("pokemonName");
+            String abilityGuess = request.getParameter("capitalGuess"); // Note: keeping same parameter name for compatibility
+            
+            // Get the correct ability from session
+            String correctAbility = (String) session.getAttribute("correctAbility");
+            
+            request.setAttribute("pokemonName", pokemonName);
+            request.setAttribute("correctAbility", correctAbility);
+            request.setAttribute("abilityGuess", abilityGuess);
+            
+            if (abilityGuess != null && correctAbility != null && abilityGuess.equalsIgnoreCase(correctAbility)) {
                 scoreService.set(user.getId(), true);
                 request.setAttribute("message", "Correct! Well done.");
             } else {
-                request.setAttribute("message", "Incorrect. Try again!");
+                request.setAttribute("message", "Incorrect. The correct ability was: " + correctAbility);
                 scoreService.set(user.getId(), false);
             }
 
@@ -111,5 +139,43 @@ public class ServletJuego extends HttpServlet {
             dispatcher.forward(request, response);
         }
 
+    }
+
+    /**
+     * Generate a list of ability options including one correct ability and random incorrect ones
+     */
+    private ArrayList<String> getRandomAbilitiesForTest(PokemonService pokemonService, Pokemon correctPokemon, int numOptions) {
+        ArrayList<String> abilities = new ArrayList<>();
+        
+        // Add the correct ability (first one from the pokemon's abilities)
+        if (correctPokemon.getAbilities() != null && !correctPokemon.getAbilities().isEmpty()) {
+            abilities.add(correctPokemon.getAbilities().get(0));
+        }
+        
+        // Get all pokemon list to extract other abilities
+        List<Pokemon> allPokemon = pokemonService.fetchAllPokemonList();
+        int attempts = 0;
+        
+        while (abilities.size() < numOptions && attempts < numOptions * 10) {
+            attempts++;
+            // Get a random pokemon
+            int randomIndex = (int) (Math.random() * allPokemon.size());
+            Pokemon randomPokemon = allPokemon.get(randomIndex);
+            
+            // Fetch its details to get abilities
+            Pokemon detailedRandomPokemon = pokemonService.fetchPokemonDetails(randomPokemon.getId());
+            if (detailedRandomPokemon != null && detailedRandomPokemon.getAbilities() != null 
+                && !detailedRandomPokemon.getAbilities().isEmpty()) {
+                
+                String randomAbility = detailedRandomPokemon.getAbilities().get(0);
+                if (!abilities.contains(randomAbility)) {
+                    abilities.add(randomAbility);
+                }
+            }
+        }
+        
+        // Shuffle the list so the correct answer isn't always first
+        Collections.shuffle(abilities);
+        return abilities;
     }
 }

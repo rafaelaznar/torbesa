@@ -20,10 +20,10 @@
                     <div class="col-md-8">
                         <div class="card shadow-lg">
                             <div class="card-body">
-                                <h2 class="card-title text-center mb-4">Guess the Pokemon Type!</h2>
+                                <h2 class="card-title text-center mb-4">Guess the Pokemon Ability!</h2>
                                 <form method="post" action="ServletJuego">
                                     <div class="mb-4 text-center">
-                                        <h4>What is the type of <span class="text-primary">${pokemonName}</span>?</h4>
+                                        <h4>What is the ability of <span class="text-primary">${pokemonName}</span>?</h4>
                                     </div>
                                     <!-- send the pokemon name as a hidden field -->
                                     <input type="hidden" name="pokemonName" value="${pokemonName}">
@@ -44,7 +44,7 @@
                                 <div class="mt-4 text-center">
                                     <span class="fw-bold">Score:</span> <span class="badge bg-primary">${score}</span>
                                 </div>
-                                <form method="get" action="ScoreServlet" class="mt-3">
+                                <form method="get" action="../../java/net/ausiasmarch/pokemon/controller/ScoreServlet" class="mt-3">
                                     <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
                                 </form>
                                 <form method="get" action="../shared/LogoutServlet" class="mt-2">

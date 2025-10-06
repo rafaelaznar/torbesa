@@ -1,8 +1,11 @@
 package net.ausiasmarch.pokemon.model;
 
+import java.util.List;
+
 public class Pokemon {
     private int id;
     private String name;
+    private List<String> abilities;
 
     public Pokemon(int id, String name) {
         this.id = id;
@@ -24,5 +27,11 @@ public class Pokemon {
     public void setName(String name) {
         this.name = name;
     }
+public List<String> getAbilities() {
+        return abilities;
+    }
 
+    public void setAbilities(List<String> abilities) {
+        this.abilities = abilities;
+    }
 }

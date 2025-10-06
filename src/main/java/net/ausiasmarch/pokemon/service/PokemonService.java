@@ -133,5 +133,40 @@ public class PokemonService {
         Collections.shuffle(names);
         return names;
     }
+public Pokemon fetchPokemonDetails(int id) {
+    String urlString = "https://pokeapi.co/api/v2/pokemon/" + id + "/";
+    try {
+        URL url = new URL(urlString);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String inputLine;
+        StringBuilder content = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        in.close();
+
+        JSONObject obj = new JSONObject(content.toString());
+        String name = obj.getString("name");
+        JSONArray abilitiesArray = obj.getJSONArray("abilities");
+        List<String> abilities = new ArrayList<>();
+
+        for (int i = 0; i < abilitiesArray.length(); i++) {
+            JSONObject abilityObj = abilitiesArray.getJSONObject(i).getJSONObject("ability");
+            String abilityName = abilityObj.getString("name");
+            abilities.add(abilityName);
+        }
+
+        Pokemon pokemon = new Pokemon(id, name);
+        pokemon.setAbilities(abilities);
+        return pokemon;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
+}
 
 }

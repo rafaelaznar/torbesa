@@ -55,19 +55,19 @@
                                             <div class="mb-3">
                                                 <h5>
                                                     <strong class="text-muted">Pokemon:</strong>
-                                                    <span class="badge bg-primary ms-2">${pokemon}</span>
+                                                    <span class="badge bg-primary ms-2">${pokemonName}</span>
                                                 </h5>
                                             </div>
                                             <div class="mb-3">
                                                 <h5>
                                                     <strong class="text-muted">Your Guess:</strong>
-                                                    <span class="badge bg-warning text-dark ms-2">${pokemonGuess}</span>
+                                                    <span class="badge bg-warning text-dark ms-2">${abilityGuess}</span>
                                                 </h5>
                                             </div>
                                             <div class="mb-0">
                                                 <h5>
-                                                    <strong class="text-muted">Correct Answer:</strong>
-                                                    <span class="badge bg-success ms-2">${correctPokemon}</span>
+                                                    <strong class="text-muted">Correct Ability:</strong>
+                                                    <span class="badge bg-success ms-2">${correctAbility}</span>
                                                 </h5>
                                             </div>
                                         </div>
@@ -121,13 +121,13 @@
 
                             <!-- Action Buttons -->
                             <div class="text-center mt-4">
-                                <form method="get" action="../../java/net/ausiasmarch/pokemon/controller/ServletJuego.java" class="d-inline me-3">
+                                <form method="get" action="ServletJuego" class="d-inline me-3">
                                     <button type="submit" class="btn btn-primary btn-lg">
                                         <i class="bi bi-play-fill"></i> Play Again
                                     </button>
                                 </form>
 
-                                <form method="get" action="../../java/net/ausiasmarch/pokemon/controller/LogoutServlet" class="d-inline">
+                                <form method="get" action="../shared/LogoutServlet" class="d-inline">
                                     <button type="submit" class="btn btn-outline-danger btn-lg">
                                         <i class="bi bi-box-arrow-right"></i> Logout
                                     </button>
