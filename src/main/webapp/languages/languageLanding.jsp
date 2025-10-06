@@ -35,7 +35,7 @@
                             <h5 class="card-title">How to Play</h5>
                             <ul class="list-group list-group-flush text-start">
                                 <li class="list-group-item">Log in with your username and password.</li>
-                                <li class="list-group-item">Guess the country by its borders.</li>
+                                <li class="list-group-item">Guess the corret word in spanish.</li>
                                 <li class="list-group-item">Earn points for correct answers.</li>
                                 <li class="list-group-item">View high scores and challenge your friends!</li>
                                 <li class="list-group-item">Also this code is MIT licensed.</li>

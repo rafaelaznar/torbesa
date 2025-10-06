@@ -106,4 +106,20 @@ ALTER TABLE `users`
 --
 ALTER TABLE `capitals_score`
   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Table structure for table `languages_score`
+--
+
+CREATE TABLE `languages_score` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL,
+  PRIMARY KEY(`id`),
+  KEY `user_id`(`user_id`),
+  CONSTRAINT `languages_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
 COMMIT;

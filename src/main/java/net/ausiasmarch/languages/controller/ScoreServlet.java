@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.ausiasmarch.languages.model.ScoreDto;
+import net.ausiasmarch.languages.model.ScoreDTO;
 import net.ausiasmarch.languages.service.ScoreService;
 
 @WebServlet("/language/ScoreServlet")
 public class ScoreServlet extends HttpServlet {
+
     private ScoreService oScoreService;
 
     public ScoreServlet() {
@@ -29,8 +30,9 @@ public class ScoreServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)  {
+        
         try {
-            List<ScoreDto> highScoresList = oScoreService.getHighScores();
+            List<ScoreDTO> highScoresList = oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("highscores.jsp");
             dispatcher.forward(request, response);

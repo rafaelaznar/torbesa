@@ -13,7 +13,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>High Scores - Country Capital's Game</title>
+                <title>High Scores - Tradulo's Game</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
                     rel="stylesheet">
@@ -54,20 +54,20 @@
                                         <div class="card-body">
                                             <div class="mb-3">
                                                 <h5>
-                                                    <strong class="text-muted">Country:</strong>
-                                                    <span class="badge bg-primary ms-2">${country}</span>
+                                                    <strong class="text-muted">Word:</strong>
+                                                    <span class="badge bg-primary ms-2">${word}</span>
                                                 </h5>
                                             </div>
                                             <div class="mb-3">
                                                 <h5>
                                                     <strong class="text-muted">Your Guess:</strong>
-                                                    <span class="badge bg-warning text-dark ms-2">${capitalGuess}</span>
+                                                    <span class="badge bg-warning text-dark ms-2">${wordGuess}</span>
                                                 </h5>
                                             </div>
                                             <div class="mb-0">
                                                 <h5>
                                                     <strong class="text-muted">Correct Answer:</strong>
-                                                    <span class="badge bg-success ms-2">${correctCapital}</span>
+                                                    <span class="badge bg-success ms-2">${correctWord}</span>
                                                 </h5>
                                             </div>
                                         </div>

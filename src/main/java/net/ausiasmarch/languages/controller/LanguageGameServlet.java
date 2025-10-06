@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.ausiasmarch.languages.dao.ScoreDao;
-import net.ausiasmarch.languages.model.ScoreDto;
+import net.ausiasmarch.languages.dao.ScoreDAO;
+import net.ausiasmarch.languages.model.ScoreDTO;
 import net.ausiasmarch.languages.service.LanguageService;
 import net.ausiasmarch.languages.service.ScoreService;
 import net.ausiasmarch.shared.connection.HikariPool;
@@ -87,11 +87,11 @@ public class LanguageGameServlet extends HttpServlet {
 
             try (Connection oConnection = HikariPool.getConnection()) {
 
-                ScoreDao oScoreDao = new ScoreDao(oConnection);
-                ScoreDto userScore = oScoreDao.get(user.getId());
+                ScoreDAO oScoreDao = new ScoreDAO(oConnection);
+                ScoreDTO userScore = oScoreDao.get(user.getId());
                 request.setAttribute("userScore", userScore);
 
-                List<ScoreDto> highScores = oScoreDao.getTop10();
+                List<ScoreDTO> highScores = oScoreDao.getTop10();
                 request.setAttribute("highScores", highScores);
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
