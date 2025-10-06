@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Harry Potter - High Scores</title>
+    <title>Harry Potter - Mejores Puntuaciones</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -26,9 +26,9 @@
             <!-- Header -->
             <div class="text-center mb-4">
                 <h1 class="display-4 text-primary">
-                    <i class="bi bi-magic"></i> Harry Potter Quiz - Top Scores
+                    <i class="bi bi-magic"></i> Quiz de Harry Potter - Mejores Puntuaciones
                 </h1>
-                <p class="lead text-muted">The most magical wizards and witches! 🪄✨</p>
+                <p class="lead text-muted">¡Los magos y brujas más mágicos! 🪄✨</p>
             </div>
 
             <!-- Message Alert -->
@@ -45,13 +45,13 @@
             <!-- Action Buttons -->
             <div class="text-center mt-4">
                 <a href="GameServlet" class="btn btn-primary btn-lg me-3">
-                    <i class="bi bi-play-fill"></i> Play Quiz
+                    <i class="bi bi-play-fill"></i> Jugar Quiz
                 </a>
                 <a href="landing.jsp" class="btn btn-outline-secondary btn-lg me-3">
-                    <i class="bi bi-house-door"></i> Back to Landing
+                    <i class="bi bi-house-door"></i> Volver al Inicio
                 </a>
                 <a href="../shared/welcome.jsp" class="btn btn-outline-info btn-lg">
-                    <i class="bi bi-grid"></i> Main Menu
+                    <i class="bi bi-grid"></i> Menú Principal
                 </a>
             </div>
 

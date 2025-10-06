@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harry Potter Quiz - Results</title>
+    <title>Quiz de Harry Potter - Resultados</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -46,25 +46,25 @@
                         <div class="card shadow-sm border-0 h-100">
                             <div class="card-header bg-primary text-white">
                                 <h5 class="card-title mb-0">
-                                    <i class="bi bi-person-bounding-box"></i> Your Answer
+                                    <i class="bi bi-person-bounding-box"></i> Tu Respuesta
                                 </h5>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
                                     <h5>
-                                        <strong class="text-muted">Character:</strong>
+                                        <strong class="text-muted">Personaje:</strong>
                                         <span class="badge bg-primary ms-2">${characterName}</span>
                                     </h5>
                                 </div>
                                 <div class="mb-3">
                                     <h5>
-                                        <strong class="text-muted">Your Guess:</strong>
+                                        <strong class="text-muted">Tu Respuesta:</strong>
                                         <span class="badge bg-warning text-dark ms-2">${houseGuess}</span>
                                     </h5>
                                 </div>
                                 <div class="mb-0">
                                     <h5>
-                                        <strong class="text-muted">Correct House:</strong>
+                                        <strong class="text-muted">Casa Correcta:</strong>
                                         <span class="badge bg-success ms-2">${correctHouse}</span>
                                     </h5>
                                 </div>
@@ -77,27 +77,27 @@
                         <div class="card shadow-sm border-0 h-100">
                             <div class="card-header bg-success text-white">
                                 <h5 class="card-title mb-0">
-                                    <i class="bi bi-star-fill"></i> Your Performance
+                                    <i class="bi bi-star-fill"></i> Tu Rendimiento
                                 </h5>
                             </div>
                             <div class="card-body text-center">
                                 <c:choose>
                                     <c:when test="${houseGuess eq correctHouse}">
                                         <h3 class="text-success mb-3">
-                                            <i class="bi bi-check-circle-fill"></i> Correct!
+                                            <i class="bi bi-check-circle-fill"></i> ¡Correcto!
                                         </h3>
-                                        <p class="lead">You're a true wizard! 🧙‍♂️</p>
+                                        <p class="lead">¡Eres un verdadero mago! 🧙‍♂️</p>
                                         <div class="mt-3">
-                                            <span class="badge bg-success fs-6">+1 Point earned!</span>
+                                            <span class="badge bg-success fs-6">¡+1 Punto ganado!</span>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
                                         <h3 class="text-warning mb-3">
-                                            <i class="bi bi-x-circle-fill"></i> Incorrect
+                                            <i class="bi bi-x-circle-fill"></i> Incorrecto
                                         </h3>
-                                        <p class="lead">Better luck next time! Keep practicing your magic! 🪄</p>
+                                        <p class="lead">¡Mejor suerte la próxima vez! ¡Sigue practicando tu magia! 🪄</p>
                                         <div class="mt-3">
-                                            <span class="badge bg-warning text-dark fs-6">Try again!</span>
+                                            <span class="badge bg-warning text-dark fs-6">¡Inténtalo de nuevo!</span>
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
@@ -109,19 +109,19 @@
                 <!-- Action Buttons -->
                 <div class="text-center mt-4">
                     <a href="GameServlet" class="btn btn-primary btn-lg me-3">
-                        <i class="bi bi-play-fill"></i> Play Again
+                        <i class="bi bi-play-fill"></i> Jugar de Nuevo
                     </a>
 
                     <a href="ScoreServlet" class="btn btn-info btn-lg me-3">
-                        <i class="bi bi-trophy"></i> View Leaderboard
+                        <i class="bi bi-trophy"></i> Ver Clasificación
                     </a>
 
                     <a href="landing.jsp" class="btn btn-outline-secondary btn-lg me-3">
-                        <i class="bi bi-house-door"></i> Back to Menu
+                        <i class="bi bi-house-door"></i> Volver al Menú
                     </a>
 
                     <a href="../shared/welcome.jsp" class="btn btn-outline-danger btn-lg">
-                        <i class="bi bi-grid"></i> Main Menu
+                        <i class="bi bi-grid"></i> Menú Principal
                     </a>
                 </div>
 
