@@ -1,0 +1,150 @@
+package net.ausiasmarch.find_it_Alvaro.service;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import javax.servlet.ServletContext;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import net.ausiasmarch.find_it_Alvaro.model.CharacterBean;
+
+public class CharacterService {
+
+    private static final String API_URL = "https://hsr-api.ajcastan.com/characters";
+    private ServletContext oContext = null;
+
+    public CharacterService(ServletContext oContext) {
+        this.oContext = oContext;
+    }
+
+    public List<CharacterBean> fetchAllCharacters() {
+        if (this.oContext != null) {
+            @SuppressWarnings("unchecked")
+            List<CharacterBean> characters = (List<CharacterBean>) this.oContext.getAttribute("characters");
+            if (characters != null) {
+                return characters;
+            }
+        }
+        System.out.println("Downloading characters....");
+        List<CharacterBean> characters = new ArrayList<>();
+        try {
+            URL url = new URL(API_URL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            JSONArray arr = new JSONArray(content.toString());
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject obj = arr.getJSONObject(i);
+                String id = obj.optString("id", "");
+                String name = obj.optString("name", "");
+                int rarity = obj.optInt("rarity", 0);
+                String element = obj.optString("element", "");
+                characters.add(new CharacterBean(id, name, rarity, element));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.oContext.setAttribute("characters", characters);
+        return characters;
+    }
+
+    // Buscar personaje por nombre
+    public CharacterBean getCharacterByName(String name) {
+        List<CharacterBean> characters = fetchAllCharacters();
+        for (CharacterBean character : characters) {
+            if (character.getName().equalsIgnoreCase(name)) {
+                return character;
+            }
+        }
+        return null;
+    }
+
+    // Buscar personaje por id
+    public CharacterBean getCharacterById(String id) {
+        List<CharacterBean> characters = fetchAllCharacters();
+        for (CharacterBean character : characters) {
+            if (character.getId().equalsIgnoreCase(id)) {
+                return character;
+            }
+        }
+        return null;
+    }
+
+    // Buscar personajes por rareza
+    public List<CharacterBean> getCharactersByRarity(int rarity) {
+        List<CharacterBean> characters = fetchAllCharacters();
+        List<CharacterBean> result = new ArrayList<>();
+        for (CharacterBean character : characters) {
+            if (character.getRarity() == rarity) {
+                result.add(character);
+            }
+        }
+        return result;
+    }
+
+    // Buscar personajes por elemento
+    public List<CharacterBean> getCharactersByElement(String element) {
+        List<CharacterBean> characters = fetchAllCharacters();
+        List<CharacterBean> result = new ArrayList<>();
+        for (CharacterBean character : characters) {
+            if (character.getElement().equalsIgnoreCase(element)) {
+                result.add(character);
+            }
+        }
+        return result;
+    }
+
+    //Cambiar el metodo para que devuelva un personaje aleatorio
+    public CharacterBean getOneRandomCharacter() {
+        List<CharacterBean> oCharacters = fetchAllCharacters();
+        int randomIndex0 = (int) (Math.random() * oCharacters.size());
+        CharacterBean selectedCharacter = oCharacters.get(randomIndex0);
+        while (selectedCharacter.getElement().trim().isEmpty()) {
+            randomIndex0 = (int) (Math.random() * oCharacters.size());
+            selectedCharacter = oCharacters.get(randomIndex0);
+        }
+        return selectedCharacter;
+    }
+
+    //Cambiar el metodo para que devuelva varios personajes aleatorios
+    public ArrayList<String> getRandomElementsForTest(CharacterBean oSelectedCharacterBean, int numElements) {
+        if (numElements < 1) {
+            numElements = 4;
+        }
+        List<CharacterBean> oCharacters = fetchAllCharacters();
+
+        //Cambiar el nombre de selectedElementsList por selectedCharactersList
+        ArrayList<String> selectedElementsList = new ArrayList<>();
+
+        selectedElementsList.add(oSelectedCharacterBean.getElement());
+        for (int i = 0; i < numElements - 1; i++) {
+            int randomIndex = 0;
+            while (randomIndex == 0) {
+                randomIndex = (int) (Math.random() * oCharacters.size());
+                if (oCharacters.get(randomIndex).getElement().trim().isEmpty()) {
+                    randomIndex = 0;
+                } else {
+                    if (selectedElementsList.contains(oCharacters.get(randomIndex).getElement())) {
+                        randomIndex = 0;
+                    }
+                }
+            }
+            selectedElementsList.add(oCharacters.get(randomIndex).getElement());
+        }
+
+        Collections.shuffle(selectedElementsList);
+        return selectedElementsList;
+
+    }
+
+}
