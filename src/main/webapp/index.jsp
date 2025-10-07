@@ -84,7 +84,6 @@
                                 </div>
                             </div>
 
-                            <div class="row g-4">
                             <!-- Alan's Game -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
