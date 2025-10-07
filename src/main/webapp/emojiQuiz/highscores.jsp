@@ -30,7 +30,7 @@ response.sendRedirect(request.getContextPath() + "/index.jsp"); return; } %>
 
           <!-- Action Buttons -->
           <div class="text-center mt-4">
-            <form method="get" action="emojiQuiz/play" class="d-inline me-3">
+            <form method="get" action="play" class="d-inline me-3">
               <button type="submit" class="btn btn-primary btn-lg">
                 <i class="bi bi-play-fill"></i> Play
               </button>

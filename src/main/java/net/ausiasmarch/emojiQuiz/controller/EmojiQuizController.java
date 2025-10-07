@@ -82,8 +82,7 @@ public class EmojiQuizController extends HttpServlet {
             EmojiQuizBean question = eqService.getQuestionById(questionId);
             String correctAnswer = question.getCorrectAnswer();
 
-            boolean isCorrect = selectedOption.trim()
-                    .equalsIgnoreCase(correctAnswer.trim());
+            boolean isCorrect = selectedOption.trim().equalsIgnoreCase(correctAnswer.trim());
 
             EmojiScoreService scoreService = new EmojiScoreService();
             scoreService.set(user.getId(), isCorrect);

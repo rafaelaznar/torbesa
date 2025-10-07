@@ -40,18 +40,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                       value="${option}"
                       required
                     />
-                    <label
-                      class="form-check-label fs-5"
-                      for="option${status.index}"
-                    >
-                      ${option}
-                    </label>
+                    <label class="form-check-label fs-5" for="option${status.index}">${option}</label>
                   </div>
                 </c:forEach>
 
-                <button type="submit" class="btn btn-primary mt-3">
-                  Submit answer
-                </button>
+                <button type="submit" class="btn btn-success w-100">Submit Answer</button>
               </form>
 
               <c:if test="${not empty message}">
@@ -69,14 +62,10 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               <span class="badge bg-primary">${score}</span>
             </div>
             <form method="get" action="../emojiQuiz/ScoreServlet" class="mt-3">
-              <button type="submit" class="btn btn-outline-info w-100">
-                View High Scores
-              </button>
+              <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
             </form>
             <form method="get" action="../shared/LogoutServlet" class="mt-2">
-              <button type="submit" class="btn btn-outline-danger w-100">
-                Logout
-              </button>
+              <button type="submit" class="btn btn-outline-danger w-100">Logout</button>
             </form>
           </div>
         </div>
