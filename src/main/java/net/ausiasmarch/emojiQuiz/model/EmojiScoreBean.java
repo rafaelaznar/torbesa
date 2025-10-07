@@ -2,7 +2,6 @@ package net.ausiasmarch.emojiQuiz.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class EmojiScoreBean {
@@ -24,7 +23,6 @@ public class EmojiScoreBean {
         this.timestamp = timestamp;
     }
 
-    // Удобный конструктор без id/username (для insert)
     public EmojiScoreBean(int userId, int score, int tries, LocalDateTime timestamp) {
         this.userId = userId;
         this.score = score;

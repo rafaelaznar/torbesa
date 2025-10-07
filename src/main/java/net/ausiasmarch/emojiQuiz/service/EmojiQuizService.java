@@ -12,7 +12,6 @@ import net.ausiasmarch.emojiQuiz.model.EmojiQuizBean;
 
 public class EmojiQuizService {
 
-    // obtener todas las preguntas
     public List<EmojiQuizBean> fetchAllQuestions() throws SQLException { 
         try (Connection conn = HikariPool.getConnection()) {
             EmojiQuizDao questionList = new EmojiQuizDao(conn);
@@ -27,14 +26,12 @@ public class EmojiQuizService {
         }
     }
 
-    // obtener una pregunta aleatoria
     public EmojiQuizBean getRandomQuestion() throws SQLException {
         List<EmojiQuizBean> questionList = fetchAllQuestions();
         int randomIndex = (int) (Math.random() * questionList.size());
         return questionList.get(randomIndex);
     }
 
-    // mezclar las opciones de respuesta
     public List<String> getShuffledOptions(EmojiQuizBean question) {
         List<String> options = new ArrayList<>();
         options.add(question.getCorrectAnswer());
