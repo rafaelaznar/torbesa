@@ -17,7 +17,6 @@ import net.ausiasmarch.whosthatpokemon.service.ScoreService;
 
 @WebServlet("/whosthatpokemon/ScoreServlet")
 public class ScoreServlet extends HttpServlet {
-    //
     private static final long serialVersionUID = 1L;
 
     @Override

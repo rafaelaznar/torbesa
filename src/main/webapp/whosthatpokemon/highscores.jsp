@@ -6,7 +6,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>High Scores - Who's That Pokemon</title>
-    <style> body{ font-family:Arial; padding:2rem; background:#0b2545; color:#fff } .card{background:#fff;color:#0b2545;padding:1rem;border-radius:8px;max-width:800px;margin:0 auto;} </style>
+    <style> 
+    :root{
+            --navy: #0b2545; /* azul marino */
+            --accent: #103a66; /* azul oscuro secundario */
+            --white: #ffffff;
+            --black: #000000;
+            --muted: #f4f7fb;
+        }
+    body{ font-family:Arial; padding:2rem; background:#0b2545; color:#fff } 
+    .card{background:#fff;color:#0b2545;padding:1rem;border-radius:8px;max-width:800px;margin:0 auto;} 
+    .btn{
+            background:var(--navy);
+            color:var(--white);
+            border:2px solid var(--black);
+            padding:.6rem 1rem;
+            border-radius:6px;
+            cursor:pointer;
+            font-weight:600;
+            transition: transform .08s ease, box-shadow .08s ease;
+        }
+
+        .btn.secondary{
+            background:transparent;
+            color:var(--navy);
+            border:2px solid var(--navy);
+        }
+    </style>
 </head>
 <body>
     <div class="card">
@@ -47,7 +73,9 @@
                 </c:if>
             </c:otherwise>
         </c:choose>
-        <p><a href="/torbesa/whosthatpokemon/GameServlet?new=true">Jugar</a></p>
+        <a href="../whosthatpokemon/GameServlet?new=true"><button class="btn">Start</button></a>
+        <a href="../whosthatpokemon/landingpokemon.jsp"><button class="btn secondary">Ir a la Landing</button></a>
+        <a href="../shared/welcome.jsp"><button class="btn">Volver al index</button></a>
     </div>
 </body>
 </html>

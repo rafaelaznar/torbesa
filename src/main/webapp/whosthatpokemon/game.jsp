@@ -85,7 +85,7 @@
             </div>
         </c:if>
 
-        <p style="text-align:center;margin-top:1rem"><a href="/torbesa/whosthatpokemon/highscores.jsp"><button class="btn">Ver puntuaciones</button></a></p>
+        <p style="text-align:center;margin-top:1rem"><a href="/torbesa/whosthatpokemon/ScoreServlet"><button class="btn">Ver puntuaciones</button></a></p>
         <p style="text-align:center;margin-top:1rem"><a href="/torbesa/whosthatpokemon/landingpokemon.jsp"><button class="btn volver-landing">Volver a la Landing</button></a></p>
     </div>
 </body>
