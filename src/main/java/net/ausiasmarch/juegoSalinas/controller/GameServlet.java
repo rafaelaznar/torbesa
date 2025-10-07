@@ -1,13 +1,14 @@
 package net.ausiasmarch.juegoSalinas.controller;
 
 import javax.servlet.*;
-import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
 import java.io.IOException;
 import net.ausiasmarch.juegoSalinas.model.JuegoSalinasBean;
 import net.ausiasmarch.juegoSalinas.model.ScoreDto;
 import net.ausiasmarch.juegoSalinas.service.GameService;
 import net.ausiasmarch.juegoSalinas.service.ScoreService;
+import net.ausiasmarch.shared.model.UserBean; // 🔹 Importa esta clase
 
 @WebServlet("/juegoSalinas/GameServlet")
 public class GameServlet extends HttpServlet {
@@ -22,8 +23,9 @@ public class GameServlet extends HttpServlet {
 
         // Guardar puntuación si gana
         if ("¡Ganaste!".equals(game.getResult())) {
-            String username = (String) request.getSession().getAttribute("sessionUser");
-            if (username != null) {
+            UserBean user = (UserBean) request.getSession().getAttribute("sessionUser");
+            if (user != null) {
+                String username = user.getUsername(); // o getLogin()
                 scoreService.addScore(new ScoreDto(username, 1));
             }
         }
