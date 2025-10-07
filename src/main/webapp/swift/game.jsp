@@ -27,16 +27,41 @@
                                     </div>
                                     <!-- send the songs name as a hidden field -->
                                     <input type="hidden" name="song" value="${title}">
-                                    <div class="mb-3 d-flex justify-content-center">
-                                        <div class="w-50 text-start">
-                                            <c:forEach var="option" items="${options}" varStatus="status">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="albumGuess"
-                                                        id="option${status.index}" value="${option}" required>
-                                                    <label class="form-check-label"
-                                                        for="option${status.index}">${option}</label>
+                                    <div class="mb-3">
+                                        <div class="row">
+                                            <div class="col-md-7 d-flex justify-content-center">
+                                                <div class="w-100 text-start" style="max-width:420px;">
+                                                    <c:forEach var="option" items="${options}" varStatus="status">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="albumGuess"
+                                                                id="option${status.index}" value="${option}" required>
+                                                            <label class="form-check-label"
+                                                                for="option${status.index}">${option}</label>
+                                                        </div>
+                                                    </c:forEach>
                                                 </div>
-                                            </c:forEach>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="card border-secondary h-100">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Lista</h5>
+                                                        <ul id="rightList" class="list-group list-group-flush">
+                                                            <!-- lista vacía -->
+                                                             <li> 1 -> Taylor Swift</li>
+                                                             <li> 2 -> Fearless</li>
+                                                             <li> 3 -> Speak Now</li>
+                                                             <li> 4 -> Red</li>
+                                                             <li> 5 -> 1989</li>
+                                                             <li> 6 -> Reputation</li>
+                                                             <li> 7 -> Lover</li>
+                                                             <li> 8 -> Folklore</li>
+                                                             <li> 9 -> Evermore</li>
+                                                             <li> 10 -> Midnights</li>
+                                                             <li> 11 -> The Tortured Poets Department</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-success w-100">Submit Answer</button>

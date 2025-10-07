@@ -22,8 +22,8 @@
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-8 text-center">
-                    <h1 class="display-4">Welcome to the Country Capital's Game!</h1>
-                    <p class="lead">Test your geography skills by guessing country capitals!</p>
+                    <h1 class="display-4">Welcome to the Guess the Album Game!</h1>
+                    <p class="lead">Test your Knowledge aout Taylor Swift's songs in this Test!</p>
                     <a href="../swift/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
                     <a href="../swift/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
                 </div>
@@ -35,12 +35,11 @@
                             <h5 class="card-title">How to Play</h5>
                             <ul class="list-group list-group-flush text-start">
                                 <li class="list-group-item">Log in with your username and password.</li>
-                                <li class="list-group-item">Guess the country by its borders.</li>
-                                <li class="list-group-item">Earn points for correct answers.</li>
-                                <li class="list-group-item">View high scores and challenge your friends!</li>
-                                <li class="list-group-item">Also this code is MIT licensed.</li>
-                                <li class="list-group-item">Use this code to learn java, servlets, jsp, jstl, sessions
-                                    and more!</li>
+                                <li class="list-group-item">The name of the song will apear.</li>
+                                <li class="list-group-item">Check the box to see wich number is each album.</li>
+                                <li class="list-group-item">Answer the question with the correct answer</li>
+                                <li class="list-group-item">See your score as well as the leaderboard with the best highscores!.</li>
+                                <li class="list-group-item">You can play as many times as you want with the "Play Again" Button!</li>
                             </ul>
                         </div>
                     </div>
