@@ -13,7 +13,7 @@ public class ScoreServlet extends HttpServlet {
     private final ScoreService scoreService = new ScoreService();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         List<ScoreDto> scores = scoreService.getTopScores(10);
         request.setAttribute("scores", scores);
