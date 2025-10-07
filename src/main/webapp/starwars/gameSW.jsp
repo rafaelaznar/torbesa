@@ -23,13 +23,13 @@
                         <form method="post" action="GameServlet">
                             <div class="mb-4 text-center">
                                 <h4>Who is this character?</h4>
-                                <!-- Show the character image -->
-                                 <img src="${character.imageUrl}" alt="${character.name}"
-                                      class="img-fluid rounded shadow-sm mt-3" style="max-width: 250px;">
+                                <!-- Show the clue -->
+                                <h4 class="text-secondary">Pista: </h4>
+                                <p class="lead text-primary fw-bold mt-3">${character.clue}</p>
                             </div>
 
                             <!-- Send the character name as a hidden field -->
-                            <input type="hidden" name="character" value="${character}">
+                            <input type="hidden" name="correctCharacterName" value="${character.name}">
 
                             <div class="mb-3 d-flex justify-content-center">
                                 <div class="w-50 text-start">

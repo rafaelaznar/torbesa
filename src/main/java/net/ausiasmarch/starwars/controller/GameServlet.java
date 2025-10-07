@@ -64,18 +64,12 @@ public class GameServlet extends HttpServlet {
             }
 
             ScoreService scoreService = new ScoreService();
-            String character = request.getParameter("character");
             String characterGuess = request.getParameter("characterGuess");
-            CharacterService oCharacterService = new CharacterService(request.getServletContext());
-            String correctCharacter = oCharacterService.fetchAllCharacters().stream()
-                    .filter(c -> c.getName().equals(character))
-                    .map(CharacterBean::getName)
-                    .findFirst()
-                    .orElse("");
-            request.setAttribute("character", character);
-            request.setAttribute("correctCharacter", correctCharacter);
+            String correctCharacterName = request.getParameter("correctCharacterName");
+            request.setAttribute("character", correctCharacterName);
+            request.setAttribute("correctCharacter", correctCharacterName);
             request.setAttribute("characterGuess", characterGuess);
-            if (characterGuess.equals(correctCharacter)) {
+            if (correctCharacterName != null && correctCharacterName.equals(characterGuess)) {
                 scoreService.set(user.getId(), true);
                 request.setAttribute("message", "Correct! Well done.");
             } else {

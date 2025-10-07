@@ -24,7 +24,7 @@
             <div class="col-md-8 text-center">
                 <h1 class="display-4">Welcome to the Star Wars's Game!</h1>
                 <p class="lead">Test your skills by guessing the Star Wars character!</p>
-                <a href="gameSW.jsp" class="btn btn-success btn-lg m-4">Start Playing</a>
+                <a href="${pageContext.request.contextPath}/starwars/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
                 <a href="scoresSW.jsp" class="btn btn-warning btn-lg m-4">Top scores</a>
             </div>
         </div>

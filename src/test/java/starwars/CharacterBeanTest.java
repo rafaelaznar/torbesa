@@ -17,18 +17,18 @@ public class CharacterBeanTest {
         assertEquals("Luke Skywalker", character.getName());
         assertEquals("https://swapi.dev/api/people/1/", character.getUrl());
         assertEquals(1, character.getId());
-        assertEquals("https://starwars-visualguide.com/assets/img/characters/1.jpg", character.getImageUrl());
+        assertEquals("https://starwars-visualguide.com/assets/img/characters/1.jpg", character.getClue());
 
         // Update values
         character.setName("Darth Vader");
         character.setUrl("https://swapi.dev/api/people/4/");
         character.setId(4);
-        character.setImageUrl("https://starwars-visualguide.com/assets/img/characters/4.jpg");
+        character.setClue("https://starwars-visualguide.com/assets/img/characters/4.jpg");
 
         // Test updated values
         assertEquals("Darth Vader", character.getName());
         assertEquals("https://swapi.dev/api/people/4/", character.getUrl());
         assertEquals(4, character.getId());
-        assertEquals("https://starwars-visualguide.com/assets/img/characters/4.jpg", character.getImageUrl());
+        assertEquals("https://starwars-visualguide.com/assets/img/characters/4.jpg", character.getClue());
     }
 }
