@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ausiasmarch.trivial.model.ScoreDto;
+import net.ausiasmarch.trivial.model.ScoreDto2;
 
 public class ScoreDao2 {
     Connection oConnection = null;
@@ -17,14 +17,14 @@ public class ScoreDao2 {
         this.oConnection = oConnection;
     }
 
-    public ScoreDto get(int userId) throws SQLException {
-        ScoreDto oScore = null;
+    public ScoreDto2 get(int userId) throws SQLException {
+        ScoreDto2 oScore = null;
         String sql = "SELECT * FROM trivial_score WHERE user_id = ? ORDER BY timestamp DESC LIMIT 1";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) {
-            oScore = new ScoreDto(
+            oScore = new ScoreDto2(
                     rs.getInt("id"),
                     rs.getInt("user_id"),
                     rs.getInt("score"),
@@ -36,8 +36,8 @@ public class ScoreDao2 {
         return oScore;
     }
 
-    public int insertOrUpdate(ScoreDto oScore, boolean correct) throws SQLException {
-        ScoreDto existingScore = get(oScore.getUserId());
+    public int insertOrUpdate(ScoreDto2 oScore, boolean correct) throws SQLException {
+        ScoreDto2 existingScore = get(oScore.getUserId());
 
         if (existingScore == null) {
             // No existe → insert
@@ -82,14 +82,14 @@ public class ScoreDao2 {
         stmt.executeUpdate();
     }
 
-    public List<ScoreDto> getTop10() throws SQLException {
-        List<ScoreDto> scores = new ArrayList<>();
+    public List<ScoreDto2> getTop10() throws SQLException {
+        List<ScoreDto2> scores = new ArrayList<>();
         String sql = "SELECT * FROM trivial_score s JOIN users u ON s.user_id = u.id " +
                      "ORDER BY s.score DESC, s.timestamp DESC LIMIT 10";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()) {
-            scores.add(new ScoreDto(
+            scores.add(new ScoreDto2(
                     rs.getInt("id"),
                     rs.getInt("user_id"),
                     rs.getInt("score"),
@@ -101,13 +101,13 @@ public class ScoreDao2 {
         return scores;
     }
 
-    public List<ScoreDto> getAll() throws SQLException {
-        List<ScoreDto> scores = new ArrayList<>();
+    public List<ScoreDto2> getAll() throws SQLException {
+        List<ScoreDto2> scores = new ArrayList<>();
         String sql = "SELECT * FROM trivial_score s JOIN users u ON s.user_id = u.id";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
-            scores.add(new ScoreDto(
+            scores.add(new ScoreDto2(
                     rs.getInt("id"),
                     rs.getInt("user_id"),
                     rs.getInt("score"),
@@ -124,6 +124,16 @@ public class ScoreDao2 {
         PreparedStatement deleteStmt = oConnection.prepareStatement(deleteSql);
         deleteStmt.setInt(1, id);
         return deleteStmt.executeUpdate();
+    }
+
+    public int update(ScoreDto2 oUserScore) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    public int insert(ScoreDto2 oUserScore) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'insert'");
     }
 }
 

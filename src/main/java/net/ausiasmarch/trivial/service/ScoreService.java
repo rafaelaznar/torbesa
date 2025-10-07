@@ -6,20 +6,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-import net.ausiasmarch.capitals.dao.ScoreDao;
-import net.ausiasmarch.capitals.model.ScoreDto;
+
 import net.ausiasmarch.shared.connection.HikariPool;
+import net.ausiasmarch.trivial.dao.ScoreDao2;
+import net.ausiasmarch.trivial.model.ScoreDto2;
 
 public class ScoreService {
      public boolean set(int userId, boolean correct) throws SQLException {
         
         try (Connection oConnection = HikariPool.getConnection()) {
 
-            ScoreDao oScoreDao = new ScoreDao(oConnection);
+            ScoreDao2 oScoreDao = new ScoreDao2(oConnection);
             if (oScoreDao.count(userId) > 1) {
                 oScoreDao.sanitize();
             }
-            ScoreDto oUserScore = oScoreDao.get(userId);
+            ScoreDto2 oUserScore = oScoreDao.get(userId);
             if (!Objects.isNull(oUserScore)) {
                 oUserScore.setTries(oUserScore.getTries() + 1);
                 if (correct) {
@@ -27,7 +28,7 @@ public class ScoreService {
                 }
                 return oScoreDao.update(oUserScore) > 0;
             } else {
-                oUserScore = new ScoreDto();
+                oUserScore = new ScoreDto2();
                 oUserScore.setUserId(userId);
                 oUserScore.setTries(1);
                 if (correct) {
@@ -42,10 +43,10 @@ public class ScoreService {
 
     }
 
-    public List<ScoreDto> getHighScores() throws SQLException {        
+    public List<ScoreDto2> getHighScores() throws SQLException {        
         try (Connection oConnection = HikariPool.getConnection()) {
-            ScoreDao oScoreDao = new ScoreDao(oConnection);
-            return oScoreDao.getTop10();
+            ScoreDao2 oScoreDao = new ScoreDao2(oConnection);
+            return (List<ScoreDto2>) oScoreDao.getTop10();
         }
     }
 }

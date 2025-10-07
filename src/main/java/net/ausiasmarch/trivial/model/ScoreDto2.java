@@ -3,7 +3,7 @@ package net.ausiasmarch.trivial.model;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-public class ScoreDto {
+public class ScoreDto2 {
     
 
 
@@ -14,7 +14,7 @@ public class ScoreDto {
     private int tries;
     private LocalDateTime timestamp;
 
-    public ScoreDto() {
+    public ScoreDto2() {
         this.id = 0;
         this.userId = 0;
         this.score = 0;
@@ -22,7 +22,7 @@ public class ScoreDto {
         this.timestamp = null;
     }
 
-    public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp) {
+    public ScoreDto2(int id, int userId, int score, int tries, LocalDateTime timestamp) {
         this.id = id;
         this.userId = userId;
         this.score = score;
@@ -30,7 +30,7 @@ public class ScoreDto {
         this.timestamp = timestamp;
     }
 
-    public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
+    public ScoreDto2(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
         this.id = id;
         this.userId = userId;
         this.score = score;

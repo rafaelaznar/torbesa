@@ -3,11 +3,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import net.ausiasmarch.capitals.dao.ScoreDao;
-import net.ausiasmarch.capitals.model.CountryBean;
-import net.ausiasmarch.capitals.model.ScoreDto;
-import net.ausiasmarch.capitals.service.CountryService;
-import net.ausiasmarch.capitals.service.ScoreService;
+import net.ausiasmarch.trivial.model.ScoreDto2;
+import net.ausiasmarch.trivial.service.ScoreService;
+
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 
@@ -18,23 +16,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@WebServlet("/trivial/ScoreServlet")
-public class ScoreServlet extends HttpServlet {
+@WebServlet("/trivial/ScoreServlet2")
+public class ScoreServlet2 extends HttpServlet {
     private ScoreService oScoreService;
 
-    public ScoreServlet() {
+    public ScoreServlet2() {
         this.oScoreService = new ScoreService();
     }
 
     // Constructor para inyección en tests
-    public ScoreServlet(ScoreService scoreService) {
+    public ScoreServlet2(ScoreService scoreService) {
         this.oScoreService = scoreService;
     }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)  {
         try {
-            List<ScoreDto> highScoresList = oScoreService.getHighScores();
+            List<ScoreDto2> highScoresList = (List<ScoreDto2>) oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("highscores_t.jsp");
             dispatcher.forward(request, response);

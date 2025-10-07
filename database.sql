@@ -41,6 +41,18 @@ INSERT INTO `capitals_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VA
 (9, 5, 22, 30, '2025-09-14 22:36:23');
 
 -- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla `trivial_score`
+--
+
+CREATE TABLE `trivial_score` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
+  `tries` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
@@ -73,6 +85,12 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 ALTER TABLE `capitals_score`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indices de la tabla `trivial_score`
+--
+ALTER TABLE `trivial_score`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`

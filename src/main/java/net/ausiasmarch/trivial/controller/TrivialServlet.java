@@ -16,14 +16,14 @@ import javax.servlet.http.HttpSession;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 import net.ausiasmarch.trivial.dao.ScoreDao2;
-import net.ausiasmarch.trivial.model.ScoreDto;
+import net.ausiasmarch.trivial.model.ScoreDto2;
 import net.ausiasmarch.trivial.model.TrivialBean;
-import net.ausiasmarch.trivial.model.TrivialBean;
-
 import net.ausiasmarch.trivial.service.TrivialService;
 
 @WebServlet("/trivial/TrivialServlet")
 public class TrivialServlet extends HttpServlet {
+
+    private TrivialService trivialService = new TrivialService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,18 +36,18 @@ public class TrivialServlet extends HttpServlet {
             return;
         }
 
-        TrivialService trivialService = new TrivialService();
-        TrivialBean jsonResponse = trivialService.fetchTriviaQuestions();
+        // Obtener la siguiente pregunta usando la cache de sesión
+        TrivialBean nextQuestion = trivialService.getNextQuestion(session);
 
-        if (jsonResponse == null) {
+        if (nextQuestion == null) {
             request.setAttribute("errorMessage", "Error fetching trivial questions");
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
             return;
         }
 
-        session.setAttribute("triviaQuestions", jsonResponse);
-        request.setAttribute("question", jsonResponse);
+        session.setAttribute("currentQuestion", nextQuestion);
+        request.setAttribute("question", nextQuestion);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/trivial/game_t.jsp");
         dispatcher.forward(request, response);
@@ -64,22 +64,27 @@ public class TrivialServlet extends HttpServlet {
             return;
         }
 
+        TrivialBean currentQuestion = (TrivialBean) session.getAttribute("currentQuestion");
+        if (currentQuestion == null) {
+            response.sendRedirect("TrivialServlet"); // si no hay pregunta, redirige a GET
+            return;
+        }
+
         String selectedAnswer = request.getParameter("selectedAnswer");
-        TrivialBean currentQuestion = (TrivialBean) session.getAttribute("triviaQuestions");
         boolean correct = selectedAnswer != null && selectedAnswer.equals(currentQuestion.getCorrectAnswer());
 
         try (Connection oConnection = HikariPool.getConnection()) {
 
             ScoreDao2 scoreDao = new ScoreDao2(oConnection);
 
-            ScoreDto scoreDto = new ScoreDto();
+            ScoreDto2 scoreDto = new ScoreDto2();
             scoreDto.setUserId(user.getId());
-            scoreDto.setScore(1); 
+            scoreDto.setScore(1); // cada pregunta suma 1
 
             scoreDao.insertOrUpdate(scoreDto, correct);
 
-            ScoreDto userScore = scoreDao.get(user.getId());
-            List<ScoreDto> highScores = scoreDao.getTop10();
+            ScoreDto2 userScore = scoreDao.get(user.getId());
+            List<ScoreDto2> highScores = scoreDao.getTop10();
 
             request.setAttribute("userScore", userScore);
             request.setAttribute("highScores", highScores);
@@ -96,3 +101,4 @@ public class TrivialServlet extends HttpServlet {
         }
     }
 }
+

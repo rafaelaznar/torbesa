@@ -72,7 +72,7 @@
         <!-- Botones principales -->
         <div class="d-flex flex-column gap-3 mb-5 w-50">
             <a href="../trivial/TrivialServlet" class="btn btn-play btn-lg">Start Playing <i class="bi bi-play-fill"></i></a>
-            <a href="../trivial/ScoreServlet" class="btn btn-scores btn-lg">Top Scores <i class="bi bi-trophy-fill"></i></a>
+            <a href="../trivial/ScoreServlet2" class="btn btn-scores btn-lg">Top Scores <i class="bi bi-trophy-fill"></i></a>
         </div>
 
         <!-- Cómo jugar -->

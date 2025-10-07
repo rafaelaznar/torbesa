@@ -85,7 +85,7 @@
 
                 <!-- Botones adicionales -->
                 <div class="mt-4 d-flex flex-column gap-2">
-                    <form method="get" action="ScoreServlet">
+                    <form method="get" action="ScoreServlet2">
                         <button type="submit" class="btn btn-info w-100 text-white"><i class="bi bi-trophy-fill"></i> View High Scores</button>
                     </form>
 
