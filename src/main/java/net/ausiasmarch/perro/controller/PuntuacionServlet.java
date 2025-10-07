@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.ausiasmarch.capitals.model.ScoreDto;
 import net.ausiasmarch.perro.model.PuntuacionDto;
 import net.ausiasmarch.perro.service.PuntuacionService;
 

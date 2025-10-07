@@ -1,17 +1,20 @@
 package net.ausiasmarch.perro.controller;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.ausiasmarch.perro.dao.PuntuacionDao;
 import net.ausiasmarch.perro.model.PuntuacionDto;
 import net.ausiasmarch.perro.service.PerroService;
+import net.ausiasmarch.perro.service.PuntuacionService;
 import net.ausiasmarch.shared.model.UserBean;
 
 @WebServlet("/perro/JuegoServlet")
@@ -52,39 +55,56 @@ public class JuegoServlet extends HttpServlet{
         HttpSession session = request.getSession();
         String respuesta = request.getParameter("respuesta");
         String razaCorrecta = request.getParameter("razaCorrecta");
-        Integer puntuacion = (Integer) session.getAttribute("puntuacion");
-        if (puntuacion == null) puntuacion = 0;
+        
         boolean esCorrecta = respuesta != null && respuesta.equals(razaCorrecta);
-        if (esCorrecta) {
-            puntuacion++;
-        } else {
-            puntuacion--;
-        }
-        session.setAttribute("puntuacion", puntuacion);
         request.setAttribute("resultado", esCorrecta ? "¡Correcto!" : "Incorrecto");
 
-        // Insertar SIEMPRE un nuevo registro en dog_score usando PuntuacionDto
+        // Usar el servicio de puntuación para actualizar/insertar correctamente
         UserBean user = (UserBean) session.getAttribute("sessionUser");
+        PuntuacionDto ultimaPuntuacion = null;
         if (user != null) {
             try {
-                PuntuacionDto puntuacionDto = new PuntuacionDto();
-                puntuacionDto.setUserId(user.getId());
-                puntuacionDto.setUsername(user.getUsername());
-                puntuacionDto.setScore(puntuacion);
-                puntuacionDto.setTries(1);
-                puntuacionDto.setTimestamp(LocalDateTime.now());
-                new net.ausiasmarch.perro.dao.PuntuacionDao(
+                // Usar el servicio que maneja correctamente updates/inserts
+                PuntuacionService puntuacionService = new PuntuacionService();
+                puntuacionService.set(user.getId(), esCorrecta);
+                
+                // Obtener la puntuación actualizada del usuario
+                PuntuacionDao puntuacionDao = new PuntuacionDao(
                     net.ausiasmarch.shared.connection.HikariPool.getConnection()
-                ).insert(puntuacionDto);
+                );
+                ultimaPuntuacion = puntuacionDao.get(user.getId());
+                
+                // Actualizar la sesión con la puntuación actual
+                if (ultimaPuntuacion != null) {
+                    session.setAttribute("puntuacion", ultimaPuntuacion.getScore());
+                }
+                
             } catch (Exception e) {
-                System.err.println("Error insertando puntuación en dog_score: " + e.getMessage());
+                System.err.println("Error actualizando puntuación en dog_score: " + e.getMessage());
             }
         }
-        // Redirigir a puntuacion.jsp tras responder
+        
+        // Establecer atributos para la página de puntuación
+        request.setAttribute("country", "Raza de Perro"); // Para el contexto del juego de perros
+        request.setAttribute("capitalGuess", respuesta);
+        request.setAttribute("correctCapital", razaCorrecta);
+        request.setAttribute("userScore", ultimaPuntuacion);
+        
+        // Obtener y establecer las mejores puntuaciones
         try {
-            response.sendRedirect("puntuacion.jsp");
-        } catch (IOException e) {
-            e.printStackTrace();
+            PuntuacionService puntuacionService = new PuntuacionService();
+            java.util.List<PuntuacionDto> highScoresList = puntuacionService.getHighScores();
+            request.setAttribute("highScores", highScoresList);
+        } catch (SQLException e) {
+            System.err.println("Error obteniendo mejores puntuaciones: " + e.getMessage());
+        }
+        
+        // Usar forward en lugar de redirect para mantener los atributos
+        try {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("puntuacion.jsp");
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException e) {
+            System.err.println("Error redirigiendo a puntuación: " + e.getMessage());
         }
     }
 }

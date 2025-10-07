@@ -38,6 +38,13 @@ public class PuntuacionService {
     public List<PuntuacionDto> getHighScores() throws SQLException {        
         try (Connection oConnection = HikariPool.getConnection()) {
             PuntuacionDao puntuacionDao = new PuntuacionDao(oConnection);
+            
+            // Limpieza automática si hay demasiados registros totales
+            int totalRecords = puntuacionDao.count();
+            if (totalRecords > 50) { // Si hay más de 50 registros, probablemente hay duplicados
+                puntuacionDao.sanitize();
+            }
+            
             return puntuacionDao.getTop10();
         }
     }
