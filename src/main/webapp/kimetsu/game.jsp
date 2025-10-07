@@ -23,27 +23,32 @@
                         <h2 class="card-title text-center mb-4">Guess the Kimetsu!</h2>
                         <form method="post" action="GameServlet">
                             <div class="mb-4 text-center">
-                                <h4>What is the kimetsu of <span class="text-primary">${country}</span>?</h4>
+                                <h4>What is the kimetsu of <span class="text-primary">${name}</span>?</h4>
                             </div>
-                            <!-- send the country name as a hidden field -->
-                            <input type="hidden" name="country" value="${country}">
+
+                            <!-- send the character name as a hidden field -->
+                            <input type="hidden" name="name" value="${name}">
+
                             <div class="mb-3 d-flex justify-content-center">
                                 <div class="w-50 text-start">
                                     <c:forEach var="option" items="${options}">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="capitalGuess"
-                                                id="option${option}" value="${option}" required>
+                                            <input class="form-check-input" type="radio" name="quoteGuess"
+                                                   id="option${option}" value="${option}" required>
                                             <label class="form-check-label"
-                                                for="option${option}">${option}</label>
+                                                   for="option${option}">${option}</label>
                                         </div>
                                     </c:forEach>
                                 </div>
                             </div>
+
                             <button type="submit" class="btn btn-success w-100">Submit Answer</button>
                         </form>
+
                         <div class="mt-4 text-center">
                             <span class="fw-bold">Score:</span> <span class="badge bg-primary">${score}</span>
                         </div>
+
                         <form method="get" action="ScoreServlet" class="mt-3">
                             <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
                         </form>
@@ -55,6 +60,7 @@
             </div>
         </div>
     </div>
+
     <jsp:include page="../shared/footer.jsp" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
