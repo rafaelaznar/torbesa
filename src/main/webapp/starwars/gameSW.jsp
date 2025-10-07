@@ -28,6 +28,8 @@
 
                             <input type="hidden" name="correctSpeciesName" value="${character.species}">
 
+                            <input type="hidden" name="lastCharacterName" value="${character.name}">
+
                             <div class="mb-3 d-flex justify-content-center">
                                 <div class="w-50 text-start">
                                     <c:forEach var="option" items="${options}">

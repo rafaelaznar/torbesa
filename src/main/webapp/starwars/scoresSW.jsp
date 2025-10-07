@@ -49,7 +49,7 @@
                                 <div class="mb-3">
                                     <h5>
                                         <strong class="text-muted">Character:</strong>
-                                        <span class="badge bg-primary ms-2">${character}</span>
+                                        <span class="badge bg-primary ms-2">${lastCharacterName}</span>
                                     </h5>
                                 </div>
                                 
@@ -63,7 +63,7 @@
                                 <div class="mb-0">
                                     <h5>
                                         <strong class="text-muted">Correct Answer:</strong>
-                                        <span class="badge bg-success ms-2">${correctCharacter}</span>
+                                        <span class="badge bg-success ms-2">${correctSpeciesName}</span>
                                     </h5>
                                 </div>
                             </div>
