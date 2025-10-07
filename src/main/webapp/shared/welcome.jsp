@@ -215,24 +215,26 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="card game-card shadow-sm border-0 h-100">
-                        <div class="card-body text-center p-4">
-                            <div class="mb-3">
-                                <i class="bi bi-lightning-charge text-danger" style="font-size: 3rem;"></i>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card game-card shadow-sm border-0 h-100">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3">
+                                                <i class="bi bi-pc-display-horizontal text-danger"
+                                                    style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="card-title text-danger mb-3">Computer Science Trivia</h5>
+                                            <p class="card-text text-muted mb-4">
+                                                Discover the wonders of science through engaging trivia questions.
+                                            </p>
+                                            <a href="../trivialReyna/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                                <i class="bi bi-play-fill"></i> Play Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <h5 class="card-title text-danger mb-3">Science Trivia</h5>
-                            <p class="card-text text-muted mb-4">
-                                Discover the wonders of science through engaging trivia questions.
-                            </p>
-                            <a href="../trivialReyna/landing.jsp" class="btn btn-primary btn-lg w-100">
-                                <i class="bi bi-play-fill"></i> Play Now
-                            </a>
                         </div>
                     </div>
                 </div>
