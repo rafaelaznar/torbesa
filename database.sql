@@ -64,6 +64,22 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (5, 'rafa', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e');
 
 --
+-- Table structure for table `pokemon_score`
+
+CREATE TABLE `pokemon_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+
+
+--
 -- Indexes for dumped tables
 --
 
@@ -80,6 +96,14 @@ ALTER TABLE `capitals_score`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indices de la tabla `pokemon_score`
+--
+
+ALTER TABLE `pokemon_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pokemon_score_ibfk_1` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -106,4 +130,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `capitals_score`
   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `pokemon_score`
+--
+ALTER TABLE `pokemon_score`
+  ADD CONSTRAINT `pokemon_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 COMMIT;
