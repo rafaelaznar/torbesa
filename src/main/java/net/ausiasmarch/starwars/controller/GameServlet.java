@@ -65,6 +65,7 @@ public class GameServlet extends HttpServlet {
         request.setAttribute("character", selectedCharacter);      
         request.setAttribute("options", optionsList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("gameSW.jsp");
+        
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

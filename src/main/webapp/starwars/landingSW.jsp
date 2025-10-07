@@ -22,8 +22,8 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1 class="display-4">Welcome to the Star Wars's Game!</h1>
-                <p class="lead">Test your skills by guessing the Star Wars character!</p>
+                <h1 class="display-4">Welcome to Star Wars's Game!</h1>
+                <p class="lead">Test your skills by guessing the species of each Star Wars character!</p>
                 <a href="${pageContext.request.contextPath}/starwars/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
                 <a href="scoresSW.jsp" class="btn btn-warning btn-lg m-4">Top scores</a>
             </div>
@@ -35,8 +35,8 @@
                     <div class="card-body">
                         <h5 class="card-title">How to Play?</h5>
                         <ul class="list-group list-group-flush text-start">
-                            <li class="list-group-item">Sign in with your username and password.</li>
-                            <li class="list-group-item">Guess the character by his image.</li>
+                            <li class="list-group-item">Log in with your username and password.</li>
+                            <li class="list-group-item">Guess the species of characters.</li>
                             <li class="list-group-item">Earn points for correct answers.</li>
                             <li class="list-group-item">View high scores and challenge your friends!</li>
                             <li class="list-group-item">Also this code is MIT licensed.</li>

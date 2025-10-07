@@ -91,7 +91,7 @@
                                         <div class="mb-3">
                                             <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
                                         </div>
-                                        <h5 class="card-title text-primary mb-3">Star Wars Game</h5>
+                                        <h5 class="card-title text-primary mb-3">STAR WARS</h5>
                                         <p class="card-text text-muted mb-4">
                                             Test your Star Wars knowledge! Guess the species of each Star Wars character.
                                         </p>

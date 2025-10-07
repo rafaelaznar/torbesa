@@ -18,11 +18,11 @@
             <div class="col-md-8">
                 <div class="card shadow-lg">
                     <div class="card-body">
-                        <h2 class="card-title text-center mb-4">Guess the Character's Species!</h2>
+                        <h2 class="card-title text-center mb-4">Guess the species of Star Wars characters!</h2>
                         
                         <form method="post" action="GameServlet">
                             <div class="mb-4 text-center">
-                                <h4>¿Cuál es la especie de este personaje?</h4>
+                                <h4>What is the species of this character?</h4>
                                 <p class="lead text-primary fw-bold mt-3">${character.name}</p>
                             </div>
 
