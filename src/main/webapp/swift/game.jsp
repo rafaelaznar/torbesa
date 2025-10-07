@@ -29,12 +29,12 @@
                                     <input type="hidden" name="song" value="${title}">
                                     <div class="mb-3 d-flex justify-content-center">
                                         <div class="w-50 text-start">
-                                            <c:forEach var="option" items="${options}">
+                                            <c:forEach var="option" items="${options}" varStatus="status">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="radio" name="albumGuess"
-                                                        id="option${option}" value="${option}" required>
+                                                        id="option${status.index}" value="${option}" required>
                                                     <label class="form-check-label"
-                                                        for="option${option}">${option}</label>
+                                                        for="option${status.index}">${option}</label>
                                                 </div>
                                             </c:forEach>
                                         </div>

@@ -24,8 +24,8 @@
                 <div class="col-md-8 text-center">
                     <h1 class="display-4">Welcome to the Country Capital's Game!</h1>
                     <p class="lead">Test your geography skills by guessing country capitals!</p>
-                    <a href="../capitals/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
-                    <a href="../capitals/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
+                    <a href="../swift/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
+                    <a href="../swift/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
                 </div>
             </div>
             <div class="row mt-5">

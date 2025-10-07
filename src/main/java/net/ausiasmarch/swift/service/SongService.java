@@ -15,14 +15,14 @@ import org.json.JSONObject;
 import net.ausiasmarch.swift.model.SongBean;
 
 public class SongService {
-    private static final String API_URL = "https://taylor-swift-api.sarbo.workers.dev/songs?fields=title&fields=album_id";
+    private static final String API_URL = "https://taylor-swift-api.sarbo.workers.dev/songs";
     private ServletContext oContext = null;
 
     public SongService(ServletContext oContext) {
         this.oContext = oContext;
     }
 
-    public List<SongBean> fetchAllSongs() {
+    public List<SongBean> GetAllSongs() {
 
         if (this.oContext != null) {
             // obtener el atributo "songs" del contexto
@@ -37,9 +37,10 @@ public class SongService {
         System.out.println("Downloading songs....");
         List<SongBean> songs = new ArrayList<>();
         try {
-            URL url = new URL(API_URL);
+            URL url = new URL("https://taylor-swift-api.sarbo.workers.dev/songs");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine;
             StringBuilder content = new StringBuilder();
@@ -50,9 +51,14 @@ public class SongService {
             JSONArray arr = new JSONArray(content.toString());
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
-                String song = obj.getJSONObject("song").getString("title");
+
+                SongBean song = new SongBean();
+                song.setCancion(obj.getString("title"));
+                song.setAlbum(obj.optString("album_id", ""));
+                songs.add(song);
+                /* String song = obj.getJSONObject("song").getString("title");
                 String album = obj.has("album") ? obj.getJSONArray("album_id").optString(0, "") : "";
-                songs.add(new SongBean(song, album));
+                songs.add(new SongBean(song, album)); */
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,7 +69,7 @@ public class SongService {
     }
 
     public SongBean getSongByName(String name) {
-        for (SongBean song : fetchAllSongs()) {
+        for (SongBean song : GetAllSongs()) {
             if (song.getCancion().equalsIgnoreCase(name)) {
                 return song;
             }
@@ -77,7 +83,7 @@ public class SongService {
     }
 
     public String getAlbumBySongName(String name) {
-        for (SongBean song : fetchAllSongs()) {
+        for (SongBean song : GetAllSongs()) {
             if (song.getAlbum().equalsIgnoreCase(name)) {
                 return song.getCancion();
             }
@@ -86,7 +92,12 @@ public class SongService {
     }
 
     public SongBean getOneRandomSong() {
-        List<SongBean> oSongs = fetchAllSongs();
+        List<SongBean> oSongs = GetAllSongs();
+        if (oSongs == null || oSongs.isEmpty()) {
+            System.err.println("⚠️ No se pudieron obtener canciones de la API.");
+            return null;
+        }
+
         int randomIndex0 = (int) (Math.random() * oSongs.size());
         SongBean selectedSong = oSongs.get(randomIndex0); 
         while (selectedSong.getAlbum().trim().isEmpty()) {
@@ -100,7 +111,7 @@ public class SongService {
         if (numAlbums < 1) {
             numAlbums = 4;
         }
-        List<SongBean> oSongs = fetchAllSongs();
+        List<SongBean> oSongs = GetAllSongs();
 
         ArrayList<String> selectedAlbumsList = new ArrayList<>();
 

@@ -4,6 +4,9 @@ public class SongBean {
     private String cancion;
     private String album;
 
+    public SongBean() {
+    }
+
     public SongBean(String cancion, String album) {
         this.cancion = cancion;
         this.album = album;
