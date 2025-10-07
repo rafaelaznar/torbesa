@@ -90,7 +90,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `capitals_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+--
+-- AUTO_INCREMENT for table `dog_score`
+--
+ALTER TABLE dog_score
+  MODIFY id int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `users`
 --
