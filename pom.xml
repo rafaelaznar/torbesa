@@ -12,7 +12,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <dependencies>
         <!-- Servlet API TOMCAT 8 y 9 -->
         <dependency>
