@@ -1,6 +1,7 @@
 package net.ausiasmarch.perro.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.ausiasmarch.perro.model.PerroBean;
+import net.ausiasmarch.perro.model.PuntuacionDto;
 import net.ausiasmarch.perro.service.PerroService;
+import net.ausiasmarch.shared.model.UserBean;
 
 @WebServlet("/perro/JuegoServlet")
 public class JuegoServlet extends HttpServlet{
@@ -18,7 +20,7 @@ public class JuegoServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        PerroBean user = (PerroBean) session.getAttribute("sessionUser");
+    UserBean user = (UserBean) session.getAttribute("sessionUser");
         if (user == null) {
             try {
                 response.sendRedirect("../shared/login.jsp");
@@ -60,16 +62,28 @@ public class JuegoServlet extends HttpServlet{
         }
         session.setAttribute("puntuacion", puntuacion);
         request.setAttribute("resultado", esCorrecta ? "¡Correcto!" : "Incorrecto");
-        // Nueva pregunta
-        PerroService.PreguntaRaza pregunta = new PerroService(getServletContext()).obtenerPreguntaRaza();
-        request.setAttribute("imagenUrl", pregunta.imagenUrl);
-        request.setAttribute("opciones", pregunta.opciones);
-        request.setAttribute("razaCorrecta", pregunta.razaCorrecta);
-        request.setAttribute("puntuacion", puntuacion);
-        RequestDispatcher rd = request.getRequestDispatcher("/perro/juego.jsp");
+
+        // Insertar SIEMPRE un nuevo registro en dog_score usando PuntuacionDto
+        UserBean user = (UserBean) session.getAttribute("sessionUser");
+        if (user != null) {
+            try {
+                PuntuacionDto puntuacionDto = new PuntuacionDto();
+                puntuacionDto.setUserId(user.getId());
+                puntuacionDto.setUsername(user.getUsername());
+                puntuacionDto.setScore(puntuacion);
+                puntuacionDto.setTries(1);
+                puntuacionDto.setTimestamp(LocalDateTime.now());
+                new net.ausiasmarch.perro.dao.PuntuacionDao(
+                    net.ausiasmarch.shared.connection.HikariPool.getConnection()
+                ).insert(puntuacionDto);
+            } catch (Exception e) {
+                System.err.println("Error insertando puntuación en dog_score: " + e.getMessage());
+            }
+        }
+        // Redirigir a puntuacion.jsp tras responder
         try {
-            rd.forward(request, response);
-        } catch (Exception e) {
+            response.sendRedirect("puntuacion.jsp");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -6,7 +6,7 @@
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Country Capital's Game</title>
+            <title>Dog's Game</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
         </head>
@@ -40,8 +40,8 @@
                                     </div>
                                     <button type="submit" class="btn btn-success w-100">Enviar respuesta</button>
                                 </form>
-                                <div class="mt-4 text-center">
-                                    <span class="fw-bold">Puntuación:</span> <span class="badge bg-primary">${puntuacion}</span>
+                                   <div class="mt-4 text-center">
+                                    <span class="fw-bold">Puntuacion:</span> <span class="badge bg-primary">${puntuacion}</span>
                                 </div>
                                 <c:if test="${not empty resultado}">
                                     <div class="alert ${resultado eq '¡Correcto!' ? 'alert-success' : 'alert-danger'} mt-3 text-center">${resultado}</div>

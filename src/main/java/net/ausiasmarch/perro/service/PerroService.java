@@ -35,6 +35,70 @@ public class PerroService {
 
         // Simulación: deberías obtener estos datos de la API real
         public PreguntaRaza obtenerPreguntaRaza() {
+        try {
+            // 1. Obtener imagen aleatoria
+            URL urlImg = new URL("https://dog.ceo/api/breeds/image/random");
+            HttpURLConnection connImg = (HttpURLConnection) urlImg.openConnection();
+            connImg.setRequestMethod("GET");
+            BufferedReader inImg = new BufferedReader(new InputStreamReader(connImg.getInputStream()));
+            StringBuilder contentImg = new StringBuilder();
+            String inputLineImg;
+            while ((inputLineImg = inImg.readLine()) != null) {
+                contentImg.append(inputLineImg);
+            }
+            inImg.close();
+            JSONObject objImg = new JSONObject(contentImg.toString());
+            String imagenUrl = objImg.getString("message");
+
+            // 2. Extraer raza de la URL
+            // Ejemplo: https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg
+            String[] parts = imagenUrl.split("/");
+            String breedFolder = parts[parts.length - 2]; // e.g. hound-afghan
+            String razaCorrecta = breedFolder.replace("-", " ");
+            razaCorrecta = razaCorrecta.substring(0, 1).toUpperCase() + razaCorrecta.substring(1);
+
+            // 3. Obtener lista de razas
+            URL urlBreeds = new URL("https://dog.ceo/api/breeds/list/all");
+            HttpURLConnection connBreeds = (HttpURLConnection) urlBreeds.openConnection();
+            connBreeds.setRequestMethod("GET");
+            BufferedReader inBreeds = new BufferedReader(new InputStreamReader(connBreeds.getInputStream()));
+            StringBuilder contentBreeds = new StringBuilder();
+            String inputLineBreeds;
+            while ((inputLineBreeds = inBreeds.readLine()) != null) {
+                contentBreeds.append(inputLineBreeds);
+            }
+            inBreeds.close();
+            JSONObject objBreeds = new JSONObject(contentBreeds.toString());
+            JSONObject breedsObj = objBreeds.getJSONObject("message");
+            List<String> razas = new ArrayList<>();
+            for (String key : breedsObj.keySet()) {
+                if (breedsObj.getJSONArray(key).length() == 0) {
+                    razas.add(key.substring(0, 1).toUpperCase() + key.substring(1));
+                } else {
+                    for (int i = 0; i < breedsObj.getJSONArray(key).length(); i++) {
+                        String sub = breedsObj.getJSONArray(key).getString(i);
+                        razas.add((key + " " + sub).substring(0, 1).toUpperCase() + (key + " " + sub).substring(1));
+                    }
+                }
+            }
+
+            // 4. Elegir dos razas incorrectas aleatorias
+            List<String> opciones = new ArrayList<>();
+            opciones.add(razaCorrecta);
+            Collections.shuffle(razas);
+            int count = 0;
+            for (String r : razas) {
+                if (!r.equalsIgnoreCase(razaCorrecta)) {
+                    opciones.add(r);
+                    count++;
+                }
+                if (count == 2) break;
+            }
+            Collections.shuffle(opciones);
+            return new PreguntaRaza(imagenUrl, razaCorrecta, opciones);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Fallback en caso de error
             String imagenUrl = "https://images.dog.ceo/breeds/hound-afghan/n02088094_1003.jpg";
             String razaCorrecta = "Afghan Hound";
             List<String> opciones = new ArrayList<>();
@@ -43,6 +107,7 @@ public class PerroService {
             opciones.add("Boxer");
             Collections.shuffle(opciones);
             return new PreguntaRaza(imagenUrl, razaCorrecta, opciones);
+        }
         }
 
     public List<CountryBean> fetchAllCountries() {

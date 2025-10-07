@@ -13,7 +13,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>High Scores - Country Capital Game</title>
+                <title>High Scores - Dog Game</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
                     rel="stylesheet">
@@ -28,11 +28,11 @@
                         <div class="col-lg-10">
 
                             <!-- High Scores Table -->
-                            <jsp:include page="leaderboard.jsp" />
+                            <jsp:include page="tablaLider.jsp" />
 
                             <!-- Action Buttons -->
                             <div class="text-center mt-4">
-                                <form method="get" action="GameServlet" class="d-inline me-3">
+                                <form method="get" action="JuegoServlet" class="d-inline me-3">
                                     <button type="submit" class="btn btn-primary btn-lg">
                                         <i class="bi bi-play-fill"></i> Play
                                     </button>

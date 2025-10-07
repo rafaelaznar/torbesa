@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ausiasmarch.capitals.model.ScoreDto;
+import net.ausiasmarch.perro.model.PuntuacionDto;
 
 public class PuntuacionDao {
 
@@ -18,31 +18,31 @@ public class PuntuacionDao {
         this.oConnection = oConnection;
     }
 
-    public ScoreDto get(int userId) throws SQLException {
+    public PuntuacionDto get(int userId) throws SQLException {
         if (count(userId) > 1) {
             sanitize();
         }
-        ScoreDto oScore = null;
-        String sql = "SELECT * FROM capitals_score, users WHERE capitals_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
+    PuntuacionDto oScore = null;
+        String sql = "SELECT * FROM dog_score, users WHERE dog_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         stmt.setInt(2, userId);
         ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            oScore = new ScoreDto(
-                    rs.getInt("id"),
-                    rs.getInt("user_id"),
-                    rs.getInt("score"),
-                    rs.getInt("tries"),
-                    rs.getTimestamp("timestamp").toLocalDateTime(),
-                    rs.getString("username"));
-        }
+    if (rs.next()) {
+        oScore = new PuntuacionDto(
+            rs.getInt("id"),
+            rs.getInt("user_id"),
+            rs.getInt("score"),
+            rs.getInt("tries"),
+            rs.getTimestamp("timestamp").toLocalDateTime(),
+            rs.getString("username"));
+    }
         return oScore;
     }
 
     public int count(int userId) throws SQLException {
         int count = 0;
-        String sql = "SELECT COUNT(*) AS score_count FROM capitals_score WHERE user_id = ?";
+        String sql = "SELECT COUNT(*) AS score_count FROM dog_score WHERE user_id = ?";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
@@ -53,7 +53,7 @@ public class PuntuacionDao {
     }
 
     public int count() throws SQLException {
-        String countSql = "SELECT COUNT(*) AS total FROM capitals_score";
+        String countSql = "SELECT COUNT(*) AS total FROM dog_score";
         PreparedStatement countStmt = oConnection.prepareStatement(countSql);
         ResultSet rs = countStmt.executeQuery();
         if (rs.next()) {
@@ -68,41 +68,41 @@ public class PuntuacionDao {
         // then remove all scores in database
         // except the last one
         // Delete all scores except the most recent one for each user
-        String sql = "DELETE s1 FROM capitals_score s1 " +
-                "INNER JOIN capitals_score s2 ON s1.user_id = s2.user_id " +
+        String sql = "DELETE s1 FROM dog_score s1 " +
+                "INNER JOIN dog_score s2 ON s1.user_id = s2.user_id " +
                 "WHERE s1.timestamp < s2.timestamp";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         int deletedRows = stmt.executeUpdate();
         System.out.println("Sanitized " + deletedRows + " duplicate scores");
     }
 
-    public List<ScoreDto> getTop10() throws SQLException {
-        List<ScoreDto> scores = new ArrayList<>();
-        String sql = "SELECT * FROM capitals_score, users ";
-        sql += "WHERE capitals_score.user_id = users.id ";
-        sql += "ORDER BY capitals_score.score DESC, capitals_score.timestamp DESC LIMIT 10";
+    public List<PuntuacionDto> getTop10() throws SQLException {
+        List<PuntuacionDto> scores = new ArrayList<>();
+        String sql = "SELECT * FROM dog_score, users ";
+        sql += "WHERE dog_score.user_id = users.id ";
+        sql += "ORDER BY dog_score.score DESC, dog_score.timestamp DESC LIMIT 10";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
-        while (rs.next()) {
-            scores.add(new ScoreDto(
-                    rs.getInt("id"),
-                    rs.getInt("user_id"),
-                    rs.getInt("score"),
-                    rs.getInt("tries"),
-                    rs.getTimestamp("timestamp").toLocalDateTime(),
-                    rs.getString("username")));
-        }
+    while (rs.next()) {
+        scores.add(new PuntuacionDto(
+            rs.getInt("id"),
+            rs.getInt("user_id"),
+            rs.getInt("score"),
+            rs.getInt("tries"),
+            rs.getTimestamp("timestamp").toLocalDateTime(),
+            rs.getString("username")));
+    }
         return scores;
     }
 
-    public List<ScoreDto> getAll() throws SQLException {
-        String sql = "SELECT * FROM capitals_score, users ";
-        sql += "WHERE capitals_score.user_id = users.id";        
+    public List<PuntuacionDto> getAll() throws SQLException {
+        String sql = "SELECT * FROM dog_score, users ";
+        sql += "WHERE dog_score.user_id = users.id";        
         PreparedStatement getAllStmt = oConnection.prepareStatement(sql);
         ResultSet rs = getAllStmt.executeQuery();
-        List<ScoreDto> scores = new ArrayList<>();
+        List<PuntuacionDto> scores = new ArrayList<>();
         while (rs.next()) {
-            scores.add(new ScoreDto(
+            scores.add(new PuntuacionDto(
                     rs.getInt("id"),
                     rs.getInt("user_id"),
                     rs.getInt("score"),
@@ -113,8 +113,8 @@ public class PuntuacionDao {
         return scores;
     }
 
-    public int insert(ScoreDto oScore) throws SQLException {
-        String insertSql = "INSERT INTO capitals_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
+    public int insert(PuntuacionDto oScore) throws SQLException {
+        String insertSql = "INSERT INTO dog_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
         PreparedStatement insertStmt = oConnection.prepareStatement(insertSql);
         insertStmt.setInt(1, oScore.getUserId());
         insertStmt.setInt(2, oScore.getScore());
@@ -122,8 +122,8 @@ public class PuntuacionDao {
         return insertStmt.executeUpdate();
     }
 
-    public int update(ScoreDto oScore) throws SQLException {
-        String updateSql = "UPDATE capitals_score SET score = ?, tries = ?, timestamp = NOW() WHERE user_id = ?";
+    public int update(PuntuacionDto oScore) throws SQLException {
+        String updateSql = "UPDATE dog_score SET score = ?, tries = ?, timestamp = NOW() WHERE user_id = ?";
         PreparedStatement updateStmt = oConnection.prepareStatement(updateSql);
         updateStmt.setInt(1, oScore.getScore());
         updateStmt.setInt(2, oScore.getTries());
@@ -132,7 +132,7 @@ public class PuntuacionDao {
     }
 
     public int delete(int id) throws SQLException {
-        String deleteSql = "DELETE FROM capitals_score WHERE id = ?";
+        String deleteSql = "DELETE FROM dog_score WHERE id = ?";
         PreparedStatement deleteStmt = oConnection.prepareStatement(deleteSql);
         deleteStmt.setInt(1, id);
         return deleteStmt.executeUpdate();
