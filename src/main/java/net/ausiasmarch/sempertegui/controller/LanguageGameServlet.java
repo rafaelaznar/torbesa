@@ -39,15 +39,9 @@ public class LanguageGameServlet extends HttpServlet {
                 System.err.println("Error al redirigir a la página de inicio de sesión: " + e.getMessage());
             }
             return;
-        } else {
-            //request.setAttribute("sessionUser", user); CUIDADO OBSERVAR
         }
+        // Inicializa el contador y el score siempre a la primera pregunta
 
-        // Inicializa el contador y el score si es la primera pregunta
-        if (session.getAttribute("questionCount") == null) {
-            session.setAttribute("questionCount", 0);
-            session.setAttribute("score", 0);
-        }
 
 
         LanguageService languageService = new LanguageService();
@@ -55,9 +49,10 @@ public class LanguageGameServlet extends HttpServlet {
         String translatedWord = LanguageService.translateWord(Language.getWord());
         List<String> randomWordsOptionsList = languageService.getRandomWordsOptionsList(Language.getWord(), 3);    
 
-        request.setAttribute("word", translatedWord);        
+        request.setAttribute("word", translatedWord);
+        request.setAttribute("questionCount", (Integer)0);
+        request.setAttribute("score", (Integer)0);   
         request.setAttribute("options", randomWordsOptionsList);
-        request.setAttribute("score", session.getAttribute("score"));
         request.getRequestDispatcher("languageGame.jsp").forward(request, response);
 
     }
@@ -75,8 +70,8 @@ public class LanguageGameServlet extends HttpServlet {
             request.setAttribute("username", user.getUsername());
         }
 
-        int questionCount = (int) session.getAttribute("questionCount");
-        int score = (int) session.getAttribute("score");
+        Integer questionCount = Integer.valueOf(request.getParameter("questionCount"));
+        Integer score = Integer.valueOf(request.getParameter("score"));
 
         String wordGuess = request.getParameter("wordGuess");
         String correctWord = Language.getWord();
@@ -89,34 +84,22 @@ public class LanguageGameServlet extends HttpServlet {
         try {
             if (wordGuess.equalsIgnoreCase(correctWord)) {
                 score++;
-                scoreService.set(user.getId(), true);
-                request.setAttribute("message", "Correct! Well done.");
-            } else {
-                scoreService.set(user.getId(), false);
-                request.setAttribute("message", "Incorrect. Try again!");
             }
 
             questionCount++;
-            session.setAttribute("questionCount", questionCount);
-            session.setAttribute("score", score);
+            request.setAttribute("questionCount", questionCount);
+            request.setAttribute("score", score);
        
-            if(questionCount >= MAX_QUESTIONS) {
+            if(!(questionCount < MAX_QUESTIONS)) {
                 
-                scoreService.set(user.getId()); // cambiar estoi
+                scoreService.set(user.getId(), score); // cambiar estoi
                 try (Connection oConnection = HikariPool.getConnection()) {
 
                     LanguageScoreDao oScoreDao = new LanguageScoreDao(oConnection);
                     LanguageScoreDto userScore = oScoreDao.get(user.getId());
                     request.setAttribute("userScore", userScore);
-
                     List<LanguageScoreDto> highScores = oScoreDao.getTop10();
                     request.setAttribute("highScores", highScores);
-
-                    request.setAttribute("numQuestions", MAX_QUESTIONS);
-                    
-                    //Limpia la sesión para un nuevo juego
-                    session.removeAttribute("questionCount");
-                    session.removeAttribute("score");
 
                     request.getRequestDispatcher("languageScores.jsp").forward(request, response);
                 }
@@ -129,7 +112,6 @@ public class LanguageGameServlet extends HttpServlet {
 
                 request.setAttribute("word", translatedWord);
                 request.setAttribute("options", randomWordsOptionsList);
-                request.setAttribute("score", score);
                 request.getRequestDispatcher("languageGame.jsp").forward(request, response);
             }
         } catch(SQLException e){

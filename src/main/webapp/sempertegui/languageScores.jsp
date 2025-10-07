@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
@@ -86,7 +86,7 @@
                                             <div class="row text-center">
                                                 <div class="col-4">
                                                     <div class="border-end">
-                                                        <h3 class="text-success mb-1">${userScore.score}</h3>
+                                                        <h3 class="text-success mb-1">${score}</h3> <!-- userScore.score -->
                                                         <small class="text-muted">Score</small>
                                                     </div>
                                                 </div>
@@ -100,7 +100,7 @@
                                                     <div>
                                                         <h6 class="text-primary mb-1 h3">
                                                             <fmt:formatNumber
-                                                                value="${userScore.score / numQuestions * 100}"
+                                                                value="${userScore.score / questionCount * 100}"
                                                                 maxFractionDigits="1" />%
                                                         </h6>
                                                         <small class="text-muted">Accuracy</small>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <!DOCTYPE html>
         <html lang="en">
@@ -27,6 +27,8 @@
                                     </div>
                                     <!-- send the word name as a hidden field -->
                                     <input type="hidden" name="word" value="${word}">
+                                    <input type="hidden" name="questionCount" value="${questionCount}">
+                                    <input type="hidden" name="score" value="${score}">
                                     <div class="mb-3 d-flex justify-content-center">
                                         <div class="w-50 text-start">
                                             <c:forEach var="option" items="${options}">
