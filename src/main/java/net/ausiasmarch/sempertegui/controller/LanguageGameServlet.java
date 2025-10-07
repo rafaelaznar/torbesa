@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.ausiasmarch.sempertegui.dao.LanguageScoreDao;
-import net.ausiasmarch.sempertegui.model.LanguageBean;
+import net.ausiasmarch.sempertegui.model.Language;
 import net.ausiasmarch.sempertegui.model.LanguageScoreDto;
 import net.ausiasmarch.sempertegui.service.LanguageScoreService;
 import net.ausiasmarch.sempertegui.service.LanguageService;
@@ -42,9 +42,9 @@ public class LanguageGameServlet extends HttpServlet {
         }
 
         LanguageService languageService = new LanguageService();
-        LanguageBean.setWord(languageService.getOneRandomWord());
-        String translatedWord = LanguageService.translateWord(LanguageBean.getWord());
-        List<String> randomWordsOptionsList = languageService.getRandomWordsOptionsList(LanguageBean.getWord(), 3);    
+        Language.setWord(languageService.getOneRandomWord());
+        String translatedWord = LanguageService.translateWord(Language.getWord());
+        List<String> randomWordsOptionsList = languageService.getRandomWordsOptionsList(Language.getWord(), 3);    
 
         request.setAttribute("word", translatedWord);        
         request.setAttribute("options", randomWordsOptionsList);
@@ -69,7 +69,7 @@ public class LanguageGameServlet extends HttpServlet {
           //  String word = request.getParameter("word");
             String wordGuess = request.getParameter("wordGuess");
 
-            if (wordGuess.equalsIgnoreCase(LanguageBean.getWord())) {
+            if (wordGuess.equalsIgnoreCase(Language.getWord())) {
 
                 scoreService.set(user.getId(), true);
 

@@ -1,6 +1,6 @@
 package net.ausiasmarch.sempertegui.model;
 
-public class LanguageBean {
+public class Language {
 
     private static String word;
 
@@ -9,6 +9,6 @@ public class LanguageBean {
     }
 
     public static void setWord(String word) {
-        LanguageBean.word = word;
+        Language.word = word;
     }
 }
