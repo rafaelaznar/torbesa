@@ -46,7 +46,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
-                                    <td><strong class="h5">${score.username}</strong></td>
+                                    <td><strong class="h5">User ${score.userId}</strong></td>
                                     <td class="text-center">
                                         <h4><span class="badge bg-success">${score.score}</span>
                                         </h4>

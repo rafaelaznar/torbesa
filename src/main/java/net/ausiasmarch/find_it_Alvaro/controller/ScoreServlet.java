@@ -15,15 +15,15 @@ import net.ausiasmarch.find_it_Alvaro.model.ScoreDto;
 import net.ausiasmarch.find_it_Alvaro.service.ScoreService;
 
 @WebServlet("/find_it_alvaro/ScoreServlet")
-public class Score_Servlet extends HttpServlet {
+public class ScoreServlet extends HttpServlet {
     private ScoreService oScoreService;
 
-    public Score_Servlet() {
+    public ScoreServlet() {
         this.oScoreService = new ScoreService();
     }
 
     // Constructor para inyección en tests
-    public Score_Servlet(ScoreService scoreService) {
+    public ScoreServlet(ScoreService scoreService) {
         this.oScoreService = scoreService;
     }
 

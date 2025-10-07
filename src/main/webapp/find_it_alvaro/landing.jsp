@@ -25,7 +25,7 @@
                     <h1 class="display-4">Welcome to the the Honkai Star rail game!</h1>
                     <p class="lead">Test your character knowledge by guessing their element!</p>
                     <a href="../find_it_Alvaro/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
-                    <a href="../find_it_Alvaro/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
+                    <a href="ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
                 </div>
             </div>
             <div class="row mt-5">

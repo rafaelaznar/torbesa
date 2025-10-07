@@ -177,24 +177,24 @@
 
                              <!-- Juego de Alvaro -->
                             <div class="col-md-6 col-lg-4">
-                                <div class="card game-card shadow-sm border-0 h-100">
+                                <div class="card game-card shadow-sm border-0 h-100" style="border-top: 5px solid #a259e6;">
                                     <div class="card-body text-center p-4">
                                         <div class="mb-3">
-                                            <i class="bi bi bi-stars text-primary" style="font-size: 3rem;"></i>
+                                            <i class="bi bi-stars" style="font-size: 3rem; color: #a259e6;"></i>
                                         </div>
-                                        <h5 class="card-title text-primary mb-3">Honkai Star Rail Game</h5>
+                                        <h5 class="card-title mb-3" style="color: #a259e6;">Honkai Star Rail Game</h5>
                                         <p class="card-text text-muted mb-4">
                                         Guess the character element!
                                         </p>
                                         <p class="card-text text-muted mb-4">
                                             By Álvaro Contreras
                                         </p>
-                                        <a href="capitals/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                        <a href="capitals/landing.jsp" class="btn btn-lg w-100" style="background-color: #a259e6; color: #fff;">
                                             <i class="bi bi-play-fill"></i> Play Now
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div
                         </div>
                     </div>
                 </div>

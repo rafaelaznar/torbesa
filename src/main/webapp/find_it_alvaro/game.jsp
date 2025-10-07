@@ -23,20 +23,20 @@
                         <h2 class="card-title text-center mb-4">Guess the Character!</h2>
                         <form method="post" action="GameServlet">
                             <div class="mb-4 text-center">
-                                <h4>What is the element of <span class="text-primary">${characterName}</span>?</h4>
+                                <h4>What is the element of <span class="text-primary">${selectedCharacter.name}</span>?</h4>
                             </div>
 
-                            <!-- Hidden field with correct element -->
-                            <input type="hidden" name="element" value="${element}">
+                            <!-- Hidden field with correct character name -->
+                            <input type="hidden" name="characterName" value="${selectedCharacter.name}">
 
                             <div class="mb-3 d-flex justify-content-center">
                                 <div class="w-50 text-start">
                                     <c:forEach var="option" items="${options}">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="elementGuess"
-                                                id="option${option}" value="${option}" required>
+                                                id="option${option.element}" value="${option.element}" required>
                                             <label class="form-check-label"
-                                                for="option${option}">${option}</label>
+                                                for="option${option.element}">${option.element}</label>
                                         </div>
                                     </c:forEach>
                                 </div>

@@ -8,7 +8,6 @@ import java.util.Date;
 public class ScoreDto {
     private int id;
     private int userId;
-    private String username;
     private int score;
     private int tries;
     private LocalDateTime timestamp;
@@ -29,14 +28,6 @@ public class ScoreDto {
         this.timestamp = timestamp;
     }
 
-    public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
-        this.id = id;
-        this.userId = userId;
-        this.score = score;
-        this.tries = tries;
-        this.timestamp = timestamp;
-        this.username = username;
-    }
 
     public int getId() {
         return id;
@@ -46,9 +37,6 @@ public class ScoreDto {
         return userId;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
     public int getScore() {
         return score;
@@ -74,9 +62,6 @@ public class ScoreDto {
         this.userId = userId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public void setScore(int score) {
         this.score = score;

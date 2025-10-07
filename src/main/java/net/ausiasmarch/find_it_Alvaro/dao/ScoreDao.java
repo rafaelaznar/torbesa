@@ -22,7 +22,7 @@ public class ScoreDao {
 
     public ScoreDto get(int userId) throws SQLException {
         ScoreDto oScore = null;
-        String sql = "SELECT * FROM puntuajes_score WHERE user_id = ? ORDER BY timestamp DESC LIMIT 1";
+        String sql = "SELECT * FROM personajes_score WHERE user_id = ? ORDER BY timestamp DESC LIMIT 1";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
@@ -33,7 +33,7 @@ public class ScoreDao {
     }
 
     public int count(int userId) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM puntuajes_score WHERE user_id = ?";
+        String sql = "SELECT COUNT(*) FROM personajes_score WHERE user_id = ?";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();
@@ -44,7 +44,7 @@ public class ScoreDao {
     }
 
     public int count() throws SQLException {
-        String sql = "SELECT COUNT(*) FROM puntuajes_score";
+        String sql = "SELECT COUNT(*) FROM personajes_score";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         if (rs.next()) {
@@ -54,14 +54,14 @@ public class ScoreDao {
     }
 
     public void sanitize() throws SQLException {
-        String sql = "DELETE FROM puntuajes_score WHERE score < 0";
+        String sql = "DELETE FROM personajes_score WHERE score < 0";
         Statement stmt = oConnection.createStatement();
         stmt.executeUpdate(sql);
     }
 
     public List<ScoreDto> getTop10() throws SQLException {
         List<ScoreDto> scores = new ArrayList<>();
-        String sql = "SELECT * FROM puntuajes_score ORDER BY score DESC, tries ASC LIMIT 10";
+        String sql = "SELECT * FROM personajes_score ORDER BY score DESC, tries ASC LIMIT 10";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()) {
@@ -72,7 +72,7 @@ public class ScoreDao {
 
     public List<ScoreDto> getAll() throws SQLException {
         List<ScoreDto> scores = new ArrayList<>();
-        String sql = "SELECT * FROM puntuajes_score ORDER BY timestamp DESC";
+        String sql = "SELECT * FROM personajes_score ORDER BY timestamp DESC";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()) {
@@ -82,13 +82,12 @@ public class ScoreDao {
     }
 
     public int insert(ScoreDto oScore) throws SQLException {
-        String sql = "INSERT INTO puntuajes_score (user_id, score, tries, timestamp, username) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement stmt = oConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        stmt.setInt(1, oScore.getUserId());
-        stmt.setInt(2, oScore.getScore());
-        stmt.setInt(3, oScore.getTries());
-        stmt.setTimestamp(4, Timestamp.valueOf(oScore.getTimestamp()));
-        stmt.setString(5, oScore.getUsername());
+    String sql = "INSERT INTO personajes_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, ?)";
+    PreparedStatement stmt = oConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+    stmt.setInt(1, oScore.getUserId());
+    stmt.setInt(2, oScore.getScore());
+    stmt.setInt(3, oScore.getTries());
+    stmt.setTimestamp(4, Timestamp.valueOf(oScore.getTimestamp()));
         int affectedRows = stmt.executeUpdate();
         if (affectedRows == 0) {
             throw new SQLException("Insert failed, no rows affected.");
@@ -103,18 +102,17 @@ public class ScoreDao {
     }
 
     public int update(ScoreDto oScore) throws SQLException {
-        String sql = "UPDATE puntuajes_score SET score = ?, tries = ?, timestamp = ?, username = ? WHERE id = ?";
-        PreparedStatement stmt = oConnection.prepareStatement(sql);
-        stmt.setInt(1, oScore.getScore());
-        stmt.setInt(2, oScore.getTries());
-        stmt.setTimestamp(3, Timestamp.valueOf(oScore.getTimestamp()));
-        stmt.setString(4, oScore.getUsername());
-        stmt.setInt(5, oScore.getId());
+    String sql = "UPDATE personajes_score SET score = ?, tries = ?, timestamp = ? WHERE id = ?";
+    PreparedStatement stmt = oConnection.prepareStatement(sql);
+    stmt.setInt(1, oScore.getScore());
+    stmt.setInt(2, oScore.getTries());
+    stmt.setTimestamp(3, Timestamp.valueOf(oScore.getTimestamp()));
+    stmt.setInt(4, oScore.getId());
         return stmt.executeUpdate();
     }
 
     public int delete(int id) throws SQLException {
-        String sql = "DELETE FROM puntuajes_score WHERE id = ?";
+        String sql = "DELETE FROM personajes_score WHERE id = ?";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, id);
         return stmt.executeUpdate();
@@ -126,8 +124,7 @@ public class ScoreDao {
         int score = rs.getInt("score");
         int tries = rs.getInt("tries");
         Timestamp timestamp = rs.getTimestamp("timestamp");
-        String username = rs.getString("username");
-        LocalDateTime localDateTime = timestamp != null ? timestamp.toLocalDateTime() : null;
-        return new ScoreDto(id, userId, score, tries, localDateTime, username);
+    LocalDateTime localDateTime = timestamp != null ? timestamp.toLocalDateTime() : null;
+    return new ScoreDto(id, userId, score, tries, localDateTime);
     }
 }
