@@ -112,6 +112,8 @@ public class LanguageGameServlet extends HttpServlet {
                     List<LanguageScoreDto> highScores = oScoreDao.getTop10();
                     request.setAttribute("highScores", highScores);
 
+                    request.setAttribute("numQuestions", MAX_QUESTIONS);
+                    
                     //Limpia la sesión para un nuevo juego
                     session.removeAttribute("questionCount");
                     session.removeAttribute("score");
