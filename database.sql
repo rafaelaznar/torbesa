@@ -97,16 +97,8 @@ ALTER TABLE `capitals_score`
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
---
--- Constraints for dumped tables
---
 
---
--- Constraints for table `capitals_score`
---
-ALTER TABLE `capitals_score`
-  ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-COMMIT;
+
 
 
 
@@ -132,11 +124,7 @@ ALTER TABLE `harrypotter_score`
   ADD KEY `user_id` (`user_id`);
 
 
---
--- Constraints for table `harrypotter_score`
---
-ALTER TABLE `harrypotter_score`
-  ADD CONSTRAINT `harrypotter_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
 
 --
 -- AUTO_INCREMENT for table `harrypotter_score`
@@ -214,16 +202,7 @@ ALTER TABLE `genshin_score`
 ALTER TABLE `genshin_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
---
--- Restricciones para tablas volcadas
---
 
---
--- Filtros para la tabla `genshin_score`
---
-ALTER TABLE `genshin_score`
-  ADD CONSTRAINT `genshin_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
