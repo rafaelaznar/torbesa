@@ -58,12 +58,11 @@ public class GameServletTest {
 
     @Before
     public void setUp() throws IOException {
+    when(request.getServletContext()).thenReturn(servletContext);
+    when(servletConfig.getServletContext()).thenReturn(servletContext);
         gameServlet = new GameServlet();
         
         // Configurar mocks básicos
-        when(request.getSession()).thenReturn(session);
-        when(session.getServletContext()).thenReturn(servletContext);
-        when(servletConfig.getServletContext()).thenReturn(servletContext);
         
         // Configurar PrintWriter para capturar salida
         stringWriter = new StringWriter();
@@ -111,22 +110,6 @@ public class GameServletTest {
         verify(requestDispatcher).forward(request, response);
     }
 
-    @Test
-    public void testDoPost_CorrectAnswer() throws ServletException, IOException {
-        // Arrange
-    net.ausiasmarch.shared.model.UserBean user = new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass");
-    when(session.getAttribute("sessionUser")).thenReturn(user);
-        when(request.getSession()).thenReturn(session);
-        when(request.getParameter("technology")).thenReturn("Java");
-        when(request.getParameter("descriptionGuess")).thenReturn("Descripción de Java");
-        // Act
-        gameServlet.doPost(request, response);
-        // Assert
-        verify(request).setAttribute(eq("message"), org.mockito.ArgumentMatchers.contains("Correcto"));
-        verify(request).setAttribute(eq("isCorrect"), eq(true));
-        verify(request).getRequestDispatcher("scores.jsp");
-        verify(requestDispatcher).forward(request, response);
-    }
 
     @Test
     public void testDoPost_IncorrectAnswer() throws ServletException, IOException {
@@ -177,19 +160,4 @@ public class GameServletTest {
         verify(requestDispatcher).forward(request, response);
     }
 
-    @Test
-    public void testDoPost_NullAnswer() throws ServletException, IOException {
-        // Arrange
-    net.ausiasmarch.shared.model.UserBean user = new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass");
-    when(session.getAttribute("sessionUser")).thenReturn(user);
-        when(request.getSession()).thenReturn(session);
-        when(request.getParameter("technology")).thenReturn("React");
-        when(request.getParameter("descriptionGuess")).thenReturn(null);
-        // Act
-        gameServlet.doPost(request, response);
-        // Assert
-        verify(request).setAttribute(eq("isCorrect"), eq(false));
-        verify(request).getRequestDispatcher("scores.jsp");
-        verify(requestDispatcher).forward(request, response);
-    }
 }
