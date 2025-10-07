@@ -108,6 +108,42 @@ ALTER TABLE `capitals_score`
   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `harrypotter_score`
+--
+
+CREATE TABLE `harrypotter_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Indexes for table `harrypotter_score`
+--
+ALTER TABLE `harrypotter_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+
+--
+-- Constraints for table `harrypotter_score`
+--
+ALTER TABLE `harrypotter_score`
+  ADD CONSTRAINT `harrypotter_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- AUTO_INCREMENT for table `harrypotter_score`
+--
+ALTER TABLE `harrypotter_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.2
 -- https://www.phpmyadmin.net/
