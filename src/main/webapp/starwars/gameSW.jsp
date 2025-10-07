@@ -22,10 +22,13 @@
                         
                         <form method="post" action="GameServlet">
                             <div class="mb-4 text-center">
-                                <h4>What is the character of <span class="text-primary">${character}</span>?</h4>
+                                <h4>Who is this character?</h4>
+                                <!-- Show the character image -->
+                                 <img src="${character.imageUrl}" alt="${character.name}"
+                                      class="img-fluid rounded shadow-sm mt-3" style="max-width: 250px;">
                             </div>
 
-                            <!-- send the country name as a hidden field -->
+                            <!-- Send the character name as a hidden field -->
                             <input type="hidden" name="character" value="${character}">
 
                             <div class="mb-3 d-flex justify-content-center">

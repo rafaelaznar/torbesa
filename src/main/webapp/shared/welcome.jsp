@@ -95,7 +95,7 @@
                                         </div>
                                         <h5 class="card-title text-primary mb-3">Star Wars Game</h5>
                                         <p class="card-text text-muted mb-4">
-                                            Test your knowledge of Star Wars! Guess the characters of all Star Wars.
+                                            Test your Star Wars knowledge! Guess the Star Wars characters from their pictures.
                                         </p>
                                         <p class="card-text text-muted mb-4">
                                             By Daniel Zanón Rodas

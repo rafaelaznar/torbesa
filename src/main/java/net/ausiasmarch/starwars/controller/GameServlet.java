@@ -40,9 +40,9 @@ public class GameServlet extends HttpServlet {
         CharacterService oCharacterService = new CharacterService(request.getServletContext());
         CharacterBean selectedCharacter = oCharacterService.getOneRandomCharacter();
         ArrayList<String> optionsListForCharacterTest = oCharacterService.getRandomCharacterNamesForTest(selectedCharacter, 3);        
-        request.setAttribute("character", selectedCharacter.getName());        
+        request.setAttribute("character", selectedCharacter);      
         request.setAttribute("options", optionsListForCharacterTest);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("gameSW.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {

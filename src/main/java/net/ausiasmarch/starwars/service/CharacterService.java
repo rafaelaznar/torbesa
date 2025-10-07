@@ -50,7 +50,8 @@ public class CharacterService {
                 content.append(inputLine);
             }
             in.close();
-            JSONArray arr = new JSONArray(content.toString());
+            JSONObject jsonResponse = new JSONObject(content.toString());
+            JSONArray arr = jsonResponse.getJSONArray("results");
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
                 String name = obj.optString("name", "Desconocido");
@@ -63,14 +64,20 @@ public class CharacterService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.oContext.setAttribute("countries", characters);
+        this.oContext.setAttribute("characters", characters);
         return characters;
 
     }
 
     private int extractIdFromUrl(String link) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'extractIdFromUrl'");
+        try {
+            String[] parts = link.split("/");
+            return Integer.parseInt(
+                parts[parts.length - 1].isEmpty() ? parts[parts.length - 2] : parts[parts.length - 1]);
+        } catch (Exception e) {
+            System.err.println("Error extracting ID from URL: " + link);
+            return 0; // valor por defecto en caso de error
+        }
     }
 
     public CharacterBean getCharacterByName(String name) {
