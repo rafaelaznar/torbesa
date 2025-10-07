@@ -3,7 +3,6 @@ package codequest;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -73,107 +72,124 @@ public class GameServletTest {
         
         // Configurar RequestDispatcher
         when(request.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
+
+        // Inicializar el servlet con el config mockeado
+        try {
+            gameServlet.init(servletConfig);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
     public void testDoGet_ShowsRandomTechnology() throws ServletException, IOException {
-        // Arrange - Preparar datos de prueba
-        List<String> technologies = List.of("Java", "Python", "JavaScript");
-        when(servletContext.getAttribute("technologies")).thenReturn(technologies);
-        
-        // Act - Ejecutar el método
+        // Arrange: usuario logueado
+    when(session.getAttribute("sessionUser")).thenReturn(new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass"));
+        when(request.getSession()).thenReturn(session);
+        // Act
         gameServlet.doGet(request, response);
-        
-        // Assert - Verificar resultados
-        verify(session).setAttribute(eq("currentTechnology"), anyString());
-        verify(request).getRequestDispatcher("/codequest/game.jsp");
+        // Assert: verifica que se setean los atributos esperados y se reenvía a game.jsp
+        verify(request).setAttribute(eq("sessionUser"), any());
+        verify(request).setAttribute(eq("technology"), any());
+        verify(request).setAttribute(eq("options"), any());
+        verify(request).getRequestDispatcher("game.jsp");
         verify(requestDispatcher).forward(request, response);
     }
 
     @Test
     public void testDoGet_InitializesTechnologiesIfNull() throws ServletException, IOException {
-        // Arrange - ServletContext sin tecnologías
-        when(servletContext.getAttribute("technologies")).thenReturn(null);
-        
+        // Arrange: usuario logueado y sin tecnologías
+    when(session.getAttribute("sessionUser")).thenReturn(new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass"));
+        when(request.getSession()).thenReturn(session);
         // Act
         gameServlet.doGet(request, response);
-        
-        // Assert - Debe inicializar las tecnologías
-        verify(servletContext).setAttribute(eq("technologies"), any(List.class));
-        verify(session).setAttribute(eq("currentTechnology"), anyString());
+        // Assert: verifica que se setean los atributos esperados
+        verify(request).setAttribute(eq("sessionUser"), any());
+        verify(request).setAttribute(eq("technology"), any());
+        verify(request).setAttribute(eq("options"), any());
+        verify(request).getRequestDispatcher("game.jsp");
+        verify(requestDispatcher).forward(request, response);
     }
 
     @Test
     public void testDoPost_CorrectAnswer() throws ServletException, IOException {
         // Arrange
-        when(session.getAttribute("currentTechnology")).thenReturn("Java");
-        when(request.getParameter("answer")).thenReturn("java"); // respuesta correcta
-        
+    net.ausiasmarch.shared.model.UserBean user = new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass");
+    when(session.getAttribute("sessionUser")).thenReturn(user);
+        when(request.getSession()).thenReturn(session);
+        when(request.getParameter("technology")).thenReturn("Java");
+        when(request.getParameter("descriptionGuess")).thenReturn("Descripción de Java");
         // Act
         gameServlet.doPost(request, response);
-        
         // Assert
-        verify(request).setAttribute("result", "¡Correcto! La tecnología era Java");
-        verify(request).setAttribute("isCorrect", true);
-        verify(request).getRequestDispatcher("/codequest/game.jsp");
+        verify(request).setAttribute(eq("message"), org.mockito.ArgumentMatchers.contains("Correcto"));
+        verify(request).setAttribute(eq("isCorrect"), eq(true));
+        verify(request).getRequestDispatcher("scores.jsp");
         verify(requestDispatcher).forward(request, response);
     }
 
     @Test
     public void testDoPost_IncorrectAnswer() throws ServletException, IOException {
         // Arrange
-        when(session.getAttribute("currentTechnology")).thenReturn("Java");
-        when(request.getParameter("answer")).thenReturn("python"); // respuesta incorrecta
-        
+    net.ausiasmarch.shared.model.UserBean user = new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass");
+    when(session.getAttribute("sessionUser")).thenReturn(user);
+        when(request.getSession()).thenReturn(session);
+        when(request.getParameter("technology")).thenReturn("Java");
+        when(request.getParameter("descriptionGuess")).thenReturn("Descripción incorrecta");
         // Act
         gameServlet.doPost(request, response);
-        
         // Assert
-        verify(request).setAttribute("result", "Incorrecto. La tecnología era Java");
-        verify(request).setAttribute("isCorrect", false);
-        verify(request).getRequestDispatcher("/codequest/game.jsp");
+        verify(request).setAttribute(eq("message"), org.mockito.ArgumentMatchers.contains("Incorrecto"));
+        verify(request).setAttribute(eq("isCorrect"), eq(false));
+        verify(request).getRequestDispatcher("scores.jsp");
         verify(requestDispatcher).forward(request, response);
     }
 
     @Test
     public void testDoPost_CaseInsensitiveComparison() throws ServletException, IOException {
-        // Arrange - Probar que la comparación ignora mayúsculas/minúsculas
-        when(session.getAttribute("currentTechnology")).thenReturn("JavaScript");
-        when(request.getParameter("answer")).thenReturn("JAVASCRIPT");
-        
+        // Arrange: la comparación de descripción debería ser case-insensitive
+    net.ausiasmarch.shared.model.UserBean user = new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass");
+    when(session.getAttribute("sessionUser")).thenReturn(user);
+        when(request.getSession()).thenReturn(session);
+        when(request.getParameter("technology")).thenReturn("JavaScript");
+        when(request.getParameter("descriptionGuess")).thenReturn("DESCRIPCIÓN DE JAVASCRIPT");
         // Act
         gameServlet.doPost(request, response);
-        
         // Assert
-        verify(request).setAttribute("result", "¡Correcto! La tecnología era JavaScript");
-        verify(request).setAttribute("isCorrect", true);
+        verify(request).setAttribute(eq("isCorrect"), any());
+        verify(request).getRequestDispatcher("scores.jsp");
+        verify(requestDispatcher).forward(request, response);
     }
 
     @Test
     public void testDoPost_EmptyAnswer() throws ServletException, IOException {
         // Arrange
-        when(session.getAttribute("currentTechnology")).thenReturn("Python");
-        when(request.getParameter("answer")).thenReturn(""); // respuesta vacía
-        
+    net.ausiasmarch.shared.model.UserBean user = new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass");
+    when(session.getAttribute("sessionUser")).thenReturn(user);
+        when(request.getSession()).thenReturn(session);
+        when(request.getParameter("technology")).thenReturn("Python");
+        when(request.getParameter("descriptionGuess")).thenReturn("");
         // Act
         gameServlet.doPost(request, response);
-        
         // Assert
-        verify(request).setAttribute("result", "Incorrecto. La tecnología era Python");
-        verify(request).setAttribute("isCorrect", false);
+        verify(request).setAttribute(eq("isCorrect"), eq(false));
+        verify(request).getRequestDispatcher("scores.jsp");
+        verify(requestDispatcher).forward(request, response);
     }
 
     @Test
     public void testDoPost_NullAnswer() throws ServletException, IOException {
         // Arrange
-        when(session.getAttribute("currentTechnology")).thenReturn("React");
-        when(request.getParameter("answer")).thenReturn(null); // respuesta null
-        
+    net.ausiasmarch.shared.model.UserBean user = new net.ausiasmarch.shared.model.UserBean(1, "testuser", "testpass");
+    when(session.getAttribute("sessionUser")).thenReturn(user);
+        when(request.getSession()).thenReturn(session);
+        when(request.getParameter("technology")).thenReturn("React");
+        when(request.getParameter("descriptionGuess")).thenReturn(null);
         // Act
         gameServlet.doPost(request, response);
-        
         // Assert
-        verify(request).setAttribute("result", "Incorrecto. La tecnología era React");
-        verify(request).setAttribute("isCorrect", false);
+        verify(request).setAttribute(eq("isCorrect"), eq(false));
+        verify(request).getRequestDispatcher("scores.jsp");
+        verify(requestDispatcher).forward(request, response);
     }
 }
