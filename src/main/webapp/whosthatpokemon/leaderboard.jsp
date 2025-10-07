@@ -1,4 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%
+    if (session.getAttribute("sessionUser") == null) {
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>

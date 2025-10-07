@@ -99,11 +99,15 @@
                 <a href="../whosthatpokemon/GameServlet"><button class="btn">Start</button></a>
                 <a href="../whosthatpokemon/ScoreServlet"><button class="btn secondary">Top Scores</button></a>
                 <a href="../shared/welcome.jsp"><button class="btn">Volver al index</button></a>
+                <form action="../whosthatpokemon/DeleteScoreServlet" method="post" style="display:inline;">
+                    <button type="submit" class="btn secondary" onclick="return confirm('¿Seguro que quieres borrar tu score?');">Borrar Score</button>
+                </form>
             </div>
 
             <div class="info">
                 <h3 style="margin-top:0">Info</h3>
-                <p style="margin:0">Se mostrará la silueta de un Pokémon. Escribe su nombre correcto para puntuar. Cuanto más rápido, más puntos.</p>
+                <p style="margin:0">- Se mostrará la silueta de un Pokémon. Escribe su nombre correcto para puntuar. Cuanto más rápido, más puntos.</p>
+                <p style="margin:0">- En la puntuación podrás ver cuantos intentos has hecho y cuantos has adivinado. </p>
             </div>
         </div>
     </div>

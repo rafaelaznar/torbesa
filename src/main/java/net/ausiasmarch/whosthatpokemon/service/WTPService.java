@@ -11,7 +11,6 @@ import net.ausiasmarch.whosthatpokemon.model.PokemonBean;
 
 public class WTPService {
     //importaremos el api de pokeapi usando su endpoint
-    private static final String API_URL = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
     private static final String POKEMON_BY_ID = "https://pokeapi.co/api/v2/pokemon/";
     private static final int MAX_POKEMON_ID = 1010;
 
