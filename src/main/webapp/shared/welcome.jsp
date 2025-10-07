@@ -231,7 +231,7 @@
                                         <p class="card-text text-muted mb-4">
                                             By Lucia Castañera
                                         </p>
-                                        <a href="swift/landing.jsp" class="btn btn-dark btn-lg w-100">
+                                        <a href="../swift/landing.jsp" class="btn btn-dark btn-lg w-100">
                                             <i class="bi bi-play-fill"></i> Play Now
                                         </a>
                                     </div>
