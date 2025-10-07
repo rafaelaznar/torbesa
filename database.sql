@@ -125,17 +125,6 @@ CREATE TABLE `harrypotter_score` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
--- Dumping data for table `harrypotter_score`
---
-
-INSERT INTO `harrypotter_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
-(1, 1, 5, 7, '2025-10-06 10:30:00'),
-(2, 2, 8, 10, '2025-10-06 11:15:00'),
-(3, 3, 12, 15, '2025-10-06 12:00:00'),
-(4, 4, 6, 9, '2025-10-06 13:45:00'),
-(5, 5, 10, 12, '2025-10-06 14:30:00');
-
---
 -- Indexes for table `harrypotter_score`
 --
 ALTER TABLE `harrypotter_score`
