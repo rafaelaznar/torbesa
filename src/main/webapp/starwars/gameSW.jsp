@@ -18,18 +18,15 @@
             <div class="col-md-8">
                 <div class="card shadow-lg">
                     <div class="card-body">
-                        <h2 class="card-title text-center mb-4">Guess the Character of Star Wars!</h2>
+                        <h2 class="card-title text-center mb-4">Guess the Character's Species!</h2>
                         
                         <form method="post" action="GameServlet">
                             <div class="mb-4 text-center">
-                                <h4>Who is this character?</h4>
-                                <!-- Show the clue -->
-                                <h4 class="text-secondary">Pista: </h4>
-                                <p class="lead text-primary fw-bold mt-3">${character.clue}</p>
+                                <h4>¿Cuál es la especie de este personaje?</h4>
+                                <p class="lead text-primary fw-bold mt-3">${character.name}</p>
                             </div>
 
-                            <!-- Send the character name as a hidden field -->
-                            <input type="hidden" name="correctCharacterName" value="${character.name}">
+                            <input type="hidden" name="correctSpeciesName" value="${character.species}">
 
                             <div class="mb-3 d-flex justify-content-center">
                                 <div class="w-50 text-start">

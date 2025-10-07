@@ -13,10 +13,13 @@ import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @WebServlet("/starwars/GameServlet")
 public class GameServlet extends HttpServlet {
@@ -39,9 +42,28 @@ public class GameServlet extends HttpServlet {
 
         CharacterService oCharacterService = new CharacterService(request.getServletContext());
         CharacterBean selectedCharacter = oCharacterService.getOneRandomCharacter();
-        ArrayList<String> optionsListForCharacterTest = oCharacterService.getRandomCharacterNamesForTest(selectedCharacter, 3);        
+        
+        String correctSpecies = selectedCharacter.getSpecies();
+        List<String> allSpecies = oCharacterService.fetchAllSpeciesNames();
+        ArrayList<String> optionsList = new ArrayList<>();
+        optionsList.add(correctSpecies);
+
+        int requiredOptions = 3;
+        Random random = new Random();
+
+        while (optionsList.size() < requiredOptions) {
+            int randomIndex = random.nextInt(allSpecies.size());
+            String randomSpecies = allSpecies.get(randomIndex);
+
+            if (!optionsList.contains(randomSpecies)) {
+                optionsList.add(randomSpecies);
+            }
+        }
+
+        Collections.shuffle(optionsList);
+
         request.setAttribute("character", selectedCharacter);      
-        request.setAttribute("options", optionsListForCharacterTest);
+        request.setAttribute("options", optionsList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("gameSW.jsp");
         try {
             dispatcher.forward(request, response);

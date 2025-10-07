@@ -4,13 +4,13 @@ public class CharacterBean {
     private String name;
     private String url;
     private int id;
-    private String clue; // <--- NUEVO ATRIBUTO para la pista
+    private String species;
 
-    public CharacterBean(String name, String url, int id, String clue) {
+    public CharacterBean(String name, String url, int id, String species) {
         this.name = name;
         this.url = url;
         this.id = id;
-        this.clue = clue;
+        this.species = species;
     }
 
     public String getName() {
@@ -37,11 +37,11 @@ public class CharacterBean {
         this.id = id;
     }
 
-    public String getClue() {
-        return clue;
+    public String getSpecies() {
+        return species;
     }
 
-    public void setClue(String clue) {
-        this.clue = clue;
+    public void setSpecies(String species) {
+        this.species = species;
     }   
 }
