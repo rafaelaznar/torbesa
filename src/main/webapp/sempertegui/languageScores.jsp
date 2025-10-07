@@ -100,7 +100,7 @@
                                                     <div>
                                                         <h6 class="text-primary mb-1 h3">
                                                             <fmt:formatNumber
-                                                                value="${userScore.score / questionCount * 100}"
+                                                                value="${score / questionCount * 100}"
                                                                 maxFractionDigits="1" />%
                                                         </h6>
                                                         <small class="text-muted">Accuracy</small>
