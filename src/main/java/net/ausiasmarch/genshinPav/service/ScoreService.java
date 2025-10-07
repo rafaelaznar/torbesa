@@ -1,4 +1,4 @@
-package net.ausiasmarch.genshin.service;
+package net.ausiasmarch.genshinPav.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-import net.ausiasmarch.genshin.dao.ScoreDao;
-import net.ausiasmarch.genshin.model.ScoreDto;
+import net.ausiasmarch.genshinPav.dao.ScoreDao;
+import net.ausiasmarch.genshinPav.model.ScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 public class ScoreService {

@@ -1,4 +1,4 @@
-package net.ausiasmarch.genshin.model;
+package net.ausiasmarch.genshinPav.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

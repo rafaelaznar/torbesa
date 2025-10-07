@@ -1,4 +1,4 @@
-package net.ausiasmarch.genshin.dao;
+package net.ausiasmarch.genshinPav.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ausiasmarch.genshin.model.ScoreDto;
+import net.ausiasmarch.genshinPav.model.ScoreDto;
 
 public class ScoreDao {
 

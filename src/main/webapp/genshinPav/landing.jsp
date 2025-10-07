@@ -24,8 +24,8 @@
                 <div class="col-md-8 text-center">
                     <h1 class="display-4">Welcome to the Genshin element's Game!</h1>
                     <p class="lead">Test your Genshin knowledge by guessing characters' elements/visions!</p>
-                    <a href="../genshin/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
-                    <a href="../genshin/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
+                    <a href="../genshinPav/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
+                    <a href="../genshinPav/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
                 </div>
             </div>
             <div class="row mt-5">

@@ -1,4 +1,4 @@
-package net.ausiasmarch.genshin.controller;
+package net.ausiasmarch.genshinPav.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.ausiasmarch.genshin.model.ScoreDto;
-import net.ausiasmarch.genshin.service.ScoreService;
+import net.ausiasmarch.genshinPav.model.ScoreDto;
+import net.ausiasmarch.genshinPav.service.ScoreService;
 
-@WebServlet("/genshin/ScoreServlet")
+@WebServlet("/genshinPav/ScoreServlet") //Este también
 public class ScoreServlet extends HttpServlet {
     private ScoreService oScoreService;
 

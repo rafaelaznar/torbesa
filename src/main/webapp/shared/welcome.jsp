@@ -190,7 +190,7 @@
                                         <p class="card-text text-muted mb-4">
                                             By Alejandro Pavón Martínez
                                         </p>
-                                        <a href="../genshin/landing.jsp" class="btn btn-success btn-lg w-100">
+                                        <a href="../genshinPav/landing.jsp" class="btn btn-success btn-lg w-100">
                                             <i class="bi bi-play-fill"></i> Play Now
                                         </a>
                                     </div>
