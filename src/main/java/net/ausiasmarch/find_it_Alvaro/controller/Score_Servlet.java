@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.ausiasmarch.find_it_Alvaro.model.ScoreDto;
 import net.ausiasmarch.find_it_Alvaro.service.ScoreService;
 
-@WebServlet("/find_it_Alvaro/Score_Servlet")
+@WebServlet("/find_it_alvaro/ScoreServlet")
 public class Score_Servlet extends HttpServlet {
     private ScoreService oScoreService;
 

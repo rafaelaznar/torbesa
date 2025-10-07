@@ -40,14 +40,14 @@ public class GameServlet extends HttpServlet {
             request.setAttribute("sessionUser", user);
         }
 
-        CharacterService oCharacterService = new CharacterService(request.getServletContext());
-        CharacterBean selectedCharacter = oCharacterService.getOneRandomCharacter();
-        List<CharacterBean> optionsListForCharacterTest = oCharacterService.getRandomCharactersForTest(selectedCharacter, 4);
+        CharacterService characterService = new CharacterService(request.getServletContext());
+        CharacterBean selectedCharacter = characterService.getOneRandomCharacter();
+        List<CharacterBean> optionsListForCharacterTest = characterService.getRandomCharactersForTest(selectedCharacter, 4);
 
         request.setAttribute("selectedCharacter", selectedCharacter);
         request.setAttribute("options", optionsListForCharacterTest);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/find_it_alvaro/game.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -100,7 +100,7 @@ public class GameServlet extends HttpServlet {
                 List<ScoreDto> highScores = oScoreDao.getTop10();
                 request.setAttribute("highScores", highScores);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/find_it_alvaro/scores.jsp");
                 dispatcher.forward(request, response);
             }
 

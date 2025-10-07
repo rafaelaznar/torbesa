@@ -49,7 +49,7 @@
                             <span class="fw-bold">Score:</span> <span class="badge bg-primary">${score}</span>
                         </div>
 
-                        <form method="get" action="Score_Servlet" class="mt-3">
+                        <form method="get" action="ScoreServlet" class="mt-3">
                             <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
                         </form>
 

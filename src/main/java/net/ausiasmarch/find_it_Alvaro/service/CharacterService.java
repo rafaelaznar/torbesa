@@ -17,7 +17,7 @@ import net.ausiasmarch.find_it_Alvaro.model.CharacterBean;
 
 public class CharacterService {
 
-    private static final String API_URL = "https://hsr-api.ajcastan.com/characters";
+    private static final String API_URL = "https://hsr-api.vercel.app/api/v1/characters";
     private ServletContext oContext = null;
 
     public CharacterService(ServletContext oContext) {
@@ -110,11 +110,21 @@ public class CharacterService {
     //Cambiar el metodo para que devuelva un personaje aleatorio
     public CharacterBean getOneRandomCharacter() {
         List<CharacterBean> oCharacters = fetchAllCharacters();
+        if (oCharacters == null || oCharacters.isEmpty()) {
+            System.out.println("No characters available for random selection.");
+            return null;
+        }
         int randomIndex0 = (int) (Math.random() * oCharacters.size());
         CharacterBean selectedCharacter = oCharacters.get(randomIndex0);
-        while (selectedCharacter.getElement().trim().isEmpty()) {
+        int attempts = 0;
+        while (selectedCharacter.getElement().trim().isEmpty() && attempts < oCharacters.size()) {
             randomIndex0 = (int) (Math.random() * oCharacters.size());
             selectedCharacter = oCharacters.get(randomIndex0);
+            attempts++;
+        }
+        if (selectedCharacter.getElement().trim().isEmpty()) {
+            System.out.println("No valid character found with non-empty element.");
+            return null;
         }
         return selectedCharacter;
     }
