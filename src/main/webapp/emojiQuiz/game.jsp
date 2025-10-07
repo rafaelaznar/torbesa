@@ -44,30 +44,29 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                   </div>
                 </c:forEach>
 
-                <button type="submit" class="btn btn-success w-100">Submit Answer</button>
+                <button type="submit" class="btn btn-success w-100 mt-3 shadow-sm">
+                  <i class="bi bi-arrow-right-circle me-2"></i> Submit Answer
+                </button>
               </form>
 
-              <c:if test="${not empty message}">
-                <div class="alert alert-info mt-4">${message}</div>
-                <form action="landing.jsp" method="get">
-                  <button type="submit" class="btn btn-success mt-2">
-                    <i class="bi bi-arrow-right-circle"></i> Ir a la página
-                    principal
-                  </button>
-                </form>
-              </c:if>
+              <div class="mt-4 text-center">
+                <span class="fw-bold">Score:</span>
+                <span class="badge bg-primary">${score}</span>
+              </div>
+
+              <form method="get" action="../emojiQuiz/ScoreServlet" class="mt-3">
+                <button type="submit" class="btn btn-info text-white w-100 shadow-sm">
+                  <i class="bi bi-trophy me-2"></i> View High Scores
+                </button>
+              </form>
+
+              <form method="get" action="../shared/LogoutServlet" class="mt-2">
+                <button type="submit" class="btn btn-danger w-100 shadow-sm">
+                  <i class="bi bi-box-arrow-right me-2"></i> Logout
+                </button>
+              </form>
             </div>
-            <div class="mt-4 text-center">
-              <span class="fw-bold">Score:</span>
-              <span class="badge bg-primary">${score}</span>
-            </div>
-            <form method="get" action="../emojiQuiz/ScoreServlet" class="mt-3">
-              <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
-            </form>
-            <form method="get" action="../shared/LogoutServlet" class="mt-2">
-              <button type="submit" class="btn btn-outline-danger w-100">Logout</button>
-            </form>
-          </div>
+
         </div>
       </div>
     </div>
