@@ -207,3 +207,54 @@ ALTER TABLE `genshin_score`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+-- ---------------------------------------------------------
+
+-- Bd Who's That Pokemon
+
+CREATE TABLE `wtpokemon_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `wtpokemon_score`
+--
+
+INSERT INTO `wtpokemon_score` (`id`, `user_id`, `score`, `tries`) VALUES
+(1, 17, 9, 27);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `wtpokemon_score`
+--
+ALTER TABLE `wtpokemon_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `wtpokemon_score_ibfk_1` (`user_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `wtpokemon_score`
+--
+ALTER TABLE `wtpokemon_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `wtpokemon_score`
+--
+
+COMMIT;
