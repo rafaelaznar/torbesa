@@ -1,96 +1,98 @@
 package net.ausiasmarch.trivial.controller;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-
-import net.ausiasmarch.capitals.dao.ScoreDao;
-import net.ausiasmarch.capitals.model.CountryBean;
-import net.ausiasmarch.capitals.model.ScoreDto;
-import net.ausiasmarch.capitals.service.CountryService;
-import net.ausiasmarch.capitals.service.ScoreService;
-import net.ausiasmarch.shared.connection.HikariPool;
-import net.ausiasmarch.shared.model.UserBean;
-import net.ausiasmarch.trivial.model.TrivialBean;
-import net.ausiasmarch.trivial.service.TrivialService;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.ausiasmarch.shared.connection.HikariPool;
+import net.ausiasmarch.shared.model.UserBean;
+import net.ausiasmarch.trivial.dao.ScoreDao2;
+import net.ausiasmarch.trivial.model.ScoreDto;
+import net.ausiasmarch.trivial.model.TrivialBean;
+import net.ausiasmarch.trivial.model.TrivialBean;
+
+import net.ausiasmarch.trivial.service.TrivialService;
 
 @WebServlet("/trivial/TrivialServlet")
 public class TrivialServlet extends HttpServlet {
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("sessionUser");
         if (user == null) {
-            try {
-                response.sendRedirect("../shared/login.jsp");
-            } catch (IOException e) {
-                System.err.println("Error al redirigir a la página de inicio de sesión: " + e.getMessage());
-            }
+            response.sendRedirect("../shared/login.jsp");
             return;
-        } else {
-            request.setAttribute("sessionUser", user);
         }
 
         TrivialService trivialService = new TrivialService();
         TrivialBean jsonResponse = trivialService.fetchTriviaQuestions();
 
-        session.setAttribute("triviaQuestions", jsonResponse.getCorrectAnswer());
+        if (jsonResponse == null) {
+            request.setAttribute("errorMessage", "Error fetching trivial questions");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
+        session.setAttribute("triviaQuestions", jsonResponse);
         request.setAttribute("question", jsonResponse);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/trivial/game_t.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException | IOException e) {
-            System.err.println("Error al redirigir a la página del juego: " + e.getMessage());
-        }
-       
+        dispatcher.forward(request, response);
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
 
-            HttpSession session = request.getSession();
-            UserBean user = (UserBean) session.getAttribute("sessionUser");
-            if (user == null) {
-                response.sendRedirect("../shared/login.jsp");
-                return;
-            } else {
-                request.setAttribute("username", user.getUsername());
-            }
+        HttpSession session = request.getSession();
+        UserBean user = (UserBean) session.getAttribute("sessionUser");
+        if (user == null) {
+            response.sendRedirect("../shared/login.jsp");
+            return;
+        }
 
-            
+        String selectedAnswer = request.getParameter("selectedAnswer");
+        TrivialBean currentQuestion = (TrivialBean) session.getAttribute("triviaQuestions");
+        boolean correct = selectedAnswer != null && selectedAnswer.equals(currentQuestion.getCorrectAnswer());
 
-            try (Connection oConnection = HikariPool.getConnection()) {
+        try (Connection oConnection = HikariPool.getConnection()) {
 
-                ScoreDao oScoreDao = new ScoreDao(oConnection);
-                ScoreDto userScore = oScoreDao.get(user.getId());
-                request.setAttribute("userScore", userScore);
+            ScoreDao2 scoreDao = new ScoreDao2(oConnection);
 
-                List<ScoreDto> highScores = oScoreDao.getTop10();
-                request.setAttribute("highScores", highScores);
+            ScoreDto scoreDto = new ScoreDto();
+            scoreDto.setUserId(user.getId());
+            scoreDto.setScore(1); 
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("scores_j.jsp");
-                dispatcher.forward(request, response);
+            scoreDao.insertOrUpdate(scoreDto, correct);
 
-            }
+            ScoreDto userScore = scoreDao.get(user.getId());
+            List<ScoreDto> highScores = scoreDao.getTop10();
+
+            request.setAttribute("userScore", userScore);
+            request.setAttribute("highScores", highScores);
+            request.setAttribute("question", currentQuestion);
+            request.setAttribute("userAnswer", selectedAnswer);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("scores_j.jsp");
+            dispatcher.forward(request, response);
 
         } catch (SQLException e) {
-            System.err.println("Database error: " + e.getMessage());
-            request.setAttribute("errorMessage", "Database error");
+            request.setAttribute("errorMessage", "Database error: " + e.getMessage());
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 }

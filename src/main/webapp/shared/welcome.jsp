@@ -93,16 +93,13 @@
                                         <div class="mb-3">
                                             <i class="bi bi-calculator text-warning" style="font-size: 3rem;"></i>
                                         </div>
-                                        <h5 class="card-title text-warning mb-3">Trivial</h5>
+                                        <h5 class="card-title text-warning mb-3">Math Challenge</h5>
                                         <p class="card-text text-muted mb-4">
-                                            Sharpen your brain skills with this questions about all.
+                                            Sharpen your math skills with fun arithmetic challenges and number puzzles.
                                         </p>
-                                        <p class="card-text text-muted mb-4">
-                                            By Marcos Pallás
-                                        </p>
-                                        <a href="../trivial/landing_j.jsp" class="btn btn-primary btn-lg w-100">
-                                            <i class="bi bi-play-fill"></i> Play Now
-                                        </a>
+                                        <button class="btn btn-outline-warning btn-lg w-100" disabled>
+                                            <i class="bi bi-hourglass-split"></i> Coming Soon
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -176,6 +173,27 @@
                                         <button class="btn btn-outline-secondary btn-lg w-100" disabled>
                                             <i class="bi bi-hourglass-split"></i> Coming Soon
                                         </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Juego Marcos -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                        <i class="bi bi-question-circle text-warning" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-warning mb-3">Trivial</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Sharpen your brain skills with this questions about all.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Marcos Pallás
+                                        </p>
+                                        <a href="../trivial/landing_j.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
                                     </div>
                                 </div>
                             </div>

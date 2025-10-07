@@ -36,7 +36,7 @@ public class ScoreServlet extends HttpServlet {
         try {
             List<ScoreDto> highScoresList = oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("highscores.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("highscores_t.jsp");
             dispatcher.forward(request, response);
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la operación en la base de datos: " + e.getMessage());
