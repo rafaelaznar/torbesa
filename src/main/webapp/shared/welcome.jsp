@@ -97,7 +97,7 @@
                                                 frameworks y herramientas a partir de sus descripciones.
                                             </p>
                                             <p class="card-text text-muted mb-4">
-                                                By Student Developer
+                                                By Pollyanna Soares
                                             </p>
                                             <a href="../codequest/landing.jsp" class="btn btn-primary btn-lg w-100">
                                                 <i class="bi bi-play-fill"></i> Play Now

@@ -16,14 +16,14 @@ import javax.servlet.http.HttpSession;
 import net.ausiasmarch.codequest.dao.ScoreDao;
 import net.ausiasmarch.codequest.model.ScoreDto;
 import net.ausiasmarch.codequest.model.TechnologyBean;
-import net.ausiasmarch.codequest.service.DuckDuckGoTechnologyService;
+import net.ausiasmarch.codequest.service.GitHubTechnologyService;
 import net.ausiasmarch.codequest.service.ScoreService;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 
 /**
  * 
- * AHORA FUNCIONA ASÍ:
+ * 
  * - GET: Muestra una pregunta nueva
  * - POST: Procesa la respuesta y muestra el resultado
  * - Simple, directo, como Capitals
@@ -54,7 +54,7 @@ public class GameServlet extends HttpServlet {
         request.setAttribute("sessionUser", user);
 
         // 2. Obtener una tecnología aleatoria usando nuestro nuevo servicio
-        DuckDuckGoTechnologyService technologyService = new DuckDuckGoTechnologyService(request.getServletContext());
+    GitHubTechnologyService technologyService = new GitHubTechnologyService(request.getServletContext());
         TechnologyBean selectedTechnology = technologyService.getRandomTechnology();
         
         // 3. Verificar que obtuvimos una tecnología válida
@@ -112,7 +112,7 @@ public class GameServlet extends HttpServlet {
             String technology = request.getParameter("technology");
             String descriptionGuess = request.getParameter("descriptionGuess");
             // 3. Buscar la descripción correcta de la tecnología
-            DuckDuckGoTechnologyService technologyService = new DuckDuckGoTechnologyService(request.getServletContext());
+            GitHubTechnologyService technologyService = new GitHubTechnologyService(request.getServletContext());
             String correctDescription = technologyService.fetchAllTechnologies().stream()
                     .filter(t -> t.getName().equals(technology))
                     .map(TechnologyBean::getDescription)

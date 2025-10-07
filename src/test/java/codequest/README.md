@@ -8,29 +8,28 @@ Este directorio contiene las pruebas unitarias para el juego CodeQuest. Las prue
 
 ```
 src/test/java/codequest/
-├── DuckDuckGoTechnologyServiceTest.java  - Tests del servicio de tecnologías
+ 
 ├── GameServletTest.java                  - Tests del servlet principal
 └── README.md                             - Esta documentación
 ```
 
 ## Tests Implementados
 
-### DuckDuckGoTechnologyServiceTest (Funcional)
+ 
 
-Este test verifica el correcto funcionamiento del servicio que obtiene tecnologías desde la API de DuckDuckGo.
+### GitHubTechnologyServiceTest
+
+Este test verifica el correcto funcionamiento del servicio que obtiene tecnologías desde la API de GitHub.
 
 **Características testadas:**
-- Obtención de tecnologías desde API externa
-- Sistema de cache para mejorar rendimiento
-- Mecanismo de fallback cuando la API falla
+- Obtención de tecnologías desde API externa (simulada)
 - Generación de tecnologías aleatorias
 - Creación de opciones múltiples para el juego
 
-**Estado:** 8/8 tests pasan correctamente
+**Estado:** Todos los tests pasan correctamente
 
 **Métodos de test principales:**
 - `testFetchAllTechnologies_ReturnsListOfTechnologies()` - Verifica que se obtienen tecnologías
-- `testFetchAllTechnologies_WithCachedData()` - Verifica el funcionamiento del cache
 - `testGetRandomTechnology_ReturnsValidTechnology()` - Verifica selección aleatoria
 - `testGenerateDescriptionOptions_ReturnsCorrectNumberOfOptions()` - Verifica opciones del juego
 
@@ -104,10 +103,8 @@ mvn test
 mvn test -Dtest=codequest.*
 
 # Ejecutar un test específico
-mvn test -Dtest=DuckDuckGoTechnologyServiceTest
+mvn test -Dtest=codequest.GitHubTechnologyServiceTest
 
-# Ejecutar tests con información detallada
-mvn test -Dtest=DuckDuckGoTechnologyServiceTest -X
 ```
 
 ## Comparación con Tests del Profesor
