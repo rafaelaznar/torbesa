@@ -207,3 +207,65 @@ ALTER TABLE `genshin_score`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- Ronald
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: database:3306
+-- Tiempo de generación: 07-10-2025 a las 19:25:53
+-- Versión del servidor: 8.4.6
+-- Versión de PHP: 8.2.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `torbesa`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trivialReyna_score`
+--
+
+CREATE TABLE `trivialReyna_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `trivialReyna_score`
+--
+
+INSERT INTO `trivialReyna_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 3, 50, 65, '2025-10-07 19:23:45'),
+(2, 3, 50, 65, '2025-10-07 19:23:45');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `trivialReyna_score`
+--
+ALTER TABLE `trivialReyna_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `trivialReyna_score`
+--
+ALTER TABLE `trivialReyna_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;

@@ -19,14 +19,15 @@
                         <h2 class="card-title text-center mb-4">Answer the Question!</h2>
                         <form method="post" action="GameServlet">
                             <div class="mb-4 text-center">
-                                <h4>${question}</h4>
+                                <h4>${questionText}</h4>
                             </div>
-                            <input type="hidden" name="questionId" value="${questionId}">
+                            <input type="hidden" name="questionText" value="${questionText}">
+                            <input type="hidden" name="correctAnswer" value="${correctAnswer}">
                             <div class="mb-3 d-flex justify-content-center">
                                 <div class="w-50 text-start">
                                     <c:forEach var="option" items="${options}">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="answerGuess" id="option${option}" value="${option}" required>
+                                            <input class="form-check-input" type="radio" name="selectedAnswer" id="option${option}" value="${option}" required>
                                             <label class="form-check-label" for="option${option}">${option}</label>
                                         </div>
                                     </c:forEach>

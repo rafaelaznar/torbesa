@@ -3,8 +3,8 @@ package net.ausiasmarch.trivialReyna.service;
 import java.util.List;
 import java.util.Objects;
 
-import net.ausiasmarch.capitals.dao.ScoreDao;
-import net.ausiasmarch.capitals.model.ScoreDto;
+import net.ausiasmarch.trivialReyna.dao.ScoreDao;
+import net.ausiasmarch.trivialReyna.model.ScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 import java.sql.*;

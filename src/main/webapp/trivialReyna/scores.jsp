@@ -23,12 +23,12 @@
             <div class="col-lg-10">
                 <div class="text-center mb-4">
                     <h1 class="display-4 text-primary">
-                        <i class="bi bi-trophy-fill"></i> Game Results
+                        <i class="bi bi-lightbulb-fill"></i> Resultados del Trivial
                     </h1>
                 </div>
                 <c:if test="${not empty message}">
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        <i class="bi bi-info-circle-fill"></i> ${message}
+                    <div class="alert ${message.startsWith('✅') ? 'alert-success' : 'alert-danger'} alert-dismissible fade show" role="alert">
+                        ${message}
                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
                 </c:if>
@@ -37,25 +37,25 @@
                         <div class="card shadow-sm border-0 h-100">
                             <div class="card-header bg-info text-white">
                                 <h5 class="card-title mb-0">
-                                    <i class="bi bi-question-circle-fill"></i> Your Answer
+                                    <i class="bi bi-question-circle-fill"></i> Pregunta y Respuesta
                                 </h5>
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
                                     <h5>
-                                        <strong class="text-muted">Question:</strong>
-                                        <span class="badge bg-primary ms-2">${question}</span>
+                                        <strong class="text-muted">Pregunta:</strong>
+                                        <p class="badge bg-primary ms-2">${questionText}</p>
                                     </h5>
                                 </div>
                                 <div class="mb-3">
                                     <h5>
-                                        <strong class="text-muted">Your Answer:</strong>
-                                        <span class="badge bg-warning text-dark ms-2">${answerGuess}</span>
+                                        <strong class="text-muted">Tu respuesta:</strong>
+                                        <span class="badge bg-warning text-dark ms-2">${selectedAnswer}</span>
                                     </h5>
                                 </div>
                                 <div class="mb-0">
                                     <h5>
-                                        <strong class="text-muted">Correct Answer:</strong>
+                                        <strong class="text-muted">Respuesta correcta:</strong>
                                         <span class="badge bg-success ms-2">${correctAnswer}</span>
                                     </h5>
                                 </div>
@@ -66,29 +66,48 @@
                         <div class="card shadow-sm border-0 h-100">
                             <div class="card-header bg-success text-white">
                                 <h5 class="card-title mb-0">
-                                    <i class="bi bi-star-fill"></i> Your Performance
+                                    <i class="bi bi-star-fill"></i> Tu Rendimiento
                                 </h5>
                             </div>
                             <div class="card-body">
                                 <div class="row text-center">
                                     <div class="col-4">
                                         <div class="border-end">
-                                            <h3 class="text-success mb-1">${userScore.score}</h3>
-                                            <small class="text-muted">Score</small>
+                                            <h3 class="text-success mb-1">
+                                                <c:choose>
+                                                    <c:when test="${not empty userScore}">
+                                                        ${userScore.score}
+                                                    </c:when>
+                                                    <c:otherwise>0</c:otherwise>
+                                                </c:choose>
+                                            </h3>
+                                            <small class="text-muted">Puntuación</small>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="border-end">
-                                            <h3 class="text-info mb-1">${userScore.tries}</h3>
-                                            <small class="text-muted">Tries</small>
+                                            <h3 class="text-info mb-1">
+                                                <c:choose>
+                                                    <c:when test="${not empty userScore}">
+                                                        ${userScore.tries}
+                                                    </c:when>
+                                                    <c:otherwise>0</c:otherwise>
+                                                </c:choose>
+                                            </h3>
+                                            <small class="text-muted">Intentos</small>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div>
                                             <h6 class="text-primary mb-1 h3">
-                                                <fmt:formatNumber value="${userScore.score / userScore.tries * 100}" maxFractionDigits="1" />%
+                                                <c:choose>
+                                                    <c:when test="${not empty userScore and userScore.tries > 0}">
+                                                        <fmt:formatNumber value="${(userScore.score / userScore.tries) * 100}" maxFractionDigits="1" />
+                                                    </c:when>
+                                                    <c:otherwise>0.0</c:otherwise>
+                                                </c:choose>%
                                             </h6>
-                                            <small class="text-muted">Accuracy</small>
+                                            <small class="text-muted">Precisión</small>
                                         </div>
                                     </div>
                                 </div>

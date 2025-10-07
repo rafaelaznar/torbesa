@@ -94,16 +94,38 @@ public class QuestionService {
 
     public ArrayList<String> getRandomOptionsForTest(QuestionBean question, int numberOfOptions) {
         ArrayList<String> options = new ArrayList<>(question.getOptions());
+        if (numberOfOptions < 2) {
+            numberOfOptions = 4; // por defecto 4 opciones si no se especifica
+        }
+
+        // Asegurarnos de que la respuesta correcta siempre está incluida
+        if (!options.contains(question.getCorrectAnswer())) {
+            options.add(question.getCorrectAnswer());
+        }
+
+        // Mezclar las opciones
         Collections.shuffle(options);
-        if (numberOfOptions >= options.size()) {
-            return options; // si el número solicitado es mayor o igual, devolver todas
+
+        // Si tenemos más opciones de las necesarias, reducir al número solicitado
+        // manteniendo la respuesta correcta
+        if (options.size() > numberOfOptions) {
+            // Crear nueva lista con la respuesta correcta
+            ArrayList<String> selectedOptions = new ArrayList<>();
+            selectedOptions.add(question.getCorrectAnswer());
+            
+            // Añadir otras opciones hasta completar el número deseado
+            for (String option : options) {
+                if (!option.equals(question.getCorrectAnswer()) && selectedOptions.size() < numberOfOptions) {
+                    selectedOptions.add(option);
+                }
+            }
+            
+            // Mezclar para que la respuesta correcta no esté siempre primera
+            Collections.shuffle(selectedOptions);
+            return selectedOptions;
         }
-        ArrayList<String> selectedOptions = new ArrayList<>(options.subList(0, numberOfOptions - 1));
-        if (!selectedOptions.contains(question.getCorrectAnswer())) {
-            selectedOptions.set(0, question.getCorrectAnswer()); // asegurar que la correcta esté incluida
-        }
-        Collections.shuffle(selectedOptions); // mezclar de nuevo para aleatorizar posición
-        return selectedOptions;
+
+        return options;
     }
 
 }
