@@ -10,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.ausiasmarch.pokemon.model.ScoreDto;
 import net.ausiasmarch.pokemon.service.ScoreService;
+import net.ausiasmarch.shared.model.UserBean;
 
 @WebServlet("/pokemon/PuntajeServlet")
 public class PuntajeServlet extends HttpServlet {
@@ -29,6 +31,19 @@ public class PuntajeServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)  {
+        // Verificar autenticación
+        HttpSession session = request.getSession();
+        UserBean user = (UserBean) session.getAttribute("sessionUser");
+        if (user == null) {
+            try {
+                response.sendRedirect("../shared/login.jsp");
+                return;
+            } catch (IOException e) {
+                System.err.println("Error al redirigir a la página de inicio de sesión: " + e.getMessage());
+                return;
+            }
+        }
+        
         try {
             List<ScoreDto> highScoresList = oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);

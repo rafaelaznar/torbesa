@@ -101,7 +101,7 @@ public class ServletJuego extends HttpServlet {
 
             ScoreService scoreService = new ScoreService();
             String pokemonName = request.getParameter("pokemonName");
-            String abilityGuess = request.getParameter("capitalGuess"); // Note: keeping same parameter name for compatibility
+            String abilityGuess = request.getParameter("abilityGuess");
             
             // Get the correct ability from session
             String correctAbility = (String) session.getAttribute("correctAbility");

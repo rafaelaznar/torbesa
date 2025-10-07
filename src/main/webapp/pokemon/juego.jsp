@@ -1,5 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%
+    if (session.getAttribute("sessionUser") == null) {
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        return;
+    }
+%>
         <!DOCTYPE html>
         <html lang="en">
 
@@ -79,7 +85,7 @@
                                         <div class="w-75">
                                             <c:forEach var="option" items="${options}">
                                                 <div class="form-check mb-3 p-3" style="background: rgba(76, 205, 196, 0.1); border-radius: 10px; border-left: 4px solid #4ecdc4;">
-                                                    <input class="form-check-input" type="radio" name="capitalGuess"
+                                                    <input class="form-check-input" type="radio" name="abilityGuess"
                                                         id="option${option}" value="${option}" required>
                                                     <label class="form-check-label fw-semibold"
                                                         for="option${option}" style="text-transform: capitalize;">${option}</label>

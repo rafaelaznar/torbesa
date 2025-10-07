@@ -179,7 +179,6 @@
                                 </div>
                             </div>
 
-                            <div class="row g-4">
                             <!-- Pokemon Guess Game -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -218,10 +217,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> <!-- 👈 Cierra .row g-4 -->
-                    </div> <!-- 👈 Cierra .col-lg-8 -->
-                </div> <!-- 👈 Cierra .row justify-content-center -->
-            </div> <!-- 👈 Cierra .container -->
 
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
