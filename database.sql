@@ -122,6 +122,12 @@ ALTER TABLE `capitals_score`
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
+--
+-- AUTO_INCREMENT for table `pokemon_score`
+--
+ALTER TABLE `pokemon_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
 
 
 
