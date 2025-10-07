@@ -85,25 +85,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
 -- AUTO_INCREMENT for table `capitals_score`
 --
 ALTER TABLE `capitals_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `capitals_score`
---
-ALTER TABLE `capitals_score`
-  ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+-- Nota: la clave ajena se elimina, no se aplicará a nivel de SQL
+-- ALTER TABLE `capitals_score`
+--   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
+
+-- Crear la tabla math_scores
+CREATE TABLE `math_scores` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insertar un registro de ejemplo
+INSERT INTO `math_scores` (`user_id`, `score`, `tries`, `timestamp`)
+VALUES (17, 8, 50, '2025-10-07 09:35:53');

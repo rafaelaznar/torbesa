@@ -85,22 +85,35 @@
                             </div>
 
                             <!-- Math Challenge Game -->
-<div class="col-md-6 col-lg-4">
-    <div class="card game-card shadow-sm border-0 h-100">
-        <div class="card-body text-center p-4">
-            <div class="mb-3">
-                <i class="bi bi-calculator text-warning" style="font-size: 3rem;"></i>
-            </div>
-            <h5 class="card-title text-warning mb-3">Math Challenge</h5>
-            <p class="card-text text-muted mb-4">
-                Sharpen your math skills with fun arithmetic challenges and number puzzles.
-            </p>
-            <a href="../math/GameServlet" class="btn btn-warning btn-lg w-100">
-                <i class="bi bi-play-fill"></i> Play Now
-            </a>
-        </div>
-    </div>
-</div>
+              <div class="col-md-6 col-lg-4">
+                <div class="card game-card shadow-sm border-0 h-100">
+                  <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                      <i
+                        class="bi bi-calculator text-warning"
+                        style="font-size: 3rem"
+                      ></i>
+                    </div>
+                    <h5 class="card-title text-warning mb-3">Math Challenge</h5>
+                    <p class="card-text text-muted mb-4">
+                      Sharpen your math skills with fun arithmetic challenges
+                      and number puzzles.
+                    </p>
+                    <a
+                      href="math/landing.jsp"
+                      class="btn btn-warning btn-lg w-100 mb-3"
+                    >
+                      <i class="bi bi-play-fill"></i> Play Now
+                    </a>
+                    <div
+                      class="text-center mt-2"
+                      style="font-size: 0.8rem; color: #f0f0f0aa"
+                    >
+                      made by Hector Jose Fernandez
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
                             <!-- Coming Soon Game 2 -->

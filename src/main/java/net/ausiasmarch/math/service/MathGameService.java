@@ -15,19 +15,23 @@ public class MathGameService {
 
     public MathQuestionBean generateQuestion(HttpSession session) {
         Random rand = new Random();
-        int a = rand.nextInt(50)+1;
-        int b = rand.nextInt(50)+1;
-        String[] ops = {"+","-","*","/"};
+        int a = rand.nextInt(50) + 1;
+        int b = rand.nextInt(50) + 1;
+        String[] ops = { "+", "-", "*", "/" };
         String op = ops[rand.nextInt(ops.length)];
         String expr = a + op + b;
 
         double answer = 0;
-        try { answer = getAnswerFromAPI(expr); } catch(Exception e){ e.printStackTrace(); }
+        try {
+            answer = getAnswerFromAPI(expr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         MathQuestionBean question = new MathQuestionBean(expr, answer);
         session.setAttribute("currentQuestion", question);
 
-        if(session.getAttribute("mathScore") == null) {
+        if (session.getAttribute("mathScore") == null) {
             session.setAttribute("mathScore", new MathScoreBean());
         }
 
@@ -38,14 +42,11 @@ public class MathGameService {
         try {
             double userAnswer = Double.parseDouble(userAnswerStr);
             MathQuestionBean question = (MathQuestionBean) session.getAttribute("currentQuestion");
-            MathScoreBean score = (MathScoreBean) session.getAttribute("mathScore");
-            score.setTries(score.getTries()+1);
-            if(Math.abs(userAnswer - question.getAnswer()) < 0.01) {
-                score.setScore(score.getScore()+1);
-                return true;
-            }
-        } catch(Exception e){ e.printStackTrace(); }
-        return false;
+            return Math.abs(userAnswer - question.getAnswer()) < 0.01;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private double getAnswerFromAPI(String expression) throws Exception {
