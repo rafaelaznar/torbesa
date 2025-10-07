@@ -132,7 +132,7 @@ public class ScoreDao {
     }
 
     public int delete(int id) throws SQLException {
-        String deleteSql = "DELETE FROM pikachu_score WHERE id = ?";
+        String deleteSql = "DELETE FROM pokemon_score WHERE id = ?";
         PreparedStatement deleteStmt = oConnection.prepareStatement(deleteSql);
         deleteStmt.setInt(1, id);
         return deleteStmt.executeUpdate();
