@@ -237,7 +237,7 @@ INSERT INTO `wtpokemon_score` (`id`, `user_id`, `score`, `tries`) VALUES
 --
 ALTER TABLE `wtpokemon_score`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `wtpokemon_score_ibfk_1` (`user_id`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
