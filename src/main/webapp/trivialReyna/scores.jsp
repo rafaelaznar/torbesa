@@ -42,22 +42,22 @@
                             </div>
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <h5>
-                                        <strong class="text-muted">Pregunta:</strong>
-                                        <p class="badge bg-primary ms-2">${questionText}</p>
-                                    </h5>
+                                    <h5 class="mb-1"><strong class="text-muted">Pregunta:</strong></h5>
+                                    <div class="mb-2">
+                                        <div class="badge bg-primary d-block text-start text-break p-3">${questionText}</div>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <h5>
-                                        <strong class="text-muted">Tu respuesta:</strong>
-                                        <span class="badge bg-warning text-dark ms-2">${selectedAnswer}</span>
-                                    </h5>
+                                    <h5 class="mb-1"><strong class="text-muted">Tu respuesta:</strong></h5>
+                                    <div>
+                                        <div class="badge bg-warning text-dark d-block text-start text-break p-2">${selectedAnswer}</div>
+                                    </div>
                                 </div>
                                 <div class="mb-0">
-                                    <h5>
-                                        <strong class="text-muted">Respuesta correcta:</strong>
-                                        <span class="badge bg-success ms-2">${correctAnswer}</span>
-                                    </h5>
+                                    <h5 class="mb-1"><strong class="text-muted">Respuesta correcta:</strong></h5>
+                                    <div>
+                                        <div class="badge bg-success d-block text-start text-break p-2">${correctAnswer}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
