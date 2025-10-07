@@ -104,14 +104,14 @@ ALTER TABLE `users`
 --
 -- Constraints for table `capitals_score`
 --
-ALTER TABLE `capitals_score`
-  ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-COMMIT;
 
 
 ---------------------------------------------------------
 ---------------------------------------------------------
 -- LUCIA CASTAÑERA - JUEGO TAYLOR SWIFT
+
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `song_score`
@@ -122,10 +122,21 @@ CREATE TABLE `song_score` (
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
-  `timestamp` int NOT NULL
+  `timestamp` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- --------------------------------------------------------
+--
+-- Volcado de datos para la tabla `song_score`
+--
+
+INSERT INTO `song_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 5, 1989, 2000, '2025-10-07 09:26:43'),
+(2, 3, 1313, 1500, '2025-10-07 09:33:58'),
+(4, 1, 11, 14, '2025-10-07 09:34:03');
+
+--
+-- Índices para tablas volcadas
+--
 
 --
 -- Indices de la tabla `song_score`
@@ -135,12 +146,15 @@ ALTER TABLE `song_score`
   ADD KEY `indice` (`user_id`),
   ADD KEY `user_id` (`user_id`);
 
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
 
 --
 -- AUTO_INCREMENT de la tabla `song_score`
 --
 ALTER TABLE `song_score`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
 
 

@@ -55,13 +55,13 @@
                                             <div class="mb-3">
                                                 <h5>
                                                     <strong class="text-muted">Song:</strong>
-                                                    <span class="badge bg-primary ms-2">${song}</span>
+                                                    <span class="badge bg-primary ms-2">${song}</span> 
                                                 </h5>
                                             </div>
                                             <div class="mb-3">
                                                 <h5>
                                                     <strong class="text-muted">Your Guess:</strong>
-                                                    <span class="badge bg-warning text-dark ms-2">${AlbumGuess}</span>
+                                                    <span class="badge bg-warning text-dark ms-2">${albumGuess}</span>
                                                 </h5>
                                             </div>
                                             <div class="mb-0">

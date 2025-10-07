@@ -56,6 +56,7 @@ public class SongService {
                 song.setCancion(obj.getString("title"));
                 song.setAlbum(obj.optString("album_id", ""));
                 songs.add(song);
+                
                 /* String song = obj.getJSONObject("song").getString("title");
                 String album = obj.has("album") ? obj.getJSONArray("album_id").optString(0, "") : "";
                 songs.add(new SongBean(song, album)); */

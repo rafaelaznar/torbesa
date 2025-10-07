@@ -47,11 +47,11 @@
                                                         <h5 class="card-title">Lista</h5>
                                                         <ul id="rightList" class="list-group list-group-flush">
                                                             <!-- lista vacía -->
-                                                             <li> 1 -> Taylor Swift</li>
-                                                             <li> 2 -> Fearless</li>
-                                                             <li> 3 -> Speak Now</li>
-                                                             <li> 4 -> Red</li>
-                                                             <li> 5 -> 1989</li>
+                                                             <li> 1 -> 1989</li>
+                                                             <li> 2 -> Taylor Swift</li>
+                                                             <li> 3 -> Fearless</li>
+                                                             <li> 4 -> Speak Now</li>
+                                                             <li> 5 -> Red</li>
                                                              <li> 6 -> Reputation</li>
                                                              <li> 7 -> Lover</li>
                                                              <li> 8 -> Folklore</li>
