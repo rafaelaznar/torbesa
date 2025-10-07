@@ -26,7 +26,7 @@
                                         <h4>What is its translation <span class="text-primary">${word}</span>?</h4>
                                     </div>
                                     <!-- send the word name as a hidden field -->
-                                    <!--<input type="hidden" name="word" value="${word}"> -->
+                                    <input type="hidden" name="word" value="${word}">
                                     <div class="mb-3 d-flex justify-content-center">
                                         <div class="w-50 text-start">
                                             <c:forEach var="option" items="${options}">

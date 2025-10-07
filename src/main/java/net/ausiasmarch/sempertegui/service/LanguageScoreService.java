@@ -11,7 +11,7 @@ import net.ausiasmarch.sempertegui.model.LanguageScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 public class LanguageScoreService {
-
+    //MODIFICAR PARA QUE COGE UN INTENTO HACER UN MÉTODO SOBRECARGADP
     public boolean set(int userId, boolean correct) throws SQLException {
         
         try (Connection oConnection = HikariPool.getConnection()) {
@@ -22,7 +22,6 @@ public class LanguageScoreService {
             }
             LanguageScoreDto oUserScore = oScoreDao.get(userId);
             if (!Objects.isNull(oUserScore)) {
-                oUserScore.setTries(oUserScore.getTries() + 1);
                 if (correct) {
                     oUserScore.setScore(oUserScore.getScore() + 1);
                 }
@@ -30,7 +29,6 @@ public class LanguageScoreService {
             } else {
                 oUserScore = new LanguageScoreDto();
                 oUserScore.setUserId(userId);
-                oUserScore.setTries(1);
                 if (correct) {
                     oUserScore.setScore(1);
                 } else {
@@ -40,7 +38,24 @@ public class LanguageScoreService {
                 return oScoreDao.insert(oUserScore) > 0;
             }
         }
+    }
 
+    public boolean set(int userId) throws SQLException {
+        
+        try (Connection oConnection = HikariPool.getConnection()) {
+
+            LanguageScoreDao oScoreDao = new LanguageScoreDao(oConnection);
+            if (oScoreDao.count(userId) > 1) {
+                oScoreDao.sanitize();
+            }
+            LanguageScoreDto oUserScore = oScoreDao.get(userId);
+            if(oUserScore.getTries() != 0) {
+                oUserScore.setTries(oUserScore.getTries() + 1);
+            } else {
+                oUserScore.setTries(1);
+            }
+            return oScoreDao.update(oUserScore) > 0; //
+        }
     }
 
     public List<LanguageScoreDto> getHighScores() throws SQLException {        

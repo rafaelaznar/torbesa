@@ -21,8 +21,10 @@ import net.ausiasmarch.sempertegui.service.LanguageService;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 
-@WebServlet("/languages/languageGameServlet")
+@WebServlet("/sempertegui/languageGameServlet")
 public class LanguageGameServlet extends HttpServlet {
+
+    private static final int MAX_QUESTIONS = 5;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -38,8 +40,15 @@ public class LanguageGameServlet extends HttpServlet {
             }
             return;
         } else {
-            request.setAttribute("sessionUser", user);
+            //request.setAttribute("sessionUser", user); CUIDADO OBSERVAR
         }
+
+        // Inicializa el contador y el score si es la primera pregunta
+        if (session.getAttribute("questionCount") == null) {
+            session.setAttribute("questionCount", 0);
+            session.setAttribute("score", 0);
+        }
+
 
         LanguageService languageService = new LanguageService();
         Language.setWord(languageService.getOneRandomWord());
@@ -48,6 +57,7 @@ public class LanguageGameServlet extends HttpServlet {
 
         request.setAttribute("word", translatedWord);        
         request.setAttribute("options", randomWordsOptionsList);
+        request.setAttribute("score", session.getAttribute("score"));
         request.getRequestDispatcher("languageGame.jsp").forward(request, response);
 
     }
@@ -55,49 +65,75 @@ public class LanguageGameServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    
+        HttpSession session = request.getSession();
+        UserBean user = (UserBean) session.getAttribute("sessionUser");
+        if (user == null) {
+            response.sendRedirect("../shared/login.jsp");
+            return;
+        } else {
+            request.setAttribute("username", user.getUsername());
+        }
+
+        int questionCount = (int) session.getAttribute("questionCount");
+        int score = (int) session.getAttribute("score");
+
+        String wordGuess = request.getParameter("wordGuess");
+        String correctWord = Language.getWord();
+
+        request.setAttribute("word", request.getParameter("word"));
+        request.setAttribute("wordGuess", wordGuess);
+        request.setAttribute("correctWord", correctWord);
+
+        LanguageScoreService scoreService = new LanguageScoreService();
         try {
-            HttpSession session = request.getSession();
-            UserBean user = (UserBean) session.getAttribute("sessionUser");
-            if (user == null) {
-                response.sendRedirect("../shared/login.jsp");
-                return;
-            } else {
-                request.setAttribute("username", user.getUsername());
-            }
-
-            LanguageScoreService scoreService = new LanguageScoreService();
-          //  String word = request.getParameter("word");
-            String wordGuess = request.getParameter("wordGuess");
-
-            if (wordGuess.equalsIgnoreCase(Language.getWord())) {
-
+            if (wordGuess.equalsIgnoreCase(correctWord)) {
+                score++;
                 scoreService.set(user.getId(), true);
-
                 request.setAttribute("message", "Correct! Well done.");
             } else {
-                request.setAttribute("message", "Incorrect. Try again!");
                 scoreService.set(user.getId(), false);
+                request.setAttribute("message", "Incorrect. Try again!");
             }
 
-            try (Connection oConnection = HikariPool.getConnection()) {
+            questionCount++;
+            session.setAttribute("questionCount", questionCount);
+            session.setAttribute("score", score);
+       
+            if(questionCount >= MAX_QUESTIONS) {
+                
+                scoreService.set(user.getId()); // cambiar estoi
+                try (Connection oConnection = HikariPool.getConnection()) {
 
-                LanguageScoreDao oScoreDao = new LanguageScoreDao(oConnection);
-                LanguageScoreDto userScore = oScoreDao.get(user.getId());
-                request.setAttribute("userScore", userScore);
+                    LanguageScoreDao oScoreDao = new LanguageScoreDao(oConnection);
+                    LanguageScoreDto userScore = oScoreDao.get(user.getId());
+                    request.setAttribute("userScore", userScore);
 
-                List<LanguageScoreDto> highScores = oScoreDao.getTop10();
-                request.setAttribute("highScores", highScores);
+                    List<LanguageScoreDto> highScores = oScoreDao.getTop10();
+                    request.setAttribute("highScores", highScores);
 
-                request.getRequestDispatcher("languageScores.jsp").forward(request, response);
+                    //Limpia la sesión para un nuevo juego
+                    session.removeAttribute("questionCount");
+                    session.removeAttribute("score");
 
+                    request.getRequestDispatcher("languageScores.jsp").forward(request, response);
+                }
+            } else {
+                // Mostrar siguiente pregunta
+                LanguageService languageService = new LanguageService();
+                Language.setWord(languageService.getOneRandomWord());
+                String translatedWord = LanguageService.translateWord(Language.getWord());
+                List<String> randomWordsOptionsList = languageService.getRandomWordsOptionsList(Language.getWord(), 3);
+
+                request.setAttribute("word", translatedWord);
+                request.setAttribute("options", randomWordsOptionsList);
+                request.setAttribute("score", score);
+                request.getRequestDispatcher("languageGame.jsp").forward(request, response);
             }
-
-        } catch (SQLException e) {
-            System.err.println("Database error: " + e.getMessage());
+        } catch(SQLException e){
             request.setAttribute("errorMessage", "Database error");
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 }

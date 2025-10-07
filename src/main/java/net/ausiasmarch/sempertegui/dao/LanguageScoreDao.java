@@ -118,7 +118,7 @@ public class LanguageScoreDao {
         PreparedStatement insertStmt = oConnection.prepareStatement(insertSql);
         insertStmt.setInt(1, oScore.getUserId());
         insertStmt.setInt(2, oScore.getScore());
-        insertStmt.setInt(3, 1);
+        insertStmt.setInt(3, 0);
         return insertStmt.executeUpdate();
     }
 

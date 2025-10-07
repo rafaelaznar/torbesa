@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.ausiasmarch.sempertegui.model.LanguageScoreDto;
 import net.ausiasmarch.sempertegui.service.LanguageScoreService;
 
-@WebServlet("/languages/languageScoreServlet")
+@WebServlet("/sempertegui/languageScoreServlet")
 public class LanguageScoreServlet extends HttpServlet {
 
     private LanguageScoreService oScoreService;

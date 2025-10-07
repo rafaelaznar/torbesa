@@ -17,7 +17,8 @@ public class LanguageService {
                                                            "Muebles", "Mesa", "Sillon", "Armario", "Cajon",
                                                            "Toalla", "Salon", "Tenedores", "Ascensor", "Automovil",
                                                            "Casa", "Agua", "Arbol", "Sol", "Biblioteca",
-                                                           "Almohada","Barranco","Cocina","Palo","Salchicha");
+                                                           "Almohada", "Precipicio", "Cocina", "Palo", "Salchicha",
+                                                           "Rosa", "Negro", "Azul", "Verde","Cromo");
 
     public LanguageService() {
     }

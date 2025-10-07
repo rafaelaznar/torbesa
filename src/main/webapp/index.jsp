@@ -117,7 +117,7 @@
                                         <p class="card-text text-muted mb-4">
                                             By Ariel 
                                         </p>
-                                        <a href="languages/languageLanding.jsp" class="btn btn-primary btn-lg w-100">
+                                        <a href="sempertegui/languageLanding.jsp" class="btn btn-primary btn-lg w-100">
                                             <i class="bi bi-play-fill"></i> Play Now
                                         </a>
                                     </div>
