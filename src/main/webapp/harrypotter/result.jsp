@@ -29,7 +29,7 @@
                     <h1 class="display-4 text-primary">
                         <i class="bi bi-magic"></i> Harry Potter Quiz - Results
                     </h1>
-                    <p class="lead text-muted">Let's see how magical your knowledge is 🪄✨</p>
+                    <p class="lead text-muted">Vamos a comprobar la magia de tu conocimiento 🪄✨</p>
                 </div>
 
                 <!-- Message Alert -->

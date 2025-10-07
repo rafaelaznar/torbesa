@@ -41,12 +41,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Cómo Jugar</h5>
                         <ul class="list-group list-group-flush text-start">
-                            <li class="list-group-item">🪄 Inicia sesión con tu nombre de usuario y contraseña.</li>
                             <li class="list-group-item">✨ Verás el nombre de un personaje aleatorio.</li>
                             <li class="list-group-item">🏠 Elige a qué casa de Hogwarts pertenece (Gryffindor, Hufflepuff, Ravenclaw o Slytherin).</li>
                             <li class="list-group-item">✅ Gana puntos por cada respuesta correcta. ¡Intenta conseguir una puntuación perfecta!</li>
                             <li class="list-group-item">🏆 ¡Ve las mejores puntuaciones y desafía a tus amigos!</li>
-                            <li class="list-group-item">⚡ Este juego está construido con JSP, Servlets y Sessions — ¡una forma divertida de aprender magia de desarrollo web!</li>
                         </ul>
                     </div>
                 </div>
