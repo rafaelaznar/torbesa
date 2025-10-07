@@ -104,8 +104,7 @@ ALTER TABLE `users`
 --
 -- Constraints for table `capitals_score`
 --
-ALTER TABLE `capitals_score`
-  ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
 
 --
 -- Table structure for table `languages_score`
