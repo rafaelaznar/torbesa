@@ -1,8 +1,17 @@
 package net.ausiasmarch.find_it_Alvaro.controller;
 
-import javax.servlet.*;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.ausiasmarch.find_it_Alvaro.dao.ScoreDao;
 import net.ausiasmarch.find_it_Alvaro.model.CharacterBean;
@@ -11,13 +20,6 @@ import net.ausiasmarch.find_it_Alvaro.service.CharacterService;
 import net.ausiasmarch.find_it_Alvaro.service.ScoreService;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
-
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 @WebServlet("/find_it_Alvaro/GameServlet")
 public class GameServlet extends HttpServlet {
@@ -38,12 +40,14 @@ public class GameServlet extends HttpServlet {
             request.setAttribute("sessionUser", user);
         }
 
-        CharacterService oCharacterService = new CharacterService(request.getServletContext()); //Cambiar por CharacterService
-        CountryBean selectedCountry = oCharacterService.getOneRandomCountry(); //Cambiar por CharacterBean y getOneRandomCharacter
-        ArrayList<String> optionsListForCapitalTest = oCharacterService.getRandomCapitalsForTest(selectedCountry, 3);        
-        request.setAttribute("country", selectedCountry.getName());         //Cambiar por character y getName por getSomething
-        request.setAttribute("options", optionsListForCapitalTest);       //Cambiar por optionsListForSomethingTest
-        RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp"); //Esto tengo que tocarlo? creo que no
+        CharacterService oCharacterService = new CharacterService(request.getServletContext());
+        CharacterBean selectedCharacter = oCharacterService.getOneRandomCharacter();
+        List<CharacterBean> optionsListForCharacterTest = oCharacterService.getRandomCharactersForTest(selectedCharacter, 4);
+
+        request.setAttribute("selectedCharacter", selectedCharacter);
+        request.setAttribute("options", optionsListForCharacterTest);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("game.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException | IOException e) {
@@ -66,30 +70,29 @@ public class GameServlet extends HttpServlet {
             }
 
             ScoreService scoreService = new ScoreService();
-            String country = request.getParameter("country");
-            String capitalGuess = request.getParameter("capitalGuess");
-            CharacterService oCharacterService = new CharacterService(request.getServletContext()); //Cambiar por CharacterService
-             //CharacterService oCharacterService = new CharacterService(request.getServletContext());
-            String correctCapital = oCharacterService.fetchAllCharacters()().stream()
-                    .filter(c -> c.getName().equals(country))
-                    .map(CharacterBean::getCapital)
+            String characterName = request.getParameter("characterName");
+            String elementGuess = request.getParameter("elementGuess");
+
+            CharacterService oCharacterService = new CharacterService(request.getServletContext());
+            String correctElement = oCharacterService.fetchAllCharacters().stream()
+                    .filter(c -> c.getName().equals(characterName))
+                    .map(CharacterBean::getElement)
                     .findFirst()
                     .orElse("");
-            request.setAttribute("country", country);
-            request.setAttribute("correctCapital", correctCapital);
-            request.setAttribute("capitalGuess", capitalGuess);
-            if (capitalGuess.equals(correctCapital)) {
 
+            request.setAttribute("characterName", characterName);
+            request.setAttribute("correctElement", correctElement);
+            request.setAttribute("elementGuess", elementGuess);
+
+            if (elementGuess.equalsIgnoreCase(correctElement)) {
                 scoreService.set(user.getId(), true);
-
-                request.setAttribute("message", "Correct! Well done.");
+                request.setAttribute("message", "¡Correcto! Bien hecho.");
             } else {
-                request.setAttribute("message", "Incorrect. Try again!");
                 scoreService.set(user.getId(), false);
+                request.setAttribute("message", "Incorrecto. ¡Inténtalo otra vez!");
             }
 
             try (Connection oConnection = HikariPool.getConnection()) {
-
                 ScoreDao oScoreDao = new ScoreDao(oConnection);
                 ScoreDto userScore = oScoreDao.get(user.getId());
                 request.setAttribute("userScore", userScore);
@@ -99,7 +102,6 @@ public class GameServlet extends HttpServlet {
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("scores.jsp");
                 dispatcher.forward(request, response);
-
             }
 
         } catch (SQLException e) {
@@ -108,6 +110,5 @@ public class GameServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 }

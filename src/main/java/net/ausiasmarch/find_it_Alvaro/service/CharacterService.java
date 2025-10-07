@@ -7,9 +7,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.servlet.ServletContext;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import net.ausiasmarch.find_it_Alvaro.model.CharacterBean;
 
 public class CharacterService {
@@ -116,35 +119,46 @@ public class CharacterService {
         return selectedCharacter;
     }
 
-    //Cambiar el metodo para que devuelva varios personajes aleatorios
-    public ArrayList<String> getRandomElementsForTest(CharacterBean oSelectedCharacterBean, int numElements) {
+        // Cambiar el metodo para que devuelva varios personajes aleatorios
+    public List<CharacterBean> getRandomCharactersForTest(CharacterBean oSelectedCharacterBean, int numElements) {
+        List<CharacterBean> allCharacters = fetchAllCharacters();
+
         if (numElements < 1) {
             numElements = 4;
         }
-        List<CharacterBean> oCharacters = fetchAllCharacters();
 
-        //Cambiar el nombre de selectedElementsList por selectedCharactersList
-        ArrayList<String> selectedElementsList = new ArrayList<>();
-
-        selectedElementsList.add(oSelectedCharacterBean.getElement());
-        for (int i = 0; i < numElements - 1; i++) {
-            int randomIndex = 0;
-            while (randomIndex == 0) {
-                randomIndex = (int) (Math.random() * oCharacters.size());
-                if (oCharacters.get(randomIndex).getElement().trim().isEmpty()) {
-                    randomIndex = 0;
-                } else {
-                    if (selectedElementsList.contains(oCharacters.get(randomIndex).getElement())) {
-                        randomIndex = 0;
-                    }
-                }
+        // Filtramos personajes con elemento válido
+        List<CharacterBean> validCharacters = new ArrayList<>();
+        for (CharacterBean c : allCharacters) {
+            if (c.getElement() != null && !c.getElement().trim().isEmpty()) {
+                validCharacters.add(c);
             }
-            selectedElementsList.add(oCharacters.get(randomIndex).getElement());
         }
 
-        Collections.shuffle(selectedElementsList);
-        return selectedElementsList;
+        // Barajamos la lista para obtener aleatorios
+        Collections.shuffle(validCharacters);
 
+        // Lista final que devolveremos
+        List<CharacterBean> selectedCharacters = new ArrayList<>();
+
+        // Añadimos el personaje seleccionado al principio
+        selectedCharacters.add(oSelectedCharacterBean);
+
+        // Añadimos aleatorios hasta alcanzar el número pedido (sin repetir elemento)
+        for (CharacterBean c : validCharacters) {
+            if (selectedCharacters.size() >= numElements) break;
+            boolean alreadyContainsSameElement = selectedCharacters.stream()
+                .anyMatch(ch -> ch.getElement().equalsIgnoreCase(c.getElement()));
+            if (!alreadyContainsSameElement) {
+                selectedCharacters.add(c);
+            }
+        }
+
+        // Barajamos el orden final
+        Collections.shuffle(selectedCharacters);
+
+        return selectedCharacters;
     }
+
 
 }
