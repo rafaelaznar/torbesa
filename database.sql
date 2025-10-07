@@ -107,3 +107,32 @@ ALTER TABLE `users`
 ALTER TABLE `capitals_score`
   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `f1_score`
+--
+
+CREATE TABLE `f1_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+-- Indexes for table `f1_score`
+ALTER TABLE `f1_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+-- AUTO_INCREMENT for table `f1_score`
+ALTER TABLE `f1_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+-- Constraints for table `f1_score`
+ALTER TABLE `f1_score`
+  ADD CONSTRAINT `f1_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+COMMIT;
