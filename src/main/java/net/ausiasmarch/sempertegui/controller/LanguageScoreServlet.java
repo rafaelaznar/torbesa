@@ -1,4 +1,4 @@
-package net.ausiasmarch.languages.controller;
+package net.ausiasmarch.sempertegui.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.ausiasmarch.languages.model.LanguageScoreDto;
-import net.ausiasmarch.languages.service.LanguageScoreService;
+import net.ausiasmarch.sempertegui.model.LanguageScoreDto;
+import net.ausiasmarch.sempertegui.service.LanguageScoreService;
 
 @WebServlet("/languages/languageScoreServlet")
 public class LanguageScoreServlet extends HttpServlet {

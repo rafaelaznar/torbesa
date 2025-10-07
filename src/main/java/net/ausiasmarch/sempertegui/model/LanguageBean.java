@@ -1,4 +1,4 @@
-package net.ausiasmarch.languages.model;
+package net.ausiasmarch.sempertegui.model;
 
 public class LanguageBean {
 

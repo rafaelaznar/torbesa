@@ -1,4 +1,4 @@
-package net.ausiasmarch.languages.service;
+package net.ausiasmarch.sempertegui.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-import net.ausiasmarch.languages.dao.LanguageScoreDao;
-import net.ausiasmarch.languages.model.LanguageScoreDto;
+import net.ausiasmarch.sempertegui.dao.LanguageScoreDao;
+import net.ausiasmarch.sempertegui.model.LanguageScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 public class LanguageScoreService {

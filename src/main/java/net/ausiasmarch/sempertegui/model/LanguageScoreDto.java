@@ -1,4 +1,4 @@
-package net.ausiasmarch.languages.model;
+package net.ausiasmarch.sempertegui.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

@@ -1,4 +1,4 @@
-package net.ausiasmarch.languages.service;
+package net.ausiasmarch.sempertegui.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package net.ausiasmarch.languages.controller;
+package net.ausiasmarch.sempertegui.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.ausiasmarch.languages.dao.LanguageScoreDao;
-import net.ausiasmarch.languages.model.LanguageBean;
-import net.ausiasmarch.languages.model.LanguageScoreDto;
-import net.ausiasmarch.languages.service.LanguageScoreService;
-import net.ausiasmarch.languages.service.LanguageService;
+import net.ausiasmarch.sempertegui.dao.LanguageScoreDao;
+import net.ausiasmarch.sempertegui.model.LanguageBean;
+import net.ausiasmarch.sempertegui.model.LanguageScoreDto;
+import net.ausiasmarch.sempertegui.service.LanguageScoreService;
+import net.ausiasmarch.sempertegui.service.LanguageService;
 import net.ausiasmarch.shared.connection.HikariPool;
 import net.ausiasmarch.shared.model.UserBean;
 

@@ -1,4 +1,4 @@
-package net.ausiasmarch.languages.dao;
+package net.ausiasmarch.sempertegui.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.ausiasmarch.languages.model.LanguageScoreDto;
+import net.ausiasmarch.sempertegui.model.LanguageScoreDto;
 
 public class LanguageScoreDao {
 
