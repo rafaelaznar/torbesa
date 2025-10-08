@@ -497,9 +497,7 @@ ALTER TABLE `personajes_score`
 --
 -- Constraints for table `capitals_score`
 --
-<<<<<<< HEAD
-CREATE TABLE `dog_score` (
-=======
+
 
 
 
@@ -592,7 +590,6 @@ CREATE TABLE `emoji_quiz_score` (
   `score` int NOT NULL,
   `tries` int NOT NULL,
   `timestamp` datetime NOT NULL
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
