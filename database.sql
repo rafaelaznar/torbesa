@@ -96,16 +96,6 @@ ALTER TABLE `capitals_score`
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `capitals_score`
---
-ALTER TABLE `capitals_score`
-  ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 -- --------------------------------------------------------
@@ -130,9 +120,4 @@ ALTER TABLE `f1_score`
 -- AUTO_INCREMENT for table `f1_score`
 ALTER TABLE `f1_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
--- Constraints for table `f1_score`
-ALTER TABLE `f1_score`
-  ADD CONSTRAINT `f1_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
 COMMIT;
