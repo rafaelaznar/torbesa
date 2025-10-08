@@ -248,10 +248,7 @@
             </div>
         </section>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> profesor/main
         <!-- Footer -->
         <footer class="footer py-4 mt-5">
             <div class="container">
