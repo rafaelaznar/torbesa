@@ -98,7 +98,7 @@ ALTER TABLE `users`
 -- Nota: la clave ajena se elimina, no se aplicará a nivel de SQL
 -- ALTER TABLE `capitals_score`
 --   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-COMMIT;
+
 
 CREATE TABLE `math_scores` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -109,3 +109,5 @@ CREATE TABLE `math_scores` (
   PRIMARY KEY (`id`),
   UNIQUE KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+COMMIT;
