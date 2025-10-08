@@ -7,7 +7,6 @@
 -- Server version: 8.1.0
 -- PHP Version: 8.2.10
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -217,7 +216,6 @@ ALTER TABLE `harrypotter_score`
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -238,7 +236,6 @@ COMMIT;
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -297,7 +294,6 @@ COMMIT;
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -348,7 +344,6 @@ ALTER TABLE `genshin_score`
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -617,7 +612,6 @@ INSERT INTO `emoji_quiz_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) 
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -706,7 +700,6 @@ ALTER TABLE `capitals_score`
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.27
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -725,7 +718,6 @@ SET time_zone = "+00:00";
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.27
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
