@@ -2,11 +2,11 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <!DOCTYPE html>
         <html lang="en">
- 
+
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Country Capital's Game</title>
+            <title>Genshin Element's Game</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
         </head>
@@ -20,18 +20,18 @@
                     <div class="col-md-8">
                         <div class="card shadow-lg">
                             <div class="card-body">
-                                <h2 class="card-title text-center mb-4">Guess the Capital!</h2>
+                                <h2 class="card-title text-center mb-4">Guess the Vision!</h2>
                                 <form method="post" action="GameServlet">
                                     <div class="mb-4 text-center">
-                                        <h4>What is the capital of <span class="text-primary">${country}</span>?</h4>
+                                        <h4>What is the vision of <span class="text-primary">${characterName}</span>?</h4>
                                     </div>
-                                    <!-- send the country name as a hidden field -->
-                                    <input type="hidden" name="country" value="${country}">
+                                    <!-- send the character name as a hidden field -->
+                                    <input type="hidden" name="characterName" value="${characterName}">
                                     <div class="mb-3 d-flex justify-content-center">
                                         <div class="w-50 text-start">
                                             <c:forEach var="option" items="${options}">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="capitalGuess"
+                                                    <input class="form-check-input" type="radio" name="visionGuess"
                                                         id="option${option}" value="${option}" required>
                                                     <label class="form-check-label"
                                                         for="option${option}">${option}</label>

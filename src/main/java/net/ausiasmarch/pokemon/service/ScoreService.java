@@ -1,19 +1,19 @@
-package net.ausiasmarch.capitals.service;
+package net.ausiasmarch.pokemon.service;
 
 import java.util.List;
 import java.util.Objects;
 
-import net.ausiasmarch.capitals.dao.ScoreDao;
-import net.ausiasmarch.capitals.model.ScoreDto;
+import net.ausiasmarch.pokemon.dao.ScoreDao;
+import net.ausiasmarch.pokemon.model.ScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 
-public class ScoreService { 
+public class ScoreService {
 
     public boolean set(int userId, boolean correct) throws SQLException {
-        
+
         try (Connection oConnection = HikariPool.getConnection()) {
 
             ScoreDao oScoreDao = new ScoreDao(oConnection);
@@ -43,7 +43,7 @@ public class ScoreService {
 
     }
 
-    public List<ScoreDto> getHighScores() throws SQLException {        
+    public List<ScoreDto> getHighScores() throws SQLException {
         try (Connection oConnection = HikariPool.getConnection()) {
             ScoreDao oScoreDao = new ScoreDao(oConnection);
             return oScoreDao.getTop10();
