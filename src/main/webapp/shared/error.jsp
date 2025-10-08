@@ -14,7 +14,7 @@
         <form method="get" action="login.jsp">
             <input type="submit" value="Back to Login">
         </form>
-        <form method="get" action="landing.jsp">
+        <form method="get" action="welcome.jsp">
             <input type="submit" value="Home">
         </form>
         <jsp:include page="footer.jsp" />
