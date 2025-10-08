@@ -1,31 +1,32 @@
-package net.ausiasmarch.capitals.service;
+package net.ausiasmarch.find_it_Alvaro.service;
 
 import java.util.List;
 import java.util.Objects;
 
-import net.ausiasmarch.capitals.dao.ScoreDao;
-import net.ausiasmarch.capitals.model.ScoreDto;
+import net.ausiasmarch.find_it_Alvaro.dao.ScoreDao;
+import net.ausiasmarch.find_it_Alvaro.model.ScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 
-public class ScoreService { 
+public class ScoreService {
 
     public boolean set(int userId, boolean correct) throws SQLException {
         
         try (Connection oConnection = HikariPool.getConnection()) {
-
             ScoreDao oScoreDao = new ScoreDao(oConnection);
             if (oScoreDao.count(userId) > 1) {
                 oScoreDao.sanitize();
             }
             ScoreDto oUserScore = oScoreDao.get(userId);
+            // El username ahora se recibe como parámetro
             if (!Objects.isNull(oUserScore)) {
                 oUserScore.setTries(oUserScore.getTries() + 1);
                 if (correct) {
                     oUserScore.setScore(oUserScore.getScore() + 1);
                 }
+                // username eliminado
                 return oScoreDao.update(oUserScore) > 0;
             } else {
                 oUserScore = new ScoreDto();
@@ -37,6 +38,7 @@ public class ScoreService {
                     oUserScore.setScore(0);
                 }
                 oUserScore.setTimestamp(LocalDateTime.now());
+                // username eliminado
                 return oScoreDao.insert(oUserScore) > 0;
             }
         }
