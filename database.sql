@@ -30,6 +30,19 @@ CREATE TABLE `capitals_score` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
+-- Estructura de tabla para la tabla `trivia_score`
+--
+
+CREATE TABLE `trivia_score` (
+  `user_id` int NOT NULL,
+  `score` int NOT NULL DEFAULT '0',
+  `streak` int NOT NULL DEFAULT '0',
+  `best_score` int NOT NULL DEFAULT '0',
+  `best_streak` int NOT NULL DEFAULT '0',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
 -- Dumping data for table `capitals_score`
 --
 
@@ -74,6 +87,12 @@ ALTER TABLE `capitals_score`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
+  --
+-- Indices de la tabla `trivia_score`
+--
+ALTER TABLE `trivia_score`
+  ADD PRIMARY KEY (`user_id`);
+
 --
 -- Indexes for table `users`
 --
@@ -105,5 +124,5 @@ ALTER TABLE `users`
 -- Constraints for table `capitals_score`
 --
 ALTER TABLE `capitals_score`
-  ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  
 COMMIT;
