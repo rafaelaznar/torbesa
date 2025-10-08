@@ -91,7 +91,7 @@
                                         <div class="mb-3">
                                             <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
                                         </div>
-                                        <h5 class="card-title text-primary mb-3">Who's Thay Pokemon</h5>
+                                        <h5 class="card-title text-primary mb-3">Who's That Pokemon</h5>
                                         <p class="card-text text-muted mb-4">
                                             Adivina el pokemon por su silueta!!
                                         </p>

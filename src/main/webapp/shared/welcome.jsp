@@ -93,9 +93,9 @@
                                         <div class="mb-3">
                                             <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
                                         </div>
-                                        <h5 class="card-title text-primary mb-3">The Bomb Game</h5>
+                                        <h5 class="card-title text-primary mb-3">Who's That Pokemon</h5>
                                         <p class="card-text text-muted mb-4">
-                                            A Bomb! Write a word using the letters form the bomb!
+                                            Adivina el pokemon por su silueta!!
                                         </p>
                                         <p class="card-text text-muted mb-4">
                                             By Alan Alcañiz
