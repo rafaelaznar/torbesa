@@ -23,7 +23,7 @@
                         <h2 class="card-title text-center mb-4">Guess the Kimetsu!</h2>
                         <form method="post" action="GameServlet">
                             <div class="mb-4 text-center">
-                                <h4>What is the kimetsu of <span class="text-primary">${name}</span>?</h4>
+                                <h4>What is the quote of <span class="text-primary">${name}</span>?</h4>
                             </div>
 
                             <!-- send the character name as a hidden field -->
