@@ -181,6 +181,27 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+COMMIT;
+
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: database:3306
+-- Tiempo de generación: 08-10-2025 a las 07:09:49
+-- Versión del servidor: 8.4.6
+-- Versión de PHP: 8.2.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `torbesa`
+--
+
+-- --------------------------------------------------------
+
 --
 -- Base de datos: `torbesa`
 --
@@ -292,6 +313,7 @@ INSERT INTO `song_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
 
 --
 -- Indices de la tabla `song_score`
+-- Estructura de tabla para la tabla `kimetsu_score`
 --
 ALTER TABLE `song_score`
   ADD PRIMARY KEY (`id`),
@@ -327,4 +349,41 @@ CREATE TABLE `math_scores` (
   UNIQUE KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+CREATE TABLE `kimetsu_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `kimetsu_score`
+--
+
+INSERT INTO `kimetsu_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 1, 6, 8, '2025-10-07 08:39:21'),
+(2, 11, 33, 110, '2025-10-08 07:03:11');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `kimetsu_score`
+--
+ALTER TABLE `kimetsu_score`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `kimetsu_score`
+--
+ALTER TABLE `kimetsu_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
+
