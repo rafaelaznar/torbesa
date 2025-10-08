@@ -161,6 +161,96 @@
                     </div>
                 </div>
             </div>
+                            <!-- Juego Marcos -->
+                            
+                            <!-- Alan's Game -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-primary mb-3">Who's That Pokemon</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Adivina el pokemon por su silueta!!
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Alan Alcañiz
+                                        </p>
+                                        <a href="../whosthatpokemon/landingpokemon.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Coming Soon Game 1 -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                        <i class="bi bi-question-circle text-warning" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-warning mb-3">Trivial</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Sharpen your brain skills with this questions about all.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Marcos Pallás
+                                        </p>
+                                        <a href="../trivial/landing_j.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                      <i class="bi bi-play-fill"></i> Play Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+                        <div class="row g-4">
+                            <!-- Country Capital Game -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-primary mb-3">Country Capitals Game</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Test your geography knowledge! Guess the capital cities of countries from
+                                            around the world.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Rafael Aznar
+                                        </p>
+                                        <a href="../capitals/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Star Wars's Game -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-primary mb-3">STAR WARS</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Test your Star Wars knowledge! Guess the species of each Star Wars character.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Daniel Zanón Rodas
+                                        </p>
+                                        <a href="../starwars/landingSW.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i>Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
 
             <div class="col">
                 <div class="card game-card h-100 border-0 shadow-sm">
