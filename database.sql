@@ -584,34 +584,12 @@ INSERT INTO `emoji_quiz` (`id`, `question`, `correct_answer`, `option1`, `option
 --
 
 CREATE TABLE `emoji_quiz_score` (
->>>>>>> a77a2cc809f99bbbf07ffa41ea0719b447821d70
   `id` int NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
   `timestamp` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
-
---
--- Volcado de datos para la tabla `dog_score`
---
-
-INSERT INTO `dog_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
-(5, 1, 8, 19, '2025-09-14 12:03:52');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `dog_score`
---
-ALTER TABLE `dog_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-=======
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Volcado de datos para la tabla `emoji_quiz_score`
 --
