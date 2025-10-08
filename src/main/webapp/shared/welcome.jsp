@@ -21,30 +21,6 @@ response.sendRedirect(request.getContextPath() + "/index.jsp"); return; } %>
         color: white;
         padding: 100px 0;
       }
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <% if
-(session.getAttribute("sessionUser") == null) {
-response.sendRedirect(request.getContextPath() + "/index.jsp"); return; } %>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Torbesa - Gaming Platform</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <style>
-      .hero-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 100px 0;
-      }
 
       .game-card {
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
