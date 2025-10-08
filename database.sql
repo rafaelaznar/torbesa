@@ -151,6 +151,11 @@ ALTER TABLE `pokemon_score`
 ALTER TABLE `capitals_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
+--
+-- AUTO_INCREMENT de la tabla `trivial`
+--
+ALTER TABLE `trivial_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -658,7 +663,8 @@ ALTER TABLE `trivialReyna_score`
 --
 ALTER TABLE `trivialReyna_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-ALTER TABLE `capitals_score`
+
+
   
 COMMIT;
 
