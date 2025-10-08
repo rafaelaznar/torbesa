@@ -1,5 +1,4 @@
 package net.ausiasmarch.trivial.service;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -17,40 +16,42 @@ import net.ausiasmarch.trivial.model.TrivialBean;
 
 public class TrivialService {
 
-    private static final String API_URL = "https://opentdb.com/api.php?amount=10"; // traer 10 preguntas de golpe
+    private static final String API_URL = "https://opentdb.com/api.php?amount=10"; 
+    private static List<TrivialBean> globalCache = new ArrayList<>();
 
-    /**
-     * Obtiene la siguiente pregunta, usando la cache de la sesión.
-     * @param session la sesión del usuario
-     * @return TrivialBean con la pregunta
-     */
     public TrivialBean getNextQuestion(HttpSession session) {
         List<TrivialBean> cachedQuestions = (List<TrivialBean>) session.getAttribute("triviaQuestions");
 
-        // Si no hay preguntas en la sesión, traerlas del API
+        
         if (cachedQuestions == null || cachedQuestions.isEmpty()) {
-            cachedQuestions = fetchTriviaQuestionsFromAPI();
-            if (cachedQuestions == null || cachedQuestions.isEmpty()) {
-                return null; // fallo al obtener preguntas
+            if (globalCache == null || globalCache.isEmpty()) {
+                globalCache = fetchTriviaQuestionsFromAPI();
+                if (globalCache == null) { // si aún así falla
+                    globalCache = new ArrayList<>(); // evita nullpointer
+                }
             }
+            cachedQuestions = new ArrayList<>(globalCache);
             session.setAttribute("triviaQuestions", cachedQuestions);
         }
 
-        // Sacar la primera pregunta de la lista
+        
+        if (cachedQuestions.isEmpty()) {
+            return null;
+        }
+
         TrivialBean nextQuestion = cachedQuestions.remove(0);
-        session.setAttribute("triviaQuestions", cachedQuestions); // actualizar la lista en sesión
+        session.setAttribute("triviaQuestions", cachedQuestions);
         return nextQuestion;
     }
 
-    /**
-     * Llama a la API de OpenTDB y devuelve una lista de preguntas
-     */
     private List<TrivialBean> fetchTriviaQuestionsFromAPI() {
         List<TrivialBean> questionsList = new ArrayList<>();
         try {
             URL url = new URL(API_URL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
+
+            Thread.sleep(1000); // pequeña espera
 
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder response = new StringBuilder();
@@ -81,10 +82,13 @@ public class TrivialService {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            
+            return new ArrayList<>();
         }
 
         return questionsList;
     }
 }
+
+
 

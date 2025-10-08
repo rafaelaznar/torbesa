@@ -24,7 +24,7 @@ public class ScoreServlet2 extends HttpServlet {
         this.oScoreService = new ScoreService();
     }
 
-    // Constructor para inyección en tests
+   
     public ScoreServlet2(ScoreService scoreService) {
         this.oScoreService = scoreService;
     }

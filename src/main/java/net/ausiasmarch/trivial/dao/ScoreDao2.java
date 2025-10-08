@@ -30,7 +30,7 @@ public class ScoreDao2 {
                     rs.getInt("score"),
                     rs.getInt("tries"),
                     rs.getTimestamp("timestamp").toLocalDateTime(),
-                    null // no necesitamos username aquí, se puede obtener aparte si hace falta
+                    null 
             );
         }
         return oScore;
@@ -40,7 +40,7 @@ public class ScoreDao2 {
         ScoreDto2 existingScore = get(oScore.getUserId());
 
         if (existingScore == null) {
-            // No existe → insert
+           
             String insertSql = "INSERT INTO trivial_score (user_id, score, tries, timestamp) VALUES (?, ?, ?, NOW())";
             PreparedStatement insertStmt = oConnection.prepareStatement(insertSql);
             insertStmt.setInt(1, oScore.getUserId());
@@ -48,7 +48,7 @@ public class ScoreDao2 {
             insertStmt.setInt(3, 1); // primer intento
             return insertStmt.executeUpdate();
         } else {
-            // Existe → update
+            
             int newScore = existingScore.getScore() + (correct ? 1 : 0);
             int newTries = existingScore.getTries() + 1;
 

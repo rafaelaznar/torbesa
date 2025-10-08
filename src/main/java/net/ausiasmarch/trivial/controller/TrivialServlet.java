@@ -66,7 +66,7 @@ public class TrivialServlet extends HttpServlet {
 
         TrivialBean currentQuestion = (TrivialBean) session.getAttribute("currentQuestion");
         if (currentQuestion == null) {
-            response.sendRedirect("TrivialServlet"); // si no hay pregunta, redirige a GET
+            response.sendRedirect("TrivialServlet"); 
             return;
         }
 
@@ -79,7 +79,7 @@ public class TrivialServlet extends HttpServlet {
 
             ScoreDto2 scoreDto = new ScoreDto2();
             scoreDto.setUserId(user.getId());
-            scoreDto.setScore(1); // cada pregunta suma 1
+            scoreDto.setScore(1); 
 
             scoreDao.insertOrUpdate(scoreDto, correct);
 
