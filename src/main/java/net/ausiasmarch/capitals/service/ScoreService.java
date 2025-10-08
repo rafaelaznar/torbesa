@@ -10,7 +10,7 @@ import net.ausiasmarch.shared.connection.HikariPool;
 import java.sql.*;
 import java.time.LocalDateTime;
 
-public class ScoreService {
+public class ScoreService { 
 
     public boolean set(int userId, boolean correct) throws SQLException {
         
