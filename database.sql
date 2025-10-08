@@ -238,6 +238,31 @@ INSERT INTO `genshin_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VAL
 
 --
 -- Indices de la tabla `genshin_score`
+
+COMMIT;
+
+
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-10-2025 a las 20:57:55
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `torbesa`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `personajes_score`
 --
 ALTER TABLE `genshin_score`
   ADD PRIMARY KEY (`id`),
@@ -385,5 +410,40 @@ ALTER TABLE `kimetsu_score`
 --
 ALTER TABLE `kimetsu_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+CREATE TABLE `personajes_score` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
+  `tries` int(11) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `personajes_score`
+--
+
+INSERT INTO `personajes_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 20, 4, 6, '2025-10-07 20:10:05');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `personajes_score`
+--
+ALTER TABLE `personajes_score`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `personajes_score`
+--
+ALTER TABLE `personajes_score`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
