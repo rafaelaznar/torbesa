@@ -31,7 +31,7 @@ public class MathResultServlet extends HttpServlet {
         int score = (mathScore != null) ? mathScore.getScore() : 0;
         int attempts = (mathScore != null) ? mathScore.getTries() : 0;
 
-        // Insertar o actualizar la fila del usuario en la tabla
+        // ✅ Insertar o actualizar la fila del usuario en la tabla (versión correcta y funcional)
         String upsertSql = "INSERT INTO math_scores (user_id, score, tries, timestamp) " +
                 "VALUES (?, ?, ?, NOW()) " +
                 "ON DUPLICATE KEY UPDATE " +
@@ -52,7 +52,7 @@ public class MathResultServlet extends HttpServlet {
             request.setAttribute("error", "No se pudo guardar la puntuación en la base de datos.");
         }
 
-        // Obtener top 10
+        // ✅ Obtener top 10 puntuaciones
         List<MathScoreBean> highscores = new ArrayList<>();
         String query = "SELECT u.username, m.score, m.tries, m.timestamp " +
                        "FROM math_scores m JOIN users u ON m.user_id = u.id " +
@@ -64,7 +64,7 @@ public class MathResultServlet extends HttpServlet {
 
             while (rs.next()) {
                 MathScoreBean scoreBean = new MathScoreBean();
-                scoreBean.setUsername(rs.getString("username")); // Añadir campo username en MathScoreBean
+                scoreBean.setUsername(rs.getString("username"));
                 scoreBean.setScore(rs.getInt("score"));
                 scoreBean.setTries(rs.getInt("tries"));
                 scoreBean.setTimestamp(rs.getTimestamp("timestamp"));
@@ -75,7 +75,7 @@ public class MathResultServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Limpiar sesión del juego
+        // ✅ Limpiar sesión del juego
         session.removeAttribute("mathScore");
 
         request.setAttribute("score", score);

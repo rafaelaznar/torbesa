@@ -100,16 +100,12 @@ ALTER TABLE `users`
 --   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
--- Crear la tabla math_scores
 CREATE TABLE `math_scores` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `score` int NOT NULL,
-  `tries` int NOT NULL,
-  `timestamp` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `score` INT NOT NULL,
+  `tries` INT NOT NULL,
+  `timestamp` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Insertar un registro de ejemplo
-INSERT INTO `math_scores` (`user_id`, `score`, `tries`, `timestamp`)
-VALUES (17, 8, 50, '2025-10-07 09:35:53');

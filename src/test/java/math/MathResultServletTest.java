@@ -33,29 +33,29 @@ public class MathResultServletTest {
 
     @Test
     public void testDoGetWithScores() throws ServletException, IOException {
-        // Mockeamos usuario
-        UserBean user = mock(UserBean.class);
-        when(user.getUsername()).thenReturn("Hector");
-        when(user.getId()).thenReturn(1);
-
+        // Simular usuario en sesión
+        UserBean user = new UserBean(1, "Hector", null);
+        
         when(request.getSession(false)).thenReturn(session);
         when(session.getAttribute("sessionUser")).thenReturn(user);
         when(request.getRequestDispatcher("/math/highscores.jsp")).thenReturn(dispatcher);
 
-        // Simulamos MathScoreBean en sesión
+        // Simular MathScoreBean en sesión
         MathScoreBean scoreBean = new MathScoreBean();
         scoreBean.setScore(5);
         scoreBean.setTries(3);
         scoreBean.setUsername("Hector");
         when(session.getAttribute("mathScore")).thenReturn(scoreBean);
 
+        // Ejecutar servlet
         servlet.doGet(request, response);
 
-        // Verificamos que se haya agregado la puntuación y la lista de highscores
+        // Verificar comportamiento
         verify(request).setAttribute(eq("score"), eq(5));
         verify(request).setAttribute(eq("highscores"), any(List.class));
         verify(dispatcher).forward(request, response);
         verify(session).removeAttribute("mathScore");
+        verify(response, never()).sendRedirect(anyString());
     }
 
     @Test
@@ -65,8 +65,9 @@ public class MathResultServletTest {
 
         servlet.doGet(request, response);
 
-        // Verificamos redirección al login
+        // Verifica redirección al login
         verify(response).sendRedirect("/app/index.jsp");
+        verify(request, never()).getRequestDispatcher(anyString());
     }
 
     @Test
@@ -78,5 +79,25 @@ public class MathResultServletTest {
         servlet.doGet(request, response);
 
         verify(response).sendRedirect("/app/index.jsp");
+        verify(request, never()).getRequestDispatcher(anyString());
+    }
+
+    @Test
+    public void testDoGetSessionWithoutMathScoreStillWorks() throws ServletException, IOException {
+        // Usuario logueado pero sin MathScore en sesión
+        UserBean user = new UserBean(2, "Ana", null);
+
+        when(request.getSession(false)).thenReturn(session);
+        when(session.getAttribute("sessionUser")).thenReturn(user);
+        when(session.getAttribute("mathScore")).thenReturn(null);
+        when(request.getRequestDispatcher("/math/highscores.jsp")).thenReturn(dispatcher);
+
+        servlet.doGet(request, response);
+
+        // Se debe mostrar score 0 y lista de highscores
+        verify(request).setAttribute(eq("score"), eq(0));
+        verify(request).setAttribute(eq("highscores"), any(List.class));
+        verify(dispatcher).forward(request, response);
+        verify(response, never()).sendRedirect(anyString());
     }
 }

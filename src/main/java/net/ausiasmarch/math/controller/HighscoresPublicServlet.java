@@ -6,9 +6,10 @@ import net.ausiasmarch.math.model.MathScoreBean;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
-import java.io.*;
+import java.io.IOException;
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/math/HighscoresPublicServlet")
 public class HighscoresPublicServlet extends HttpServlet {
@@ -19,28 +20,25 @@ public class HighscoresPublicServlet extends HttpServlet {
 
         List<MathScoreBean> highscores = new ArrayList<>();
 
-        String query = "SELECT u.username, m.score, m.tries, m.timestamp " +
-                       "FROM math_scores m " +
-                       "JOIN users u ON m.user_id = u.id " +
-                       "ORDER BY m.score DESC, m.tries ASC " +
-                       "LIMIT 10";
+        String sql = "SELECT u.username, m.score, m.tries, m.timestamp " +
+                     "FROM math_scores m JOIN users u ON m.user_id = u.id " +
+                     "ORDER BY m.score DESC, m.tries ASC LIMIT 10";
 
         try (Connection conn = HikariPool.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query);
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                MathScoreBean scoreBean = new MathScoreBean();
-                scoreBean.setUsername(rs.getString("username"));
-                scoreBean.setScore(rs.getInt("score"));
-                scoreBean.setTries(rs.getInt("tries"));
-                scoreBean.setTimestamp(rs.getTimestamp("timestamp"));
-                highscores.add(scoreBean);
+                MathScoreBean bean = new MathScoreBean();
+                bean.setUsername(rs.getString("username"));
+                bean.setScore(rs.getInt("score"));
+                bean.setTries(rs.getInt("tries"));
+                bean.setTimestamp(rs.getTimestamp("timestamp"));
+                highscores.add(bean);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            request.setAttribute("error", "No se pudo obtener el ranking público.");
         }
 
         request.setAttribute("highscores", highscores);
