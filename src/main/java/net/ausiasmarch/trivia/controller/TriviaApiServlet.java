@@ -23,10 +23,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import net.ausiasmarch.shared.model.UserBean;
+import net.ausiasmarch.trivia.model.TriviaScoreDto;
+import net.ausiasmarch.trivia.service.TriviaScoreService;
+
 @WebServlet(urlPatterns = { "/api/question", "/api/answer" })
 public class TriviaApiServlet extends HttpServlet {
 
     private final Gson gson = new Gson();
+    private final TriviaScoreService scoreService = new TriviaScoreService();
 
     // Desescapa lo más común que devuelve OpenTDB (acentos y comillas incluidas)
     private static String unescape(String s) {
@@ -114,17 +119,29 @@ public class TriviaApiServlet extends HttpServlet {
 
                 // Guarda solo el índice correcto en sesión
                 HttpSession session = req.getSession(true);
+                UserBean user = getSessionUser(session);
                 session.setAttribute("api.correctIndex", correctIndex);
 
                 // Incluye puntuación actual (si existe)
                 Integer score  = (Integer) session.getAttribute("score");  if (score == null) score = 0;
                 Integer streak = (Integer) session.getAttribute("streak"); if (streak == null) streak = 0;
+                int bestScore  = safeInt((Integer) session.getAttribute("bestScore"));
+                int bestStreak = safeInt((Integer) session.getAttribute("bestStreak"));
+                if (user != null) {
+                    TriviaScoreDto dto = fetchAndCacheScore(session, user);
+                    if (dto != null) {
+                        bestScore = Math.max(bestScore, dto.getBestScore());
+                        bestStreak = Math.max(bestStreak, dto.getBestStreak());
+                    }
+                }
 
                 out = new JsonObject();
                 out.addProperty("question", question);
                 out.add("options", gson.toJsonTree(options));
                 out.addProperty("score",  score);
                 out.addProperty("streak", streak);
+                out.addProperty("bestScore",  bestScore);
+                out.addProperty("bestStreak", bestStreak);
             }
         } catch (Exception ex) {
             out = new JsonObject();
@@ -146,6 +163,7 @@ public class TriviaApiServlet extends HttpServlet {
         }
 
         HttpSession session = req.getSession(true);
+        UserBean user = getSessionUser(session);
 
         Integer correctIndex = (Integer) session.getAttribute("api.correctIndex");
         if (correctIndex == null) correctIndex = -1;
@@ -163,11 +181,75 @@ public class TriviaApiServlet extends HttpServlet {
         session.setAttribute("score", score);
         session.setAttribute("streak", streak);
 
+        int bestScore  = Math.max(score, safeInt((Integer) session.getAttribute("bestScore")));
+        int bestStreak = Math.max(streak, safeInt((Integer) session.getAttribute("bestStreak")));
+
+        TriviaScoreDto persisted = persistScore(session, user, score, streak, bestScore, bestStreak);
+        bestScore = Math.max(bestScore, persisted.getBestScore());
+        bestStreak = Math.max(bestStreak, persisted.getBestStreak());
+        session.setAttribute("bestScore", bestScore);
+        session.setAttribute("bestStreak", bestStreak);
+
         JsonObject out = new JsonObject();
         out.addProperty("ok", ok);
         out.addProperty("score", score);
         out.addProperty("streak", streak);
+        out.addProperty("bestScore",  bestScore);
+        out.addProperty("bestStreak", bestStreak);
 
         sendJson(resp, gson.toJson(out));
+    }
+
+    private UserBean getSessionUser(HttpSession session) {
+        Object obj = session != null ? session.getAttribute("sessionUser") : null;
+        return (obj instanceof UserBean) ? (UserBean) obj : null;
+    }
+
+    private void cacheBest(HttpSession session, TriviaScoreDto dto) {
+        if (session == null || dto == null) return;
+        session.setAttribute("bestScore", dto.getBestScore());
+        session.setAttribute("bestStreak", dto.getBestStreak());
+    }
+
+    private TriviaScoreDto fetchAndCacheScore(HttpSession session, UserBean user) {
+        if (user == null) return null;
+        try {
+            TriviaScoreDto dto = scoreService.getByUserId(user.getId());
+            cacheBest(session, dto);
+            return dto;
+        } catch (Exception e) {
+            log("Load Trivia score failed", e);
+            return null;
+        }
+    }
+
+    private TriviaScoreDto persistScore(HttpSession session, UserBean user, int score, int streak,
+                                        int fallbackBestScore, int fallbackBestStreak) {
+        if (user == null) {
+            return buildFallback(user, score, streak, fallbackBestScore, fallbackBestStreak);
+        }
+        try {
+            scoreService.upsert(user.getId(), score, streak);
+        } catch (Exception e) {
+            log("Persist Trivia score failed", e);
+            return buildFallback(user, score, streak, fallbackBestScore, fallbackBestStreak);
+        }
+        TriviaScoreDto dto = fetchAndCacheScore(session, user);
+        return dto != null ? dto : buildFallback(user, score, streak, fallbackBestScore, fallbackBestStreak);
+    }
+
+    private TriviaScoreDto buildFallback(UserBean user, int score, int streak,
+                                         int bestScore, int bestStreak) {
+        TriviaScoreDto dto = new TriviaScoreDto();
+        dto.setUserId(user != null ? user.getId() : -1);
+        dto.setScore(score);
+        dto.setStreak(streak);
+        dto.setBestScore(bestScore);
+        dto.setBestStreak(bestStreak);
+        return dto;
+    }
+
+    private int safeInt(Integer value) {
+        return value != null ? value : 0;
     }
 }

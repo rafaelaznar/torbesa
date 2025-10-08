@@ -132,7 +132,7 @@ h1,h2,h3,h4{ color:#f3f7ff; }
 <!-- NAV -->
 <nav class="navbar navbar-expand-lg sticky-top">
   <div class="container">
-    <a class="navbar-brand text-light" href="<%= request.getContextPath() %>/">torbesa</a>
+    <div class="navbar-brand text-light fw-bold mb-0 m-0"> </div>
     <div class="ms-auto d-flex gap-2">
       <a class="btn btn-sm btn-outline-light"
          href="<%= request.getContextPath() %>/shared/welcome.jsp">Inicio</a>
@@ -229,9 +229,11 @@ h1,h2,h3,h4{ color:#f3f7ff; }
   const ctx   = document.body.getAttribute('data-ctx') || '';
   const hasQ  = (document.body.getAttribute('data-hasq') === 'true');
 
-  const hudScore  = document.getElementById('hudScore');
-  const hudStreak = document.getElementById('hudStreak');
-  const titulo    = document.getElementById('tituloPregunta');
+  const hudScore      = document.getElementById('hudScore');
+  const hudStreak     = document.getElementById('hudStreak');
+  const hudBestScore  = document.getElementById('hudBestScore');
+  const hudBestStreak = document.getElementById('hudBestStreak');
+  const titulo        = document.getElementById('tituloPregunta');
 
   if (hasQ) return; // modo LOCAL: ya está pintado por el servidor
 
@@ -267,7 +269,8 @@ h1,h2,h3,h4{ color:#f3f7ff; }
         const r = await fetch(ctx + '/api/answer', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body
+          body,
+          credentials: 'include'
         });
 
         let j = null;
@@ -276,6 +279,8 @@ h1,h2,h3,h4{ color:#f3f7ff; }
         const ok = !!(j && j.ok);
         if (j && typeof j.score === 'number')  hudScore.textContent  = j.score;
         if (j && typeof j.streak === 'number') hudStreak.textContent = j.streak;
+        if (j && typeof j.bestScore === 'number' && hudBestScore)   hudBestScore.textContent   = j.bestScore;
+        if (j && typeof j.bestStreak === 'number' && hudBestStreak) hudBestStreak.textContent = j.bestStreak;
 
         // feedback visual
         btn.classList.remove('btn-outline-info');
@@ -304,12 +309,16 @@ h1,h2,h3,h4{ color:#f3f7ff; }
 
     const url = ctx + '/api/question' + (params.toString() ? ('?' + params.toString()) : '');
     try {
-      const r = await fetch(url, { cache: 'no-store' });
+      const r = await fetch(url, { cache: 'no-store', credentials: 'include' });
       const j = await r.json();
       if (j && !j.error && j.question && j.options) {
         titulo.textContent = j.question;
         renderOptions(j.options);
         disableAll(false);
+        if (typeof j.score === 'number')       hudScore.textContent      = j.score;
+        if (typeof j.streak === 'number')      hudStreak.textContent     = j.streak;
+        if (typeof j.bestScore === 'number' && hudBestScore)   hudBestScore.textContent   = j.bestScore;
+        if (typeof j.bestStreak === 'number' && hudBestStreak) hudBestStreak.textContent = j.bestStreak;
       } else {
         titulo.textContent = 'Sin resultados. Cambia categor\u00EDa/dificultad y prueba de nuevo.';
       }
