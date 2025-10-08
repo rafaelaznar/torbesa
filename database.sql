@@ -100,6 +100,44 @@ ALTER TABLE `users`
 --   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 CREATE TABLE `math_scores` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
