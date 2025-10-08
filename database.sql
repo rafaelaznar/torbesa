@@ -166,22 +166,200 @@ ALTER TABLE `trivial_score`
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
+-- ...existing code...
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `capitals_score`
+--
+ALTER TABLE `capitals_score`
+  ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+
 --
 -- AUTO_INCREMENT for table `pokemon_score`
 --
 ALTER TABLE `pokemon_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
+-- --------------------------------------------------------
+
+--
+-- ...existing code...
+-- Table structure for table `codequest_technology`
+--
+
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: database:3306
+-- Tiempo de generación: 08-10-2025 a las 12:29:35
+-- Versión del servidor: 8.4.6
+-- Versión de PHP: 8.2.29
 
 
 
-
+--
+-- Base de datos: `torbesa`
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `harrypotter_score`
+-- Estructura de tabla para la tabla `codequest_score`
 --
+
+CREATE TABLE `codequest_score` (
+  `id` bigint NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL DEFAULT '0',
+  `tries` int NOT NULL DEFAULT '0',
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `codequest_score`
+--
+
+INSERT INTO `codequest_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 1, 95, 15, '2024-10-01 10:30:00'),
+(2, 1, 88, 12, '2024-10-02 14:20:00'),
+(3, 1, 92, 18, '2024-10-03 16:45:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `codequest_technology`
+--
+
+CREATE TABLE `codequest_technology` (
+  `id` bigint NOT NULL,
+  `name` varchar(255) COLLATE utf32_unicode_ci NOT NULL,
+  `type` varchar(50) COLLATE utf32_unicode_ci NOT NULL,
+  `description` text COLLATE utf32_unicode_ci,
+  `category` varchar(50) COLLATE utf32_unicode_ci DEFAULT NULL,
+  `difficulty` varchar(50) COLLATE utf32_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `codequest_technology`
+--
+
+INSERT INTO `codequest_technology` (`id`, `name`, `type`, `description`, `category`, `difficulty`) VALUES
+(1, 'JavaScript', 'lenguaje', 'Lenguaje de programación interpretado para crear interactividad en páginas web', 'cliente', 'medio'),
+(2, 'TypeScript', 'lenguaje', 'Superset de JavaScript que añade tipado estático', 'cliente', 'medio'),
+(3, 'HTML', 'lenguaje', 'Lenguaje de marcado para estructurar contenido web', 'cliente', 'facil'),
+(4, 'CSS', 'lenguaje', 'Lenguaje de hojas de estilo para diseñar páginas web', 'cliente', 'facil'),
+(5, 'Java', 'lenguaje', 'Lenguaje orientado a objetos para aplicaciones empresariales', 'servidor', 'dificil'),
+(6, 'Python', 'lenguaje', 'Lenguaje interpretado versátil y fácil de aprender', 'servidor', 'medio'),
+(7, 'PHP', 'lenguaje', 'Lenguaje popular para desarrollo web del lado del servidor', 'servidor', 'medio'),
+(8, 'C#', 'lenguaje', 'Lenguaje de Microsoft para la plataforma .NET', 'servidor', 'dificil'),
+(9, 'Go', 'lenguaje', 'Lenguaje de Google para sistemas concurrentes y eficientes', 'servidor', 'dificil'),
+(10, 'Rust', 'lenguaje', 'Lenguaje de sistemas con enfoque en seguridad y rendimiento', 'servidor', 'dificil'),
+(11, 'Ruby', 'lenguaje', 'Lenguaje dinámico conocido por su elegancia y productividad', 'servidor', 'medio'),
+(12, 'Node.js', 'lenguaje', 'JavaScript en el servidor, permite full-stack con un solo lenguaje', 'fullstack', 'medio'),
+(13, 'React', 'framework', 'Librería de JavaScript para construir interfaces de usuario', 'cliente', 'medio'),
+(14, 'Vue.js', 'framework', 'Framework progresivo para interfaces de usuario interactivas', 'cliente', 'facil'),
+(15, 'Angular', 'framework', 'Framework completo de Google para aplicaciones web robustas', 'cliente', 'dificil'),
+(16, 'Svelte', 'framework', 'Framework compilado que genera código vanilla JavaScript optimizado', 'cliente', 'medio'),
+(17, 'Bootstrap', 'framework', 'Framework CSS para diseño responsive y componentes pre-hechos', 'cliente', 'facil'),
+(18, 'Tailwind CSS', 'framework', 'Framework CSS utility-first para diseño rápido y personalizable', 'cliente', 'medio'),
+(19, 'Next.js', 'framework', 'Framework de React para aplicaciones con renderizado del lado del servidor', 'cliente', 'dificil'),
+(20, 'Nuxt.js', 'framework', 'Framework de Vue.js para aplicaciones universales', 'cliente', 'dificil'),
+(21, 'Spring Boot', 'framework', 'Framework de Java para crear aplicaciones empresariales rápidamente', 'servidor', 'dificil'),
+(22, 'Django', 'framework', 'Framework web de Python con baterías incluidas', 'servidor', 'dificil'),
+(23, 'Flask', 'framework', 'Micro-framework minimalista de Python para APIs y web apps', 'servidor', 'facil'),
+(24, 'Express.js', 'framework', 'Framework web minimalista para Node.js', 'servidor', 'medio'),
+(25, 'Laravel', 'framework', 'Framework elegante de PHP con sintaxis expresiva', 'servidor', 'medio'),
+(26, 'Ruby on Rails', 'framework', 'Framework de Ruby que prioriza la convención sobre configuración', 'servidor', 'dificil'),
+(27, 'ASP.NET Core', 'framework', 'Framework web moderno de Microsoft para aplicaciones multiplataforma', 'servidor', 'dificil'),
+(28, 'FastAPI', 'framework', 'Framework moderno de Python para APIs rápidas con validación automática', 'servidor', 'medio'),
+(29, 'Gin', 'framework', 'Framework HTTP ligero y rápido para Go', 'servidor', 'medio'),
+(30, 'jQuery', 'libreria', 'Librería que simplifica la manipulación del DOM y AJAX', 'cliente', 'facil'),
+(31, 'Lodash', 'libreria', 'Librería de utilidades para JavaScript con funciones helper', 'cliente', 'facil'),
+(32, 'Axios', 'libreria', 'Cliente HTTP basado en promesas para navegadores y Node.js', 'cliente', 'facil'),
+(33, 'Redux', 'libreria', 'Librería para gestión predecible del estado en aplicaciones JavaScript', 'cliente', 'medio'),
+(34, 'Vuex', 'libreria', 'Librería de gestión de estado para aplicaciones Vue.js', 'cliente', 'medio'),
+(35, 'RxJS', 'libreria', 'Librería para programación reactiva usando observables', 'cliente', 'dificil'),
+(36, 'D3.js', 'libreria', 'Librería para visualización de datos dinámicos e interactivos', 'cliente', 'dificil'),
+(37, 'Chart.js', 'libreria', 'Librería simple para crear gráficos responsive con canvas HTML5', 'cliente', 'facil'),
+(38, 'Three.js', 'libreria', 'Librería para crear gráficos 3D en el navegador con WebGL', 'cliente', 'dificil'),
+(39, 'Moment.js', 'libreria', 'Librería para manipular, validar y formatear fechas en JavaScript', 'cliente', 'facil'),
+(40, 'Spring Security', 'libreria', 'Framework de seguridad para aplicaciones Spring', 'servidor', 'dificil'),
+(41, 'Hibernate', 'libreria', 'Framework ORM para mapear objetos Java a bases de datos relacionales', 'servidor', 'dificil'),
+(42, 'Jackson', 'libreria', 'Librería para procesamiento de JSON en Java', 'servidor', 'medio'),
+(43, 'Requests', 'libreria', 'Librería HTTP elegante y simple para Python', 'servidor', 'facil'),
+(44, 'SQLAlchemy', 'libreria', 'ORM y toolkit SQL para Python', 'servidor', 'medio'),
+(45, 'Pandas', 'libreria', 'Librería de Python para análisis y manipulación de datos', 'servidor', 'medio'),
+(46, 'NumPy', 'libreria', 'Librería fundamental para computación científica en Python', 'servidor', 'medio'),
+(47, 'Eloquent', 'libreria', 'ORM incluido en Laravel para interactuar con bases de datos', 'servidor', 'medio'),
+(48, 'Gorm', 'libreria', 'ORM para Go con características avanzadas', 'servidor', 'medio'),
+(49, 'Entity Framework', 'libreria', 'ORM de Microsoft para aplicaciones .NET', 'servidor', 'dificil'),
+(50, 'Meteor', 'framework', 'Plataforma full-stack para desarrollar aplicaciones web y móviles', 'fullstack', 'dificil'),
+(51, 'T3 Stack', 'framework', 'Stack full-stack type-safe con Next.js, tRPC, Prisma y NextAuth', 'fullstack', 'dificil'),
+(52, 'SvelteKit', 'framework', 'Framework full-stack para aplicaciones Svelte', 'fullstack', 'medio'),
+(53, 'Remix', 'framework', 'Framework full-stack que se enfoca en estándares web', 'fullstack', 'dificil'),
+(54, 'Gatsby', 'framework', 'Framework para sitios estáticos y aplicaciones basado en React', 'fullstack', 'medio'),
+(55, 'Jest', 'framework', 'Framework de testing para JavaScript con cero configuración', 'cliente', 'facil'),
+(56, 'JUnit', 'framework', 'Framework estándar para testing unitario en Java', 'servidor', 'facil'),
+(57, 'PyTest', 'framework', 'Framework de testing simple y escalable para Python', 'servidor', 'facil'),
+(58, 'PHPUnit', 'framework', 'Framework de testing unitario para PHP', 'servidor', 'medio'),
+(59, 'Cypress', 'framework', 'Framework para testing end-to-end de aplicaciones web', 'cliente', 'medio'),
+(60, 'Selenium', 'framework', 'Framework para automatizar navegadores web', 'fullstack', 'dificil'),
+(61, 'Webpack', 'libreria', 'Bundler de módulos para aplicaciones JavaScript modernas', 'cliente', 'dificil'),
+(62, 'Vite', 'libreria', 'Build tool rápido para desarrollo frontend moderno', 'cliente', 'medio'),
+(63, 'Rollup', 'libreria', 'Bundler de módulos para librerías JavaScript', 'cliente', 'medio'),
+(64, 'Parcel', 'libreria', 'Bundler web sin configuración para desarrollo rápido', 'cliente', 'facil'),
+(65, 'esbuild', 'libreria', 'Bundler y minificador extremadamente rápido para JavaScript', 'cliente', 'medio'),
+(66, 'Sass', 'libreria', 'Preprocesador CSS con variables, mixins y funciones', 'cliente', 'medio'),
+(67, 'Less', 'libreria', 'Preprocesador CSS dinámico', 'cliente', 'medio'),
+(68, 'Stylus', 'libreria', 'Preprocesador CSS expresivo y dinámico', 'cliente', 'medio'),
+(69, 'PostCSS', 'libreria', 'Herramienta para transformar CSS con plugins de JavaScript', 'cliente', 'medio'),
+(70, 'Babel', 'libreria', 'Compilador de JavaScript para usar características modernas', 'cliente', 'medio'),
+(71, 'MobX', 'libreria', 'Librería para gestión de estado reactivo mediante observables', 'cliente', 'medio'),
+(72, 'Zustand', 'libreria', 'Librería pequeña y rápida para gestión de estado en React', 'cliente', 'facil'),
+(73, 'Jotai', 'libreria', 'Gestión de estado atómico para React', 'cliente', 'medio'),
+(74, 'Recoil', 'libreria', 'Librería experimental de Facebook para gestión de estado en React', 'cliente', 'medio'),
+(75, 'Apollo Client', 'libreria', 'Cliente GraphQL completo con caché inteligente', 'cliente', 'dificil'),
+(76, 'React Query', 'libreria', 'Librería para fetching, caching y sincronización de datos', 'cliente', 'medio'),
+(77, 'SWR', 'libreria', 'Librería para data fetching con cache, revalidación y más', 'cliente', 'medio');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `codequest_score`
+--
+ALTER TABLE `codequest_score`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `codequest_technology`
+--
+ALTER TABLE `codequest_technology`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `codequest_score`
+--
+ALTER TABLE `codequest_score`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `codequest_technology`
+--
+ALTER TABLE `codequest_technology`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+
 
 CREATE TABLE `harrypotter_score` (
   `id` int NOT NULL,
@@ -216,8 +394,6 @@ ALTER TABLE `harrypotter_score`
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-START TRANSACTION;
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -225,7 +401,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-COMMIT;
+
 
 -- phpMyAdmin SQL Dump
 -- version 5.2.2
@@ -236,8 +412,7 @@ COMMIT;
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -282,7 +457,7 @@ INSERT INTO `genshin_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VAL
 --
 -- Indices de la tabla `genshin_score`
 
-COMMIT;
+
 
 
 -- phpMyAdmin SQL Dump
@@ -294,8 +469,7 @@ COMMIT;
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -311,6 +485,37 @@ ALTER TABLE `genshin_score`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- AUTO_INCREMENT for table `codequest_technology`
+--
+ALTER TABLE `codequest_technology`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `codequest_score`
+--
+ALTER TABLE `codequest_score`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for table `codequest_score`
+--
+ALTER TABLE `codequest_score`
+  ADD CONSTRAINT `codequest_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+-- Insertar usuarios de ejemplo (solo si no existen)
+INSERT IGNORE INTO users (username, password) VALUES
+('alex_dev', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('maria_code', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('juan_prog', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('sofia_web', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('carlos_js', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('ana_react', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('luis_java', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('elena_py', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('diego_full', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e'),
+('lucia_ui', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e');
+
+
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -344,8 +549,7 @@ ALTER TABLE `genshin_score`
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -394,7 +598,7 @@ ALTER TABLE `song_score`
 --
 ALTER TABLE `song_score`
   MODIFY `id` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
+
 
 -- --------------------------------------------------------
 
@@ -488,7 +692,7 @@ ALTER TABLE `personajes_score`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 -- Constraints for dumped tables
 --
-COMMIT;
+
 
 -- --------------------------------------------------------
 
@@ -612,8 +816,7 @@ INSERT INTO `emoji_quiz_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) 
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -700,8 +903,7 @@ ALTER TABLE `capitals_score`
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.27
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -718,8 +920,7 @@ SET time_zone = "+00:00";
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.27
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -765,7 +966,7 @@ ALTER TABLE `starwars_score`
 --
 ALTER TABLE `starwars_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
+
 
 -- ---------------------------------------------------------
 
@@ -861,4 +1062,51 @@ ALTER TABLE `dog_score`
 --
 ALTER TABLE `dog_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `starwars_score`
+--
+
+CREATE TABLE `starwars_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int DEFAULT '0',
+  `tries` int DEFAULT '0',
+  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `starwars_score`
+--
+
+INSERT INTO `starwars_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 11, 14, 19, '2025-10-08 07:47:55');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `starwars_score`
+--
+ALTER TABLE `starwars_score`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `starwars_score`
+--
+ALTER TABLE `starwars_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+
+
+  
 COMMIT;

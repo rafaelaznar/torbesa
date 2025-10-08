@@ -4,11 +4,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import net.ausiasmarch.harrypotter.service.HarryPotterCharacterService;  // 👈 importa tu servicio
-
 @WebListener
 public class AppContextListener implements ServletContextListener {
-    
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
@@ -18,14 +15,6 @@ public class AppContextListener implements ServletContextListener {
         }
         // Inicializar pool global
         HikariPool.initGlobalPool();
-
-        // 👇 Inicializar datos del juego de Harry Potter
-        try {
-            HarryPotterCharacterService.initialize(sce.getServletContext());
-            System.out.println("✅ Harry Potter data loaded at startup");
-        } catch (Exception e) {
-            System.err.println("❌ Error loading Harry Potter data: " + e.getMessage());
-        }
     }
 
     @Override

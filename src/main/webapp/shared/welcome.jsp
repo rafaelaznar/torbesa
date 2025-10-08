@@ -47,12 +47,12 @@
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
         }
 
-        .footer {
-            background-color: #2c3e50;
-            color: #ffffff;
-        }
-    </style>
-</head>
+            .footer {
+                background-color: #2c3e50;
+                color: white;
+            }
+        </style>
+    </head>
 <body>
 <jsp:include page="menu.jsp" />
 
@@ -79,6 +79,157 @@
             <i class="bi bi-collection-play"></i> Jump into a game
         </h2>
 
+                            <div class="row g-4">
+                                <!-- Country Capital Game  -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card game-card shadow-sm border-0 h-100">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3">
+                                                <i class="bi bi-globe-americas text-primary"
+                                                    style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="card-title text-primary mb-3">Country Capitals Game</h5>
+                                            <p class="card-text text-muted mb-4">
+                                                Test your geography knowledge! Guess the capital cities of countries
+                                                from
+                                                around the world.
+                                            </p>
+                                            <p class="card-text text-muted mb-4">
+                                                By Rafael Aznar
+                                            </p>
+                                            <a href="../capitals/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                                <i class="bi bi-play-fill"></i> Play Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Codequest Pollyanna -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card game-card shadow-sm border-0 h-100">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3">
+                                                <i class="bi bi-code-slash text-primary" style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="card-title text-primary mb-3">CodeQuest</h5>
+                                            <p class="card-text text-muted mb-4">
+                                                ¡Pon a prueba tu conocimiento en programación! Identifica tecnologías,
+                                                frameworks y herramientas a partir de sus descripciones.
+                                            </p>
+                                            <p class="card-text text-muted mb-4">
+                                                By Pollyanna Soares
+                                            </p>
+                                            <a href="../codequest/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                                <i class="bi bi-play-fill"></i> Play Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Coming Soon Game 1 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card game-card shadow-sm border-0 h-100">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3">
+                                                <i class="bi bi-calculator text-warning" style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="card-title text-warning mb-3">Math Challenge</h5>
+                                            <p class="card-text text-muted mb-4">
+                                                Sharpen your math skills with fun arithmetic challenges and number
+                                                puzzles.
+                                            </p>
+                                            <button class="btn btn-outline-warning btn-lg w-100" disabled>
+                                                <i class="bi bi-hourglass-split"></i> Coming Soon
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Coming Soon Game 2 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card game-card shadow-sm border-0 h-100">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3">
+                                                <i class="bi bi-translate text-success" style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="card-title text-success mb-3">Language Quiz</h5>
+                                            <p class="card-text text-muted mb-4">
+                                                Expand your vocabulary and test your language skills across multiple
+                                                languages.
+                                            </p>
+                                            <button class="btn btn-outline-success btn-lg w-100" disabled>
+                                                <i class="bi bi-hourglass-split"></i> Coming Soon
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Coming Soon Game 3 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card game-card shadow-sm border-0 h-100">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3">
+                                                <i class="bi bi-lightning-charge text-danger"
+                                                    style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="card-title text-danger mb-3">Science Trivia</h5>
+                                            <p class="card-text text-muted mb-4">
+                                                Discover the wonders of science through engaging trivia questions.
+                                            </p>
+                                            <button class="btn btn-outline-danger btn-lg w-100" disabled>
+                                                <i class="bi bi-hourglass-split"></i> Coming Soon
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Coming Soon Game 4 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card game-card shadow-sm border-0 h-100">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3">
+                                                <i class="bi bi-clock-history text-info" style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="card-title text-info mb-3">History Quest</h5>
+                                            <p class="card-text text-muted mb-4">
+                                                Journey through time and test your knowledge of historical events.
+                                            </p>
+                                            <button class="btn btn-outline-info btn-lg w-100" disabled>
+                                                <i class="bi bi-hourglass-split"></i> Coming Soon
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Coming Soon Game 5 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card game-card shadow-sm border-0 h-100">
+                                        <div class="card-body text-center p-4">
+                                            <div class="mb-3">
+                                                <i class="bi bi-puzzle text-secondary" style="font-size: 3rem;"></i>
+                                            </div>
+                                            <h5 class="card-title text-secondary mb-3">Logic Puzzles</h5>
+                                            <p class="card-text text-muted mb-4">
+                                                Challenge your mind with brain-teasing logic puzzles and riddles.
+                                            </p>
+                                            <button class="btn btn-outline-secondary btn-lg w-100" disabled>
+                                                <i class="bi bi-hourglass-split"></i> Coming Soon
+                                            </button>
+                                        </div>
+        <div class="container my-4 d-flex justify-content-center">
+            <a href="LogoutServlet" class="btn btn-danger">Logout</a>
+        </div>
+        <!-- Games Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="text-center mb-5 display-6">
+                            <i class="bi bi-collection-play"></i> Available Games
+                        </h2>
+
+                        <div class="row g-4">
+                            <!-- Country Capital Game -->
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             <div class="col">
                 <div class="card game-card h-100 border-0 shadow-sm">
@@ -448,6 +599,11 @@
                         </a>
                     </div>
                 </div>
+            </section>
+
+            
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             </div>
 
             <div class="col">
@@ -485,8 +641,13 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+            </div>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+    </html>
 
 <jsp:include page="footer.jsp" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
