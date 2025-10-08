@@ -48,10 +48,15 @@
 
         <!-- Login/Signup Buttons -->
         <div class="container my-4 d-flex justify-content-center">
+<<<<<<< HEAD
             <a href="shared/login.jsp" class="btn btn-primary btn-lg me-3"
                 style="min-width: 180px; font-size: 1.3rem;">Login to play</a>
             <a href="shared/signup.jsp" class="btn btn-warning btn-lg"
                 style="min-width: 180px; font-size: 1.3rem; color: #212529;">Sign up</a>
+=======
+            <a href="shared/login.jsp" class="btn btn-primary btn-lg me-3" style="min-width: 180px; font-size: 1.3rem;">Login to play</a>
+            <a href="shared/signup.jsp" class="btn btn-warning btn-lg" style="min-width: 180px; font-size: 1.3rem; color: #212529;">Sign up</a>
+>>>>>>> profesor/main
         </div>
 
         <!-- Games Section -->
@@ -86,6 +91,7 @@
                                 </div>
                             </div>
 
+<<<<<<< HEAD
                             <!-- CodeQuest Game -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -107,6 +113,8 @@
                                 </div>
                             </div>
 
+=======
+>>>>>>> profesor/main
                             <!-- Coming Soon Game 1 -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -144,6 +152,11 @@
                                 </div>
                             </div>
 
+<<<<<<< HEAD
+=======
+                            
+
+>>>>>>> profesor/main
                             <!-- Coming Soon Game 3 -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -197,12 +210,60 @@
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
+=======
+                            <!-- Harry Potter Quiz -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-magic text-primary" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-primary mb-3">Harry Potter Quiz</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            ¿A qué casa pertenece cada personaje? 🏰✨
+                                        </p>
+                                        <a href="harrypotter/landing.jsp" class="btn btn-outline-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Jugar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- 👈 Cierra .row g-4 -->
+                    </div> <!-- 👈 Cierra .col-lg-8 -->
+                </div> <!-- 👈 Cierra .row justify-content-center -->
+            </div> <!-- 👈 Cierra .container -->
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-translate text-success" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-success mb-3">Genshin Element Guesser</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Guess the element type of the characters from the game Genshin Impact.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Alejandro Pavón Martínez
+                                        </p>
+                                        <a href="genshinPav/landing.jsp" class="btn btn-success btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+>>>>>>> profesor/main
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> profesor/main
         <!-- Footer -->
         <footer class="footer py-4 mt-5">
             <div class="container">
