@@ -375,8 +375,7 @@
                                                                                     : "rank-other" ; boolean
                                                                                     isCurrentUser=score.getUsername().equals(sessionUser.getUsername());
                                                                                     %>
-                                                                                    <tr class="<%= isCurrentUser ? "
-                                                                                        user-row" : "" %>">
+                                                                                    <tr class="<%= isCurrentUser ? "user-row" : "" %>">
                                                                                         <td>
                                                                                             <div
                                                                                                 class="rank-badge <%= rankClass %>">
@@ -384,9 +383,7 @@
                                                                                             </div>
                                                                                         </td>
                                                                                         <td>
-                                                                                            <strong
-                                                                                                class="<%= isCurrentUser ? "
-                                                                                                text-primary" : "" %>">
+                                                                                            <strong class="<%= isCurrentUser ? "text-primary" : "" %>">
                                                                                                 <%= isCurrentUser
                                                                                                     ? "🎯 " : "" %>
                                                                                                     <%= score.getUsername()
