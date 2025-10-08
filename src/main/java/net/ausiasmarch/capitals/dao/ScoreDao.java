@@ -64,10 +64,7 @@ public class ScoreDao {
     }
 
     public void sanitize() throws SQLException {
-        // if a user has more then one score
-        // then remove all scores in database
-        // except the last one
-        // Delete all scores except the most recent one for each user
+        // si un usuario tiene más de un score, elimina los antiguos y deja el más reciente
         String sql = "DELETE s1 FROM capitals_score s1 " +
                 "INNER JOIN capitals_score s2 ON s1.user_id = s2.user_id " +
                 "WHERE s1.timestamp < s2.timestamp";
@@ -139,3 +136,4 @@ public class ScoreDao {
     }
 
 }
+
