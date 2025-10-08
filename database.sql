@@ -607,10 +607,6 @@ INSERT INTO `emoji_quiz_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) 
 
 -- --------------------------------------------------------
 
->>>>>>> a77a2cc809f99bbbf07ffa41ea0719b447821d70
-COMMIT;
-
-
 -- Ronald
 -- phpMyAdmin SQL Dump
 -- version 5.2.2
