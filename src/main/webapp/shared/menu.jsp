@@ -14,6 +14,7 @@
                         <c:out value="${sessionScope.sessionUser.username}" />
                     </span>
                 </li>
+                <!-- F1 Leaderboard link removed per request -->
             </ul>
         </c:if>
     </div>
