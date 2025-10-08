@@ -19,21 +19,7 @@
         color: white;
         padding: 100px 0;
       }
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>torbesa - Gaming Platform</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <style>
+
       .hero-section {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -302,6 +288,27 @@
                   </div>
                 </div>
               </div>
+
+                            <!-- Alan's Game -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-primary mb-3">Who's That Pokemon</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Adivina el pokemon por su silueta!!
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Alan Alcañiz
+                                        </p>
+                                        <a href="whosthatpokemon/landingpokemon.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Coming Soon Game 1 -->
                             <div class="col-md-6 col-lg-4">

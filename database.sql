@@ -640,3 +640,53 @@ ALTER TABLE `trivialReyna_score`
 ALTER TABLE `trivialReyna_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
+
+
+-- ---------------------------------------------------------
+
+-- Bd Who's That Pokemon
+
+CREATE TABLE `wtpokemon_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `wtpokemon_score`
+--
+
+INSERT INTO `wtpokemon_score` (`id`, `user_id`, `score`, `tries`) VALUES
+(1, 17, 9, 27);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `wtpokemon_score`
+--
+ALTER TABLE `wtpokemon_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `wtpokemon_score`
+--
+ALTER TABLE `wtpokemon_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `wtpokemon_score`
+--
+
+COMMIT;
