@@ -79,7 +79,6 @@
                                     <div class="mb-4 text-center p-3" style="background: rgba(255, 204, 2, 0.1); border-radius: 15px;">
                                         <h4>What is the ability of <span class="pokemon-name">${pokemonName}</span>? 🤔</h4>
                                     </div>
-                                    <!-- send the pokemon name as a hidden field -->
                                     <input type="hidden" name="pokemonName" value="${pokemonName}">
                                     <div class="mb-3 d-flex justify-content-center">
                                         <div class="w-75">

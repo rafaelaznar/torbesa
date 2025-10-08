@@ -30,7 +30,7 @@ public class PuntajeServlet extends HttpServlet {
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)  {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {
         // Verificar autenticación
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("sessionUser");
@@ -43,7 +43,7 @@ public class PuntajeServlet extends HttpServlet {
                 return;
             }
         }
-        
+
         try {
             List<ScoreDto> highScoresList = oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);

@@ -46,17 +46,14 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
 
-                            <!-- High Scores Table -->
                             <jsp:include page="ranking.jsp" />
 
-                            <!-- Action Buttons -->
                             <div class="text-center mt-4">
                                 <form method="get" action="ServletJuego" class="d-inline me-3">
                                     <button type="submit" class="btn btn-play btn-lg">
                                         <i class="bi bi-play-fill"></i> 🎮 Play
                                     </button>
                                 </form>
-                                <!-- if there is any session offer logout button -->
                                 <c:if test="${not empty user}">
                                     <form method="get" action="LogoutServlet" class="d-inline">
                                         <button type="submit" class="btn btn-outline-danger btn-lg" style="border-radius: 25px; border-width: 2px;">

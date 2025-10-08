@@ -44,18 +44,20 @@ public class ServletJuego extends HttpServlet {
 
         PokemonService oPokemonService = new PokemonService(request.getServletContext());
         Pokemon selectedPokemon = oPokemonService.getOneRandomPokemonByName();
-        
+
         if (selectedPokemon != null) {
             // Fetch detailed Pokemon info including abilities
             Pokemon detailedPokemon = oPokemonService.fetchPokemonDetails(selectedPokemon.getId());
-            if (detailedPokemon != null && detailedPokemon.getAbilities() != null && !detailedPokemon.getAbilities().isEmpty()) {
+            if (detailedPokemon != null && detailedPokemon.getAbilities() != null
+                    && !detailedPokemon.getAbilities().isEmpty()) {
                 request.setAttribute("pokemonName", detailedPokemon.getName());
                 request.setAttribute("pokemonId", detailedPokemon.getId());
-                
+
                 // Generate options with one correct ability and random incorrect ones
-                ArrayList<String> optionsListForAbilityTest = getRandomAbilitiesForTest(oPokemonService, detailedPokemon, 4);
+                ArrayList<String> optionsListForAbilityTest = getRandomAbilitiesForTest(oPokemonService,
+                        detailedPokemon, 4);
                 request.setAttribute("options", optionsListForAbilityTest);
-                
+
                 // Store correct ability for verification
                 session.setAttribute("correctAbility", detailedPokemon.getAbilities().get(0));
             } else {
@@ -102,14 +104,13 @@ public class ServletJuego extends HttpServlet {
             ScoreService scoreService = new ScoreService();
             String pokemonName = request.getParameter("pokemonName");
             String abilityGuess = request.getParameter("abilityGuess");
-            
-            // Get the correct ability from session
+
             String correctAbility = (String) session.getAttribute("correctAbility");
-            
+
             request.setAttribute("pokemonName", pokemonName);
             request.setAttribute("correctAbility", correctAbility);
             request.setAttribute("abilityGuess", abilityGuess);
-            
+
             if (abilityGuess != null && correctAbility != null && abilityGuess.equalsIgnoreCase(correctAbility)) {
                 scoreService.set(user.getId(), true);
                 request.setAttribute("message", "Correct! Well done.");
@@ -141,40 +142,34 @@ public class ServletJuego extends HttpServlet {
 
     }
 
-    /**
-     * Generate a list of ability options including one correct ability and random incorrect ones
-     */
-    private ArrayList<String> getRandomAbilitiesForTest(PokemonService pokemonService, Pokemon correctPokemon, int numOptions) {
+   
+    private ArrayList<String> getRandomAbilitiesForTest(PokemonService pokemonService, Pokemon correctPokemon,
+            int numOptions) {
         ArrayList<String> abilities = new ArrayList<>();
-        
-        // Add the correct ability (first one from the pokemon's abilities)
+
         if (correctPokemon.getAbilities() != null && !correctPokemon.getAbilities().isEmpty()) {
             abilities.add(correctPokemon.getAbilities().get(0));
         }
-        
-        // Get all pokemon list to extract other abilities
+
         List<Pokemon> allPokemon = pokemonService.fetchAllPokemonList();
         int attempts = 0;
-        
+
         while (abilities.size() < numOptions && attempts < numOptions * 10) {
             attempts++;
-            // Get a random pokemon
             int randomIndex = (int) (Math.random() * allPokemon.size());
             Pokemon randomPokemon = allPokemon.get(randomIndex);
-            
-            // Fetch its details to get abilities
+
             Pokemon detailedRandomPokemon = pokemonService.fetchPokemonDetails(randomPokemon.getId());
-            if (detailedRandomPokemon != null && detailedRandomPokemon.getAbilities() != null 
-                && !detailedRandomPokemon.getAbilities().isEmpty()) {
-                
+            if (detailedRandomPokemon != null && detailedRandomPokemon.getAbilities() != null
+                    && !detailedRandomPokemon.getAbilities().isEmpty()) {
+
                 String randomAbility = detailedRandomPokemon.getAbilities().get(0);
                 if (!abilities.contains(randomAbility)) {
                     abilities.add(randomAbility);
                 }
             }
         }
-        
-        // Shuffle the list so the correct answer isn't always first
+
         Collections.shuffle(abilities);
         return abilities;
     }

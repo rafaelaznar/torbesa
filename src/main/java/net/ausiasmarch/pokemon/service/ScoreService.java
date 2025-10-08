@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class ScoreService {
 
     public boolean set(int userId, boolean correct) throws SQLException {
-        
+
         try (Connection oConnection = HikariPool.getConnection()) {
 
             ScoreDao oScoreDao = new ScoreDao(oConnection);
@@ -43,7 +43,7 @@ public class ScoreService {
 
     }
 
-    public List<ScoreDto> getHighScores() throws SQLException {        
+    public List<ScoreDto> getHighScores() throws SQLException {
         try (Connection oConnection = HikariPool.getConnection()) {
             ScoreDao oScoreDao = new ScoreDao(oConnection);
             return oScoreDao.getTop10();

@@ -27,15 +27,12 @@ public class PokemonService {
     public List<Pokemon> fetchAllPokemonList() {
 
         if (this.oContext != null) {
-            // obtener el atributo "countries" del contexto
             @SuppressWarnings("unchecked")
             List<Pokemon> pokemons = (List<Pokemon>) this.oContext.getAttribute("pokemons");
-            // si oContext.getAttribute("pokemons") es distinto de null
             if (pokemons != null) {
                 return pokemons;
             }
         }
-        // obtener pokemons y guardarlo en el contexto
         System.out.println("Downloading pokemons....");
         List<Pokemon> pokemons = new ArrayList<>();
         try {
@@ -50,8 +47,6 @@ public class PokemonService {
             }
             in.close();
 
-            // The PokeAPI returns an object with a "results" array, but be tolerant
-            // to both a top-level JSONArray or a wrapper JSONObject containing "results".
             JSONArray arr = null;
             String json = content.toString().trim();
             if (json.startsWith("[")) {
@@ -61,7 +56,6 @@ public class PokemonService {
                 if (root.has("results") && root.get("results") instanceof JSONArray) {
                     arr = root.getJSONArray("results");
                 } else {
-                    // fallback: try to find the first JSONArray value in the object
                     for (String key : root.keySet()) {
                         Object value = root.get(key);
                         if (value instanceof JSONArray) {
@@ -75,10 +69,11 @@ public class PokemonService {
             if (arr != null) {
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj = arr.optJSONObject(i);
-                    if (obj == null) continue;
-                    // results items usually have a simple "name" property
+                    if (obj == null)
+                        continue;
                     String name = obj.optString("name", null);
-                    if (name == null || name.trim().isEmpty()) continue;
+                    if (name == null || name.trim().isEmpty())
+                        continue;
                     pokemons.add(new Pokemon(i + 1, name));
                 }
             }
@@ -101,25 +96,21 @@ public class PokemonService {
         return null;
     }
 
-    /**
-     * Return a random Pokemon chosen by name from the fetched list.
-     * Returns null if no pokemons are available.
-     */
     public Pokemon getOneRandomPokemonByName() {
         List<Pokemon> list = fetchAllPokemonList();
-        if (list == null || list.isEmpty()) return null;
+        if (list == null || list.isEmpty())
+            return null;
         int idx = ThreadLocalRandom.current().nextInt(list.size());
         return list.get(idx);
     }
 
-    /**
-     * Build a list of name options for testing (contains the selected name and random others).
-     */
     public ArrayList<String> getRandomNamesForTest(Pokemon selectedPokemon, int numOptions) {
-        if (numOptions < 1) numOptions = 4;
+        if (numOptions < 1)
+            numOptions = 4;
         List<Pokemon> list = fetchAllPokemonList();
         ArrayList<String> names = new ArrayList<>();
-        if (selectedPokemon == null) return names;
+        if (selectedPokemon == null)
+            return names;
         names.add(selectedPokemon.getName());
         int attempts = 0;
         while (names.size() < numOptions && attempts < numOptions * 5) {
@@ -133,40 +124,41 @@ public class PokemonService {
         Collections.shuffle(names);
         return names;
     }
-public Pokemon fetchPokemonDetails(int id) {
-    String urlString = "https://pokeapi.co/api/v2/pokemon/" + id + "/";
-    try {
-        URL url = new URL(urlString);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String inputLine;
-        StringBuilder content = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
+    public Pokemon fetchPokemonDetails(int id) {
+        String urlString = "https://pokeapi.co/api/v2/pokemon/" + id + "/";
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+
+            JSONObject obj = new JSONObject(content.toString());
+            String name = obj.getString("name");
+            JSONArray abilitiesArray = obj.getJSONArray("abilities");
+            List<String> abilities = new ArrayList<>();
+
+            for (int i = 0; i < abilitiesArray.length(); i++) {
+                JSONObject abilityObj = abilitiesArray.getJSONObject(i).getJSONObject("ability");
+                String abilityName = abilityObj.getString("name");
+                abilities.add(abilityName);
+            }
+
+            Pokemon pokemon = new Pokemon(id, name);
+            pokemon.setAbilities(abilities);
+            return pokemon;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        in.close();
-
-        JSONObject obj = new JSONObject(content.toString());
-        String name = obj.getString("name");
-        JSONArray abilitiesArray = obj.getJSONArray("abilities");
-        List<String> abilities = new ArrayList<>();
-
-        for (int i = 0; i < abilitiesArray.length(); i++) {
-            JSONObject abilityObj = abilitiesArray.getJSONObject(i).getJSONObject("ability");
-            String abilityName = abilityObj.getString("name");
-            abilities.add(abilityName);
-        }
-
-        Pokemon pokemon = new Pokemon(id, name);
-        pokemon.setAbilities(abilities);
-        return pokemon;
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        return null;
     }
-}
 
 }
