@@ -283,39 +283,51 @@
                 </div>
               </div>
 
-              <div class="col-md-6 col-lg-4">
-                <div class="card game-card shadow-sm border-0 h-100">
-                  <div class="card-body text-center p-4">
-                    <div class="mb-3">
-                      <i
-                        class="bi bi-translate text-success"
-                        style="font-size: 3rem"
-                      ></i>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-translate text-success" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-success mb-3">Genshin Element Guesser</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Guess the element type of the characters from the game Genshin Impact.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Alejandro Pavón Martínez
+                                        </p>
+                                        <a href="genshinPav/landing.jsp" class="btn btn-success btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Taylor Swift Game - Lucia Castañera-->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-arrow-through-heart text-dark" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-dark mb-3">Taylor Swift Test</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Guess to which album the song belongs to!
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Lucia Castañera
+                                        </p>
+                                        <a href="swift/landing.jsp" class="btn btn-dark btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h5 class="card-title text-success mb-3">
-                      Genshin Element Guesser
-                    </h5>
-                    <p class="card-text text-muted mb-4">
-                      Guess the element type of the characters from the game
-                      Genshin Impact.
-                    </p>
-                    <p class="card-text text-muted mb-4">
-                      By Alejandro Pavón Martínez
-                    </p>
-                    <a
-                      href="genshinPav/landing.jsp"
-                      class="btn btn-success btn-lg w-100"
-                    >
-                      <i class="bi bi-play-fill"></i> Play Now
-                    </a>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
+
 
     <!-- Footer -->
     <footer class="footer py-4 mt-5">
