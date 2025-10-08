@@ -158,6 +158,10 @@ ALTER TABLE `trivial_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `dog_score`
+--
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -499,6 +503,7 @@ COMMIT;
 
 
 
+
 --
 -- Table structure for table `languages_score`
 --
@@ -587,8 +592,7 @@ CREATE TABLE `emoji_quiz_score` (
   `score` int NOT NULL,
   `tries` int NOT NULL,
   `timestamp` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 --
 -- Volcado de datos para la tabla `emoji_quiz_score`
 --
@@ -602,9 +606,6 @@ INSERT INTO `emoji_quiz_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) 
 (29, 17, 26, 47, '2025-10-07 14:03:48');
 
 -- --------------------------------------------------------
-
-COMMIT;
-
 
 -- Ronald
 -- phpMyAdmin SQL Dump
@@ -821,4 +822,55 @@ ALTER TABLE `wtpokemon_score`
 -- Filtros para la tabla `wtpokemon_score`
 --
 
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: database:3306
+-- Tiempo de generación: 08-10-2025 a las 11:37:37
+-- Versión del servidor: 8.4.6
+-- Versión de PHP: 8.2.29
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `torbesa`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `dog_score`
+--
+
+CREATE TABLE `dog_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `dog_score`
+--
+ALTER TABLE `dog_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `dog_score`
+--
+ALTER TABLE `dog_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
