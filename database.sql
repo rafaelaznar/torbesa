@@ -109,7 +109,6 @@ ALTER TABLE `pokemon_score`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
 -- AUTO_INCREMENT for table `capitals_score`
 --
 ALTER TABLE `capitals_score`
@@ -313,3 +312,19 @@ COMMIT;
 
 
 
+-- Nota: la clave ajena se elimina, no se aplicará a nivel de SQL
+-- ALTER TABLE `capitals_score`
+--   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+
+CREATE TABLE `math_scores` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `score` INT NOT NULL,
+  `tries` INT NOT NULL,
+  `timestamp` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+COMMIT;
