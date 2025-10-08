@@ -1,10 +1,10 @@
-package net.ausiasmarch.capitals.service;
+package net.ausiasmarch.swift.service;
 
 import java.util.List;
 import java.util.Objects;
 
-import net.ausiasmarch.capitals.dao.ScoreDao;
-import net.ausiasmarch.capitals.model.ScoreDto;
+import net.ausiasmarch.swift.dao.ScoreDao;
+import net.ausiasmarch.swift.model.ScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
 import java.sql.*;

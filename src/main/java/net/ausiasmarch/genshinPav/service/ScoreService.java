@@ -1,16 +1,16 @@
-package net.ausiasmarch.capitals.service;
+package net.ausiasmarch.genshinPav.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-import net.ausiasmarch.capitals.dao.ScoreDao;
-import net.ausiasmarch.capitals.model.ScoreDto;
+import net.ausiasmarch.genshinPav.dao.ScoreDao;
+import net.ausiasmarch.genshinPav.model.ScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
-import java.sql.*;
-import java.time.LocalDateTime;
-
-public class ScoreService { 
+public class ScoreService {
 
     public boolean set(int userId, boolean correct) throws SQLException {
         
