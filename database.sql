@@ -237,6 +237,81 @@ ALTER TABLE `genshin_score`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+-- -------------------------------------------------------
+-- -------------------------------------------------------
+-- LUCIA CASTAÑERA - JUEGO TAYLOR SWIFT
+
+
+-- --------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-10-2025 a las 19:43:20
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `torbesa`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `song_score`
+--
+
+CREATE TABLE `song_score` (
+  `id` bigint(255) NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `score` int(255) NOT NULL,
+  `tries` int(255) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `song_score`
+--
+
+INSERT INTO `song_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(2, 5, 1989, 2000, '2025-10-07 17:37:51'),
+(4, 3, 1313, 1500, '2025-10-07 17:38:10');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `song_score`
+--
+ALTER TABLE `song_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `indice` (`user_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `song_score`
+--
+ALTER TABLE `song_score`
+  MODIFY `id` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+-- --------------------------------------------------------
+
+
+
 -- Nota: la clave ajena se elimina, no se aplicará a nivel de SQL
 -- ALTER TABLE `capitals_score`
 --   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
