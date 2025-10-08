@@ -17,33 +17,6 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-<<<<<<< HEAD
-# IDE
-.idea/
-*.iws
-*.iml
-*.ipr
-.vscode/
-.settings/
-.project
-.classpath
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Temporary files
-*.tmp
-*.temp
-
-# Database
-*.db
-*.sqlite
-
-# Other directories to exclude
-../../*
-../../../*
-=======
 ##############################
 ## Gradle
 ##############################
@@ -107,4 +80,3 @@ nb-configuration.xml
 ## Miscellaneous
 ##############################
 *.log
->>>>>>> profesor/main

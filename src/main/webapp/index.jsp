@@ -48,15 +48,12 @@
 
         <!-- Login/Signup Buttons -->
         <div class="container my-4 d-flex justify-content-center">
-<<<<<<< HEAD
             <a href="shared/login.jsp" class="btn btn-primary btn-lg me-3"
                 style="min-width: 180px; font-size: 1.3rem;">Login to play</a>
             <a href="shared/signup.jsp" class="btn btn-warning btn-lg"
                 style="min-width: 180px; font-size: 1.3rem; color: #212529;">Sign up</a>
-=======
             <a href="shared/login.jsp" class="btn btn-primary btn-lg me-3" style="min-width: 180px; font-size: 1.3rem;">Login to play</a>
             <a href="shared/signup.jsp" class="btn btn-warning btn-lg" style="min-width: 180px; font-size: 1.3rem; color: #212529;">Sign up</a>
->>>>>>> profesor/main
         </div>
 
         <!-- Games Section -->
@@ -91,7 +88,6 @@
                                 </div>
                             </div>
 
-<<<<<<< HEAD
                             <!-- CodeQuest Game -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -113,8 +109,6 @@
                                 </div>
                             </div>
 
-=======
->>>>>>> profesor/main
                             <!-- Coming Soon Game 1 -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -152,11 +146,8 @@
                                 </div>
                             </div>
 
-<<<<<<< HEAD
-=======
                             
 
->>>>>>> profesor/main
                             <!-- Coming Soon Game 3 -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -210,8 +201,6 @@
                                     </div>
                                 </div>
                             </div>
-<<<<<<< HEAD
-=======
                             <!-- Harry Potter Quiz -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -253,7 +242,6 @@
                                     </div>
                                 </div>
                             </div>
->>>>>>> profesor/main
                         </div>
                     </div>
                 </div>

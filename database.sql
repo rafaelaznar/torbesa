@@ -364,7 +364,6 @@ ALTER TABLE `genshin_score`
   ADD KEY `user_id` (`user_id`);
 
 --
-<<<<<<< HEAD
 -- AUTO_INCREMENT for table `codequest_technology`
 --
 ALTER TABLE `codequest_technology`
@@ -396,7 +395,6 @@ INSERT IGNORE INTO users (username, password) VALUES
 ('lucia_ui', '7e4b4f5529e084ecafb996c891cfbd5b5284f5b00dc155c37bbb62a9f161a72e');
 
 
-=======
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -411,4 +409,3 @@ ALTER TABLE `genshin_score`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
->>>>>>> profesor/main

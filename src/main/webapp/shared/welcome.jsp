@@ -367,7 +367,6 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
             </section>
 
             <!-- Footer -->
@@ -395,7 +394,6 @@
         </body>
 
         </html>
-=======
             </div>
         </section>
 
@@ -423,4 +421,3 @@
     </body>
 
     </html>
->>>>>>> profesor/main
