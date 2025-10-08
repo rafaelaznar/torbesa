@@ -40,5 +40,11 @@ public class ScoreService {
             return oScoreDao.get(userId);
         }
     }
-}
 
+    public int getTotalScores() throws SQLException {
+        try (Connection oConnection = HikariPool.getConnection()) {
+            ScoreDao oScoreDao = new ScoreDao(oConnection);
+            return oScoreDao.count();
+        }
+    }
+}

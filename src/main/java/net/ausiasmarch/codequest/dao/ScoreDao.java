@@ -19,14 +19,14 @@ public class ScoreDao {
     }
 
     public ScoreDto get(int userId) throws SQLException {
-        if (count(userId) > 1) {
-            sanitize();
-        }
         ScoreDto oScore = null;
-        String sql = "SELECT * FROM codequest_score, users WHERE codequest_score.user_id = ? AND users.id = ? ORDER BY timestamp DESC";
+        // CONSULTA CORREGIDA - JOIN explícito y LIMIT 1
+        String sql = "SELECT cs.*, u.username FROM codequest_score cs " +
+                     "JOIN users u ON cs.user_id = u.id " +
+                     "WHERE cs.user_id = ? " +
+                     "ORDER BY cs.timestamp DESC LIMIT 1";
         PreparedStatement stmt = oConnection.prepareStatement(sql);
         stmt.setInt(1, userId);
-        stmt.setInt(2, userId);
         ResultSet rs = stmt.executeQuery();
         if (rs.next()) {
             oScore = new ScoreDto(
@@ -63,21 +63,24 @@ public class ScoreDao {
         }
     }
 
+    // ELIMINA el método sanitize() o déjalo solo para uso manual
     public void sanitize() throws SQLException {
-       
-        String sql = "DELETE s1 FROM codequest_score s1 " +
-                "INNER JOIN codequest_score s2 ON s1.user_id = s2.user_id " +
-                "WHERE s1.timestamp < s2.timestamp";
-        PreparedStatement stmt = oConnection.prepareStatement(sql);
-        int deletedRows = stmt.executeUpdate();
-        System.out.println("Sanitized " + deletedRows + " duplicate scores");
+        // Solo usar manualmente si es necesario
+        System.out.println("Sanitize llamado - pero no ejecutando DELETE automático");
+        // String sql = "DELETE s1 FROM codequest_score s1 " +
+        //         "INNER JOIN codequest_score s2 ON s1.user_id = s2.user_id " +
+        //         "WHERE s1.timestamp < s2.timestamp";
+        // PreparedStatement stmt = oConnection.prepareStatement(sql);
+        // int deletedRows = stmt.executeUpdate();
+        // System.out.println("Sanitized " + deletedRows + " duplicate scores");
     }
 
     public List<ScoreDto> getTop10() throws SQLException {
         List<ScoreDto> scores = new ArrayList<>();
-        String sql = "SELECT * FROM codequest_score, users ";
-        sql += "WHERE codequest_score.user_id = users.id ";
-        sql += "ORDER BY codequest_score.score DESC, codequest_score.timestamp DESC LIMIT 10";
+        // CONSULTA CORREGIDA - JOIN explícito
+        String sql = "SELECT cs.*, u.username FROM codequest_score cs " +
+                     "JOIN users u ON cs.user_id = u.id " +
+                     "ORDER BY cs.score DESC, cs.timestamp DESC LIMIT 10";
         Statement stmt = oConnection.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
         while (rs.next()) {
@@ -93,8 +96,9 @@ public class ScoreDao {
     }
 
     public List<ScoreDto> getAll() throws SQLException {
-        String sql = "SELECT * FROM codequest_score, users ";
-        sql += "WHERE codequest_score.user_id = users.id";        
+        // CONSULTA CORREGIDA - JOIN explícito
+        String sql = "SELECT cs.*, u.username FROM codequest_score cs " +
+                     "JOIN users u ON cs.user_id = u.id";
         PreparedStatement getAllStmt = oConnection.prepareStatement(sql);
         ResultSet rs = getAllStmt.executeQuery();
         List<ScoreDto> scores = new ArrayList<>();
@@ -115,7 +119,7 @@ public class ScoreDao {
         PreparedStatement insertStmt = oConnection.prepareStatement(insertSql);
         insertStmt.setInt(1, oScore.getUserId());
         insertStmt.setInt(2, oScore.getScore());
-        insertStmt.setInt(3, 1);
+        insertStmt.setInt(3, oScore.getTries());  // CORREGIDO: usa el valor del objeto
         return insertStmt.executeUpdate();
     }
 
@@ -135,4 +139,3 @@ public class ScoreDao {
         return deleteStmt.executeUpdate();
     }
 }
-

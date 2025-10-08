@@ -307,7 +307,7 @@
                                                     <p class="mb-2">de <%= userScore.getTries() %> intentos</p>
                                                     <div class="accuracy-bar">
                                                         <div class="accuracy-fill"
-                                                            style="width: <%= userScore.getTries() > 0 ? (userScore.getScore() * 100 / userScore.getTries()) : 0 %>%">
+                                                            <%= userScore.getTries() > 0 ? (userScore.getScore() * 100 / userScore.getTries()) : 0 %>%>
                                                         </div>
                                                     </div>
                                                     <small>Precisión: <%= userScore.getTries()> 0 ?
@@ -393,45 +393,6 @@
                                         }, 500);
                                     }
                                 });
-
-        // Efecto de confeti para respuestas correctas
-        <% if (isCorrect != null && isCorrect) { %>
-                                    function createConfetti() {
-                                        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#6c5ce7'];
-                                        for (let i = 0; i < 50; i++) {
-                                            const confetti = document.createElement('div');
-                                            confetti.style.position = 'fixed';
-                                            confetti.style.left = Math.random() * 100 + 'vw';
-                                            confetti.style.top = '-10px';
-                                            confetti.style.width = '10px';
-                                            confetti.style.height = '10px';
-                                            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                                            confetti.style.borderRadius = '50%';
-                                            confetti.style.pointerEvents = 'none';
-                                            confetti.style.zIndex = '9999';
-                                            confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
-                                            document.body.appendChild(confetti);
-
-                                            setTimeout(() => {
-                                                confetti.remove();
-                                            }, 5000);
-                                        }
-                                    }
-
-                                    // Añadir CSS para la animación de caída
-                                    const style = document.createElement('style');
-                                    style.textContent = `
-            @keyframes fall {
-                to {
-                    transform: translateY(100vh) rotate(360deg);
-                }
-            }
-        `;
-                                    document.head.appendChild(style);
-
-                                    // Ejecutar confeti después de un pequeño retraso
-                                    setTimeout(createConfetti, 500);
-        <% } %>
 
                                     // Atajos de teclado
                                     document.addEventListener('keydown', function (e) {
