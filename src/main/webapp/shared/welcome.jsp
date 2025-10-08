@@ -64,7 +64,7 @@
                             </h2>
 
                             <div class="row g-4">
-                                <!-- Country Capital Game -->
+                                <!-- Country Capital Game  -->
                                 <div class="col-md-6 col-lg-4">
                                     <div class="card game-card shadow-sm border-0 h-100">
                                         <div class="card-body text-center p-4">
