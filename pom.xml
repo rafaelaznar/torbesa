@@ -8,12 +8,16 @@
     <packaging>war</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>        
+        <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <dependencies>
+            <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.10.1</version>
+    </dependency>
         <!-- Servlet API TOMCAT 8 y 9 -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -57,6 +61,7 @@
             <version>5.6.0</version>
             <scope>test</scope>
         </dependency>
+        
     </dependencies>
 
     <build>

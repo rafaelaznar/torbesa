@@ -107,6 +107,5 @@ public class GameServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
             dispatcher.forward(request, response);
         }
-
     }
 }
