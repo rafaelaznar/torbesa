@@ -54,20 +54,20 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <h5>
-                                        <strong class="text-muted">Country:</strong>
-                                        <span class="badge bg-primary ms-2">${country}</span>
+                                        <strong class="text-muted">Character:</strong>
+                                        <span class="badge bg-primary ms-2">${name}</span>
                                     </h5>
                                 </div>
                                 <div class="mb-3">
                                     <h5>
                                         <strong class="text-muted">Your Guess:</strong>
-                                        <span class="badge bg-warning text-dark ms-2">${capitalGuess}</span>
+                                        <span class="badge bg-warning text-dark ms-2">${quoteGuess}</span>
                                     </h5>
                                 </div>
                                 <div class="mb-0">
                                     <h5>
                                         <strong class="text-muted">Correct Answer:</strong>
-                                        <span class="badge bg-success ms-2">${correctCapital}</span>
+                                        <span class="badge bg-success ms-2">${correctQuote}</span>
                                     </h5>
                                 </div>
                             </div>
