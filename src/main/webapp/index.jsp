@@ -299,6 +299,8 @@
                                         <h5 class="card-title text-primary mb-3">Who's That Pokemon</h5>
                                         <p class="card-text text-muted mb-4">
                                             Adivina el pokemon por su silueta!!
+                                            Te your geography knowledge! Guess the capital cities of countries from
+                                            around the world.
                                         </p>
                                         <p class="card-text text-muted mb-4">
                                             By Alan Alcañiz
@@ -329,6 +331,24 @@
                             </div>
 
                             
+                            <!-- Trivia (API) -->
+<div class="col-md-6 col-lg-4">
+  <div class="card game-card shadow-sm border-0 h-100">
+    <div class="card-body text-center p-4">
+      <div class="mb-3">
+        <i class="bi bi-question-circle" style="font-size: 3rem;"></i>
+      </div>
+      <h5 class="card-title mb-3">Trivia (API)</h5>
+      <p class="card-text text-muted mb-4">
+        Multiple-choice questions from Open Trivia DB. Can you pick the right answer?
+      </p>
+      <a href="<%= request.getContextPath() %>/trivia" class="btn btn-outline-warning btn-lg w-100">
+        <i class="bi bi-play-fill"></i> Play Now
+      </a>
+    </div>
+  </div>
+</div>
+
                             <!-- Coming Soon Game 2 -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="card game-card shadow-sm border-0 h-100">
@@ -826,3 +846,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
+    </html>

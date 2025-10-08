@@ -30,6 +30,19 @@ CREATE TABLE `capitals_score` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
+-- Estructura de tabla para la tabla `trivia_score`
+--
+
+CREATE TABLE `trivia_score` (
+  `user_id` int NOT NULL,
+  `score` int NOT NULL DEFAULT '0',
+  `streak` int NOT NULL DEFAULT '0',
+  `best_score` int NOT NULL DEFAULT '0',
+  `best_streak` int NOT NULL DEFAULT '0',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
 -- Dumping data for table `capitals_score`
 --
 
@@ -108,6 +121,12 @@ ALTER TABLE `capitals_score`
 ALTER TABLE `trivial_score`
   ADD PRIMARY KEY (`id`);
 
+  --
+-- Indices de la tabla `trivia_score`
+--
+ALTER TABLE `trivia_score`
+  ADD PRIMARY KEY (`user_id`);
+
 --
 -- Indexes for table `users`
 --
@@ -132,6 +151,11 @@ ALTER TABLE `pokemon_score`
 ALTER TABLE `capitals_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
+--
+-- AUTO_INCREMENT de la tabla `trivial`
+--
+ALTER TABLE `trivial_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -639,6 +663,9 @@ ALTER TABLE `trivialReyna_score`
 --
 ALTER TABLE `trivialReyna_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+
+  
 COMMIT;
 
 
