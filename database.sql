@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: database:3306
--- Generation Time: Oct 08, 2025 at 03:16 PM
+-- Generation Time: Oct 08, 2025 at 06:34 PM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.10
 
@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `capitals_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -34,11 +34,11 @@ CREATE TABLE `capitals_score` (
 --
 
 INSERT INTO `capitals_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
-(5, 1, 8, 19, '2025-09-14 12:03:52'),
 (6, 2, 6, 8, '2025-09-14 14:24:57'),
 (7, 3, 19, 32, '2025-09-14 12:12:38'),
 (8, 4, 31, 69, '2025-09-14 22:46:18'),
-(9, 5, 22, 30, '2025-09-14 22:36:23');
+(9, 5, 22, 30, '2025-09-14 22:36:23'),
+(15, 1, 99, 2, '2025-10-08 17:00:35');
 
 -- --------------------------------------------------------
 
@@ -59,9 +59,10 @@ CREATE TABLE `codequest_score` (
 --
 
 INSERT INTO `codequest_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
-(1, 1, 95, 15, '2024-10-01 10:30:00'),
-(2, 1, 88, 12, '2024-10-02 14:20:00'),
-(3, 1, 92, 18, '2024-10-03 16:45:00');
+(1, 1, 92, 36, '2025-10-08 17:00:39'),
+(2, 1, 92, 36, '2025-10-08 17:00:39'),
+(3, 1, 92, 36, '2025-10-08 17:00:39'),
+(4, 4, 0, 2, '2025-10-08 16:31:37');
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,7 @@ INSERT INTO `codequest_technology` (`id`, `name`, `type`, `description`, `catego
 --
 
 CREATE TABLE `dog_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -232,7 +233,7 @@ INSERT INTO `emoji_quiz` (`id`, `question`, `correct_answer`, `option1`, `option
 --
 
 CREATE TABLE `emoji_quiz_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -247,9 +248,9 @@ INSERT INTO `emoji_quiz_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) 
 (1, 1, 10, 15, '2025-10-01 10:12:45'),
 (2, 2, 5, 14, '2025-10-01 11:20:30'),
 (3, 3, 18, 25, '2025-10-02 09:44:12'),
-(4, 4, 22, 40, '2025-10-03 18:30:00'),
 (5, 5, 14, 21, '2025-10-04 20:15:50'),
-(29, 17, 26, 47, '2025-10-07 14:03:48');
+(29, 17, 26, 47, '2025-10-07 14:03:48'),
+(30, 4, 23, 41, '2025-10-08 20:24:35');
 
 -- --------------------------------------------------------
 
@@ -258,7 +259,7 @@ INSERT INTO `emoji_quiz_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) 
 --
 
 CREATE TABLE `f1_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -272,7 +273,7 @@ CREATE TABLE `f1_score` (
 --
 
 CREATE TABLE `genshin_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -298,12 +299,20 @@ INSERT INTO `genshin_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VAL
 --
 
 CREATE TABLE `harrypotter_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
   `timestamp` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Dumping data for table `harrypotter_score`
+--
+
+INSERT INTO `harrypotter_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(6, 1, 0, 6, '2025-10-08 17:00:30'),
+(7, 4, 0, 1, '2025-10-08 16:33:12');
 
 -- --------------------------------------------------------
 
@@ -312,7 +321,7 @@ CREATE TABLE `harrypotter_score` (
 --
 
 CREATE TABLE `kimetsu_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -334,7 +343,7 @@ INSERT INTO `kimetsu_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VAL
 --
 
 CREATE TABLE `languages_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -359,12 +368,20 @@ INSERT INTO `languages_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) V
 --
 
 CREATE TABLE `math_scores` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
   `timestamp` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `math_scores`
+--
+
+INSERT INTO `math_scores` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 1, 30, 18, '2025-10-08 17:00:35'),
+(2, 2, 0, 0, '2025-10-08 17:00:35');
 
 -- --------------------------------------------------------
 
@@ -373,7 +390,7 @@ CREATE TABLE `math_scores` (
 --
 
 CREATE TABLE `personajes_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -394,12 +411,19 @@ INSERT INTO `personajes_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) 
 --
 
 CREATE TABLE `pokemon_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
   `timestamp` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `pokemon_score`
+--
+
+INSERT INTO `pokemon_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(12, 1, 200, 4, '2025-10-08 17:00:35');
 
 -- --------------------------------------------------------
 
@@ -421,7 +445,8 @@ CREATE TABLE `song_score` (
 
 INSERT INTO `song_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
 (2, 5, 1989, 2000, '2025-10-07 17:37:51'),
-(4, 3, 1313, 1500, '2025-10-07 17:38:10');
+(4, 3, 1313, 1500, '2025-10-07 17:38:10'),
+(5, 4, 3, 4, '2025-10-08 16:33:56');
 
 -- --------------------------------------------------------
 
@@ -430,7 +455,7 @@ INSERT INTO `song_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
 --
 
 CREATE TABLE `starwars_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int DEFAULT '0',
   `tries` int DEFAULT '0',
@@ -451,7 +476,7 @@ INSERT INTO `starwars_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VA
 --
 
 CREATE TABLE `trivialReyna_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -473,7 +498,7 @@ INSERT INTO `trivialReyna_score` (`id`, `user_id`, `score`, `tries`, `timestamp`
 --
 
 CREATE TABLE `trivial_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL,
@@ -487,13 +512,21 @@ CREATE TABLE `trivial_score` (
 --
 
 CREATE TABLE `trivia_score` (
-  `user_id` int NOT NULL,
+  `user_id` bigint NOT NULL,
   `score` int NOT NULL DEFAULT '0',
   `streak` int NOT NULL DEFAULT '0',
   `best_score` int NOT NULL DEFAULT '0',
   `best_streak` int NOT NULL DEFAULT '0',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `trivia_score`
+--
+
+INSERT INTO `trivia_score` (`user_id`, `score`, `streak`, `best_score`, `best_streak`, `updated_at`) VALUES
+(1, 0, 0, 0, 0, '2025-10-08 17:00:30'),
+(4, 0, 0, 0, 0, '2025-10-08 18:22:47');
 
 -- --------------------------------------------------------
 
@@ -502,7 +535,7 @@ CREATE TABLE `trivia_score` (
 --
 
 CREATE TABLE `users` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `username` varchar(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
@@ -535,7 +568,7 @@ INSERT INTO `users` (`id`, `username`, `password`) VALUES
 --
 
 CREATE TABLE `wtpokemon_score` (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL,
   `user_id` int NOT NULL,
   `score` int NOT NULL,
   `tries` int NOT NULL
@@ -546,7 +579,8 @@ CREATE TABLE `wtpokemon_score` (
 --
 
 INSERT INTO `wtpokemon_score` (`id`, `user_id`, `score`, `tries`) VALUES
-(1, 17, 9, 27);
+(1, 17, 9, 27),
+(5, 4, 0, 2);
 
 --
 -- Indexes for dumped tables
@@ -556,50 +590,55 @@ INSERT INTO `wtpokemon_score` (`id`, `user_id`, `score`, `tries`) VALUES
 -- Indexes for table `capitals_score`
 --
 ALTER TABLE `capitals_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `codequest_score`
 --
 ALTER TABLE `codequest_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `codequest_score_ibfk_1` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `codequest_technology`
 --
 ALTER TABLE `codequest_technology`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `dog_score`
 --
 ALTER TABLE `dog_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `emoji_quiz`
+--
+ALTER TABLE `emoji_quiz`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `emoji_quiz_score`
+--
+ALTER TABLE `emoji_quiz_score`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `f1_score`
 --
 ALTER TABLE `f1_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `genshin_score`
 --
 ALTER TABLE `genshin_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `harrypotter_score`
 --
 ALTER TABLE `harrypotter_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `kimetsu_score`
@@ -618,8 +657,7 @@ ALTER TABLE `languages_score`
 -- Indexes for table `math_scores`
 --
 ALTER TABLE `math_scores`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `personajes_score`
@@ -631,15 +669,13 @@ ALTER TABLE `personajes_score`
 -- Indexes for table `pokemon_score`
 --
 ALTER TABLE `pokemon_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `pokemon_score_ibfk_1` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `song_score`
 --
 ALTER TABLE `song_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `indice` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `starwars_score`
@@ -651,8 +687,7 @@ ALTER TABLE `starwars_score`
 -- Indexes for table `trivialReyna_score`
 --
 ALTER TABLE `trivialReyna_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `trivial_score`
@@ -670,15 +705,13 @@ ALTER TABLE `trivia_score`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `wtpokemon_score`
 --
 ALTER TABLE `wtpokemon_score`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -688,13 +721,13 @@ ALTER TABLE `wtpokemon_score`
 -- AUTO_INCREMENT for table `capitals_score`
 --
 ALTER TABLE `capitals_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `codequest_score`
 --
 ALTER TABLE `codequest_score`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `codequest_technology`
@@ -706,105 +739,107 @@ ALTER TABLE `codequest_technology`
 -- AUTO_INCREMENT for table `dog_score`
 --
 ALTER TABLE `dog_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `emoji_quiz`
+--
+ALTER TABLE `emoji_quiz`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `emoji_quiz_score`
+--
+ALTER TABLE `emoji_quiz_score`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `f1_score`
 --
 ALTER TABLE `f1_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `genshin_score`
 --
 ALTER TABLE `genshin_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `harrypotter_score`
 --
 ALTER TABLE `harrypotter_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `kimetsu_score`
 --
 ALTER TABLE `kimetsu_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `languages_score`
 --
 ALTER TABLE `languages_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `math_scores`
 --
 ALTER TABLE `math_scores`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `personajes_score`
 --
 ALTER TABLE `personajes_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pokemon_score`
 --
 ALTER TABLE `pokemon_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `song_score`
 --
 ALTER TABLE `song_score`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `starwars_score`
 --
 ALTER TABLE `starwars_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `trivialReyna_score`
 --
 ALTER TABLE `trivialReyna_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `trivial_score`
 --
 ALTER TABLE `trivial_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `trivia_score`
+--
+ALTER TABLE `trivia_score`
+  MODIFY `user_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `wtpokemon_score`
 --
 ALTER TABLE `wtpokemon_score`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `codequest_score`
---
-ALTER TABLE `codequest_score`
-  ADD CONSTRAINT `codequest_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `languages_score`
---
-ALTER TABLE `languages_score`
-  ADD CONSTRAINT `languages_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
