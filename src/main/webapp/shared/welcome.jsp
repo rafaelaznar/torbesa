@@ -94,7 +94,51 @@ response.sendRedirect(request.getContextPath() + "/index.jsp"); return; } %>
                 </div>
               </div>
 
-<!-- Math Challenge Game -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <!-- Math Challenge Game -->
 <div class="col-md-6 col-lg-4">
   <div class="card game-card shadow-sm border-0 h-100">
     <div class="card-body text-center p-4">
