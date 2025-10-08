@@ -339,52 +339,7 @@
                                                 class="bi bi-play-fill"></i> Play Now</a>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Science Trivia (Coming Soon) -->
-                            <div class="col">
-                                <div class="card game-card shadow-sm border-0 h-100">
-                                    <div class="card-body text-center p-4">
-                                        <div class="mb-3"><i class="bi bi-lightning-charge text-danger"
-                                                style="font-size: 3rem;"></i></div>
-                                        <h5 class="card-title text-danger mb-3">Science Trivia</h5>
-                                        <p class="card-text text-muted mb-4">Discover the wonders of science through
-                                            engaging trivia questions.</p>
-                                        <button class="btn btn-outline-danger btn-lg w-100" disabled><i
-                                                class="bi bi-hourglass-split"></i> Coming Soon</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- History Quest (Coming Soon) -->
-                            <div class="col">
-                                <div class="card game-card shadow-sm border-0 h-100">
-                                    <div class="card-body text-center p-4">
-                                        <div class="mb-3"><i class="bi bi-clock-history text-info"
-                                                style="font-size: 3rem;"></i></div>
-                                        <h5 class="card-title text-info mb-3">History Quest</h5>
-                                        <p class="card-text text-muted mb-4">Journey through time and test your
-                                            knowledge of historical events.</p>
-                                        <button class="btn btn-outline-info btn-lg w-100" disabled><i
-                                                class="bi bi-hourglass-split"></i> Coming Soon</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Logic Puzzles (Coming Soon) -->
-                            <div class="col">
-                                <div class="card game-card shadow-sm border-0 h-100">
-                                    <div class="card-body text-center p-4">
-                                        <div class="mb-3"><i class="bi bi-puzzle text-secondary"
-                                                style="font-size: 3rem;"></i></div>
-                                        <h5 class="card-title text-secondary mb-3">Logic Puzzles</h5>
-                                        <p class="card-text text-muted mb-4">Challenge your mind with brain-teasing
-                                            logic puzzles and riddles.</p>
-                                        <button class="btn btn-outline-secondary btn-lg w-100" disabled><i
-                                                class="bi bi-hourglass-split"></i> Coming Soon</button>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>                     
 
                             <!-- More games coming soon -->
                             <div class="col">
@@ -400,6 +355,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </section>
