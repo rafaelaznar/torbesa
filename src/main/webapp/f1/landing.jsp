@@ -19,17 +19,28 @@
 
     <jsp:include page="../shared/menu.jsp" />
 
-    <div class="container py-5">
+    <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-lg">
-                    <div class="card-body text-center">
-                        <h2 class="card-title mb-4">F1 Driver Team Game</h2>
-                        <p class="lead">Guess which team each driver races for.</p>
-                        <form method="get" action="GameServlet" style="display:inline-block; margin-right:10px;">
-                            <button type="submit" class="btn btn-primary btn-lg">Play Now</button>
-                        </form>
-                        <a href="../f1/ScoreServlet" class="btn btn-warning btn-lg">Top scores</a>
+            <div class="col-md-8 text-center">
+                <h1 class="display-4">Welcome to the F1 Driver Team Game!</h1>
+                <p class="lead">Test your F1 knowledge by guessing each driver's team!</p>
+                <a href="../f1/GameServlet" class="btn btn-success btn-lg m-4">Start Playing</a>
+                <a href="../f1/ScoreServlet" class="btn btn-warning btn-lg m-4">Top scores</a>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-8 offset-md-2">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">How to Play</h5>
+                        <ul class="list-group list-group-flush text-start">
+                            <li class="list-group-item">Log in with your username and password.</li>
+                            <li class="list-group-item">Guess the team the driver races for.</li>
+                            <li class="list-group-item">Earn points for correct answers.</li>
+                            <li class="list-group-item">View high scores and challenge your friends!</li>
+                            <li class="list-group-item">Also this code is MIT licensed.</li>
+                            <li class="list-group-item">Use this code to learn java, servlets, jsp, jstl, sessions and more!</li>
+                        </ul>
                     </div>
                 </div>
             </div>

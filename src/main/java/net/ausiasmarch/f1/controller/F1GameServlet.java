@@ -137,6 +137,20 @@ public class F1GameServlet extends HttpServlet {
             return;
         }
 
+        // After updating score, fetch userScore and highScores to show on results page
+        try {
+            try (java.sql.Connection oConnection = net.ausiasmarch.shared.connection.HikariPool.getConnection()) {
+                net.ausiasmarch.f1.dao.F1ScoreDao oScoreDao = new net.ausiasmarch.f1.dao.F1ScoreDao(oConnection);
+                net.ausiasmarch.capitals.model.ScoreDto userScore = oScoreDao.get(user.getId());
+                request.setAttribute("userScore", userScore);
+
+                java.util.List<net.ausiasmarch.capitals.model.ScoreDto> highScores = oScoreDao.getTop10();
+                request.setAttribute("highScores", highScores);
+            }
+        } catch (java.sql.SQLException e) {
+            request.setAttribute("leaderboardError", "Could not load leaderboard");
+        }
+
         request.getRequestDispatcher("/f1/scores.jsp").forward(request, response);
     }
 }

@@ -14,9 +14,7 @@
                         <c:out value="${sessionScope.sessionUser.username}" />
                     </span>
                 </li>
-                <li class="nav-item ms-3">
-                    <a class="nav-link" href="/torbesa/f1/ScoreServlet">F1 Leaderboard</a>
-                </li>
+                <!-- F1 Leaderboard link removed per request -->
             </ul>
         </c:if>
     </div>

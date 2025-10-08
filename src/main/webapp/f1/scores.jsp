@@ -31,33 +31,97 @@
             </c:if>
 
             <div class="row g-4">
+                <!-- Your Answer Card -->
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-question-circle-fill"></i> Your Answer
+                            </h5>
+                        </div>
                         <div class="card-body">
-                            <h5>Driver: <span class="badge bg-primary">${driverName}</span></h5>
-                            <h5>Your Guess: <span class="badge bg-warning text-dark">${teamGuess}</span></h5>
-                            <h5>Correct Team: <span class="badge bg-success">${correctTeam}</span></h5>
+                            <div class="mb-3">
+                                <h5>
+                                    <strong class="text-muted">Driver:</strong>
+                                    <span class="badge bg-primary ms-2">${driverName}</span>
+                                </h5>
+                            </div>
+                            <div class="mb-3">
+                                <h5>
+                                    <strong class="text-muted">Your Guess:</strong>
+                                    <span class="badge bg-warning text-dark ms-2">${teamGuess}</span>
+                                </h5>
+                            </div>
+                            <div class="mb-0">
+                                <h5>
+                                    <strong class="text-muted">Correct Answer:</strong>
+                                    <span class="badge bg-success ms-2">${correctTeam}</span>
+                                </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Your Score Card -->
                 <div class="col-md-6">
-                    <div class="card">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="card-title mb-0">
+                                <i class="bi bi-star-fill"></i> Your Performance
+                            </h5>
+                        </div>
                         <div class="card-body">
-                            <h5>Your Performance</h5>
-                            <div>Score: ${userScore.score}</div>
-                            <div>Tries: ${userScore.tries}</div>
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="border-end">
+                                        <h3 class="text-success mb-1">${userScore.score}</h3>
+                                        <small class="text-muted">Score</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border-end">
+                                        <h3 class="text-info mb-1">${userScore.tries}</h3>
+                                        <small class="text-muted">Tries</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div>
+                                        <h6 class="text-primary mb-1 h3">
+                                            <fmt:formatNumber value="${userScore.score / userScore.tries * 100}" maxFractionDigits="1" />%
+                                        </h6>
+                                        <small class="text-muted">Accuracy</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <small class="text-muted h5">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <fmt:formatDate value="${userScore.timestampAsDate}" pattern="MMM dd, yyyy 'at' HH:mm"/>
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <jsp:include page="leaderboard.jsp" />
-
+            <!-- Action Buttons -->
             <div class="text-center mt-4">
-                <form method="get" action="ScoreServlet" class="d-inline">
-                    <button type="submit" class="btn btn-outline-primary btn-lg">View Leaderboard</button>
+                <form method="get" action="GameServlet" class="d-inline me-3">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-play-fill"></i> Play Again
+                    </button>
+                </form>
+
+                <form method="get" action="../shared/LogoutServlet" class="d-inline">
+                    <button type="submit" class="btn btn-outline-danger btn-lg">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
                 </form>
             </div>
+
+            <!-- High Scores Table -->
+            <jsp:include page="leaderboard.jsp" />
 
         </div>
     </div>

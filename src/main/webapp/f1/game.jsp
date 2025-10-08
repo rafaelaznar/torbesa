@@ -13,7 +13,7 @@
 <jsp:include page="../shared/menu.jsp" />
 
 <div class="container mt-5">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-lg">
                 <div class="card-body">
@@ -37,53 +37,17 @@
                         </div>
                         <button type="submit" class="btn btn-success w-100">Submit Answer</button>
                     </form>
+                    <div class="mt-4 text-center">
+                        <span class="fw-bold">Score:</span> <span class="badge bg-primary">${score}</span>
+                    </div>
                     <form method="get" action="ScoreServlet" class="mt-3">
                         <button type="submit" class="btn btn-outline-info w-100">View High Scores</button>
                     </form>
+                    <form method="get" action="../shared/LogoutServlet" class="mt-2">
+                        <button type="submit" class="btn btn-outline-danger w-100">Logout</button>
+                    </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="mb-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Your Performance</h5>
-                        <c:if test="${not empty userScore}">
-                            <p class="mb-1"><strong>Score:</strong> <span class="badge bg-primary">${userScore.score}</span></p>
-                            <p class="mb-1"><strong>Tries:</strong> <span class="badge bg-secondary">${userScore.tries}</span></p>
-                            <p class="mb-0"><small>Last: ${userScore.timestamp}</small></p>
-                        </c:if>
-                        <c:if test="${empty userScore}">
-                            <p class="text-muted mb-0">No attempts yet. Play a round!</p>
-                        </c:if>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Leaderboard</h5>
-                        <c:if test="${not empty highScores}">
-                            <ol class="list-group list-group-numbered list-group-flush">
-                                <c:forEach var="hs" items="${highScores}">
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">${hs.username}</div>
-                                            <small>Tries: ${hs.tries}</small>
-                                        </div>
-                                        <span class="badge bg-primary rounded-pill">${hs.score}</span>
-                                    </li>
-                                </c:forEach>
-                            </ol>
-                        </c:if>
-                        <c:if test="${empty highScores}">
-                            <p class="text-muted mb-0">No leaderboard data yet.</p>
-                        </c:if>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
