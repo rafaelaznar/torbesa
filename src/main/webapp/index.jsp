@@ -48,10 +48,6 @@
 
         <!-- Login/Signup Buttons -->
         <div class="container my-4 d-flex justify-content-center">
-            <a href="shared/login.jsp" class="btn btn-primary btn-lg me-3"
-                style="min-width: 180px; font-size: 1.3rem;">Login to play</a>
-            <a href="shared/signup.jsp" class="btn btn-warning btn-lg"
-                style="min-width: 180px; font-size: 1.3rem; color: #212529;">Sign up</a>
             <a href="shared/login.jsp" class="btn btn-primary btn-lg me-3" style="min-width: 180px; font-size: 1.3rem;">Login to play</a>
             <a href="shared/signup.jsp" class="btn btn-warning btn-lg" style="min-width: 180px; font-size: 1.3rem; color: #212529;">Sign up</a>
         </div>
