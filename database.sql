@@ -207,3 +207,81 @@ ALTER TABLE `genshin_score`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `emoji_quiz`
+--
+
+CREATE TABLE `emoji_quiz` (
+  `id` bigint NOT NULL,
+  `question` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `correct_answer` varchar(255) NOT NULL,
+  `option1` varchar(255) NOT NULL,
+  `option2` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `emoji_quiz`
+--
+
+INSERT INTO `emoji_quiz` (`id`, `question`, `correct_answer`, `option1`, `option2`) VALUES
+(1, '🦁👑🌅🎵', 'El Rey León', 'Madagascar', 'La selva'),
+(2, '🚢🧊💑🌊', 'Titanic', 'La tormenta perfecta', 'Pearl Harbor'),
+(3, '🕶️💊🖥️🤯', 'Matrix', 'Tron', 'Blade Runner'),
+(4, '🦖🧪🌿🏝️', 'Jurassic Park', 'King Kong', 'El mundo perdido'),
+(5, '🧙‍♂️🪄🦉🏰', 'Harry Potter y la piedra filosofal', 'El Hobbit', 'Las crónicas de Narnia'),
+(6, '🎹🌃💃🎺', 'La La Land', 'Whiplash', 'Cantando bajo la lluvia'),
+(7, '🛡️🧪⚡🌍', 'Los Vengadores', 'Liga de la Justicia', 'X-Men'),
+(8, '🛸🦝🌌🎵', 'Guardianes de la Galaxia', 'Star Trek', 'Hombres de negro'),
+(9, '☠️🏴‍☠️🧭⚓', 'Piratas del Caribe: La maldición de la Perla Negra', 'Hook', 'La isla'),
+(10, '💍🧝‍♂️🗻🔥', 'El Señor de los Anillos: La Comunidad del Anillo', 'Willow', 'El Hobbit: Un viaje inesperado'),
+(11, '🍫🏃‍♂️🚌🦐', 'Forrest Gump', 'El indomable Will Hunting', 'Náufrago'),
+(12, '🔍🐠🌊🐢', 'Buscando a Nemo', 'Shark Tale', 'Moana'),
+(13, '🤠🧸🚀👦', 'Toy Story', 'Los Increíbles', 'Monstruos, S.A.'),
+(14, '🌌⚔️🛰️👨‍🚀', 'Star Wars: Una nueva esperanza', 'Dune', 'Star Trek'),
+(15, '🎩🐍🗿🗺️', 'Indiana Jones y los cazadores del arca perdida', 'La momia', 'Jumanji'),
+(16, '🤵🍝👨‍👦🔫', 'El Padrino', 'Buenos muchachos', 'Casino'),
+(17, '🥊🇺🇸🏛️🎶', 'Rocky', 'Creed', 'Warrior'),
+(18, '🎸💀🌺🧓', 'Coco', 'Vivo', 'Encanto'),
+(19, '❄️👭👑⛄', 'Frozen', 'Valiente', 'La reina de las nieves'),
+(20, '🧠😄😢😡😱', 'Intensamente', 'Soul', 'Del revés 2'),
+(21, '🕷️🧑‍🎓🌆🌀', 'Spider-Man: Sin camino a casa', 'Venom', 'El sorprendente Spider-Man'),
+(22, '🦇🤵‍♂️🃏🏙️', 'El caballero oscuro', 'Joker', 'Batman Begins'),
+(23, '🎈🤡📞🏠', 'Eso (It)', 'El Conjuro', 'Scream'),
+(24, '✝️👧😈🌒', 'El Exorcista', 'La monja', 'Hereditary'),
+(25, '🔵🐉🌳🌌', 'Avatar', 'Avatar: El sentido del agua', 'Guerrilla'),
+(26, '⏰🚗⚡👟', 'Regreso al futuro', 'Cars', 'Click'),
+(27, '🎭🕵️‍♂️💣🏃‍♂️', 'Misión: Imposible', 'Bourne: Identidad desconocida', 'Kingsman: Servicio secreto'),
+(28, '🏜️🚚🔥🛣️', 'Mad Max: Furia en la carretera', 'Dune', 'Sicario'),
+(29, '🏠🍜🪳🔍', 'Parásitos', 'La casa de papel', 'Oldboy'),
+(30, '🐟🧜‍♀️🧪💙', 'La forma del agua', 'La sirenita', 'Aguas profundas');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `emoji_quiz_score`
+--
+
+CREATE TABLE `emoji_quiz_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `emoji_quiz_score`
+--
+
+INSERT INTO `emoji_quiz_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 1, 10, 15, '2025-10-01 10:12:45'),
+(2, 2, 5, 14, '2025-10-01 11:20:30'),
+(3, 3, 18, 25, '2025-10-02 09:44:12'),
+(4, 4, 22, 40, '2025-10-03 18:30:00'),
+(5, 5, 14, 21, '2025-10-04 20:15:50'),
+(29, 17, 26, 47, '2025-10-07 14:03:48');
+
+-- --------------------------------------------------------
