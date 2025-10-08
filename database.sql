@@ -489,9 +489,12 @@ ALTER TABLE `personajes_score`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 -- Constraints for dumped tables
 --
+COMMIT;
+
+-- --------------------------------------------------------
 
 --
--- Constraints for table `capitals_score`
+-- Table structure for table `f1_score`
 --
 
 
@@ -666,6 +669,23 @@ ALTER TABLE `trivialReyna_score`
 
 
   
+
+CREATE TABLE `f1_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int NOT NULL,
+  `tries` int NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+-- Indexes for table `f1_score`
+ALTER TABLE `f1_score`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+-- AUTO_INCREMENT for table `f1_score`
+ALTER TABLE `f1_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
 

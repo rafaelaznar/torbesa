@@ -138,6 +138,44 @@
                     </div>
                 </div>
             </div>
+                            <!-- F1 Game -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-speedometer2 text-danger" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-danger mb-3">F1 Driver Team Game</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Guess for which team a driver competes using live F1 data.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Diego Alcalde
+                                        </p>
+                                        <a href="../f1/landing.jsp" class="btn btn-danger btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Math Challenge (moved next to F1 to mirror index.jsp) -->
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                            <i class="bi bi-calculator text-warning" style="font-size: 3rem;"></i>
+                                        </div>
+                                        <h5 class="card-title text-warning mb-3">Math Challenge</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Sharpen your math skills with fun arithmetic challenges and number puzzles.
+                                        </p>
+                                        <button class="btn btn-outline-warning btn-lg w-100" disabled>
+                                            <i class="bi bi-hourglass-split"></i> Coming Soon
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
 
             <div class="col">
                 <div class="card game-card h-100 border-0 shadow-sm">
