@@ -11,12 +11,14 @@
         <jsp:include page="menu.jsp" />
         <h2>Error in the application</h2>
         <div style="color:red;">${errorMessage}</div>
-        <form method="get" action="login.jsp">
-            <input type="submit" value="Back to Login">
-        </form>
-        <form method="get" action="welcome.jsp">
-            <input type="submit" value="Home">
-        </form>
+        <form method="get" action="${pageContext.request.contextPath}/shared/login.jsp">
+    <input type="submit" value="Back to Login">
+</form>
+
+<form method="get" action="${pageContext.request.contextPath}/shared/welcome.jsp">
+    <input type="submit" value="Home">
+</form>
+
         <jsp:include page="footer.jsp" />
     </body>
 
