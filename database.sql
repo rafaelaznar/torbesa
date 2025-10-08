@@ -695,6 +695,25 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: mysql:3306
+-- Tiempo de generación: 08-10-2025 a las 11:27:26
+-- Versión del servidor: 8.4.6
+-- Versión de PHP: 8.2.27
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `torbesa`
+--
+
+-- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `starwars_score`
 --
