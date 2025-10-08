@@ -15,6 +15,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+<<<<<<< HEAD
+      .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 100px 0;
+      }  
+                .hero-section {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    padding: 100px 0;
+                }
+=======
         body {
             background-color: #f8f9fa;
         }
@@ -24,6 +36,7 @@
             color: #ffffff;
             padding: 80px 0;
         }
+>>>>>>> a77a2cc809f99bbbf07ffa41ea0719b447821d70
 
         .game-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -101,7 +114,35 @@
                         </a>
                     </div>
                 </div>
+<<<<<<< HEAD
+            </section>
+                              <div class="col-md-6 col-lg-4">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3">
+                                        <span style="font-size: 3rem;">🐕</span>                                        </div>
+                                        <h5 class="card-title text-primary mb-3">Dog Game</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Test your geography knowledge! Guess the capital cities of countries from
+                                            around the world.
+                                        </p>
+                                        <p class="card-text text-muted mb-4">
+                                            By Ian Palomares
+                                        </p>
+                                        <a href="../perro/landing.jsp" class="btn btn-primary btn-lg w-100">
+                                            <i class="bi bi-play-fill"></i> Play Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
+=======
+            </div>
+>>>>>>> a77a2cc809f99bbbf07ffa41ea0719b447821d70
 
             <div class="col">
                 <div class="card game-card h-100 border-0 shadow-sm">
