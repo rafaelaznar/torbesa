@@ -176,7 +176,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `capitals_score`
   ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-COMMIT;
+
 
 --
 -- AUTO_INCREMENT for table `pokemon_score`
@@ -200,9 +200,7 @@ ALTER TABLE `pokemon_score`
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -361,7 +359,7 @@ ALTER TABLE `codequest_score`
 --
 ALTER TABLE `codequest_technology`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
-COMMIT;
+
 
 CREATE TABLE `harrypotter_score` (
   `id` int NOT NULL,
@@ -396,8 +394,6 @@ ALTER TABLE `harrypotter_score`
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-START TRANSACTION;
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -405,7 +401,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-COMMIT;
+
 
 -- phpMyAdmin SQL Dump
 -- version 5.2.2
@@ -416,8 +412,7 @@ COMMIT;
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -462,7 +457,7 @@ INSERT INTO `genshin_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VAL
 --
 -- Indices de la tabla `genshin_score`
 
-COMMIT;
+
 
 
 -- phpMyAdmin SQL Dump
@@ -474,8 +469,7 @@ COMMIT;
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -555,8 +549,7 @@ ALTER TABLE `genshin_score`
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -605,7 +598,7 @@ ALTER TABLE `song_score`
 --
 ALTER TABLE `song_score`
   MODIFY `id` bigint(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
+
 
 -- --------------------------------------------------------
 
@@ -699,7 +692,7 @@ ALTER TABLE `personajes_score`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 -- Constraints for dumped tables
 --
-COMMIT;
+
 
 -- --------------------------------------------------------
 
@@ -823,8 +816,7 @@ INSERT INTO `emoji_quiz_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) 
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.29
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -911,8 +903,7 @@ ALTER TABLE `capitals_score`
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.27
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -929,8 +920,7 @@ SET time_zone = "+00:00";
 -- Versión del servidor: 8.4.6
 -- Versión de PHP: 8.2.27
 
-START TRANSACTION;
-SET time_zone = "+00:00";
+
 
 --
 -- Base de datos: `torbesa`
@@ -976,7 +966,7 @@ ALTER TABLE `starwars_score`
 --
 ALTER TABLE `starwars_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
+
 
 -- ---------------------------------------------------------
 
@@ -1072,4 +1062,51 @@ ALTER TABLE `dog_score`
 --
 ALTER TABLE `dog_score`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `starwars_score`
+--
+
+CREATE TABLE `starwars_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int DEFAULT '0',
+  `tries` int DEFAULT '0',
+  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `starwars_score`
+--
+
+INSERT INTO `starwars_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 11, 14, 19, '2025-10-08 07:47:55');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `starwars_score`
+--
+ALTER TABLE `starwars_score`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `starwars_score`
+--
+ALTER TABLE `starwars_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+
+
+  
 COMMIT;
