@@ -1,43 +1,33 @@
-package net.ausiasmarch.capitals.controller;
+package net.ausiasmarch.starwars.controller;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import net.ausiasmarch.capitals.model.ScoreDto;
-import net.ausiasmarch.capitals.service.ScoreService;
+
+import net.ausiasmarch.starwars.model.ScoreDto;
+
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/capitals/ScoreServlet")
-public class ScoreServlet extends HttpServlet {
-    private ScoreService oScoreService;
+@WebServlet("/starwars/ScoreServlet")
+public class ScoreServlet {
+    private ScoreServlet oScoreService;
 
     public ScoreServlet() {
-        this.oScoreService = new ScoreService();
+        this.oScoreService = new ScoreServlet();
     }
 
     // Constructor para inyección en tests
-    public ScoreServlet(ScoreService scoreService) {
+    public ScoreServlet(ScoreServlet scoreService) {
         this.oScoreService = scoreService;
     }
 
-    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)  {
         try {
             List<ScoreDto> highScoresList = oScoreService.getHighScores();
             request.setAttribute("highScores", highScoresList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("highscores.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("highscoresSW.jsp");
             dispatcher.forward(request, response);
-        } catch (SQLException e) {
-            System.err.println("Error al ejecutar la operación en la base de datos: " + e.getMessage());
-            request.setAttribute("errorMessage", "Database error");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("../shared/error.jsp");
-            try {
-                dispatcher.forward(request, response);
-            } catch (ServletException | IOException e1) {
-                System.err.println("Error al redirigir a la página de error: " + e1.getMessage());
-            }
         } catch (ServletException | IOException e) {
             System.err.println("Error al ejecutar la operación en la base de datos: " + e.getMessage());
             request.setAttribute("errorMessage", "Internal error");
@@ -57,5 +47,9 @@ public class ScoreServlet extends HttpServlet {
                 System.err.println("Error al redirigir a la página de error: " + e1.getMessage());
             }
         }
+    }
+
+    private List<ScoreDto> getHighScores() {
+        throw new UnsupportedOperationException("Unimplemented method 'getHighScores'");
     }
 }

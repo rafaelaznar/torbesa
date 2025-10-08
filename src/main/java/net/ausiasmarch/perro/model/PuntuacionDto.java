@@ -1,19 +1,18 @@
-package net.ausiasmarch.capitals.model;
+package net.ausiasmarch.perro.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-
-public class ScoreDto {
-    private int id;
+public class PuntuacionDto {
+     private int id;
     private int userId;
     private String username;
     private int score;
     private int tries;
     private LocalDateTime timestamp;
 
-    public ScoreDto() {
+    public PuntuacionDto() {
         this.id = 0;
         this.userId = 0;
         this.score = 0;
@@ -21,7 +20,7 @@ public class ScoreDto {
         this.timestamp = null;
     }
 
-    public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp) {
+    public PuntuacionDto(int id, int userId, int score, int tries, LocalDateTime timestamp) {
         this.id = id;
         this.userId = userId;
         this.score = score;
@@ -29,7 +28,7 @@ public class ScoreDto {
         this.timestamp = timestamp;
     }
 
-    public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
+    public PuntuacionDto(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
         this.id = id;
         this.userId = userId;
         this.score = score;

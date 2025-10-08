@@ -1,9 +1,8 @@
-package net.ausiasmarch.capitals.model;
+package net.ausiasmarch.starwars.model;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-
 
 public class ScoreDto {
     private int id;
@@ -42,51 +41,52 @@ public class ScoreDto {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public int getTries() {
-        return tries;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public Date getTimestampAsDate() {
-        if (timestamp == null) return null;
-        return Date.from(timestamp.atZone(ZoneId.systemDefault()).toInstant());
-    }
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public void setScore(int score) {
         this.score = score;
     }
 
+    public int getTries() {
+        return tries;
+    }
+
     public void setTries(int tries) {
         this.tries = tries;
     }
 
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public Date getTimestampAsDate() {
+        if (timestamp == null) return null;
+        return Date.from(timestamp.atZone(ZoneId.systemDefault()).toInstant());
     }
 }

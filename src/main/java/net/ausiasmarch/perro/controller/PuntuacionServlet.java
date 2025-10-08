@@ -1,33 +1,38 @@
-package net.ausiasmarch.capitals.controller;
+package net.ausiasmarch.perro.controller;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import net.ausiasmarch.capitals.model.ScoreDto;
-import net.ausiasmarch.capitals.service.ScoreService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/capitals/ScoreServlet")
-public class ScoreServlet extends HttpServlet {
-    private ScoreService oScoreService;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-    public ScoreServlet() {
-        this.oScoreService = new ScoreService();
+import net.ausiasmarch.perro.model.PuntuacionDto;
+import net.ausiasmarch.perro.service.PuntuacionService;
+
+@WebServlet("/perro/PuntuacionServlet")
+public class PuntuacionServlet extends javax.servlet.http.HttpServlet {
+    private PuntuacionService oPuntuacionService;
+
+
+    public PuntuacionServlet() {
+        this.oPuntuacionService = new PuntuacionService();
     }
 
     // Constructor para inyección en tests
-    public ScoreServlet(ScoreService scoreService) {
-        this.oScoreService = scoreService;
+    public PuntuacionServlet(PuntuacionService puntuacionService) {
+        this.oPuntuacionService = puntuacionService;
     }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)  {
         try {
-            List<ScoreDto> highScoresList = oScoreService.getHighScores();
+            List<PuntuacionDto> highScoresList = oPuntuacionService.getHighScores();
             request.setAttribute("highScores", highScoresList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("highscores.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("altaPuntuacion.jsp");
             dispatcher.forward(request, response);
         } catch (SQLException e) {
             System.err.println("Error al ejecutar la operación en la base de datos: " + e.getMessage());
