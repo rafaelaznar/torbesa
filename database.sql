@@ -455,17 +455,61 @@ ALTER TABLE `capitals_score`
 
 -- --------------------------------------------------------
 
+-- phpMyAdmin SQL Dump
+-- version 5.2.2
+-- https://www.phpmyadmin.net/
 --
--- Table structure for table `starwars_score`
+-- Servidor: mysql:3306
+-- Tiempo de generación: 08-10-2025 a las 08:00:41
+-- Versión del servidor: 8.4.6
+-- Versión de PHP: 8.2.27
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `torbesa`
 --
 
-CREATE TABLE starwars_score (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  score INT DEFAULT 0,
-  tries INT DEFAULT 0,
-  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+-- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `starwars_score`
+--
+
+CREATE TABLE `starwars_score` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `score` int DEFAULT '0',
+  `tries` int DEFAULT '0',
+  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `starwars_score`
+--
+
+INSERT INTO `starwars_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) VALUES
+(1, 11, 14, 19, '2025-10-08 07:47:55');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `starwars_score`
+--
+ALTER TABLE `starwars_score`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `starwars_score`
+--
+ALTER TABLE `starwars_score`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
-
