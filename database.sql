@@ -97,6 +97,18 @@ ALTER TABLE `capitals_score`
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
+
+
+CREATE TABLE `scoreSalinas` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `score` INT NOT NULL DEFAULT 0,
+  `tries` INT NOT NULL DEFAULT 0,
+  `timestamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Constraints for dumped tables
 --
