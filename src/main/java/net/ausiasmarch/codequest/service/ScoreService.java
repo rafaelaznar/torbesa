@@ -2,49 +2,97 @@ package net.ausiasmarch.codequest.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 import net.ausiasmarch.codequest.dao.ScoreDao;
 import net.ausiasmarch.codequest.model.ScoreDto;
 import net.ausiasmarch.shared.connection.HikariPool;
 
-public class ScoreService {
-
-    public void set(int userId, boolean isCorrect) throws SQLException {
+/**
+ * ScoreService para CodeQuest - Sigue exactamente el mismo patrón que el ScoreService de capitals
+ * para mantener consistencia y funcionalidad.
+ */
+public class ScoreService { 
+    public List<ScoreDto> getTop10() throws SQLException {
         try (Connection oConnection = HikariPool.getConnection()) {
             ScoreDao oScoreDao = new ScoreDao(oConnection);
-            ScoreDto existingScore = oScoreDao.get(userId);
-            
-            if (existingScore != null) {
-                // Usuario ya tiene puntuación, actualizar
-                int newScore = existingScore.getScore();
-                int newTries = existingScore.getTries() + 1;
-                
-                if (isCorrect) {
-                    newScore++;
-                }
-                
-                ScoreDto updatedScore = new ScoreDto(userId, newScore, newTries);
-                oScoreDao.update(updatedScore);
-            } else {
-                // Usuario nuevo, crear puntuación
-                int initialScore = isCorrect ? 1 : 0;
-                ScoreDto newScore = new ScoreDto(userId, initialScore, 1);
-                oScoreDao.insert(newScore);
-            }
+            return oScoreDao.getTop10();
         }
     }
 
-    public ScoreDto getScore(int userId) throws SQLException {
+    public ScoreDto getByUserId(int userId) throws SQLException {
         try (Connection oConnection = HikariPool.getConnection()) {
             ScoreDao oScoreDao = new ScoreDao(oConnection);
             return oScoreDao.get(userId);
         }
     }
 
-    public int getTotalScores() throws SQLException {
+    public List<ScoreDto> getAll() throws SQLException {
         try (Connection oConnection = HikariPool.getConnection()) {
             ScoreDao oScoreDao = new ScoreDao(oConnection);
-            return oScoreDao.count();
+            return oScoreDao.getAll();
         }
     }
+
+    public boolean insert(int userId, int score) throws SQLException {
+        try (Connection oConnection = HikariPool.getConnection()) {
+            ScoreDao oScoreDao = new ScoreDao(oConnection);
+            // Check if user already has a score
+            ScoreDto oUserScore = oScoreDao.get(userId);
+            if (oUserScore != null) {
+                // Update existing score
+                oUserScore.setScore(score);
+                oUserScore.setTries(oUserScore.getTries() + 1);
+                return oScoreDao.update(oUserScore) > 0;
+            } else {
+                // Insert new score
+                ScoreDto oScore = new ScoreDto();
+                oScore.setUserId(userId);
+                oScore.setScore(score);
+                oScore.setTries(1);
+                oScore.setTimestamp(LocalDateTime.now());
+                return oScoreDao.insert(oScore) > 0;
+            }
+        }
+    }
+    public boolean set(int userId, boolean correct) throws SQLException {
+        
+        try (Connection oConnection = HikariPool.getConnection()) {
+
+            ScoreDao oScoreDao = new ScoreDao(oConnection);
+            if (oScoreDao.count(userId) > 1) {
+                oScoreDao.sanitize();
+            }
+            ScoreDto oUserScore = oScoreDao.get(userId);
+            if (!Objects.isNull(oUserScore)) {
+                oUserScore.setTries(oUserScore.getTries() + 1);
+                if (correct) {
+                    oUserScore.setScore(oUserScore.getScore() + 1);
+                }
+                return oScoreDao.update(oUserScore) > 0;
+            } else {
+                oUserScore = new ScoreDto();
+                oUserScore.setUserId(userId);
+                oUserScore.setTries(1);
+                if (correct) {
+                    oUserScore.setScore(1);
+                } else {
+                    oUserScore.setScore(0);
+                }
+                oUserScore.setTimestamp(LocalDateTime.now());
+                return oScoreDao.insert(oUserScore) > 0;
+            }
+        }
+
+    }
+
+    public List<ScoreDto> getHighScores() throws SQLException {        
+        try (Connection oConnection = HikariPool.getConnection()) {
+            ScoreDao oScoreDao = new ScoreDao(oConnection);
+            return oScoreDao.getTop10();
+        }
+    }
+
 }
