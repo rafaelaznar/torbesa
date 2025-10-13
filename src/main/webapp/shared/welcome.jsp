@@ -187,7 +187,7 @@
                                         <h5 class="card-title text-danger mb-3">Computer Science Trivia</h5>
                                         <p class="card-text text-muted mb-4">Take on tech-flavored questions and prove
                                             your CS knowledge.</p>
-                                        <p class="card-text text-muted mb-4 small">By Reyna</p>
+                                        <p class="card-text text-muted mb-4 small">By Ronald Reyna</p>
                                         <a href="../trivialReyna/landing.jsp" class="btn btn-danger btn-lg w-100"><i
                                                 class="bi bi-play-fill"></i> Play Now</a>
                                     </div>
@@ -287,6 +287,7 @@
                                         <h5 class="card-title text-success mb-3">Demon Slayer Quiz</h5>
                                         <p class="card-text text-muted mb-4">Demon Slayer fans: answer lore questions
                                             and keep your streak going.</p>
+                                        <p class="card-text text-muted mb-4 small">By Olga García</p>
                                         <a href="../kimetsu/landing.jsp" class="btn btn-success btn-lg w-100"><i
                                                 class="bi bi-play-fill"></i> Play Now</a>
                                     </div>
@@ -319,6 +320,7 @@
                                         <h5 class="card-title text-primary mb-3">Harry Potter Quiz</h5>
                                         <p class="card-text text-muted mb-4">Decide which Hogwarts house each character
                                             belongs to and earn points.</p>
+                                        <p class="card-text text-muted mb-4 small">By Ana Silvestre</p>
                                         <a href="../harrypotter/landing.jsp" class="btn btn-primary btn-lg w-100"><i
                                                 class="bi bi-play-fill"></i> Play Now</a>
                                     </div>
