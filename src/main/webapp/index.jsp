@@ -207,6 +207,7 @@
                         <div class="mb-3"><i class="bi bi-fire text-success" style="font-size: 3rem;"></i></div>
                         <h5 class="card-title text-success mb-3">Demon Slayer Quiz</h5>
                         <p class="card-text text-muted mb-4">Demon Slayer fans: answer lore questions and keep your streak going.</p>
+                        <p class="card-text text-muted mb-4 small">By Olga García</p>
                         <a href="kimetsu/landing.jsp" class="btn btn-success btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
                     </div>
                 </div>
@@ -232,6 +233,7 @@
                         <div class="mb-3"><i class="bi bi-magic text-primary" style="font-size: 3rem;"></i></div>
                         <h5 class="card-title text-primary mb-3">Harry Potter Quiz</h5>
                         <p class="card-text text-muted mb-4">Decide which Hogwarts house each character belongs to and earn points.</p>
+                        <p class="card-text text-muted mb-4 small">By Ana Silvestre</p>
                         <a href="harrypotter/landing.jsp" class="btn btn-primary btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
                     </div>
                 </div>
