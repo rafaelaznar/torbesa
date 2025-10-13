@@ -66,6 +66,10 @@ INSERT INTO `codequest_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) V
 
 -- --------------------------------------------------------
 
+
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `dog_score`
 --
@@ -501,10 +505,7 @@ ALTER TABLE `codequest_score`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `codequest_technology`
---
-ALTER TABLE `codequest_technology`
-  ADD PRIMARY KEY (`id`);
+
 
 --
 -- Indexes for table `dog_score`
@@ -631,13 +632,7 @@ ALTER TABLE `capitals_score`
 ALTER TABLE `codequest_score`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT for table `codequest_technology`
---
-ALTER TABLE `codequest_technology`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
---
 -- AUTO_INCREMENT for table `dog_score`
 --
 ALTER TABLE `dog_score`
