@@ -311,18 +311,23 @@
                                 </div>
                             </div>
 
-                                <!-- Genshin Pav -->
-                                <div class="col">
-                                    <div class="card game-card shadow-sm border-0 h-100">
-                                        <div class="card-body text-center p-4">
-                                            <div class="mb-3"><span style="font-size: 3rem;">✨</span></div>
-                                            <h5 class="card-title text-info mb-3">Genshin Pav</h5>
-                                            <p class="card-text text-muted mb-4">Guess each character's element and climb the leaderboard.</p>
-                                            <p class="card-text text-muted mb-4 small">By &lt;Alejandro Pavón&gt;</p>
-                                            <a href="../genshinPav/landing.jsp" class="btn btn-info btn-lg w-100 text-dark"><i class="bi bi-play-fill"></i> Play Now</a>
-                                        </div>
+                            <!-- Genshin Pav -->
+                            <div class="col">
+                                <div class="card game-card shadow-sm border-0 h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="mb-3"><span style="font-size: 3rem;">✨</span></div>
+                                        <h5 class="card-title text-info mb-3">Genshin Pav</h5>
+                                        <p class="card-text text-muted mb-4">
+                                            Guess the element type of the characters from the game Genshin Impact.
+                                        </p>
+                                        <p class="card-text text-muted mb-4 small">By &lt;Alejandro Pavón&gt;</p>
+                                        <a href="../genshinPav/landing.jsp"
+                                            class="btn btn-info btn-lg w-100 text-dark"><i class="bi bi-play-fill"></i>
+                                            Play Now</a>
                                     </div>
                                 </div>
+                            </div>
+
 
                             <!-- Harry Potter Quiz -->
                             <div class="col">
@@ -354,7 +359,7 @@
                                                 class="bi bi-play-fill"></i> Play Now</a>
                                     </div>
                                 </div>
-                            </div>                     
+                            </div>
 
                             <!-- More games coming soon -->
                             <div class="col">
