@@ -41,9 +41,13 @@
                 <h1 class="display-1 fw-bold mb-4">
                     <i class="bi bi-joystick"></i> torbesa
                 </h1>
-                <p class="lead fs-3">Your gateway to educational gaming</p>
-                <p class="lead fs-4">Learn to code while you build and play games</p>
-                <p class="fs-5">Challenge yourself with fun projects from the whole class</p>
+                <p class="lead fs-2">Your gateway to educational gaming</p>
+                <p class="lead fs-3">Learn to code while you build and play games</p>
+                <p class="fs-4">Challenge yourself with fun projects from the whole class</p>
+                <p class="fs-6 my-5">
+                    This project was created as "challenge 01" by students of DAW at CIPFP Ausiàs March (Valencia, Spain) in 2025.
+                    and covers various web development concepts including JSP, JSTL, Servlets, Database & pools and RESTful APIs access in the Internet.
+                </p>
             </div>
         </section>
 
