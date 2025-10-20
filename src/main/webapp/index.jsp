@@ -93,6 +93,23 @@
                 </div>
             </div>
 
+            <!-- CodeQuest -->
+                    <div class="col">
+                        <div class="card game-card shadow-sm border-0 h-100">
+                            <div class="card-body text-center p-4">
+                                <div class="mb-3"><i class="bi bi-code-slash text-primary" style="font-size: 3rem;"></i>
+                                </div>
+                                <h5 class="card-title text-primary mb-3">CodeQuest</h5>
+                                <p class="card-text text-muted mb-4">¡Pon a prueba tu conocimiento en
+                                    programación! Identifica tecnologías, frameworks y herramientas a partir de
+                                    sus descripciones.</p>
+                                <p class="card-text text-muted mb-4">By Pollyanna Soares</p>
+                                <a href="codequest/landing.jsp" class="btn btn-primary btn-lg w-100"><i
+                                        class="bi bi-play-fill"></i> Play Now</a>
+                            </div>
+                        </div>
+                    </div>
+
             <!-- F1 Driver Team Game -->
             <div class="col">
                 <div class="card game-card shadow-sm border-0 h-100">
