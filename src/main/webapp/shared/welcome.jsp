@@ -81,6 +81,7 @@
                                     </div>
                                 </div>
                             </div>
+                           
 
                             <!-- Dog Game -->
                             <div class="col">
@@ -227,6 +228,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Rock, paper, or scissors game -->
+                            <div class="col-md-6 col-lg-4">
+                            <div class="card game-card shadow-sm border-0 h-100">
+                                <div class="card-body text-center p-4">
+                                    <div class="mb-3"><i class="bi bi-hand-index-thumb" style="font-size: 3rem; color: #007bff;"></i></div>
+                                    <h5 class="card-title text-primary mb-3">Rock, paper, or scissors</h5>
+                                    <p class="card-text text-muted mb-4">The classic game of Rock, Paper, or Scissors. Challenge the computer and win!</p>
+                                    <p class="card-text text-muted mb-4">By Joan Salinas</p>
+                                    <a href="../juegoSalinas/landing.jsp" class="btn btn-primary btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
+                                </div>
+                                </div>
+                            </div>
 
                             <!-- Who's That Pokémon? -->
                             <div class="col">
@@ -359,7 +372,7 @@
                                                 class="bi bi-play-fill"></i> Play Now</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                     
 
                             <!-- More games coming soon -->
                             <div class="col">

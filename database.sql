@@ -435,6 +435,26 @@ INSERT INTO `trivia_score` (`user_id`, `score`, `streak`, `best_score`, `best_st
 (4, 0, 0, 0, 0, '2025-10-08 18:22:47');
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `scoreSalinas`
+--
+
+CREATE TABLE `scoreSalinas` (
+  `id` BIGINT NOT NULL,
+  `user_id` INT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `score` INT NOT NULL DEFAULT 0,
+  `tries` INT NOT NULL DEFAULT 0,
+  `timestamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+INSERT INTO `scoreSalinas` (`id`, `user_id`, `username`, `score`, `tries`, `timestamp`) VALUES
+(1, 1, 'alice', 15, 20, '2025-10-08 17:00:35'),
+(2, 2, 'bob', 10, 15, '2025-10-08 17:00:35');
+
 
 --
 -- Table structure for table `users`
@@ -605,6 +625,12 @@ ALTER TABLE `trivia_score`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `scoreSalinas`
+--
+
+ALTER TABLE `scoreSalinas`
+  ADD PRIMARY KEY (`id`);
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -729,10 +755,17 @@ ALTER TABLE `trivia_score`
   MODIFY `user_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `scoreSalinas`
+--
+ALTER TABLE `scoreSalinas`
+  MODIFY `id` BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 
 --
 -- AUTO_INCREMENT for table `wtpokemon_score`
