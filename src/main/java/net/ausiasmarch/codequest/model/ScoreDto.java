@@ -1,22 +1,31 @@
 package net.ausiasmarch.codequest.model;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class ScoreDto {
     private int id;
     private int userId;
+    private String username;
     private int score;
     private int tries;
     private LocalDateTime timestamp;
-    private String username;
 
     public ScoreDto() {
+        this.id = 0;
+        this.userId = 0;
+        this.score = 0;
+        this.tries = 0;
+        this.timestamp = null;
     }
 
-    public ScoreDto(int userId, int score, int tries) {
+    public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp) {
+        this.id = id;
         this.userId = userId;
         this.score = score;
         this.tries = tries;
+        this.timestamp = timestamp;
     }
 
     public ScoreDto(int id, int userId, int score, int tries, LocalDateTime timestamp, String username) {
@@ -44,6 +53,14 @@ public class ScoreDto {
         this.userId = userId;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public int getScore() {
         return score;
     }
@@ -68,24 +85,9 @@ public class ScoreDto {
         this.timestamp = timestamp;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Override
-    public String toString() {
-        return "ScoreDto{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", score=" + score +
-                ", tries=" + tries +
-                ", timestamp=" + timestamp +
-                ", username='" + username + '\'' +
-                '}';
+    public Date getTimestampAsDate() {
+        if (timestamp == null) return null;
+        return Date.from(timestamp.atZone(ZoneId.systemDefault()).toInstant());
     }
 }
 

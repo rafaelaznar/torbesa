@@ -66,101 +66,7 @@ INSERT INTO `codequest_score` (`id`, `user_id`, `score`, `tries`, `timestamp`) V
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `codequest_technology`
---
 
-CREATE TABLE `codequest_technology` (
-  `id` bigint NOT NULL,
-  `name` varchar(255) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `type` varchar(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
-  `description` text CHARACTER SET utf32 COLLATE utf32_unicode_ci,
-  `category` varchar(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci DEFAULT NULL,
-  `difficulty` varchar(50) CHARACTER SET utf32 COLLATE utf32_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
-
---
--- Dumping data for table `codequest_technology`
---
-
-INSERT INTO `codequest_technology` (`id`, `name`, `type`, `description`, `category`, `difficulty`) VALUES
-(1, 'JavaScript', 'lenguaje', 'Lenguaje de programación interpretado para crear interactividad en páginas web', 'cliente', 'medio'),
-(2, 'TypeScript', 'lenguaje', 'Superset de JavaScript que añade tipado estático', 'cliente', 'medio'),
-(3, 'HTML', 'lenguaje', 'Lenguaje de marcado para estructurar contenido web', 'cliente', 'facil'),
-(4, 'CSS', 'lenguaje', 'Lenguaje de hojas de estilo para diseñar páginas web', 'cliente', 'facil'),
-(5, 'Java', 'lenguaje', 'Lenguaje orientado a objetos para aplicaciones empresariales', 'servidor', 'dificil'),
-(6, 'Python', 'lenguaje', 'Lenguaje interpretado versátil y fácil de aprender', 'servidor', 'medio'),
-(7, 'PHP', 'lenguaje', 'Lenguaje popular para desarrollo web del lado del servidor', 'servidor', 'medio'),
-(8, 'C#', 'lenguaje', 'Lenguaje de Microsoft para la plataforma .NET', 'servidor', 'dificil'),
-(9, 'Go', 'lenguaje', 'Lenguaje de Google para sistemas concurrentes y eficientes', 'servidor', 'dificil'),
-(10, 'Rust', 'lenguaje', 'Lenguaje de sistemas con enfoque en seguridad y rendimiento', 'servidor', 'dificil'),
-(11, 'Ruby', 'lenguaje', 'Lenguaje dinámico conocido por su elegancia y productividad', 'servidor', 'medio'),
-(12, 'Node.js', 'lenguaje', 'JavaScript en el servidor, permite full-stack con un solo lenguaje', 'fullstack', 'medio'),
-(13, 'React', 'framework', 'Librería de JavaScript para construir interfaces de usuario', 'cliente', 'medio'),
-(14, 'Vue.js', 'framework', 'Framework progresivo para interfaces de usuario interactivas', 'cliente', 'facil'),
-(15, 'Angular', 'framework', 'Framework completo de Google para aplicaciones web robustas', 'cliente', 'dificil'),
-(16, 'Svelte', 'framework', 'Framework compilado que genera código vanilla JavaScript optimizado', 'cliente', 'medio'),
-(17, 'Bootstrap', 'framework', 'Framework CSS para diseño responsive y componentes pre-hechos', 'cliente', 'facil'),
-(18, 'Tailwind CSS', 'framework', 'Framework CSS utility-first para diseño rápido y personalizable', 'cliente', 'medio'),
-(19, 'Next.js', 'framework', 'Framework de React para aplicaciones con renderizado del lado del servidor', 'cliente', 'dificil'),
-(20, 'Nuxt.js', 'framework', 'Framework de Vue.js para aplicaciones universales', 'cliente', 'dificil'),
-(21, 'Spring Boot', 'framework', 'Framework de Java para crear aplicaciones empresariales rápidamente', 'servidor', 'dificil'),
-(22, 'Django', 'framework', 'Framework web de Python con baterías incluidas', 'servidor', 'dificil'),
-(23, 'Flask', 'framework', 'Micro-framework minimalista de Python para APIs y web apps', 'servidor', 'facil'),
-(24, 'Express.js', 'framework', 'Framework web minimalista para Node.js', 'servidor', 'medio'),
-(25, 'Laravel', 'framework', 'Framework elegante de PHP con sintaxis expresiva', 'servidor', 'medio'),
-(26, 'Ruby on Rails', 'framework', 'Framework de Ruby que prioriza la convención sobre configuración', 'servidor', 'dificil'),
-(27, 'ASP.NET Core', 'framework', 'Framework web moderno de Microsoft para aplicaciones multiplataforma', 'servidor', 'dificil'),
-(28, 'FastAPI', 'framework', 'Framework moderno de Python para APIs rápidas con validación automática', 'servidor', 'medio'),
-(29, 'Gin', 'framework', 'Framework HTTP ligero y rápido para Go', 'servidor', 'medio'),
-(30, 'jQuery', 'libreria', 'Librería que simplifica la manipulación del DOM y AJAX', 'cliente', 'facil'),
-(31, 'Lodash', 'libreria', 'Librería de utilidades para JavaScript con funciones helper', 'cliente', 'facil'),
-(32, 'Axios', 'libreria', 'Cliente HTTP basado en promesas para navegadores y Node.js', 'cliente', 'facil'),
-(33, 'Redux', 'libreria', 'Librería para gestión predecible del estado en aplicaciones JavaScript', 'cliente', 'medio'),
-(34, 'Vuex', 'libreria', 'Librería de gestión de estado para aplicaciones Vue.js', 'cliente', 'medio'),
-(35, 'RxJS', 'libreria', 'Librería para programación reactiva usando observables', 'cliente', 'dificil'),
-(36, 'D3.js', 'libreria', 'Librería para visualización de datos dinámicos e interactivos', 'cliente', 'dificil'),
-(37, 'Chart.js', 'libreria', 'Librería simple para crear gráficos responsive con canvas HTML5', 'cliente', 'facil'),
-(38, 'Three.js', 'libreria', 'Librería para crear gráficos 3D en el navegador con WebGL', 'cliente', 'dificil'),
-(39, 'Moment.js', 'libreria', 'Librería para manipular, validar y formatear fechas en JavaScript', 'cliente', 'facil'),
-(40, 'Spring Security', 'libreria', 'Framework de seguridad para aplicaciones Spring', 'servidor', 'dificil'),
-(41, 'Hibernate', 'libreria', 'Framework ORM para mapear objetos Java a bases de datos relacionales', 'servidor', 'dificil'),
-(42, 'Jackson', 'libreria', 'Librería para procesamiento de JSON en Java', 'servidor', 'medio'),
-(43, 'Requests', 'libreria', 'Librería HTTP elegante y simple para Python', 'servidor', 'facil'),
-(44, 'SQLAlchemy', 'libreria', 'ORM y toolkit SQL para Python', 'servidor', 'medio'),
-(45, 'Pandas', 'libreria', 'Librería de Python para análisis y manipulación de datos', 'servidor', 'medio'),
-(46, 'NumPy', 'libreria', 'Librería fundamental para computación científica en Python', 'servidor', 'medio'),
-(47, 'Eloquent', 'libreria', 'ORM incluido en Laravel para interactuar con bases de datos', 'servidor', 'medio'),
-(48, 'Gorm', 'libreria', 'ORM para Go con características avanzadas', 'servidor', 'medio'),
-(49, 'Entity Framework', 'libreria', 'ORM de Microsoft para aplicaciones .NET', 'servidor', 'dificil'),
-(50, 'Meteor', 'framework', 'Plataforma full-stack para desarrollar aplicaciones web y móviles', 'fullstack', 'dificil'),
-(51, 'T3 Stack', 'framework', 'Stack full-stack type-safe con Next.js, tRPC, Prisma y NextAuth', 'fullstack', 'dificil'),
-(52, 'SvelteKit', 'framework', 'Framework full-stack para aplicaciones Svelte', 'fullstack', 'medio'),
-(53, 'Remix', 'framework', 'Framework full-stack que se enfoca en estándares web', 'fullstack', 'dificil'),
-(54, 'Gatsby', 'framework', 'Framework para sitios estáticos y aplicaciones basado en React', 'fullstack', 'medio'),
-(55, 'Jest', 'framework', 'Framework de testing para JavaScript con cero configuración', 'cliente', 'facil'),
-(56, 'JUnit', 'framework', 'Framework estándar para testing unitario en Java', 'servidor', 'facil'),
-(57, 'PyTest', 'framework', 'Framework de testing simple y escalable para Python', 'servidor', 'facil'),
-(58, 'PHPUnit', 'framework', 'Framework de testing unitario para PHP', 'servidor', 'medio'),
-(59, 'Cypress', 'framework', 'Framework para testing end-to-end de aplicaciones web', 'cliente', 'medio'),
-(60, 'Selenium', 'framework', 'Framework para automatizar navegadores web', 'fullstack', 'dificil'),
-(61, 'Webpack', 'libreria', 'Bundler de módulos para aplicaciones JavaScript modernas', 'cliente', 'dificil'),
-(62, 'Vite', 'libreria', 'Build tool rápido para desarrollo frontend moderno', 'cliente', 'medio'),
-(63, 'Rollup', 'libreria', 'Bundler de módulos para librerías JavaScript', 'cliente', 'medio'),
-(64, 'Parcel', 'libreria', 'Bundler web sin configuración para desarrollo rápido', 'cliente', 'facil'),
-(65, 'esbuild', 'libreria', 'Bundler y minificador extremadamente rápido para JavaScript', 'cliente', 'medio'),
-(66, 'Sass', 'libreria', 'Preprocesador CSS con variables, mixins y funciones', 'cliente', 'medio'),
-(67, 'Less', 'libreria', 'Preprocesador CSS dinámico', 'cliente', 'medio'),
-(68, 'Stylus', 'libreria', 'Preprocesador CSS expresivo y dinámico', 'cliente', 'medio'),
-(69, 'PostCSS', 'libreria', 'Herramienta para transformar CSS con plugins de JavaScript', 'cliente', 'medio'),
-(70, 'Babel', 'libreria', 'Compilador de JavaScript para usar características modernas', 'cliente', 'medio'),
-(71, 'MobX', 'libreria', 'Librería para gestión de estado reactivo mediante observables', 'cliente', 'medio'),
-(72, 'Zustand', 'libreria', 'Librería pequeña y rápida para gestión de estado en React', 'cliente', 'facil'),
-(73, 'Jotai', 'libreria', 'Gestión de estado atómico para React', 'cliente', 'medio'),
-(74, 'Recoil', 'libreria', 'Librería experimental de Facebook para gestión de estado en React', 'cliente', 'medio'),
-(75, 'Apollo Client', 'libreria', 'Cliente GraphQL completo con caché inteligente', 'cliente', 'dificil'),
-(76, 'React Query', 'libreria', 'Librería para fetching, caching y sincronización de datos', 'cliente', 'medio'),
-(77, 'SWR', 'libreria', 'Librería para data fetching con cache, revalidación y más', 'cliente', 'medio');
 
 -- --------------------------------------------------------
 
@@ -529,6 +435,26 @@ INSERT INTO `trivia_score` (`user_id`, `score`, `streak`, `best_score`, `best_st
 (4, 0, 0, 0, 0, '2025-10-08 18:22:47');
 
 -- --------------------------------------------------------
+--
+-- Table structure for table `scoreSalinas`
+--
+
+CREATE TABLE `scoreSalinas` (
+  `id` BIGINT NOT NULL,
+  `user_id` INT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `score` INT NOT NULL DEFAULT 0,
+  `tries` INT NOT NULL DEFAULT 0,
+  `timestamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+INSERT INTO `scoreSalinas` (`id`, `user_id`, `username`, `score`, `tries`, `timestamp`) VALUES
+(1, 1, 'alice', 15, 20, '2025-10-08 17:00:35'),
+(2, 2, 'bob', 10, 15, '2025-10-08 17:00:35');
+
 
 --
 -- Table structure for table `users`
@@ -599,10 +525,7 @@ ALTER TABLE `codequest_score`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `codequest_technology`
---
-ALTER TABLE `codequest_technology`
-  ADD PRIMARY KEY (`id`);
+
 
 --
 -- Indexes for table `dog_score`
@@ -702,6 +625,12 @@ ALTER TABLE `trivia_score`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `scoreSalinas`
+--
+
+ALTER TABLE `scoreSalinas`
+  ADD PRIMARY KEY (`id`);
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -729,13 +658,7 @@ ALTER TABLE `capitals_score`
 ALTER TABLE `codequest_score`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT for table `codequest_technology`
---
-ALTER TABLE `codequest_technology`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
---
 -- AUTO_INCREMENT for table `dog_score`
 --
 ALTER TABLE `dog_score`
@@ -832,26 +755,21 @@ ALTER TABLE `trivia_score`
   MODIFY `user_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `scoreSalinas`
+--
+ALTER TABLE `scoreSalinas`
+  MODIFY `id` BIGINT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 
-
-CREATE TABLE `scoreSalinas` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NULL,
-  `username` VARCHAR(50) NOT NULL,
-  `score` INT NOT NULL DEFAULT 0,
-  `tries` INT NOT NULL DEFAULT 0,
-  `timestamp` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- AUTO_INCREMENT for table `wtpokemon_score`
 --
-ALTER TABLE `capitals_score`
-  ADD CONSTRAINT `capitals_score_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `wtpokemon_score`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
