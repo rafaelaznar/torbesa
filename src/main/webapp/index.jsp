@@ -66,38 +66,34 @@
                     <i class="bi bi-collection-play"></i> Available games
                 </h2>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                    <!-- Dog Game -->
-                    <div class="col">
-                        <div class="card game-card shadow-sm border-0 h-100">
-                            <div class="card-body text-center p-4">
-                                <div class="mb-3"><span style="font-size: 3rem;">🐕</span></div>
-                                <h5 class="card-title text-primary mb-3">Dog Game</h5>
-                                <p class="card-text text-muted mb-4">Test your knowledge! Guess the dog.</p>
-                                <p class="card-text text-muted mb-4">By Ian Palomares</p>
-                                <a href="perro/landing.jsp" class="btn btn-primary btn-lg w-100"><i
-                                        class="bi bi-play-fill"></i> Play Now</a>
-                            </div>
-                        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <!-- Dog Game -->
+            <div class="col">
+                <div class="card game-card shadow-sm border-0 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3"><span style="font-size: 3rem;">🐕</span></div>
+                        <h5 class="card-title text-primary mb-3">Dog Game</h5>
+                        <p class="card-text text-muted mb-4">Test your geography knowledge! Guess the capital cities of countries from around the world.</p>
+                        <p class="card-text text-muted mb-4">By Ian Palomares</p>
+                        <a href="perro/landing.jsp" class="btn btn-primary btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Country Capitals Game -->
-                    <div class="col">
-                        <div class="card game-card shadow-sm border-0 h-100">
-                            <div class="card-body text-center p-4">
-                                <div class="mb-3"><i class="bi bi-globe-americas text-primary"
-                                        style="font-size: 3rem;"></i></div>
-                                <h5 class="card-title text-primary mb-3">Country Capitals Game</h5>
-                                <p class="card-text text-muted mb-4">Test your geography knowledge and guess the capital
-                                    city for each country.</p>
-                                <p class="card-text text-muted mb-4">By Rafael Aznar</p>
-                                <a href="capitals/landing.jsp" class="btn btn-primary btn-lg w-100"><i
-                                        class="bi bi-play-fill"></i> Play Now</a>
-                            </div>
-                        </div>
+            <!-- Country Capitals Game -->
+            <div class="col">
+                <div class="card game-card shadow-sm border-0 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3"><i class="bi bi-globe-americas text-primary" style="font-size: 3rem;"></i></div>
+                        <h5 class="card-title text-primary mb-3">Country Capitals Game</h5>
+                        <p class="card-text text-muted mb-4">Test your geography knowledge and guess the capital city for each country.</p>
+                        <p class="card-text text-muted mb-4">By Rafael Aznar</p>
+                        <a href="capitals/landing.jsp" class="btn btn-primary btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
                     </div>
+                </div>
+            </div>
 
-                    <!-- CodeQuest -->
+            <!-- CodeQuest -->
                     <div class="col">
                         <div class="card game-card shadow-sm border-0 h-100">
                             <div class="card-body text-center p-4">
@@ -114,21 +110,18 @@
                         </div>
                     </div>
 
-                    <!-- F1 Driver Team Game -->
-                    <div class="col">
-                        <div class="card game-card shadow-sm border-0 h-100">
-                            <div class="card-body text-center p-4">
-                                <div class="mb-3"><i class="bi bi-speedometer2 text-danger"
-                                        style="font-size: 3rem;"></i></div>
-                                <h5 class="card-title text-danger mb-3">F1 Driver Team Game</h5>
-                                <p class="card-text text-muted mb-4">Guess which team each driver races for using live
-                                    F1 data.</p>
-                                <p class="card-text text-muted mb-4">By Diego Alcalde</p>
-                                <a href="f1/landing.jsp" class="btn btn-danger btn-lg w-100"><i
-                                        class="bi bi-play-fill"></i> Play Now</a>
-                            </div>
-                        </div>
+            <!-- F1 Driver Team Game -->
+            <div class="col">
+                <div class="card game-card shadow-sm border-0 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3"><i class="bi bi-speedometer2 text-danger" style="font-size: 3rem;"></i></div>
+                        <h5 class="card-title text-danger mb-3">F1 Driver Team Game</h5>
+                        <p class="card-text text-muted mb-4">Guess which team each driver races for using live F1 data.</p>
+                        <p class="card-text text-muted mb-4">By Diego Alcalde</p>
+                        <a href="f1/landing.jsp" class="btn btn-danger btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
                     </div>
+                </div>
+            </div>
 
                     <!-- STAR WARS -->
                     <div class="col">
@@ -234,40 +227,44 @@
                         </div>
                     </div>
 
-                    <!-- Who's That Pokémon? -->
-                    <div class="col">
-                        <div class="card game-card shadow-sm border-0 h-100">
-                            <div class="card-body text-center p-4">
-                                <div class="mb-3"><i class="bi bi-shield-shaded text-primary"
-                                        style="font-size: 3rem;"></i></div>
-                                <h5 class="card-title text-primary mb-3">Who's That Pokémon?</h5>
-                                <p class="card-text text-muted mb-4">Identify the Pokémon from its silhouette
-                                    before the
-                                    time runs out.</p>
-                                <p class="card-text text-muted mb-4 small">By Alan Alcañiz</p>
-                                <a href="whosthatpokemon/landingpokemon.jsp" class="btn btn-primary btn-lg w-100"><i
-                                        class="bi bi-play-fill"></i> Play
-                                    Now</a>
+                      <!-- Rock, paper, or scissors game -->
+                            <div class="col-md-6 col-lg-4">
+                            <div class="card game-card shadow-sm border-0 h-100">
+                                <div class="card-body text-center p-4">
+                                    <div class="mb-3"><i class="bi bi-hand-index-thumb" style="font-size: 3rem; color: #007bff;"></i></div>
+                                    <h5 class="card-title text-primary mb-3">Rock, paper, or scissors</h5>
+                                    <p class="card-text text-muted mb-4">The classic game of Rock, Paper, or Scissors. Challenge the computer and win!</p>
+                                    <p class="card-text text-muted mb-4">By Joan Salinas</p>
+                                    <a href="juegoSalinas/landing.jsp" class="btn btn-primary btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
+                                </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- Pokémon Ability Quiz -->
-                    <div class="col">
-                        <div class="card game-card shadow-sm border-0 h-100">
-                            <div class="card-body text-center p-4">
-                                <div class="mb-3"><i class="bi bi-lightning-charge-fill text-warning"
-                                        style="font-size: 3rem;"></i></div>
-                                <h5 class="card-title text-warning mb-3">Pokémon Ability Quiz</h5>
-                                <p class="card-text text-muted mb-4">Pick the correct ability for each Pokémon
-                                    and chase
-                                    a perfect score.</p>
-                                <p class="card-text text-muted mb-4 small">By David Gabriel Calinescu</p>
-                                <a href="pokemon/landing.jsp" class="btn btn-warning btn-lg w-100 text-dark"><i
-                                        class="bi bi-play-fill"></i> Play Now</a>
-                            </div>
-                        </div>
+            <!-- Who's That Pokémon? -->
+            <div class="col">
+                <div class="card game-card shadow-sm border-0 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3"><i class="bi bi-shield-shaded text-primary" style="font-size: 3rem;"></i></div>
+                        <h5 class="card-title text-primary mb-3">Who's That Pokémon?</h5>
+                        <p class="card-text text-muted mb-4">Identify the Pokémon from its silhouette before the time runs out.</p>
+                        <p class="card-text text-muted mb-4 small">By Alan Alcañiz</p>
+                        <a href="whosthatpokemon/landingpokemon.jsp" class="btn btn-primary btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Pokémon Ability Quiz -->
+            <div class="col">
+                <div class="card game-card shadow-sm border-0 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3"><i class="bi bi-lightning-charge-fill text-warning" style="font-size: 3rem;"></i></div>
+                        <h5 class="card-title text-warning mb-3">Pokémon Ability Quiz</h5>
+                        <p class="card-text text-muted mb-4">Pick the correct ability for each Pokémon and chase a perfect score.</p>
+                        <p class="card-text text-muted mb-4 small">By David Gabriel Calinescu</p>
+                        <a href="pokemon/landing.jsp" class="btn btn-warning btn-lg w-100 text-dark"><i class="bi bi-play-fill"></i> Play Now</a>
+                    </div>
+                </div>
+            </div>
 
                     <!-- Emoji Quiz -->
                     <div class="col">
@@ -353,22 +350,18 @@
                         </div>
                     </div>
 
-                    <!-- Taylor Swift Test -->
-                    <div class="col">
-                        <div class="card game-card shadow-sm border-0 h-100">
-                            <div class="card-body text-center p-4">
-                                <div class="mb-3"><i class="bi bi-arrow-through-heart text-dark"
-                                        style="font-size: 3rem;"></i></div>
-                                <h5 class="card-title text-dark mb-3">Taylor Swift Test</h5>
-                                <p class="card-text text-muted mb-4">Match the song to its album in this
-                                    music-themed
-                                    challenge.</p>
-                                <p class="card-text text-muted mb-4 small">By Lucia Castañera</p>
-                                <a href="swift/landing.jsp" class="btn btn-dark btn-lg w-100"><i
-                                        class="bi bi-play-fill"></i> Play Now</a>
-                            </div>
-                        </div>
+            <!-- Taylor Swift Test -->
+            <div class="col">
+                <div class="card game-card shadow-sm border-0 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="mb-3"><i class="bi bi-arrow-through-heart text-dark" style="font-size: 3rem;"></i></div>
+                        <h5 class="card-title text-dark mb-3">Taylor Swift Test</h5>
+                        <p class="card-text text-muted mb-4">Match the song to its album in this music-themed challenge.</p>
+                        <p class="card-text text-muted mb-4 small">By Lucia Castañera</p>
+                        <a href="swift/landing.jsp" class="btn btn-dark btn-lg w-100"><i class="bi bi-play-fill"></i> Play Now</a>
                     </div>
+                </div>
+            </div>
 
                     <!-- More games coming soon -->
                     <div class="col">
